@@ -1,0 +1,20 @@
+.categories {
+  display: flex;
+  margin: 0px 50px;
+  justify-content: space-around;
+  .category {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    box-shadow: 0px 2px 7px rgba(107, 107, 107, 0.07);
+    background-color: #ffffff;
+    &.selected {
+        background: pink;
+        .item {
+            background: none;
+        }
+    }
+    .item {
+    }
+  }
+}

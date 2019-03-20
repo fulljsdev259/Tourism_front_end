@@ -1,0 +1,7 @@
+$header-color: black;
+$button-color: blue;
+$header-box-shadow: 0 0 0 2px #0a8b4d, 0 0 0 4px #fbc000;
+$category-colors: red, #008000, #0000ff, #eee;
+@import "./components/header/header.scss";
+@import "./components/index/index.scss";
+@import "./components/auth/auth.scss";
