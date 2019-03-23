@@ -33,21 +33,17 @@ class Header extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    const oThis = this;
-    if (oThis.props.authenticated !== nextProps.authenticated) {
+    if (this.props.authenticated !== nextProps.authenticated) {
       this.setState({ auth: nextProps.authenticated });
     }
   }
 
   render() {
-    const oThis = this;
-    let { loggedUserData } = this.props;
-
+    let { loggedUserData, location } = this.props;
     let linkDashboard = "/admin";
     if (loggedUserData && loggedUserData.role !== "admin") {
       linkDashboard = "/user";
     }
-
     return (
       <div className="fix-header">
         <div className="menuMobile">
@@ -57,7 +53,7 @@ class Header extends React.Component {
             </div>
           </Link>
           <div className="itemDiv">
-            {oThis.props.authenticated ? (
+            {this.props.authenticated ? (
               <span style={{ marginRight: "66px", marginTop: "9px" }}>
                 {loggedUserData && loggedUserData.name
                   ? loggedUserData.name + ", "
@@ -69,10 +65,10 @@ class Header extends React.Component {
                     this.setState({
                       apiCall: true
                     });
-                    oThis.props.modalStateHandler(false, false);
+                    this.props.modalStateHandler(false, false);
                     localStorage.removeItem("token");
                     localStorage.removeItem("token_user");
-                    oThis.props.history.push("/");
+                    this.props.history.push("/");
                     setTimeout(() => {
                       this.setState({
                         apiCall: false
@@ -106,19 +102,19 @@ class Header extends React.Component {
                   style={{
                     marginTop: "10px"
                   }}
-                  data-text="GET COMPANY"
+                  data-text="GET COMPANY LISTED"
                   onClick={() => {}}
                 >
-                  <span className="blueBtn">GET COMPANY </span>
+                  <span className="blueBtn">GET COMPANY LISTED </span>
                 </li>
 
-                {!oThis.props.authenticated ? (
+                {!this.props.authenticated ? (
                   <li
-                    data-text="GET COMPANY"
+                    data-text="GET COMPANY LISTED"
                     className="registerLi"
                     onClick={() => {
                       this.ToggleBody();
-                      oThis.props.modalStateHandler(
+                      this.props.modalStateHandler(
                         false,
                         false,
                         false,
@@ -130,11 +126,22 @@ class Header extends React.Component {
                     }}
                   >
                     <div className="lower-section">
-                      <div className="registerDiv">Register / Login</div>
+                      <div
+                        className="registerDiv"
+                        // className={`registerDiv ${
+                        //   location.pathname == "/auth" ||
+                        //   location.pathname == "/auth/" ||
+                        //   location.pathname == "/auth/register"
+                        //     ? "link-active"
+                        //     : ""
+                        // }`}
+                      >
+                        Register / Login
+                      </div>
                     </div>
                   </li>
                 ) : (
-                  <li data-text="GET COMPANY" className="registerLi" />
+                  <li data-text="GET COMPANY LISTED" className="registerLi" />
                 )}
               </ul>
             </nav>
@@ -155,7 +162,7 @@ class Header extends React.Component {
                 <div
                   className="item"
                   onClick={() => {
-                    oThis.props.modalStateHandler(
+                    this.props.modalStateHandler(
                       true,
                       false,
                       false,
@@ -180,7 +187,7 @@ class Header extends React.Component {
                 <div
                   className="getStarted"
                   onClick={() => {
-                    oThis.props.modalStateHandler(
+                    this.props.modalStateHandler(
                       true,
                       false,
                       false,
@@ -191,12 +198,21 @@ class Header extends React.Component {
                     );
                   }}
                 >
-                  <a>GET COMPANY</a>
+                  <a>GET COMPANY LISTED</a>
                 </div>
               </div>
             </div>
             <div className="lower-section">
-              <div className="registerDiv" onClick={() => {}}>
+              <div
+                className="registerDiv"
+                //         className={`registerDiv ${
+                //   location.pathname == "/auth" ||
+                //   location.pathname == "/auth/" ||
+                //   location.pathname == "/auth/register"
+                //     ? "link-active"
+                //     : ""
+                // }`}
+              >
                 <Link to="/auth">Register / Login</Link>
               </div>
             </div>
@@ -214,7 +230,7 @@ class Header extends React.Component {
               <div
                 className="normal"
                 onClick={() => {
-                  oThis.props.modalStateHandler(
+                  this.props.modalStateHandler(
                     true,
                     false,
                     false,
@@ -230,7 +246,7 @@ class Header extends React.Component {
               <div
                 className="normal"
                 onClick={() => {
-                  oThis.props.modalStateHandler(
+                  this.props.modalStateHandler(
                     false,
                     false,
                     true,
@@ -246,7 +262,7 @@ class Header extends React.Component {
               <div
                 className="normal"
                 // onClick={() => {
-                //   oThis.props.modalStateHandler(
+                //   this.props.modalStateHandler(
                 //     false,
                 //     true,
                 //     false,
@@ -263,15 +279,24 @@ class Header extends React.Component {
               <div
                 className="getStarted"
                 onClick={() => {
-                  oThis.props.modalStateHandler(true, true);
+                  this.props.modalStateHandler(true, true);
                 }}
               >
-                <a>GET COMPANY</a>
+                <a>GET COMPANY LISTED</a>
               </div>
             </div>
           </div>
-          {oThis.props.authenticated ? (
-            <div className="registerDiv">
+          {this.props.authenticated ? (
+            <div
+              className="registerDiv"
+              //           className={`registerDiv ${
+              //   location.pathname == "/auth" ||
+              //   location.pathname == "/auth/" ||
+              //   location.pathname == "/auth/register"
+              //     ? "link-active"
+              //     : ""
+              // }`}
+            >
               <span className="user-name">
                 <span style={{ marginRight: "20px" }}>
                   <Link to={linkDashboard}>My Dashboard</Link>
@@ -285,7 +310,7 @@ class Header extends React.Component {
                     this.setState({
                       apiCall: true
                     });
-                    oThis.props.modalStateHandler(
+                    this.props.modalStateHandler(
                       false,
                       false,
                       false,
@@ -296,9 +321,9 @@ class Header extends React.Component {
                     );
                     localStorage.removeItem("token");
                     localStorage.removeItem("token_user");
-                    // oThis.props.receiveLogout()
+                    // this.props.receiveLogout()
 
-                    oThis.props.history.push("/");
+                    this.props.history.push("/");
                     setTimeout(() => {
                       this.setState({
                         apiCall: false
@@ -311,7 +336,16 @@ class Header extends React.Component {
               </span>
             </div>
           ) : (
-            <div className="registerDiv">
+            <div
+              className="registerDiv"
+              // className={`registerDiv ${
+              //   location.pathname === "/auth" ||
+              //   location.pathname === "/auth/" ||
+              //   location.pathname === "/auth/register"
+              //     ? "link-active"
+              //     : ""
+              // }`}
+            >
               <Link to="/auth">Register / Login</Link>
             </div>
           )}

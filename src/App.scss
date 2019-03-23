@@ -1,7 +1,53 @@
 $header-color: black;
 $button-color: blue;
-$header-box-shadow: 0 0 0 2px #0a8b4d, 0 0 0 4px #fbc000;
+$color1: #0a8b4d;
+$color2: #fbc000;
+$header-box-shadow: 0 0 0 2px $color1, 0 0 0 4px $color2;
 $category-colors: red, #008000, #0000ff, #eee;
+
 @import "./components/header/header.scss";
 @import "./components/index/index.scss";
 @import "./components/auth/auth.scss";
+@import "./components//contactus/contactus.scss";
+@import "./components/Events/events.scss";
+@import "./components/event-details/event-details.scss";
+
+.description-block {
+  h2 {
+    font-weight: 600;
+  }
+  p {
+    color: #888;
+    font-size: 0.8em;
+  }
+}
+
+.small-title {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.blue-button {
+  border-radius: 5px;
+  background: $button-color;
+  border: none;
+  font-family: "Open Sans";
+  font-size: 1em;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-align: center;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 20px;
+}
+input,
+textarea {
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 8px 10px 8px 20px;
+  width: 50%;
+  margin-bottom: 10px;
+  @media all and (max-width: 767px) {
+    width: 100%;
+  }
+}

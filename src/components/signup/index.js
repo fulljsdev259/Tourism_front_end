@@ -24,13 +24,13 @@ class SignUp extends Component {
           />
         </div>
         <div className="row or-section">
-          <div className="col-lg-5 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-5 hr-line-section">
+          <div className="col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 hr-line-section">
             <div className="hr-line" />
           </div>
-          <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
             <div className="or-text">or</div>
           </div>
-          <div className="col-lg-5 col-md-4 col-sm-4 col-xs-5 hr-line-section">
+          <div className="col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 hr-line-section">
             <div className="hr-line" />
           </div>
         </div>

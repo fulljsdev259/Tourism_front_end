@@ -1,0 +1,115 @@
+.event-details {
+  display: flex;
+
+  .left {
+    width: 50%;
+    img {
+      width: 100%;
+    }
+    .timings {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      right: 10px;
+      .timing {
+        font-size: 0.8em;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #bbb;
+        box-shadow: 0 0 5px 0px #bbb;
+        .day-block {
+          display: flex;
+          width: 50%;
+          padding: 5px;
+          .day {
+            width: 80px;
+          }
+        }
+        .day-block:nth-child(1) {
+          order: 1;
+        }
+        .day-block:nth-child(2) {
+          order: 3;
+        }
+        .day-block:nth-child(3) {
+          order: 5;
+        }
+        .day-block:nth-child(4) {
+          order: 7;
+        }
+        .day-block:nth-child(5) {
+          order: 2;
+        }
+        .day-block:nth-child(6) {
+          order: 4;
+        }
+        .day-block:nth-child(7) {
+          order: 6;
+        }
+      }
+
+      //   .day-block :nth-child(2) {
+      //     order: 3;
+      //   }
+    }
+  }
+  .right {
+    width: 50%;
+    padding: 20px 30px;
+    .block {
+      display: flex;
+      .category-icon {
+        width: 30px;
+        height: 30px;
+      }
+      .title {
+        margin-left: 20px;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+      .desc {
+        font-size: 0.8em;
+      }
+    }
+    .sub-details {
+      flex-direction: column;
+      .sub-detail {
+        display: flex;
+      }
+      .icon {
+        width: 1em;
+      }
+      .text {
+        font-size: 0.8em;
+        margin-left: 20px;
+      }
+    }
+    .reviews {
+      padding: 20px 0;
+      font-size: 0.8em;
+    }
+    .top {
+      display: flex;
+      font-weight: 600;
+      padding-top: 5px;
+      .name {
+        margin-right: 5px;
+      }
+    }
+    .text {
+      color: #888;
+    }
+    .leave-review {
+      font-size: 0.8em;
+      color: blue;
+      cursor: pointer;
+    }
+  }
+  .social-buttons {
+    justify-content: space-around;
+  }
+}

@@ -8,7 +8,7 @@ import i6 from "../../images/6.png";
 import i7 from "../../images/7.png";
 import i8 from "../../images/8.png";
 import i9 from "../../images/9.svg";
-import i10 from "../../images/10.svg";
+import i10 from "../../images/back_5.svg";
 import category1 from "../../images/category1.svg";
 import category2 from "../../images/category2.svg";
 import category3 from "../../images/category3.svg";
@@ -102,8 +102,11 @@ export default class index extends Component {
             <div>A true representation of the island's unique culture</div>
           </div>
         </div>
-        <div>
+        <div className="fifth-block">
           <img src={i10} style={{ width: "100%" }} />
+          <div className="desc" >
+              <div className="vertical-text">POPULAR PRODUCT TYPES</div>
+          </div>
         </div>
       </>
     );

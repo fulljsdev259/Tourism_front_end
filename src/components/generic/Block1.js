@@ -7,9 +7,9 @@ export default class Block1 extends Component {
       <div className="child-selector grid-container">
         <div
           className="grid-item"
-          // style={{
-          //   // backgroundImage: `url(${l_img}), linear-gradient(146deg, rgb(250, 219, 216) 35%, #fff 100%)`
-          // }}
+          style={{
+            backgroundImage: window.innerWidth <= 767 ? `url(${r_img})` : "none"
+          }}
         >
           {children}
         </div>

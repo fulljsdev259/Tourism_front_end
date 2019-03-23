@@ -180,7 +180,7 @@ class EventItem extends Component {
           </div>
           <div className="bottom">
             <Link
-              to={{ pathname: `/event-detail/${event._id}`, state: event }}
+              to={{ pathname: `/event-details/${event._id}`, state: event }}
               style={
                 {
                   // backgroundImage: getgradient("/" + event.categories.name)

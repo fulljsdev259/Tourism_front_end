@@ -383,12 +383,12 @@
           font-size: 14px;
           border-radius: 3px;
           color: #fff;
-          font-weight: 700;
+          font-weight: 600;
           padding: 7px 15px;
-          background-color: white;
-          a {
-            color: $header-color;
-          }
+          background-color: $button-color;
+          // a {
+          //   color: $header-color;
+          // }
           @media screen and (min-width: 767px) and (max-width: 870px) {
             white-space: nowrap;
             margin-top: 10px;
@@ -465,6 +465,12 @@
       }
       .user-name {
         color: #4c4c4c;
+      }
+    }
+    .link-active {
+      a {
+        border-bottom: 3px solid #3d7c61;
+        color: $color2 !important;
       }
     }
   }

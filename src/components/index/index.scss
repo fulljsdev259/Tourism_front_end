@@ -2,13 +2,14 @@
   display: flex;
   justify-content: space-between;
   margin: 20px 100px;
-  @media all and (max-width: 767px) {
-    margin: 20px;
+  @media all and (max-width: 991px) {
+    margin: 20px 20px 180px;
   }
   @each $current-color in $category-colors {
     $i: index($category-colors, $current-color);
     .category-nav-item:nth-child(#{$i}) {
       position: relative;
+      min-width: 180px;
       width: 23%;
       box-shadow: 0.5px 0.5px 2px 0.5px rgba(0, 0, 0, 0.2);
       border-radius: 5px;
@@ -38,7 +39,11 @@
         background: #fff;
         box-shadow: 0.5px 0.5px 2px 0.5px rgba(0, 0, 0, 0.2);
         text-align: left;
-
+        @media all and (max-width: 991px) {
+          top: 62px;
+          opacity: 1;
+          z-index: 999;
+        }
         > ul li {
           padding: 8px 10px 8px 20px;
           font-weight: 600;
@@ -198,6 +203,14 @@
   }
 }
 
+.fifth-block {
+  .desc {
+    .vertical-text {
+      width: 20%;
+    }
+  }
+}
+
 .grid-container {
   display: flex;
   height: 600px;
@@ -219,6 +232,9 @@
       width: 50%;
       text-align: center;
       display: grid;
+      @media all and (max-width: 767px) {
+        display: block;
+      }
       &:nth-child(odd) {
         .item {
           margin-right: 10%;
@@ -257,9 +273,10 @@
     position: relative;
     background-size: cover;
     @media all and (max-width: 767px) {
+      display: none;
       width: 100%;
       height: 500px;
-      background-size: 90%;
+      // background-size: 90%;
       background-position: right;
     }
   }

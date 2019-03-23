@@ -48,7 +48,7 @@
       }
     }
     .active {
-      border-bottom: 3px solid #3d7c61;
+      border-bottom: 3px solid $color2;
     }
   }
   .fb-btn {
@@ -114,7 +114,7 @@
       padding-left: 10px;
     }
     .forgot-password {
-      color: #fd6cca;
+      color: $color1;
       position: relative;
       top: 3px;
       font-size: 12px;
@@ -327,15 +327,15 @@
   }
   .remember-me {
     display: flex;
+    justify-content: space-between;
     .remember-text {
       padding-left: 10px;
     }
     .forgot-password {
-      color: #fd6cca;
+      color: $color1;
       position: relative;
-      top: 10px;
+      top: 7px;
       font-size: 12px;
-      float: right;
     }
     label {
       font-family: "Open Sans";
