@@ -9,6 +9,8 @@ import StarRatings from "react-star-ratings";
 import Review from "../generic/Review";
 import EventSubDetail from "../generic/EventSubDetail";
 import { relative } from "path";
+import { ReactComponent as TwitterIcon } from "../../images/icon/twitter.svg";
+import { ReactComponent as ThumbsupIcon } from "../../images/icon/thumbs-up.svg";
 
 // import { ReactComponent as Test } from "../../images/event_details_lb.svg";
 export default class index extends Component {
@@ -110,28 +112,80 @@ export default class index extends Component {
       { image: time_icon, text: "account" }
     ];
     return (
-      <div className="event-details">
-        <div className="left">
-          <img src={data.image.secure_url} />
+      <div className="event-details row">
+        <div
+          className="col-md-6 col-12 p-0 event-image"
+          style={{ backgroundImage: `url(${data.image.secure_url})` }}
+        />
+        <div className="col-md-6 col-12 p-3 right">
+          <div>
+            <div className="block">
+              <img className="category-icon" src={categories[0].image} />
+              <div className="title">{data.title}</div>
+            </div>
+            <div className="block">
+              <StarRatings
+                rating={5}
+                // rating={this.state.rating}
+                starRatedColor="#fbc000"
+                // changeRating={this.changeRating}
+                starDimension="0.8em"
+                starSpacing="0px"
+                numberOfStars={5}
+                name="rating"
+              />
+              <div className="rating-text">9 reviews</div>
+            </div>
+            <div className="block">
+              <div className="desc">{data.content.brief}</div>
+            </div>
+          </div>
+          <div className="block sub-details">
+            {event_sub_details.map((info, i) => (
+              <EventSubDetail key={i} {...info} />
+            ))}
+          </div>
+          <div className="block social-buttons mt-3">
+            <button className="btn btn-primary favorites-btn">
+              <img src={favorites_icon} />
+              Add to Favorites
+            </button>
+            <div className="social d-flex">
+              <button className="btn btn-primary px-1 py-0 d-flex">
+                <ThumbsupIcon />
+                <div className="text">like</div>
+              </button>
+              <button className="btn btn-primary ml-1 px-1 py-0 d-flex tweet">
+                <TwitterIcon />
+                <div className="text">Tweet</div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6 col-12 p-0 left">
           <div
-            style={{ width: "100%", position: "relative", overflow: "hidden" }}
+            style={{
+              width: "100%",
+              position: "relative",
+              overflow: "hidden"
+            }}
           >
             <img style={{ transform: "scale(1.24)" }} src={event_details_lb} />
             <div className="timings">
               <div className="small-title">Open Hours</div>
               <div className="timing">
                 {[
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday"
-                ].map((day, i) => (
+                  { day: "Monday", time: "10:00am - 5:00pm" },
+                  { day: "Tuesday", time: "10:00am - 5:00pm" },
+                  { day: "Wednesday", time: "10:00am - 5:00pm" },
+                  { day: "Thursday", time: "10:00am - 5:00pm" },
+                  { day: "Friday", time: "10:00am - 5:00pm" },
+                  { day: "Saturday", time: "Closed" },
+                  { day: "Sunday", time: "Closed" }
+                ].map((element, i) => (
                   <div key={i} className="day-block">
-                    <div className="day">{day}</div>
-                    <div className="time">10:00am - 5:00pm</div>
+                    <div className="day">{element.day}</div>
+                    <div className="time">{element.time}</div>
                   </div>
                 ))}
                 <div />
@@ -139,40 +193,7 @@ export default class index extends Component {
             </div>
           </div>
         </div>
-        <div className="right">
-          <div className="block">
-            <img className="category-icon" src={categories[0].image} />
-            <div className="title">{data.title}</div>
-          </div>
-          <div className="block">
-            <StarRatings
-              rating={5}
-              // rating={this.state.rating}
-              starRatedColor="#fbc000"
-              // changeRating={this.changeRating}
-              starDimension="0.8em"
-              starSpacing="0px"
-              numberOfStars={5}
-              name="rating"
-            />
-          </div>
-          <div className="block">
-            <div className="desc">{data.content.brief}</div>
-          </div>
-          <div className="block sub-details">
-            {event_sub_details.map((info, i) => (
-              <EventSubDetail key={i} {...info} />
-            ))}
-          </div>
-          <div className="block social-buttons">
-            <button className="blue-button">
-              <img src={favorites_icon} />
-              Add to Favorites
-            </button>
-            <div className="social">
-              <button className="blue-button">fb like, twitter</button>
-            </div>
-          </div>
+        <div className="col-md-6 col-12 p-3 review-block">
           <div className="small-title">Reviews</div>
           {data.comments.length ? (
             <div className="reviews">

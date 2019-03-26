@@ -1,16 +1,32 @@
 .event-details {
   display: flex;
-
+  flex-wrap: wrap;
+  @media all and (max-width: 767px) {
+    flex-direction: column;
+  }
+  .event-image {
+    background-size: cover;
+    @media all and (max-width: 767px) {
+      height: 400px;
+      order: 2;
+    }
+  }
   .left {
-    width: 50%;
+    @media all and (max-width: 767px) {
+      order: 3;
+    }
     img {
       width: 100%;
     }
     .timings {
       position: absolute;
       top: 0;
-      left: 10px;
+      left: 30%;
       right: 10px;
+      @media all and (max-width: 1199px) {
+        left: 10px;
+        top: 20px;
+      }
       .timing {
         font-size: 0.8em;
         width: 100%;
@@ -27,6 +43,10 @@
           padding: 5px;
           .day {
             width: 80px;
+            color: #666;
+          }
+          .time {
+            color: #999;
           }
         }
         .day-block:nth-child(1) {
@@ -58,7 +78,7 @@
     }
   }
   .right {
-    width: 50%;
+    // width: 50%;
     padding: 20px 30px;
     .block {
       display: flex;
@@ -74,6 +94,12 @@
       .desc {
         font-size: 0.8em;
       }
+      .rating-text {
+        font-size: 0.7em;
+        color: #888;
+        line-height: 3em;
+        margin-left: 10px;
+      }
     }
     .sub-details {
       flex-direction: column;
@@ -87,6 +113,11 @@
         font-size: 0.8em;
         margin-left: 20px;
       }
+    }
+  }
+  .review-block {
+    @media all and (max-width: 767px) {
+      order: 4;
     }
     .reviews {
       padding: 20px 0;
@@ -110,6 +141,30 @@
     }
   }
   .social-buttons {
-    justify-content: space-around;
+    justify-content: space-between;
+    @media all and (max-width: 767px) {
+      flex-direction: column;
+    }
+    .favorites-btn {
+      width: 200px;
+      img {
+        width: 1em;
+      }
+    }
+    .social {
+      @media all and (max-width: 767px) {
+        margin-top: 10px;
+      }
+      button {
+        height: 25px;
+        svg {
+          width: 0.8em;
+        }
+        .text {
+          font-size: 0.8em;
+          color: #fff;
+        }
+      }
+    }
   }
 }

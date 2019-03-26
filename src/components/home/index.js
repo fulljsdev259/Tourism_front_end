@@ -127,7 +127,7 @@ class Home extends Component {
     return (
       <div className="App">
         <Header modalStateHandler={this.handleModalState} />
-        <div className="body-top">
+        <div className="container-fluid body-top">
           <Switch>
             {categories.map((category, i) => (
               <Route path={category.path} key={i} component={Category} />

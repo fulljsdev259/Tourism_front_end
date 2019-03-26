@@ -74,6 +74,7 @@
 .first-block {
   position: relative;
   padding-bottom: 2em;
+  display: block;
   img {
     width: 100%;
     filter: brightness(75%);
@@ -105,6 +106,7 @@
 .second-block {
   position: relative;
   padding-bottom: 2em;
+  display: block;
   img {
     width: 100%;
   }
@@ -204,9 +206,15 @@
 }
 
 .fifth-block {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
   .desc {
+    position: absolute;
+    top: 0;
     .vertical-text {
       width: 20%;
+      transform: rotate(-90deg);
     }
   }
 }

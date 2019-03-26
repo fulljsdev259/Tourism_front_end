@@ -25,32 +25,11 @@ class EventItem extends Component {
       return event.interested.length * 10 - i;
     };
     let interestPeople = "";
-    let youInterested;
-    // if (event) {
-    //   interestPeople = getInterestPeople(userdata.data ? userdata.data : null, event);
-    //   youInterested =
-    //     userdata.data &&
-    //     event.interested.find(
-    //       oneInterested => {
-    //         if (this.props.location.pathname === "/wishlist") {
-    //           return oneInterested === userdata.data._id
-    //         }
-    //         return oneInterested._id === userdata.data._id
-    //       }
-    //     );
-    // }
     return (
       <div
         className="events-list"
-        style={calendar ? { flexDirection: "column" } : null}
       >
-        <div
-          className={
-            calendar
-              ? null
-              : "col-lg-3 col-md-4 col-sm-4 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 event-img"
-          }
-        >
+        <div className="col-lg-3 col-md-4 col-sm-4 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 event-img">
           {/* <Link to={{ pathname: `/event-detail/${event._id}`, state: event }}> */}
           <div
             className="img"
@@ -78,6 +57,7 @@ class EventItem extends Component {
               <div className="mobile-social">
                 <img
                   className="wishlist"
+                  src={heart}
                   //   src={
                   //     userdata.data &&
                   //       event.interested.find(
@@ -96,14 +76,6 @@ class EventItem extends Component {
                         pathname: this.props.location.pathname
                       });
                     }
-                  }}
-                />
-                <img
-                  className="share"
-                  //   src={share}
-                  onClick={() => {
-                    this.props.sharePost(event);
-                    document.getElementById("shareMenu").style.top = "0px";
                   }}
                 />
               </div>
@@ -141,26 +113,12 @@ class EventItem extends Component {
                 {event.start && moment(event.start).format("hh:mm A")}
               </span>
             </div>
+            <div className="desc">{event.content.brief}</div>
             <div className="social">
-              {event.interested.slice(0, 5).map((p, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    <img
-                      className="inner"
-                      style={{
-                        marginLeft: `${i * 10}px`,
-                        zIndex: getZIndex(i)
-                      }}
-                      // src={people}
-                    />
-                    {/* } */}
-                  </React.Fragment>
-                );
-              })}
-              <span className="peopleCount">{interestPeople}</span>
               <img
                 className="wishlist"
-                src={youInterested ? heart_full : heart}
+                src={heart}
+                // src={youInterested ? heart_full : heart}
                 onClick={() => {
                   this.props.addInterest({
                     _id: event._id,
@@ -168,27 +126,7 @@ class EventItem extends Component {
                   });
                 }}
               />
-              <img
-                className="share"
-                // src={share}
-                onClick={() => {
-                  this.props.sharePost(event);
-                  document.getElementById("shareMenu").style.top = "0px";
-                }}
-              />
             </div>
-          </div>
-          <div className="bottom">
-            <Link
-              to={{ pathname: `/event-details/${event._id}`, state: event }}
-              style={
-                {
-                  // backgroundImage: getgradient("/" + event.categories.name)
-                }
-              }
-            >
-              view details
-            </Link>
           </div>
         </div>
       </div>

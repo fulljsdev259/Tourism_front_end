@@ -54,7 +54,7 @@ export default class index extends Component {
     return (
       <>
         <CategoryNav categories={categories} />
-        <div className="first-block">
+        <div className="first-block row">
           <img src={i1} />
           <div className="text-block">
             <div className="title">Shop Jamaica.</div>
@@ -63,7 +63,7 @@ export default class index extends Component {
             </div>
           </div>
         </div>
-        <div className="second-block">
+        <div className="second-block row">
           <img src={home_2} />
           <div className="block">
             <div className="title">POPULAR ARTISAN STORES IN KINGSTON</div>
@@ -81,7 +81,7 @@ export default class index extends Component {
             ))}
           </div>
         </div>
-        <div className="third-block">
+        <div className="third-block row">
           <img src={i2} style={{ width: "42%" }} />
           <div className="desc">
             <div className="type">Swimwear</div>
@@ -96,16 +96,16 @@ export default class index extends Component {
             <button>ABOUT STYLE JAMAICA</button>
           </div>
         </div>
-        <div className="forth-block">
+        <div className="forth-block row">
           <img src={i3} style={{ width: "100%" }} />
           <div className="text">
             <div>A true representation of the island's unique culture</div>
           </div>
         </div>
         <div className="fifth-block">
-          <img src={i10} style={{ width: "100%" }} />
-          <div className="desc" >
-              <div className="vertical-text">POPULAR PRODUCT TYPES</div>
+          <img src={i10} style={{ width: "100%", transform: "scale(1.2)" }} />
+          <div className="desc">
+            <div className="vertical-text">POPULAR PRODUCT TYPES</div>
           </div>
         </div>
       </>
