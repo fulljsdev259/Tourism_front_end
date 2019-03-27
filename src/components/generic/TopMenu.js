@@ -131,8 +131,6 @@ class TopMenu extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
-    console.log(this.props.places);
-
     // const { pathname } = this.props.location;
     const states = [];
     // const cities = [];
@@ -148,8 +146,6 @@ class TopMenu extends Component {
         //     .toLowerCase()
         //     .includes(this.state.search_state.toLowerCase())
         // ) {
-        console.log(state);
-
         states.push(
           <li key={i} onClick={() => this.props.stateChange(state._id)}>
             {state.name}

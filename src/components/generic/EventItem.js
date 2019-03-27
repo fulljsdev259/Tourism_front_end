@@ -19,8 +19,6 @@ class EventItem extends Component {
   }
   render() {
     const { event, userdata, calendar } = this.props;
-    console.log(event);
-
     const getZIndex = i => {
       return event.interested.length * 10 - i;
     };

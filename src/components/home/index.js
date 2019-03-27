@@ -129,9 +129,21 @@ class Home extends Component {
         <Header modalStateHandler={this.handleModalState} />
         <div className="container-fluid body-top">
           <Switch>
-            {categories.map((category, i) => (
-              <Route path={category.path} key={i} component={Category} />
-            ))}
+            {categories.map((category, i) => {
+              return (
+                <Route
+                  path={category.path}
+                  key={i}
+                  render={props => (
+                    <Category
+                      {...props}
+                      category={category}
+                      categories2 ={categories}
+                    />
+                  )}
+                />
+              );
+            })}
             <Route path="/events" component={Events} />
             <Route
               path="/event-details/:id"
@@ -143,7 +155,10 @@ class Home extends Component {
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/auth" component={Auth} />
             <Route path="/contactus" component={ContactUs} />
-            <Route path="/" component={Index} />
+            <Route
+              path="/"
+              render={props => <Index {...props} categories={categories} />}
+            />
           </Switch>
         </div>
         <Modal

@@ -19,32 +19,33 @@ import CategoryNav from "../generic/CategoryNav";
 
 export default class index extends Component {
   render() {
-    const categories = [
-      {
-        name: "Duty Free",
-        image: category1,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/food"
-      },
-      {
-        name: "Artisan",
-        image: category2,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/SPA"
-      },
-      {
-        name: "Crafts",
-        image: category3,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/fitness"
-      },
-      {
-        name: "Retails",
-        image: category4,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/shopping"
-      }
-    ];
+    const {categories } = this.props;
+    // const categories = [
+    //   {
+    //     name: "Duty Free",
+    //     image: category1,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/food"
+    //   },
+    //   {
+    //     name: "Artisan",
+    //     image: category2,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/SPA"
+    //   },
+    //   {
+    //     name: "Crafts",
+    //     image: category3,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/fitness"
+    //   },
+    //   {
+    //     name: "Retails",
+    //     image: category4,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/shopping"
+    //   }
+    // ];
     const popular = [
       { name: "Nulook Company", image: i5 },
       { name: "Amoy Yae'l Purses", image: i6 },

@@ -1,12 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CategoryNavItem({ category }) {
   return (
     <div className="category-nav-item">
-      <div className="category-img">
-        <img src={category.image} />
+      <div className="category-nav-item-header">
+        <div className="category-img">
+          <img src={category.image} />
+        </div>
+        <div className="title">
+          <Link to={category.path}>{category.name}</Link>
+        </div>
       </div>
-      <div className="title">{category.name}</div>
       {category.sub_categories && (
         <div className="category-nav-item-dropdown rounded-bottom">
           <ul className="list-unstyled">

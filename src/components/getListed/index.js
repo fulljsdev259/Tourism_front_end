@@ -56,7 +56,6 @@ export default class GetListed extends React.Component {
                     <div className="heading">Become a part of our directory</div>
                     <p>Please fill the form below :</p>
                     <Wizard onSuccessCompanyListed={this.onSuccessCompanyListed} onSubmit={ ( data ) => {
-                        console.log( data ) 
                     }} />
                 </div>
             }
