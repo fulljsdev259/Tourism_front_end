@@ -25,12 +25,19 @@ class Auth extends Component {
     };
   }
   componentDidUpdate(prevProps) {
-    // if (
-    //   this.props.userdata.isSuccess &&
-    //   this.props.userdata.isSuccess !== prevProps.userdata.isSuccess
-    // ) {
-    //   this.props.modalStateHandler(false, false, false, false);
-    // }
+    if (
+      this.props.signup.isSuccess &&
+      this.props.signup.isSuccess !== prevProps.signup.isSuccess
+    ) {
+      this.props.history.push("/auth/");
+      // this.props.modalStateHandler(false, false, false, false);
+    }
+    if (
+      this.props.login.isSuccess &&
+      this.props.login.isSuccess !== prevProps.login.isSuccess
+    ) {
+      this.props.history.push("/");
+    }
   }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -86,4 +93,18 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+const mapStateToProps = state => ({
+  signup: state.auth.signup,
+  login: state.auth.login
+});
+
+const mapDispatchToProps = dispatch => ({
+  // signupRequest: data => dispatch(actions.signupRequest(data))
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Auth)
+);

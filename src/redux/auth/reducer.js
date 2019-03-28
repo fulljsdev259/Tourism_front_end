@@ -54,6 +54,36 @@ const handleLoginError = (state, action) =>
     }
   });
 
+
+  const handleSignupRequest = (state, action) =>
+  update(state, {
+    signup: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const handleSignupSuccess = (state, action) =>
+  update(state, {
+    signup: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false },
+      data: { $set: action.payload }
+    }
+  });
+const handleSignupError = (state, action) =>
+  update(state, {
+    signup: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+
+
 export default handleActions(
   {
     [constants.LOGIN_REQUEST]: handleLoginRequest,
@@ -61,9 +91,9 @@ export default handleActions(
     [constants.LOGIN_ERROR]: handleLoginError,
     // [constants.LOGIN_RESET]: handleLoginReset,
     // [constants.LOGOUT]: handleLogout,
-    // [constants.SIGNUP_REQUEST]: handleSignupRequest,
-    // [constants.SIGNUP_SUCCESS]: handleSignupSuccess,
-    // [constants.SIGNUP_ERROR]: handleSignupError,
+    [constants.SIGNUP_REQUEST]: handleSignupRequest,
+    [constants.SIGNUP_SUCCESS]: handleSignupSuccess,
+    [constants.SIGNUP_ERROR]: handleSignupError,
     // [constants.SIGNUP_RESET]: handleSignupReset,
     // [constants.GET_USER_DATA_REQUEST]: handleUserDataRequest,
     // [constants.GET_USER_DATA_SUCCESS]: handleUserDataSuccess,

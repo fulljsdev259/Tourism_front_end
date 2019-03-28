@@ -54,6 +54,8 @@ export function* signupRequest(action) {
         response.data.message.errmsg &&
         response.data.message.errmsg.includes("duplicate key")
       ) {
+        console.log("123");
+        
         toast.error("Email Already Exists");
       } else {
         toast.error("Something Went Wrong");

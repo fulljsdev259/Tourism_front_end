@@ -6,7 +6,8 @@ import Close from "../../images/icon/cross.svg";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
-
+import { localStore } from "../../services/storage";
+import {ReactComponent as UserIcon} from "../../images/user.svg";
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -33,9 +34,9 @@ class Header extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.authenticated !== nextProps.authenticated) {
-      this.setState({ auth: nextProps.authenticated });
-    }
+    // if (this.props.authenticated !== nextProps.authenticated) {
+    //   this.setState({ auth: nextProps.authenticated });
+    // }
   }
 
   render() {
@@ -53,7 +54,7 @@ class Header extends React.Component {
             </div>
           </Link>
           <div className="itemDiv">
-            {this.props.authenticated ? (
+            {localStore("token") ? (
               <span style={{ marginRight: "66px", marginTop: "9px" }}>
                 {loggedUserData && loggedUserData.name
                   ? loggedUserData.name + ", "
@@ -108,7 +109,7 @@ class Header extends React.Component {
                   <span className="blueBtn">GET COMPANY LISTED </span>
                 </li>
 
-                {!this.props.authenticated ? (
+                {!localStore("token") ? (
                   <li
                     data-text="GET COMPANY LISTED"
                     className="registerLi"
@@ -286,7 +287,7 @@ class Header extends React.Component {
               </div>
             </div>
           </div>
-          {this.props.authenticated ? (
+          {localStore("token") ? (
             <div
               className="registerDiv"
               //           className={`registerDiv ${
@@ -299,7 +300,9 @@ class Header extends React.Component {
             >
               <span className="user-name">
                 <span style={{ marginRight: "20px" }}>
-                  <Link to={linkDashboard}>My Dashboard</Link>
+                  {/* <Link to={linkDashboard}> */}
+                    <UserIcon />
+                  {/* </Link> */}
                 </span>
 
                 {loggedUserData && loggedUserData.name
@@ -357,7 +360,8 @@ class Header extends React.Component {
 
 const mapStateToProps = state => ({
   categories: state.event.categories.data,
-  locations: state.event.locations.data
+  locations: state.event.locations.data,
+  login: state.auth.login
 });
 
 const mapDispatchToProps = dispatch => ({

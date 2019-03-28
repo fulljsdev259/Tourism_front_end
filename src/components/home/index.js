@@ -15,6 +15,8 @@ import category3 from "../../images/category3.svg";
 import category4 from "../../images/category4.svg";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import Login from "../login";
 // import SignUp from "../signup";
 
@@ -176,6 +178,7 @@ class Home extends Component {
           )}
         </Modal>
         <Footer />
+        <ToastContainer />
       </div>
     );
   }
