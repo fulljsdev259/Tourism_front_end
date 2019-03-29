@@ -14,11 +14,11 @@ import {
 import {
 //   getMonthlyEventsRequest,
   getCategoriesRequest,
-//   getEventsByCategoryRequest,
+  getEventsByCategoryRequest,
 //   addCommentRequest,
 //   addInterestRequest,
   getLocationsRequest,
-//   getEventByIdRequest,
+  getEventByIdRequest,
 //   likeCommentRequest,
 //   unlikeCommentRequest,
 //   getInterestedEventsRequest,
@@ -38,11 +38,11 @@ function* watchActions() {
 //     getMonthlyEventsRequest
 //   );
   yield takeLatest(constants.GET_CATEGORIES_REQUEST, getCategoriesRequest);
-//   yield takeLatest(
-//     constants.GET_EVENTS_BY_CATEGORY_REQUEST,
-//     getEventsByCategoryRequest
-//   );
-//   yield takeLatest(constants.GET_EVENT_BY_ID_REQUEST, getEventByIdRequest);
+  yield takeLatest(
+    constants.GET_EVENTS_BY_CATEGORY_REQUEST,
+    getEventsByCategoryRequest
+  );
+  yield takeLatest(constants.GET_EVENT_BY_ID_REQUEST, getEventByIdRequest);
 //   yield takeLatest(constants.IS_ALREADY_LOGGED_IN, isAlreadyLoggedIn);
 //   yield takeLatest(constants.LOGOUT, logout);
 //   yield takeLatest(constants.ADD_COMMENT_REQUEST, addCommentRequest);

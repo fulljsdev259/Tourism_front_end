@@ -26,107 +26,143 @@ class TopMenu extends Component {
       location_status: ""
     };
   }
+
   componentDidUpdate(prevProps, prevState) {
-    // const { filters } = this.props;
-    // if (this.props.places.data && this.props.categories.data) {
-    //   if (
-    //     this.props.coords &&
-    //     this.props.isGeolocationAvailable &&
-    //     this.props.isGeolocationEnabled &&
-    //     !this.props.positionError &&
-    //     !filters.storableLocation &&
-    //     !this.state.location_status
-    //   ) {
-    //     const { latitude, longitude } = this.props.coords;
-    //     this.setState({ location_status: true });
-    //     let storableLocation = {};
-    //     Geocode.fromLatLng(latitude, longitude).then(
-    //       response => {
-    //         const { results } = response;
-    //         for (var ac = 0; ac < results[0].address_components.length; ac++) {
-    //           var component = results[0].address_components[ac];
-    //           switch (component.types[0]) {
-    //             case "locality":
-    //               storableLocation.city = component.long_name;
-    //               break;
-    //             case "administrative_area_level_1":
-    //               storableLocation.state = component.long_name;
-    //               break;
-    //             case "country":
-    //               storableLocation.country = component.long_name;
-    //               storableLocation.registered_country_iso_code =
-    //                 component.short_name;
-    //               break;
-    //           }
-    //         }
-    //         this.props.setStorableLocation(storableLocation);
-    //         const state = this.props.places.data.find(
-    //           state =>
-    //             storableLocation.state.toLowerCase() == state.name.toLowerCase()
-    //         );
-    //         if (state) {
-    //           this.props.stateChange(state._id);
-    //           const city = state.cities.find(
-    //             city =>
-    //               storableLocation.city.toLowerCase() == city.name.toLowerCase()
-    //           );
-    //           if (city) {
-    //             this.props.cityChange(city._id);
-    //           }
-    //         }
-    //       },
-    //       error => {
-    //         this.props.setStorableLocation(storableLocation);
-    //       }
-    //     );
-    //   } else {
-    //     if (this.props.match.path !== "/calenderview") {
-    //       if (
-    //         (filters.selectedCity !== prevProps.filters.selectedCity &&
-    //           filters.selectedCity) ||
-    //         (filters.selectedState !== prevProps.filters.selectedState &&
-    //           filters.selectedCity) ||
-    //         (filters.selectedState &&
-    //           filters.selectedCity &&
-    //           filters.ageFlag !== prevProps.filters.ageFlag)
-    //       ) {
-    //         const oneCategory = this.props.categories.data.find(category => {
-    //           return category.name === this.props.match.path.replace("/", "");
-    //         });
-    //         if (oneCategory) {
-    //           if (!this.state.id) {
-    //             this.setState({ id: oneCategory._id });
-    //           }
-    //         }
-    //       }
-    //     } else {
-    //       if (
-    //         (filters.selectedCity !== prevProps.filters.selectedCity &&
-    //           filters.selectedCity) ||
-    //         (filters.selectedState !== prevProps.filters.selectedState &&
-    //           filters.selectedCity) ||
-    //         (filters.selectedState &&
-    //           filters.selectedCity &&
-    //           filters.ageFlag !== prevProps.filters.ageFlag) ||
-    //         filters.month !== prevProps.filters.month ||
-    //         filters.year !== prevProps.filters.year
-    //       ) {
-    //         this.props.getMonthlyEventsRequest({
-    //           ageFlag: filters.ageFlag,
-    //           eventState: filters.selectedState,
-    //           eventCity: filters.selectedCity,
-    //           month: filters.month,
-    //           year: filters.year
-    //         });
-    //       }
-    //     }
-    //   }
-    //   // if (this.props.isGeolocationEnabled) {
-    //   //   if (filters.storableLocation && filters.storableLocation.city) {
-    //   //   }
-    //   // }
-    // }
+    const { filters } = this.props;
+    if (this.props.places.data && this.props.categories.data) {
+      if (this.props.match.path !== "/calendarview") {
+        if (
+          filters.selectedCity !== prevProps.filters.selectedCity ||
+          filters.selectedState !== prevProps.filters.selectedState ||
+          filters.ageFlag !== prevProps.filters.ageFlag ||
+          !this.state.status
+        ) {
+          this.setState({ status: true });
+          const oneCategory = this.props.categories.data.find(category => {
+            return category.name === this.props.match.path.replace("/", "");
+          });
+          if (oneCategory) {
+            if (!this.state.id) {
+              this.setState({ id: oneCategory._id });
+            }
+            this.props.getEventsByCategoryRequest({
+              id: oneCategory._id,
+              page_number: 1,
+              ageFlag: filters.ageFlag,
+              eventState: filters.selectedState,
+              eventCity: filters.selectedCity
+            });
+          }
+        }
+      }
+      // if (this.props.isGeolocationEnabled) {
+      //   if (filters.storableLocation && filters.storableLocation.city) {
+      //   }
+      // }
+    }
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  // const { filters } = this.props;
+  // if (this.props.places.data && this.props.categories.data) {
+  //   if (
+  //     this.props.coords &&
+  //     this.props.isGeolocationAvailable &&
+  //     this.props.isGeolocationEnabled &&
+  //     !this.props.positionError &&
+  //     !filters.storableLocation &&
+  //     !this.state.location_status
+  //   ) {
+  //     const { latitude, longitude } = this.props.coords;
+  //     this.setState({ location_status: true });
+  //     let storableLocation = {};
+  //     Geocode.fromLatLng(latitude, longitude).then(
+  //       response => {
+  //         const { results } = response;
+  //         for (var ac = 0; ac < results[0].address_components.length; ac++) {
+  //           var component = results[0].address_components[ac];
+  //           switch (component.types[0]) {
+  //             case "locality":
+  //               storableLocation.city = component.long_name;
+  //               break;
+  //             case "administrative_area_level_1":
+  //               storableLocation.state = component.long_name;
+  //               break;
+  //             case "country":
+  //               storableLocation.country = component.long_name;
+  //               storableLocation.registered_country_iso_code =
+  //                 component.short_name;
+  //               break;
+  //           }
+  //         }
+  //         this.props.setStorableLocation(storableLocation);
+  //         const state = this.props.places.data.find(
+  //           state =>
+  //             storableLocation.state.toLowerCase() == state.name.toLowerCase()
+  //         );
+  //         if (state) {
+  //           this.props.stateChange(state._id);
+  //           const city = state.cities.find(
+  //             city =>
+  //               storableLocation.city.toLowerCase() == city.name.toLowerCase()
+  //           );
+  //           if (city) {
+  //             this.props.cityChange(city._id);
+  //           }
+  //         }
+  //       },
+  //       error => {
+  //         this.props.setStorableLocation(storableLocation);
+  //       }
+  //     );
+  //   } else {
+  //     if (this.props.match.path !== "/calenderview") {
+  //       if (
+  //         (filters.selectedCity !== prevProps.filters.selectedCity &&
+  //           filters.selectedCity) ||
+  //         (filters.selectedState !== prevProps.filters.selectedState &&
+  //           filters.selectedCity) ||
+  //         (filters.selectedState &&
+  //           filters.selectedCity &&
+  //           filters.ageFlag !== prevProps.filters.ageFlag)
+  //       ) {
+  //         const oneCategory = this.props.categories.data.find(category => {
+  //           return category.name === this.props.match.path.replace("/", "");
+  //         });
+  //         if (oneCategory) {
+  //           if (!this.state.id) {
+  //             this.setState({ id: oneCategory._id });
+  //           }
+  //         }
+  //       }
+  //     } else {
+  //       if (
+  //         (filters.selectedCity !== prevProps.filters.selectedCity &&
+  //           filters.selectedCity) ||
+  //         (filters.selectedState !== prevProps.filters.selectedState &&
+  //           filters.selectedCity) ||
+  //         (filters.selectedState &&
+  //           filters.selectedCity &&
+  //           filters.ageFlag !== prevProps.filters.ageFlag) ||
+  //         filters.month !== prevProps.filters.month ||
+  //         filters.year !== prevProps.filters.year
+  //       ) {
+  //         this.props.getMonthlyEventsRequest({
+  //           ageFlag: filters.ageFlag,
+  //           eventState: filters.selectedState,
+  //           eventCity: filters.selectedCity,
+  //           month: filters.month,
+  //           year: filters.year
+  //         });
+  //       }
+  //     }
+  //   }
+  //   // if (this.props.isGeolocationEnabled) {
+  //   //   if (filters.storableLocation && filters.storableLocation.city) {
+  //   //   }
+  //   // }
+  // }
+  // }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -337,17 +373,17 @@ class TopMenu extends Component {
 
 const mapStateToProps = state => ({
   places: state.event.locations.data,
-  //   categories: state.event.categories.data,
-  //   page_details: state.event.eventsByCategory.data,
-  //   events: state.event.eventsByCategory.events,
-  //   page_number: state.event.eventsByCategory.page_number,
-  //   successFlag: state.event.eventsByCategory.isSuccess,
+  categories: state.event.categories.data,
+  page_details: state.event.eventsByCategory.data,
+  events: state.event.eventsByCategory.events,
+  page_number: state.event.eventsByCategory.page_number,
+  successFlag: state.event.eventsByCategory.isSuccess,
   filters: state.event
 });
 
 const mapDispatchToProps = dispatch => ({
-  //   getEventsByCategoryRequest: data =>
-  //     dispatch(actions.getEventsByCategoryRequest(data)),
+  getEventsByCategoryRequest: data =>
+    dispatch(actions.getEventsByCategoryRequest(data))
   //   getMonthlyEventsRequest: data =>
   //     dispatch(actions.getMonthlyEventsRequest(data)),
   //   stateChange: id => dispatch(actions.stateChange(id)),

@@ -3,8 +3,10 @@ import Block1 from "../generic/Block1";
 import l_img from "../../images/l_img.png";
 import contact_r_img from "../../images/contactus.png";
 import { Formik, Form } from "formik";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions";
 
-export default class ContactUs extends Component {
+class ContactUs extends Component {
   render() {
     return (
       <Block1 l_img={l_img} r_img={contact_r_img}>
@@ -130,3 +132,16 @@ export default class ContactUs extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  contactUs: state.auth.contactUs
+});
+
+const mapDispatchToProps = dispatch => ({
+  contactUsRequest: values => dispatch(actions.contactUsRequest(values))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ContactUs);
