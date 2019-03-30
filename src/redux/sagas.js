@@ -15,7 +15,7 @@ import {
 //   getMonthlyEventsRequest,
   getCategoriesRequest,
   getEventsByCategoryRequest,
-//   addCommentRequest,
+  addReviewRequest,
 //   addInterestRequest,
   getLocationsRequest,
   getEventByIdRequest,
@@ -60,6 +60,7 @@ function* watchActions() {
 //   );
 //   yield takeLatest(constants.SEARCH_EVENTS_REQUEST, searchEventsRequest);
   yield takeLatest(constants.CONTACT_US_REQUEST, contactUsRequest);
+  yield takeLatest(constants.ADD_REVIEW_REQUEST, addReviewRequest);
 }
 
 export default function* rootSaga() {

@@ -5,9 +5,9 @@ export default function Review({ review }) {
   return (
     <div className="review">
       <div className="top">
-        <div className="name">{review.name}</div>
+        <div className="name">{review.user_id.name.first + " " + review.user_id.name.last }</div>
         <StarRatings
-          rating={5}
+          rating={JSON.parse(review.stars)}
           // rating={this.state.rating}
           starRatedColor="#fbc000"
           // changeRating={this.changeRating}
@@ -17,7 +17,7 @@ export default function Review({ review }) {
           name="rating"
         />
       </div>
-      <div className="text">{review.text}</div>
+      <div className="text">{review.comment}</div>
     </div>
   );
 }

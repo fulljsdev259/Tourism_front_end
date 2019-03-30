@@ -68,3 +68,28 @@ export function* getEventByIdRequest(action) {
     yield put(actions.getEventByIdError());
   }
 }
+
+export function* addReviewRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  try {
+    const response = yield call(
+      fireApi,
+      "POST",
+      `events/addReview/${action.payload.event_id}`,
+      action.payload.values,
+      header
+    );
+    if (response) {
+      toast.success("Your review posted successfully");
+      yield put(actions.addReviewSuccess(response.data));
+      yield put(actions.getEventByIdRequest(action.payload.event_id));
+    } else {
+      toast.error("Review");
+      yield put(actions.addReviewError());
+    }
+  } catch (e) {
+    yield put(actions.addReviewError());
+  }
+}

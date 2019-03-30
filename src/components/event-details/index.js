@@ -13,6 +13,7 @@ import { ReactComponent as TwitterIcon } from "../../images/icon/twitter.svg";
 import { ReactComponent as ThumbsupIcon } from "../../images/icon/thumbs-up.svg";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
+import { Formik, Form } from "formik";
 // import { ReactComponent as Test } from "../../images/event_details_lb.svg";
 class Index extends Component {
   state = {
@@ -42,7 +43,7 @@ class Index extends Component {
           <>
             <div
               className="col-md-6 col-12 p-0 event-image"
-              style={{ backgroundImage: `url(${data.image.secure_url})` }}
+              style={{ backgroundImage: `url(${data.image.secure_url})`, minHeight: "350px" }}
             />
             <div className="col-md-6 col-12 p-3 right">
               <div>
@@ -61,7 +62,7 @@ class Index extends Component {
                     numberOfStars={5}
                     name="rating"
                   />
-                  <div className="rating-text">9 reviews</div>
+                  <div className="rating-text">{data.reviews.length} reviews</div>
                 </div>
                 <div className="block">
                   <div className="desc">{data.content.brief}</div>
@@ -125,28 +126,101 @@ class Index extends Component {
             </div>
             <div className="col-md-6 col-12 p-3 review-block">
               <div className="small-title">Reviews</div>
-              {data.comments.length ? (
+              {data.reviews.length ? (
                 <div className="reviews">
-                  {data.comments.map((review, i) => (
+                  {data.reviews.map((review, i) => (
                     <Review key={i} review={review} />
                   ))}
                 </div>
               ) : (
-                <div className="reviews">No Reviews</div>
+                <div className="reviews">Be the first to add review.</div>
               )}
               <div className="leave-review">
                 {this.state.leave_review ? (
                   <div>
-                    <textarea />
-                    <div>
-                      <button
-                        className="blue-button"
-                        onClick={() => this.setState({ leave_review: false })}
-                      >
-                        Cancel
-                      </button>
-                      <button className="blue-button">Add Review</button>
-                    </div>
+                    <Formik
+                      initialValues={{
+                        comment: "",
+                        stars: 0
+                      }}
+                      validate={values => {
+                        let errors = {};
+                        if (!values.comment) {
+                          errors.comment = "Required";
+                        }
+                        if (!values.stars || values.stars == 0) {
+                          errors.stars = "Required";
+                        }
+                        return errors;
+                      }}
+                      onSubmit={(values, actions) => {
+                        this.props.addReviewRequest({
+                          values,
+                          event_id: data._id
+                        });
+                      }}
+                      render={({
+                        values,
+                        errors,
+                        status,
+                        touched,
+                        handleBlur,
+                        handleChange,
+                        handleSubmit,
+                        isSubmitting,
+                        setFieldValue
+                      }) => (
+                        <Form>
+                          <div className="input-fields">
+                            <div>
+                              <textarea
+                                name="comment"
+                                value={values.text}
+                                onChange={handleChange}
+                              />
+                              {errors.comment && touched.comment && (
+                                <label className="error">
+                                  {errors.comment}
+                                </label>
+                              )}
+                            </div>
+                            <div>
+                              <StarRatings
+                                rating={values.stars}
+                                // rating={this.state.rating}
+                                starRatedColor="#fbc000"
+                                changeRating={value =>
+                                  setFieldValue("stars", value)
+                                }
+                                starDimension="2em"
+                                starSpacing="0px"
+                                numberOfStars={5}
+                                name="stars"
+                              />
+                              {errors.stars && touched.stars && (
+                                <label className="error">{errors.stars}</label>
+                              )}
+                            </div>
+                            <div>
+                              <button
+                                className="blue-button"
+                                onClick={() =>
+                                  this.setState({ leave_review: false })
+                                }
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                className="blue-button ml-2"
+                                type="submit"
+                              >
+                                Add Review
+                              </button>
+                            </div>
+                          </div>
+                        </Form>
+                      )}
+                    />
                   </div>
                 ) : (
                   <div
@@ -170,7 +244,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getEventById: data => dispatch(actions.getEventByIdRequest(data))
+  getEventById: data => dispatch(actions.getEventByIdRequest(data)),
+  addReviewRequest: data => dispatch(actions.addReviewRequest(data))
 });
 
 export default connect(

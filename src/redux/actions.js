@@ -22,3 +22,6 @@ export const getEventsByCategoryError = createAction(constants.GET_EVENTS_BY_CAT
 export const getEventByIdRequest = createAction(constants.GET_EVENT_BY_ID_REQUEST);
 export const getEventByIdSuccess = createAction(constants.GET_EVENT_BY_ID_SUCCESS);
 export const getEventByIdError = createAction(constants.GET_EVENT_BY_ID_ERROR);
+export const addReviewRequest = createAction(constants.ADD_REVIEW_REQUEST);
+export const addReviewSuccess = createAction(constants.ADD_REVIEW_SUCCESS);
+export const addReviewError = createAction(constants.ADD_REVIEW_ERROR);
