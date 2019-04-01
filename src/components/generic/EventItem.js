@@ -12,6 +12,7 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { localStore } from "../../services/storage";
 import { withRouter } from "react-router-dom";
+import * as actions from "../../redux/actions";
 
 class EventItem extends Component {
   constructor(props) {
@@ -24,9 +25,7 @@ class EventItem extends Component {
     };
     let interestPeople = "";
     return (
-      <div
-        className="events-list"
-      >
+      <div className="events-list">
         <div className="col-lg-3 col-md-4 col-sm-4 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 event-img">
           {/* <Link to={{ pathname: `/event-detail/${event._id}`, state: event }}> */}
           <div
@@ -69,8 +68,10 @@ class EventItem extends Component {
                   }
                   onClick={() => {
                     if (localStore("token")) {
+                      console.log(this.props);
+                      
                       this.props.addInterest({
-                        _id: event._id,
+                        id: event._id,
                         pathname: this.props.location.pathname
                       });
                     }
@@ -118,6 +119,8 @@ class EventItem extends Component {
                 src={heart}
                 // src={youInterested ? heart_full : heart}
                 onClick={() => {
+                  console.log(this.props);
+                  
                   this.props.addInterest({
                     _id: event._id,
                     pathname: this.props.location.pathname
@@ -137,7 +140,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  //   addInterest: id => dispatch(addInterestRequest(id)),
+  addInterest: id => dispatch(actions.addInterestRequest(id))
   //   sharePost: post_id => dispatch(sharePost(post_id))
 });
 

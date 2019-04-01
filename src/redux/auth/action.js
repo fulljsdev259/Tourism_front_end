@@ -55,7 +55,7 @@ export function* signupRequest(action) {
         response.data.message.errmsg.includes("duplicate key")
       ) {
         console.log("123");
-        
+
         toast.error("Email Already Exists");
       } else {
         toast.error("Something Went Wrong");
@@ -83,5 +83,26 @@ export function* contactUsRequest(action) {
     }
   } catch (e) {
     yield put(actions.contactUsError());
+  }
+}
+
+export function* getUserDataRequest(action) {
+  const header = {
+    Authorization: action.payload ? action.payload : localStorage("token")
+  };
+  try {
+    const response = yield call(fireApi, "GET", "user", null, header);
+    if (response) {
+      if (response.data.success) {
+        yield put(actions.getUserDataSuccess(response.data));
+      } else {
+        // yield put(actions.logout());
+      }
+    } else {
+      toast.error(response.data.message);
+      yield put(actions.getUserDataError());
+    }
+  } catch (e) {
+    yield put(actions.getUserDataError());
   }
 }

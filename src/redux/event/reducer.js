@@ -264,111 +264,7 @@ const handleInterestRequest = (state, action) =>
 
 const handleInterestSuccess = (state, action) => {
   const { data: userdata } = action.payload.userdata;
-  if (action.payload.pathname === "/wishlist") {
-    const event = state.wishlist.data.data.results.find(
-      event => action.payload.id === event._id
-    );
-    const eventIndex = state.wishlist.data.data.results.indexOf(event);
-
-    if (eventIndex >= 0) {
-      const iInterested = event.interested.find(
-        oneInterested => userdata._id === oneInterested._id
-      );
-      const iInterestedIndex = event.interested.indexOf(iInterested);
-
-      if (iInterestedIndex >= 0) {
-        return update(state, {
-          interested: {
-            isLoading: { $set: false },
-            isSuccess: { $set: true },
-            isError: { $set: false }
-          },
-          wishlist: {
-            data: {
-              data: {
-                results: {
-                  [eventIndex]: {
-                    interested: { $splice: [[iInterestedIndex, 1]] }
-                  }
-                }
-              }
-            }
-          }
-        });
-      } else {
-        return update(state, {
-          interested: {
-            isLoading: { $set: false },
-            isSuccess: { $set: true },
-            isError: { $set: false }
-          },
-          wishlist: {
-            data: {
-              data: {
-                results: {
-                  [eventIndex]: { interested: { $push: [userdata] } }
-                }
-              }
-            }
-          }
-        });
-      }
-    }
-  } else if (action.payload.pathname.includes("event-detail")) {
-    return update(state, {
-      interested: {
-        isLoading: { $set: false },
-        isSuccess: { $set: true },
-        isError: { $set: false }
-      }
-    });
-  } else if (action.payload.pathname === "/calendarview") {
-    if (state.calendarEvents.data) {
-      const event_data = state.calendarEvents.data.data.find(
-        event => action.payload.id === event._id
-      );
-      const event_data_index = state.calendarEvents.data.data.indexOf(
-        event_data
-      );
-      if (event_data_index >= 0) {
-        const iInterested = event_data.interested.find(
-          oneInterested => userdata._id === oneInterested._id
-        );
-        const iInterestedIndex = event_data.interested.indexOf(iInterested);
-        if (iInterestedIndex >= 0) {
-          return update(state, {
-            calendarEvents: {
-              data: {
-                data: {
-                  [event_data_index]: {
-                    interested: { $splice: [[iInterestedIndex, 1]] }
-                  }
-                }
-              },
-              isLoading: { $set: false },
-              isSuccess: { $set: true },
-              isError: { $set: false }
-            }
-          });
-        } else {
-          return update(state, {
-            interested: {
-              isLoading: { $set: false },
-              isSuccess: { $set: true },
-              isError: { $set: false }
-            },
-            calendarEvents: {
-              data: {
-                data: {
-                  [event_data_index]: { interested: { $push: [userdata] } }
-                }
-              }
-            }
-          });
-        }
-      }
-    }
-  } else if (action.payload.pathname === "/") {
+  if (action.payload.pathname.includes("event-detail")) {
     return update(state, {
       interested: {
         isLoading: { $set: false },
@@ -416,6 +312,65 @@ const handleInterestSuccess = (state, action) => {
     }
   }
 };
+
+//     }
+//   }
+// } else if (action.payload.pathname === "/calendarview") {
+//   if (state.calendarEvents.data) {
+//     const event_data = state.calendarEvents.data.data.find(
+//       event => action.payload.id === event._id
+//     );
+//     const event_data_index = state.calendarEvents.data.data.indexOf(
+//       event_data
+//     );
+//     if (event_data_index >= 0) {
+//       const iInterested = event_data.interested.find(
+//         oneInterested => userdata._id === oneInterested._id
+//       );
+//       const iInterestedIndex = event_data.interested.indexOf(iInterested);
+//       if (iInterestedIndex >= 0) {
+//         return update(state, {
+//           calendarEvents: {
+//             data: {
+//               data: {
+//                 [event_data_index]: {
+//                   interested: { $splice: [[iInterestedIndex, 1]] }
+//                 }
+//               }
+//             },
+//             isLoading: { $set: false },
+//             isSuccess: { $set: true },
+//             isError: { $set: false }
+//           }
+//         });
+//       } else {
+//         return update(state, {
+//           interested: {
+//             isLoading: { $set: false },
+//             isSuccess: { $set: true },
+//             isError: { $set: false }
+//           },
+//           calendarEvents: {
+//             data: {
+//               data: {
+//                 [event_data_index]: { interested: { $push: [userdata] } }
+//               }
+//             }
+//           }
+//         });
+//       }
+//     }
+//   }
+// } else if (action.payload.pathname === "/") {
+//   return update(state, {
+//     interested: {
+//       isLoading: { $set: false },
+//       isSuccess: { $set: true },
+//       isError: { $set: false }
+//     }
+//   });
+// }
+// };
 const handleInterestError = (state, action) =>
   update(state, {
     interested: {

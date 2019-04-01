@@ -3,7 +3,8 @@ import event_details_lb from "../../images/event_details_lb.svg";
 import phone_icon from "../../images/icon/phone.svg";
 import location_icon from "../../images/icon/location.svg";
 import email_icon from "../../images/icon/email.svg";
-import favorites_icon from "../../images/icon/favorites.svg";
+import heart_icon from "../../images/heart.svg";
+import heart_full_icon from "../../images/heart-full.svg";
 import time_icon from "../../images/icon/-e-ic_time.svg";
 import StarRatings from "react-star-ratings";
 import Review from "../generic/Review";
@@ -26,7 +27,7 @@ class Index extends Component {
     }
   }
   render() {
-    const { categories, event: data } = this.props;
+    const { categories, event: data, userdata } = this.props;
     const event_sub_details = data
       ? [
           { image: location_icon, text: data.EventPlace },
@@ -35,15 +36,22 @@ class Index extends Component {
           { image: time_icon, text: "account" }
         ]
       : null;
-    console.log(data);
-
+    let youInterested;
+    if (data && userdata && userdata.data) {
+      youInterested = data.interested.find(oneInterested => {
+        return oneInterested._id == userdata.data._id;
+      });
+    }
     return (
       <div className="event-details row">
         {data && data.title ? (
           <>
             <div
               className="col-md-6 col-12 p-0 event-image"
-              style={{ backgroundImage: `url(${data.image.secure_url})`, minHeight: "350px" }}
+              style={{
+                backgroundImage: `url(${data.image.secure_url})`,
+                minHeight: "350px"
+              }}
             />
             <div className="col-md-6 col-12 p-3 right">
               <div>
@@ -62,7 +70,9 @@ class Index extends Component {
                     numberOfStars={5}
                     name="rating"
                   />
-                  <div className="rating-text">{data.reviews.length} reviews</div>
+                  <div className="rating-text">
+                    {data.reviews.length} reviews
+                  </div>
                 </div>
                 <div className="block">
                   <div className="desc">{data.content.brief}</div>
@@ -74,8 +84,18 @@ class Index extends Component {
                 ))}
               </div>
               <div className="block social-buttons mt-3">
-                <button className="btn btn-primary favorites-btn">
-                  <img src={favorites_icon} />
+                <button
+                  className="btn btn-primary favorites-btn"
+                  onClick={() =>
+                    this.props.addInterestRequest({
+                      id: data._id,
+                      pathname: this.props.location.pathname
+                    })
+                  }
+                >
+                  <img
+                    src={data && youInterested ? heart_full_icon : heart_icon}
+                  />
                   Add to Favorites
                 </button>
                 <div className="social d-flex">
@@ -240,12 +260,14 @@ class Index extends Component {
 }
 
 const mapStateToProps = state => ({
-  event: state.event.eventById.data.data
+  event: state.event.eventById.data.data,
+  userdata: state.auth.userdata.data
 });
 
 const mapDispatchToProps = dispatch => ({
   getEventById: data => dispatch(actions.getEventByIdRequest(data)),
-  addReviewRequest: data => dispatch(actions.addReviewRequest(data))
+  addReviewRequest: data => dispatch(actions.addReviewRequest(data)),
+  addInterestRequest: data => dispatch(actions.addInterestRequest(data))
 });
 
 export default connect(

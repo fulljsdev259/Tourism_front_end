@@ -37,11 +37,12 @@ class CategoryItem extends Component {
   };
   render() {
     const { event, userdata, calendar } = this.props;
-    const getZIndex = i => {
-      return event.interested.length * 10 - i;
-    };
-    let interestPeople = "";
     let youInterested;
+    if (event && userdata && userdata.data) {
+      youInterested = event.interested.find(oneInterested => {
+        return oneInterested._id == userdata.event._id;
+      });
+    }
     // if (event) {
     //   interestPeople = getInterestPeople(userdata.data ? userdata.data : null, event);
     //   youInterested =
@@ -55,6 +56,8 @@ class CategoryItem extends Component {
     //       }
     //     );
     // }
+    console.log(youInterested);
+
     return (
       <div
         className="events-list"
@@ -96,7 +99,7 @@ class CategoryItem extends Component {
                   onClick={() => {
                     if (localStore("token")) {
                       this.props.addInterest({
-                        _id: event._id,
+                        id: event._id,
                         pathname: this.props.location.pathname
                       });
                     }
@@ -204,7 +207,7 @@ class CategoryItem extends Component {
                 src={youInterested ? heart_full : heart}
                 onClick={() => {
                   this.props.addInterest({
-                    _id: event._id,
+                    id: event._id,
                     pathname: this.props.location.pathname
                   });
                 }}
@@ -239,12 +242,12 @@ class CategoryItem extends Component {
 }
 
 const mapStateToProps = state => ({
-  //   userdata: state.auth.userdata.data
+  userdata: state.auth.userdata.data,
   places: state.event.locations.data
 });
 
 const mapDispatchToProps = dispatch => ({
-  //   addInterest: id => dispatch(addInterestRequest(id)),
+  addInterest: id => dispatch(addInterestRequest(id))
   //   sharePost: post_id => dispatch(sharePost(post_id))
 });
 

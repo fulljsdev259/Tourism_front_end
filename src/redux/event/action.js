@@ -93,3 +93,40 @@ export function* addReviewRequest(action) {
     yield put(actions.addReviewError());
   }
 }
+
+export function* addInterestRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  try {
+    const response = yield call(
+      fireApi,
+      "PUT",
+      `events/addInterest/${action.payload.id}`,
+      null,
+      header
+    );
+    if (response && response.data && response.data.success) {
+      const userdata = yield select(state => state.auth.userdata.data);
+      yield put(
+        actions.addInterestSuccess({
+          ...response.data,
+          userdata,
+          id: action.payload.id,
+          pathname: action.payload.pathname
+        })
+      );
+      // yield pit(actions.getInterestedEventsRequest())
+      if (action.payload.pathname && action.payload.pathname.includes("event-detail")) {
+        yield put(actions.getEventByIdRequest(action.payload.id));
+      }
+      // yield put(actions.getEventsByCategoryRequest(action.payload));
+    } else {
+      yield put(actions.addInterestError());
+    }
+  } catch (e) {
+    console.log(e, "0000");
+
+    yield put(actions.addInterestError());
+  }
+}

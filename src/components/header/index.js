@@ -7,7 +7,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { localStore } from "../../services/storage";
-import {ReactComponent as UserIcon} from "../../images/user.svg";
+import { ReactComponent as UserIcon } from "../../images/user.svg";
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +31,9 @@ class Header extends React.Component {
     }
     if (!props.locations.data) {
       props.getLocations();
+    }
+    if (localStore("token")) {
+      props.getUserData(localStore("token"));
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -301,7 +304,7 @@ class Header extends React.Component {
               <span className="user-name">
                 <span style={{ marginRight: "20px" }}>
                   {/* <Link to={linkDashboard}> */}
-                    <UserIcon />
+                  <UserIcon />
                   {/* </Link> */}
                 </span>
 
@@ -366,7 +369,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(actions.getCategoriesRequest()),
-  getLocations: () => dispatch(actions.getLocationsRequest())
+  getLocations: () => dispatch(actions.getLocationsRequest()),
+  getUserData: data => dispatch(actions.getUserDataRequest(data))
 });
 
 export default connect(
