@@ -24,6 +24,12 @@ class EventItem extends Component {
       return event.interested.length * 10 - i;
     };
     let interestPeople = "";
+    let youInterested;
+    if (event && userdata && userdata.data) {
+      youInterested = event.interested.find(oneInterested => {
+        return oneInterested._id == userdata.data._id;
+      });
+    }
     return (
       <div className="events-list">
         <div className="col-lg-3 col-md-4 col-sm-4 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 event-img">
@@ -46,11 +52,11 @@ class EventItem extends Component {
         >
           <div className="head">
             <div>
-              <Link
+              {/* <Link
                 to={{ pathname: `/event-detail/${event._id}`, state: event }}
-              >
+              > */}
                 <div className="title">{event.title}</div>
-              </Link>
+              {/* </Link> */}
               <div className="mobile-social">
                 <img
                   className="wishlist"
@@ -116,16 +122,29 @@ class EventItem extends Component {
             <div className="social">
               <img
                 className="wishlist"
-                src={heart}
-                // src={youInterested ? heart_full : heart}
+                src={youInterested ? heart_full : heart}
+                title={localStore("token") ? null : "Login first if interested"}
                 onClick={() => {
                   console.log(this.props);
-                  
-                  this.props.addInterest({
-                    _id: event._id,
-                    pathname: this.props.location.pathname
-                  });
+                  if (localStore("token")) {
+                    this.props.addInterest({
+                      _id: event._id,
+                      pathname: this.props.location.pathname
+                    });
+                  } else {
+                   this.props.history.push('/auth')
+                  }
                 }}
+              //   <img
+              //   className="wishlist"
+              //   src={youInterested ? heart_full : heart}
+              //   onClick={() => {
+              //     this.props.addInterest({
+              //       event_id: event._id,
+              //       id: event.categories._id
+              //     });
+              //   }}
+              // />
               />
             </div>
           </div>

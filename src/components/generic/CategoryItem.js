@@ -9,7 +9,7 @@ import time from "../../images/time.png";
 import mapMain from "../../images/map-main-color.svg";
 // import share from "../../images/share.svg";
 import heart from "../../images/heart.svg";
-import heart_full from "../../images/heart-full.svg";
+import heart_full from "../../images/heart-full_g.svg";
 // import people from "../../images/interested-people.png";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -40,7 +40,7 @@ class CategoryItem extends Component {
     let youInterested;
     if (event && userdata && userdata.data) {
       youInterested = event.interested.find(oneInterested => {
-        return oneInterested._id == userdata.event._id;
+        return oneInterested._id == userdata.data._id;
       });
     }
     // if (event) {
@@ -205,13 +205,19 @@ class CategoryItem extends Component {
               <img
                 className="wishlist"
                 src={youInterested ? heart_full : heart}
+                title={localStore("token") ? null : "Login first if interested"}
                 onClick={() => {
-                  this.props.addInterest({
-                    id: event._id,
-                    pathname: this.props.location.pathname
-                  });
+                  console.log(this.props);
+                  if (localStore("token")) {
+                    this.props.addInterest({
+                      id: event._id,
+                      pathname: this.props.location.pathname
+                    });
+                  } else {
+                   this.props.history.push('/auth')
+                  }
                 }}
-              />
+                />
               {/* <img
                 className="share"
                 // src={share}
