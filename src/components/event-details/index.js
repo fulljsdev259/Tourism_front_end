@@ -16,6 +16,7 @@ import { ReactComponent as ThumbsupIcon } from "../../images/icon/thumbs-up.svg"
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { Formik, Form } from "formik";
+import { localStore } from "../../services/storage";
 // import { ReactComponent as Test } from "../../images/event_details_lb.svg";
 class Index extends Component {
   state = {
