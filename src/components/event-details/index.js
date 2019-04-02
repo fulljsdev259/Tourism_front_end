@@ -165,102 +165,116 @@ class Index extends Component {
               ) : (
                 <div className="reviews">Be the first to add review.</div>
               )}
-              <div className="leave-review">
-                {this.state.leave_review ? (
-                  <div>
-                    <Formik
-                      initialValues={{
-                        comment: "",
-                        stars: 0
-                      }}
-                      validate={values => {
-                        let errors = {};
-                        if (!values.comment) {
-                          errors.comment = "Required";
-                        }
-                        if (!values.stars || values.stars == 0) {
-                          errors.stars = "Required";
-                        }
-                        return errors;
-                      }}
-                      onSubmit={(values, actions) => {
-                        this.props.addReviewRequest({
+              {data &&
+              data.reviews &&
+              userdata &&
+              userdata.data &&
+              data.reviews.find(review => {
+                return review.user_id._id == userdata.data._id;
+              }) ? null : (
+                <div className="leave-review">
+                  {this.state.leave_review ? (
+                    <div>
+                      <Formik
+                        initialValues={{
+                          comment: "",
+                          stars: 0
+                        }}
+                        validate={values => {
+                          let errors = {};
+                          if (!values.comment) {
+                            errors.comment = "Required";
+                          }
+                          if (!values.stars || values.stars == 0) {
+                            errors.stars = "Required";
+                          }
+                          return errors;
+                        }}
+                        onSubmit={(values, actions) => {
+                          this.props.addReviewRequest({
+                            values,
+                            event_id: data._id
+                          });
+                        }}
+                        render={({
                           values,
-                          event_id: data._id
-                        });
+                          errors,
+                          status,
+                          touched,
+                          handleBlur,
+                          handleChange,
+                          handleSubmit,
+                          isSubmitting,
+                          setFieldValue
+                        }) => (
+                          <Form>
+                            <div className="input-fields">
+                              <div>
+                                <textarea
+                                  name="comment"
+                                  value={values.text}
+                                  onChange={handleChange}
+                                />
+                                {errors.comment && touched.comment && (
+                                  <label className="error">
+                                    {errors.comment}
+                                  </label>
+                                )}
+                              </div>
+                              <div>
+                                <StarRatings
+                                  rating={values.stars}
+                                  // rating={this.state.rating}
+                                  starRatedColor="#fbc000"
+                                  changeRating={value =>
+                                    setFieldValue("stars", value)
+                                  }
+                                  starDimension="2em"
+                                  starSpacing="0px"
+                                  numberOfStars={5}
+                                  name="stars"
+                                />
+                                {errors.stars && touched.stars && (
+                                  <label className="error">
+                                    {errors.stars}
+                                  </label>
+                                )}
+                              </div>
+                              <div>
+                                <button
+                                  className="blue-button"
+                                  onClick={() =>
+                                    this.setState({ leave_review: false })
+                                  }
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  className="blue-button ml-2"
+                                  type="submit"
+                                >
+                                  Add Review
+                                </button>
+                              </div>
+                            </div>
+                          </Form>
+                        )}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="leave-review"
+                      title={!localStore("token") && "Login First"}
+                      onClick={() => {
+                        if (localStore("token"))
+                          this.setState({ leave_review: true });
                       }}
-                      render={({
-                        values,
-                        errors,
-                        status,
-                        touched,
-                        handleBlur,
-                        handleChange,
-                        handleSubmit,
-                        isSubmitting,
-                        setFieldValue
-                      }) => (
-                        <Form>
-                          <div className="input-fields">
-                            <div>
-                              <textarea
-                                name="comment"
-                                value={values.text}
-                                onChange={handleChange}
-                              />
-                              {errors.comment && touched.comment && (
-                                <label className="error">
-                                  {errors.comment}
-                                </label>
-                              )}
-                            </div>
-                            <div>
-                              <StarRatings
-                                rating={values.stars}
-                                // rating={this.state.rating}
-                                starRatedColor="#fbc000"
-                                changeRating={value =>
-                                  setFieldValue("stars", value)
-                                }
-                                starDimension="2em"
-                                starSpacing="0px"
-                                numberOfStars={5}
-                                name="stars"
-                              />
-                              {errors.stars && touched.stars && (
-                                <label className="error">{errors.stars}</label>
-                              )}
-                            </div>
-                            <div>
-                              <button
-                                className="blue-button"
-                                onClick={() =>
-                                  this.setState({ leave_review: false })
-                                }
-                              >
-                                Cancel
-                              </button>
-                              <button
-                                className="blue-button ml-2"
-                                type="submit"
-                              >
-                                Add Review
-                              </button>
-                            </div>
-                          </div>
-                        </Form>
-                      )}
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="leave-review"
-                    onClick={() => this.setState({ leave_review: true })}
-                  >
-                    Leave Review
-                  </div>
-                )}
-              </div>
+                    >
+                      Leave Review
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </>
         ) : null}
