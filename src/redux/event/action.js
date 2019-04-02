@@ -125,8 +125,20 @@ export function* addInterestRequest(action) {
       yield put(actions.addInterestError());
     }
   } catch (e) {
-    console.log(e, "0000");
-
     yield put(actions.addInterestError());
+  }
+}
+
+export function* addEventRequest(action) {
+  try {
+    const response = yield call(fireApi, "POST", `addEvent`, action.payload);
+    if (response) {
+      toast.success("Event Submitted");    
+      yield put(actions.submitEventSuccess(response.data));
+    } else {
+      yield put(actions.submitEventError());
+    }
+  } catch (e) {
+    yield put(actions.submitEventError());
   }
 }

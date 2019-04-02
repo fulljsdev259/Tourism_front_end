@@ -18,7 +18,8 @@ import {
   addReviewRequest,
   addInterestRequest,
   getLocationsRequest,
-  getEventByIdRequest
+  getEventByIdRequest,
+  addEventRequest
   //   likeCommentRequest,
   //   unlikeCommentRequest,
   //   getInterestedEventsRequest,
@@ -61,6 +62,8 @@ function* watchActions() {
   yield takeLatest(constants.ADD_INTEREST_REQUEST, addInterestRequest);
   yield takeLatest(constants.CONTACT_US_REQUEST, contactUsRequest);
   yield takeLatest(constants.ADD_REVIEW_REQUEST, addReviewRequest);
+
+  yield takeLatest(constants.SUBMIT_EVENT_REQUEST, addEventRequest);
 }
 
 export default function* rootSaga() {
