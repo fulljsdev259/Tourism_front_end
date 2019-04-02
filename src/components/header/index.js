@@ -223,7 +223,7 @@ class Header extends React.Component {
             </div>
           </div>
         }
-        <div className="menu">
+        <div className="menu container">
           <Link to="/">
             {" "}
             <div className="logoDiv">
