@@ -9,6 +9,7 @@ import time_icon from "../../images/icon/-e-ic_time.svg";
 import StarRatings from "react-star-ratings";
 import Review from "../generic/Review";
 import EventSubDetail from "../generic/EventSubDetail";
+import { localStore } from "../../services/storage";
 import { relative } from "path";
 import { ReactComponent as TwitterIcon } from "../../images/icon/twitter.svg";
 import { ReactComponent as ThumbsupIcon } from "../../images/icon/thumbs-up.svg";
@@ -86,12 +87,21 @@ class Index extends Component {
               <div className="block social-buttons mt-3">
                 <button
                   className="btn btn-primary favorites-btn"
-                  onClick={() =>
-                    this.props.addInterestRequest({
-                      id: data._id,
-                      pathname: this.props.location.pathname
-                    })
+                  onClick={() =>{
+                    if(localStore('token')){
+                      this.props.addInterestRequest({
+                        id: data._id,
+                        pathname: this.props.location.pathname
+                      })
+                    }
+                    else{
+                      this.props.history.push('/auth/')
+                    }
+          
                   }
+                    
+                  }
+                  title={ localStore('token') ? "" : "Login first"}
                 >
                   <img
                     src={data && youInterested ? heart_full_icon : heart_icon}
