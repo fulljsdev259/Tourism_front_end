@@ -109,13 +109,13 @@ class Home extends Component {
       },
       {
         name: "Artisan",
-        image: category2,
+        image: category3,
         sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
         path: "/artisan"
       },
       {
         name: "Crafts",
-        image: category3,
+        image: category2,
         sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
         path: "/crafts"
       },

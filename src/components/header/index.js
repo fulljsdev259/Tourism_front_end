@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../images/-e-logo.png";
+import Logo from "../../images/logo.png";
 import Menu from "../../images/icon/menu.svg";
 import profile from "../../images/oval.png";
 import Close from "../../images/icon/cross.svg";
