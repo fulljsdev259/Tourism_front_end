@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { localStore } from "../../services/storage";
 import { ReactComponent as UserIcon } from "../../images/user.svg";
+import user from "../../images/user.svg";
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -290,69 +291,45 @@ class Header extends React.Component {
               </div>
             </div>
           </div>
-          {localStore("token") ? (
-            <div
-              className="registerDiv"
-              //           className={`registerDiv ${
-              //   location.pathname == "/auth" ||
-              //   location.pathname == "/auth/" ||
-              //   location.pathname == "/auth/register"
-              //     ? "link-active"
-              //     : ""
-              // }`}
-            >
-              <span className="user-name">
-                <span style={{ marginRight: "20px" }}>
-                  {/* <Link to={linkDashboard}> */}
-                  <UserIcon />
-                  {/* </Link> */}
-                </span>
-
-                {loggedUserData && loggedUserData.name
-                  ? loggedUserData.name + ", "
-                  : null}
-                <a
-                  onClick={() => {
-                    this.setState({
-                      apiCall: true
-                    });
-                    this.props.modalStateHandler(
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
-                    );
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("token_user");
-                    // this.props.receiveLogout()
-
-                    this.props.history.push("/");
-                    setTimeout(() => {
+          {localStore("token") && this.props.userdata.data ? (
+            <div className="col-2 profileDiv">
+              <div className="dropdown">
+                <img className="dropbtn" src={user} />
+                <div className="dropdown-content">
+                  <div className="logged-user">
+                    <h6>
+                      {this.props.userdata.data.name.first}{" "}
+                      {this.props.userdata.data.name.last}
+                    </h6>
+                    <span>{this.props.userdata.data.email}</span>
+                  </div>
+                  <button
+                    className="logout"
+                    onClick={() => {
                       this.setState({
-                        apiCall: false
+                        apiCall: true
                       });
-                    }, 1000);
-                  }}
-                >
-                  LOGOUT
-                </a>
-              </span>
+                      this.props.modalStateHandler(
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      );
+                      localStorage.removeItem("token");
+                      localStorage.removeItem("token_user");
+                    }}
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
             </div>
           ) : (
-            <div
-              className="registerDiv"
-              // className={`registerDiv ${
-              //   location.pathname === "/auth" ||
-              //   location.pathname === "/auth/" ||
-              //   location.pathname === "/auth/register"
-              //     ? "link-active"
-              //     : ""
-              // }`}
-            >
-              <Link to="/auth">Register / Login</Link>
+            <div className="registerDiv col-2">
+              <Link to="/auth/">Login/Register</Link>
             </div>
           )}
         </div>
@@ -364,7 +341,8 @@ class Header extends React.Component {
 const mapStateToProps = state => ({
   categories: state.event.categories.data,
   locations: state.event.locations.data,
-  login: state.auth.login
+  login: state.auth.login,
+  userdata: state.auth.userdata.data
 });
 
 const mapDispatchToProps = dispatch => ({

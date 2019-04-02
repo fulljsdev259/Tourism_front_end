@@ -71,13 +71,13 @@ class Index extends Component {
     return (
       <div className="event-details row">
         {/* <ReactFBLike language="en_US" appId="717589285046812" version="v2.12"  share="" showFaces="" width=""/> */}
-        <FacebookProvider appId="2194646720630049">
+        {/* <FacebookProvider appId="2194646720630049">
           <Like
             href="http://www.facebook.com"
             colorScheme="dark"
             text={false}
           />
-        </FacebookProvider>
+        </FacebookProvider> */}
 
         {data && data.title ? (
           <>
