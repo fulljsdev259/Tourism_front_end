@@ -9,7 +9,6 @@ import time_icon from "../../images/icon/-e-ic_time.svg";
 import StarRatings from "react-star-ratings";
 import Review from "../generic/Review";
 import EventSubDetail from "../generic/EventSubDetail";
-import { localStore } from "../../services/storage";
 import { relative } from "path";
 import { ReactComponent as TwitterIcon } from "../../images/icon/twitter.svg";
 import { ReactComponent as ThumbsupIcon } from "../../images/icon/thumbs-up.svg";
