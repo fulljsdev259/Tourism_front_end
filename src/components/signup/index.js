@@ -40,7 +40,8 @@ class SignUp extends Component {
             name: "",
             email: "",
             password: "",
-            password_confirm: ""
+            password_confirm: "",
+            receiveEmails: true
           }}
           validate={values => {
             let errors = {};
@@ -142,12 +143,13 @@ class SignUp extends Component {
               <div className="remember-me">
                 <input
                   type="checkbox"
-                  id="RememberMe"
-                  name="RememberMe"
-                  value="Remember Me"
+                  id="receiveEmails"
+                  name="receiveEmails"
+                  value="receiveEmails Emails"
+                  checked={values.receiveEmails}
+                  onChange={handleChange}
                 />
-                <label htmlFor="RememberMe" />
-                <label className="remember-text">
+                <label htmlFor="receiveEmails" className="remember-text">
                   Yes, I want to receive Top Events Jamaica emails
                 </label>
               </div>

@@ -43,6 +43,15 @@ class CategoryItem extends Component {
         return oneInterested._id == userdata.data._id;
       });
     }
+    let avgRate,
+      sum = 0;
+    if (event) {
+      event.reviews.forEach(m => (sum += parseInt(m.stars)));
+      avgRate = sum / event.reviews.length;
+      if (event.reviews.length == 0) {
+        avgRate = 0;
+      }
+    }
     // if (event) {
     //   interestPeople = getInterestPeople(userdata.data ? userdata.data : null, event);
     //   youInterested =
@@ -78,9 +87,7 @@ class CategoryItem extends Component {
               <Link
                 to={{ pathname: `/event-details/${event._id}`, state: event }}
               >
-                <div className="title" onClick={this.showDetails}>
-                  {event.title}
-                </div>
+                <div className="title">{event.title}</div>
               </Link>
               <div className="mobile-social">
                 <img
@@ -110,7 +117,7 @@ class CategoryItem extends Component {
           </div>
           <div className="reviews">
             <StarRatings
-              rating={5}
+              rating={avgRate}
               // rating={this.state.rating}
               starRatedColor="#fbc000"
               // changeRating={this.changeRating}
@@ -214,10 +221,10 @@ class CategoryItem extends Component {
                       pathname: this.props.location.pathname
                     });
                   } else {
-                   this.props.history.push('/auth')
+                    this.props.history.push("/auth");
                   }
                 }}
-                />
+              />
               {/* <img
                 className="share"
                 // src={share}

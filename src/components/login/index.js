@@ -31,7 +31,8 @@ class Login extends Component {
         <Formik
           initialValues={{
             email: "",
-            password: ""
+            password: "",
+            rememberMe: true
           }}
           validate={values => {
             let errors = {};
@@ -96,8 +97,10 @@ class Login extends Component {
                   <input
                     type="checkbox"
                     id="RememberMe"
-                    name="RememberMe"
-                    value="Remember Me"
+                    name="rememberMe"
+                    value="rememberMe"
+                    checked={values.rememberMe}
+                    onChange={handleChange}
                   />
                   <label htmlFor="RememberMe" />
                   <label className="remember-text">Remember me</label>
