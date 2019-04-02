@@ -32,7 +32,7 @@ export const renderTextarea = ( { input, label, placeholder, type, meta: { touch
 export const renderSelect = ( { input, label, type, data, meta: { touched, error } } ) => (
     <div className="renderSelect">
         <label>{ label }</label>
-        <select { ...input } defaultValue="lucy" >
+        <select { ...input } defaultValue="lucy" className='custom-select' >
             { data.map( ( d, i ) => {
                 return <option key={ i } value={ d }>{ d }</option>
             } ) }

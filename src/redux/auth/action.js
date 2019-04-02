@@ -10,10 +10,11 @@ import { toast } from "react-toastify";
 
 export function* loginRequest(action) {
   try {
-    const { email, password } = action.payload;
+    const { email, password, rememberMe } = action.payload;
     const response = yield call(fireApi, "POST", "signin", {
       email,
-      password
+      password,
+      rememberMe
     });
     if (response) {
       if (response.data && response.data.token) {

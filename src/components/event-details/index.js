@@ -16,7 +16,15 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { Formik, Form } from "formik";
 import { localStore } from "../../services/storage";
+import ReactFBLike from "react-fb-like";
+import { FacebookProvider, Like } from "react-facebook";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  EmailShareButton
+} from "react-share";
 // import { ReactComponent as Test } from "../../images/event_details_lb.svg";
+import "./event-details.scss";
 class Index extends Component {
   state = {
     leave_review: false
@@ -26,7 +34,15 @@ class Index extends Component {
     if (props.match.params.id) {
       props.getEventById(props.match.params.id);
     }
+
+    // window.location.reload();
+    // FB.XFBML.parse();
   }
+  // componentDidMount(){
+  //   if(this.props.location.pathname.includes('event-details') ){
+  //     window.location.reload();
+  //   }
+  // }
   render() {
     const { categories, event: data, userdata } = this.props;
     const event_sub_details = data
@@ -37,6 +53,15 @@ class Index extends Component {
           { image: time_icon, text: "account" }
         ]
       : null;
+    let avgRate,
+      sum = 0;
+    if (data) {
+      data.reviews.forEach(m => (sum += parseInt(m.stars)));
+      avgRate = sum / data.reviews.length;
+      if (data.reviews.length == 0) {
+        avgRate = 0;
+      }
+    }
     let youInterested;
     if (data && userdata && userdata.data) {
       youInterested = data.interested.find(oneInterested => {
@@ -45,6 +70,15 @@ class Index extends Component {
     }
     return (
       <div className="event-details row">
+        {/* <ReactFBLike language="en_US" appId="717589285046812" version="v2.12"  share="" showFaces="" width=""/> */}
+        <FacebookProvider appId="2194646720630049">
+          <Like
+            href="http://www.facebook.com"
+            colorScheme="dark"
+            text={false}
+          />
+        </FacebookProvider>
+
         {data && data.title ? (
           <>
             <div
@@ -62,7 +96,7 @@ class Index extends Component {
                 </div>
                 <div className="block">
                   <StarRatings
-                    rating={5}
+                    rating={avgRate}
                     // rating={this.state.rating}
                     starRatedColor="#fbc000"
                     // changeRating={this.changeRating}
@@ -87,12 +121,17 @@ class Index extends Component {
               <div className="block social-buttons mt-3">
                 <button
                   className="btn btn-primary favorites-btn"
-                  onClick={() =>
-                    this.props.addInterestRequest({
-                      id: data._id,
-                      pathname: this.props.location.pathname
-                    })
-                  }
+                  onClick={() => {
+                    if (localStore("token")) {
+                      this.props.addInterestRequest({
+                        id: data._id,
+                        pathname: this.props.location.pathname
+                      });
+                    } else {
+                      this.props.history.push("/auth/");
+                    }
+                  }}
+                  title={localStore("token") ? "" : "Login first"}
                 >
                   <img
                     src={data && youInterested ? heart_full_icon : heart_icon}
@@ -100,14 +139,40 @@ class Index extends Component {
                   Add to Favorites
                 </button>
                 <div className="social d-flex">
-                  <button className="btn btn-primary px-1 py-0 d-flex">
+                  {/* <button className="btn btn-primary px-1 py-0 d-flex">
                     <ThumbsupIcon />
                     <div className="text">like</div>
-                  </button>
-                  <button className="btn btn-primary ml-1 px-1 py-0 d-flex tweet">
-                    <TwitterIcon />
-                    <div className="text">Tweet</div>
-                  </button>
+                  </button> */}
+                  <div
+                    className="fb-like"
+                    data-href={
+                      data.facebookUrl
+                        ? data.facebookUrl
+                        : "https://facebook.com/"
+                    }
+                    data-layout="button_count"
+                    data-action="like"
+                    data-size="large"
+                    data-show-faces="false"
+                    data-share="false"
+                  />
+                  {/* <button className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"> */}
+                  {/* <div className="text">Tweet</div> */}
+                  {/* </button> */}
+                  <TwitterShareButton
+                    className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"
+                    url={`${window.location.origin}/#/event-detail/${data._id}`}
+                    title=""
+                    style={{ height: "28px", alignItems: "center" }}
+                  >
+                    <TwitterIcon width="15px" height="15px" />
+                    <div
+                      className="text"
+                      style={{ marginLeft: "5px", fontSize: "12px" }}
+                    >
+                      Tweet
+                    </div>
+                  </TwitterShareButton>
                 </div>
               </div>
             </div>
@@ -257,8 +322,11 @@ class Index extends Component {
                       className="leave-review"
                       title={!localStore("token") && "Login First"}
                       onClick={() => {
-                        if (localStore("token"))
+                        if (localStore("token")) {
                           this.setState({ leave_review: true });
+                        } else {
+                          this.props.history.push("/auth/");
+                        }
                       }}
                     >
                       Leave Review

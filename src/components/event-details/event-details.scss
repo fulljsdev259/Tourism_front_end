@@ -157,14 +157,24 @@
       }
       button {
         height: 25px;
+        display: flex;
+        align-items: center;
         svg {
           width: 0.8em;
         }
         .text {
           font-size: 0.8em;
           color: #fff;
+          margin-left: 5px;
         }
       }
     }
   }
+}
+
+.pluginConnectTextDark {
+  display: none !important;
+}
+#u_0_4 {
+  display: none !important;
 }

@@ -125,7 +125,6 @@ class EventItem extends Component {
                 src={youInterested ? heart_full : heart}
                 title={localStore("token") ? null : "Login first if interested"}
                 onClick={() => {
-                  console.log(this.props);
                   if (localStore("token")) {
                     this.props.addInterest({
                       _id: event._id,
