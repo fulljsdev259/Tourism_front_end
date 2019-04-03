@@ -14,14 +14,14 @@ class ContactUs extends Component {
           <div className="row text-center contact-block">
             <div className="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-sm-12 col-xs-12 contact-div">
               <div className="row">
-                <div className="col-md-10 offset-md-1 col-sm-10 offset-sm-1 center-align">
+                <div className="col-md-10 offset-md-1 col-sm-10 offset-sm-1 contact-align">
                   <div className="title">Contact Us</div>
                   <div className="desc">
-                    <div className="info">
-                      Lorem ipsum dolor sit amet, enim fabellas vix et. Et eos
-                      veri erroribus. Te nobis quaestio neglegentur pro, eam
-                      quis temporibus interpretaris te. No veri velit soleat
-                      est.
+                  <div className="info">
+                      Thank you for visiting our website. If you would you like
+                      to share your thoughts with us or have a question, please
+                      complete the form below and we will respond as soon as we
+                      can.
                     </div>
                     <Formik
                       initialValues={{
@@ -117,7 +117,7 @@ class ContactUs extends Component {
                             </div>
                           </div>
                           <div>
-                            <button type="submit">Save Changes</button>
+                            <button type="submit">Send</button>
                           </div>
                         </Form>
                       )}
