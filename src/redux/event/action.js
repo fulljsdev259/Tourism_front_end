@@ -125,8 +125,6 @@ export function* addInterestRequest(action) {
       yield put(actions.addInterestError());
     }
   } catch (e) {
-    console.log(e, "0000");
-
     yield put(actions.addInterestError());
   }
 }

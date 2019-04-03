@@ -21,7 +21,7 @@ export function* loginRequest(action) {
         localStore("token", response.data.token);
         yield put(actions.loginSuccess());
         // yield put(actions.getInterestedEventsRequest());
-        // yield put(actions.getUserDataRequest(response.data.token));
+        yield put(actions.getUserDataRequest(response.data.token));
       } else {
         toast.error(response.data.message);
         yield put(actions.loginError());

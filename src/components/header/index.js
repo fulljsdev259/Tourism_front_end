@@ -348,7 +348,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(actions.getCategoriesRequest()),
   getLocations: () => dispatch(actions.getLocationsRequest()),
-  getUserData: data => dispatch(actions.getUserDataRequest(data))
+  getUserData: data => dispatch(actions.getUserDataRequest(data)),
 });
 
 export default connect(

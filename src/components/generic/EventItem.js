@@ -73,9 +73,7 @@ class EventItem extends Component {
                     localStore("token") ? null : "Login first if interested"
                   }
                   onClick={() => {
-                    if (localStore("token")) {
-                      console.log(this.props);
-                      
+                    if (localStore("token")) {                      
                       this.props.addInterest({
                         id: event._id,
                         pathname: this.props.location.pathname

@@ -65,8 +65,6 @@ class CategoryItem extends Component {
     //       }
     //     );
     // }
-    console.log(youInterested);
-
     return (
       <div
         className="events-list"
@@ -214,7 +212,6 @@ class CategoryItem extends Component {
                 src={youInterested ? heart_full : heart}
                 title={localStore("token") ? null : "Login first if interested"}
                 onClick={() => {
-                  console.log(this.props);
                   if (localStore("token")) {
                     this.props.addInterest({
                       id: event._id,

@@ -192,17 +192,42 @@ class Index extends Component {
                   <div className="small-title">Open Hours</div>
                   <div className="timing">
                     {[
-                      { day: "Monday", time: "10:00am - 5:00pm" },
-                      { day: "Tuesday", time: "10:00am - 5:00pm" },
-                      { day: "Wednesday", time: "10:00am - 5:00pm" },
-                      { day: "Thursday", time: "10:00am - 5:00pm" },
-                      { day: "Friday", time: "10:00am - 5:00pm" },
-                      { day: "Saturday", time: "Closed" },
-                      { day: "Sunday", time: "Closed" }
+                      {
+                        day: "Monday",
+                        time: data.monStartTime + "-" + data.monEndTime
+                      },
+                      {
+                        day: "Tuesday",
+                        time: data.tueStartTime + "-" + data.tueEndTime
+                      },
+                      {
+                        day: "Wednesday",
+                        time: data.wedStartTime + "-" + data.wedEndTime
+                      },
+                      {
+                        day: "Thursday",
+                        time: data.thrStartTime + "-" + data.thrEndTime
+                      },
+                      {
+                        day: "Friday",
+                        time: data.friStartTime + "-" + data.friEndTime
+                      },
+                      {
+                        day: "Saturday",
+                        time: data.satStartTime + "-" + data.satEndTime
+                      },
+                      {
+                        day: "Sunday",
+                        time: data.sunStartTime + "-" + data.sunEndTime
+                      }
                     ].map((element, i) => (
                       <div key={i} className="day-block">
                         <div className="day">{element.day}</div>
-                        <div className="time">{element.time}</div>
+                        <div className="time">
+                          {element.time && element.time != "-"
+                            ? element.time
+                            : "Closed"}
+                        </div>
                       </div>
                     ))}
                     <div />
@@ -214,16 +239,37 @@ class Index extends Component {
               <div className="small-title">Reviews</div>
               {data.reviews.length ? (
                 <div className="reviews">
-                  {data.reviews.map((review, i) => (
-                    <Review key={i} review={review} />
-                  ))}
+                  {userdata.data &&
+                  data.reviews.find(review => {
+                    return review.user_id._id == userdata.data._id;
+                  }) ? (
+                    <>
+                      {data.reviews
+                        .filter(review => {
+                          return review.user_id._id == userdata.data._id;
+                        })
+                        .map((review, i) => (
+                          <Review key={i} review={review} />
+                        ))}
+                      {data.reviews
+                        .filter(review => {
+                          return review.user_id._id != userdata.data._id;
+                        })
+                        .map(
+                          (review, i) =>
+                            i < 2 && <Review key={i} review={review} />
+                        )}
+                    </>
+                  ) : (
+                    data.reviews.map(
+                      (review, i) => i < 3 && <Review key={i} review={review} />
+                    )
+                  )}
                 </div>
               ) : (
                 <div className="reviews">Be the first to add review.</div>
               )}
-              {data &&
-              data.reviews &&
-              userdata &&
+              {localStore("token") &&
               userdata.data &&
               data.reviews.find(review => {
                 return review.user_id._id == userdata.data._id;
