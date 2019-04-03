@@ -123,7 +123,8 @@ class WizardFormThirdPage extends React.Component {
       pristine,
       previousPage,
       submitting,
-      mutate
+      mutate,
+      onSubmit
     } = this.props;
 
     return (
