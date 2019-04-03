@@ -99,7 +99,7 @@ class CategoryItem extends Component {
                   //       : heart
                   //   }
                   title={
-                    localStore("token") ? null : "Login first if interested"
+                    localStore("token") ? null : "Login first"
                   }
                   onClick={() => {
                     if (localStore("token")) {
@@ -210,7 +210,7 @@ class CategoryItem extends Component {
               <img
                 className="wishlist"
                 src={youInterested ? heart_full : heart}
-                title={localStore("token") ? null : "Login first if interested"}
+                title={localStore("token") ? null : "Login first "}
                 onClick={() => {
                   if (localStore("token")) {
                     this.props.addInterest({

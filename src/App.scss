@@ -3,7 +3,7 @@ $button-color: blue;
 $color1: #0a8b4d;
 $color2: #fbc000;
 $header-box-shadow: 0 0 0 2px $color1, 0 0 0 4px $color2;
-$category-colors: #EF2947, #00a992, #997362, #EDA8CD;
+$category-colors: #ef2947, #00a992, #997362, #eda8cd;
 
 @import "./components/header/header.scss";
 @import "./components/index/index.scss";
@@ -62,6 +62,10 @@ $category-colors: #EF2947, #00a992, #997362, #EDA8CD;
         font-weight: 600;
         margin: auto 10px;
         box-shadow: inset 0px -30px 0 -20px $current-color;
+        a {
+          color: #000000;
+          text-decoration: none;
+        }
       }
       .category-nav-item-dropdown {
         position: absolute;
