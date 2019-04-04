@@ -1,81 +1,124 @@
-import React from 'react'
-import './index.scss';
+import React from "react";
+import "./index.scss";
 // import { Select } from 'antd';
 // import 'antd/dist/antd.css';
 // import './antdCustom.scss';
 
 // const Option = Select.Option;
 
-export const renderField = ( { input, label, placeholder, type, meta: { touched, error } } ) => (
-    <div className="renderField">
-        <label>{ label }</label>
-        <div>
-            <input { ...input } placeholder={ placeholder } type={ type } className="input" />
-        </div>
-        <div>
-            { touched && error && <span><sup>*</sup>{ error }</span> }
-        </div>
+export const renderField = ({
+  input,
+  label,
+  placeholder,
+  type,
+  meta: { touched, error }
+}) => (
+  <div className="renderField">
+    <label>{label}</label>
+    <div>
+      <input
+        {...input}
+        placeholder={placeholder}
+        type={type}
+        className="input"
+      />
     </div>
-)
-export const renderTextarea = ( { input, label, placeholder, type, meta: { touched, error } } ) => (
-    <div className="renderField">
-        <label>{ label }</label>
-        <div>
-            <textarea style={ { height: 100 } } { ...input } placeholder={ placeholder } type={ type } className="textArea" />
-            { touched && error && <span><sup>*</sup>{ error }</span> }
-        </div>
+    <div>
+      {touched && error && (
+        <span>
+          <sup>*</sup>
+          {error}
+        </span>
+      )}
     </div>
-)
+  </div>
+);
+export const renderTextarea = ({
+  input,
+  label,
+  placeholder,
+  type,
+  meta: { touched, error }
+}) => (
+  <div className="renderField">
+    <label>{label}</label>
+    <div>
+      <textarea
+        style={{ height: 100 }}
+        {...input}
+        placeholder={placeholder}
+        type={type}
+        className="textArea"
+      />
+      {touched && error && (
+        <span>
+          <sup>*</sup>
+          {error}
+        </span>
+      )}
+    </div>
+  </div>
+);
 
+export const renderSelect = ({
+  input,
+  label,
+  type,
+  data,
+  meta: { touched, error }
+}) => (
+  <div className="renderSelect">
+    <label>{label}</label>
+    <select {...input} defaultValue="" className="custom-select">
+      {data.map((d, i) => {
+        return (
+          <option key={i} value={d._id}>
+            {d.name}
+          </option>
+        );
+      })}
+    </select>
 
+    <div>
+      {touched && error && (
+        <span>
+          <sup>*</sup>
+          {error}
+        </span>
+      )}
+    </div>
+  </div>
+);
 
-export const renderSelect = ( { input, label, type, data, meta: { touched, error } } ) => (
+export const renderTag = ({ input, label, type, meta: { touched, error } }) => {
+  const children = [];
+  // for ( let i = 10; i < 36; i++ ) {
+  //     children.push( <Option key={ i.toString( 36 ) + i }>{ i.toString( 36 ) + i }</Option> );
+  // }
+
+  return (
     <div className="renderSelect">
-        <label>{ label }</label>
-        <select { ...input } defaultValue="lucy" className='custom-select' >
-            { data.map( ( d, i ) => {
-                return <option key={ i } value={ d }>{ d }</option>
-            } ) }
-
+      <label>{label}</label>
+      <div style={{ display: "flex", marginTop: 10 }}>
+        <select
+          mode="tags"
+          style={{ width: "100%" }}
+          placeholder="Please select"
+          // defaultValue={ [] }
+          //onChange={ () => console.log() }
+          {...input}
+        >
+          {children}
         </select>
-
         <div>
-
-            { touched && error && <span><sup>*</sup>{ error }</span> }
+          {touched && error && (
+            <span>
+              <sup>*</sup>
+              {error}
+            </span>
+          )}
         </div>
+      </div>
     </div>
-)
-
-
-
-export const renderTag = ( { input, label, type, meta: { touched, error } } ) => {
-    const children = [];
-    // for ( let i = 10; i < 36; i++ ) {
-    //     children.push( <Option key={ i.toString( 36 ) + i }>{ i.toString( 36 ) + i }</Option> );
-    // }
-
-    return <div className="renderSelect">
-        <label>{ label }</label>
-        <div style={ { display: 'flex', marginTop: 10 } }>
-            <select
-                mode="tags"
-                style={ { width: '100%' } }
-
-                placeholder="Please select"
-                // defaultValue={ [] }
-                //onChange={ () => console.log() }
-                { ...input }
-            >
-                { children }
-            </select>
-            <div>
-                { touched && error && <span><sup>*</sup>{ error }</span> }
-            </div>
-        </div>
-    </div>
-}
-
-
-
-
-
+  );
+};

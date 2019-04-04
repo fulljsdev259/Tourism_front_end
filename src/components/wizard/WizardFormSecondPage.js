@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm, FieldArray } from "redux-form";
+import { Field, reduxForm, FieldArray, formValueSelector } from "redux-form";
 import validate from "./validate";
 import {
   renderField,
@@ -9,7 +9,7 @@ import {
 } from "./renderField";
 import "./index.scss";
 import checkMark from "../../images/icon/checkmark-green.svg";
-
+import { connect } from "react-redux";
 const adaptFileEventToValue = delegate => e => delegate(e.target.files[0]);
 
 const adaptFileEventToValueMulti = delegate => e => delegate(e.target.files);
@@ -30,53 +30,11 @@ const FileInput = ({
   );
 };
 
-const renderMembers = ({ fields, meta: { error, submitFailed } }) => (
-  <div>
-    <div>
-      <a
-        href=""
-        onClick={e => {
-          e.preventDefault();
-          fields.push({});
-        }}
-      >
-        Add Photo
-      </a>
-      {submitFailed && error && <span>{error}</span>}
-    </div>
-    {fields.map((member, index) => (
-      <div class="custom-file mb-3 file-div" key={index}>
-        <div className='file-input-div'>
-          <Field
-            name={`${member}.firstName`}
-            type="file"
-            component={FileInput}
-            className="custom-file-input"
-          />
-          <label class="custom-file-label file-label" for="customFile">
-            Choose file
-          </label>
-        </div>
-        <div  className="file-btn-div">
-          <button
-            type="button"
-            title="Remove Member"
-            onClick={() => fields.remove(index)}
-            className="btn  btn-danger file-btn"
-          >
-            Remove
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-);
-
 const renderError = ({ meta: { touched, error } }) =>
   touched && error ? <span>{error}</span> : false;
 
 const WizardFormSecondPage = props => {
-  const { handleSubmit, previousPage } = props;
+  const { handleSubmit, previousPage, categories, selectedCategory } = props;
   return (
     <div>
       <div className="inActiveHeader">
@@ -92,28 +50,25 @@ const WizardFormSecondPage = props => {
           </div>
           <form onSubmit={handleSubmit}>
             <Field
-              name="region"
+              name="categories"
               className="custom-select"
               type="select"
-              data={["Western Jamaica", "Central Jamaica", "Eastern Jamaica"]}
+              data={categories ? categories.data : []}
               component={renderSelect}
               label="Select Region"
             />
-            <Field
-              name="categories"
-              type="select"
-              data={[
-                "Food and Agro",
-                "Printing, Packaging and Paper",
-                "Minerals and Metal",
-                "Electrical, Electronics and Automotive",
-                "Chemicals, Cosmetics and Pharmaceuticals",
-                "Furniture, Wooden and Bedding",
-                "Textile and Sewn"
-              ]}
-              component={renderSelect}
-              label="Select Manufacturer Type"
-            />
+            {selectedCategory && (
+              <Field
+                name="subcategories"
+                type="select"
+                data={
+                  categories.data.find(item => selectedCategory === item._id)
+                    .subCategory
+                }
+                component={renderSelect}
+                label="Select Manufacturer Type"
+              />
+            )}
             {/*<Field name="typeOfCompany" type="text" component={ renderField } label="Type of your company" />*/}
             <Field
               name="description"
@@ -122,7 +77,7 @@ const WizardFormSecondPage = props => {
               label="Describe your company"
             />
             <Field name="tags" type="text" component={renderTag} label="Tags" />
-            <FieldArray name="photo" component={renderMembers} />
+            {/* <FieldArray name="photo" component={renderMembers} /> */}
             {/*  <Field name="photo" type="file" component={ FileInput } label="Tags" />*/}
 
             <div>
@@ -141,10 +96,21 @@ const WizardFormSecondPage = props => {
     </div>
   );
 };
+const selector = formValueSelector("wizard");
+
+console.log(selector);
+
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    selectedCategory: selector(state, "categories")
+  };
+};
 
 export default reduxForm({
   form: "wizard", //Form name is same
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate
-})(WizardFormSecondPage);
+})(connect(mapStateToProps)(WizardFormSecondPage));

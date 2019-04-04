@@ -230,47 +230,7 @@ class WizardFormThirdPage extends React.Component {
                             */}
               {this.renderErrors()}
               <button
-                type="button"
-                onClick={handleSubmit(async data => {
-                  this.setState({ apiCall: true });
-                  const editData = await mutate({
-                    variables: {
-                      name: data.name,
-                      fullName: data.fullName,
-                      categories: data.categories,
-                      description: data.description,
-                      phoneNumber: data.phoneNumber,
-                      // address: this.state.map,
-                      tags: data.tags ? data.tags.toString() : "",
-                      region: data.region,
-                      website: data.website,
-                      address: data.address,
-                      email: data.email,
-                      password: data.password,
-                      latitude: this.state.lat.toString(),
-                      longitude: this.state.lng.toString,
-                      facebook: data.facebook,
-                      photo: data.photo,
-                      instagram: data.instagram,
-                      fax: data.fax
-                    }
-
-                    //   refetchQueries: [{ query: query1 }]
-                  });
-                  this.setState({ apiCall: false });
-                  //   this.showModal();
-
-                  if (editData.data.addVendor.errors === null) {
-                    this.props.onSuccessCompanyListed();
-                    // this.setState( { errors: result.data.signUp.errors, } )
-                    // this.showModal()
-                    //commonError()
-                  } else {
-                    this.setState({ errors: editData.data.addVendor.errors });
-                    // this.showModal()
-                    // this.props.onSuccessRegister();
-                  }
-                })}
+                type="submit"
                 className="nextsignup"
                 disabled={pristine || submitting}
               >
