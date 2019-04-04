@@ -9,20 +9,27 @@ export default function CategoryNavItem({ category }) {
           <img src={category.image} />
         </div>
         <div className="title">
-          <Link to={category.path}>{category.name}</Link>
+          <Link to={category.path} style={{ "textTransform": "capitalize" }}>
+            {category.name.replace("_", " ")}
+          </Link>
         </div>
       </div>
-      {category.sub_categories && (
+      {category.subCategory && category.subCategory.length ? (
         <div className="category-nav-item-dropdown rounded-bottom">
           <ul className="list-unstyled">
-            {category.sub_categories.map((sub_category, i) => (
+            {category.subCategory.map((sub_category, i) => (
               <li key={i}>
-                <a href="#">{sub_category}</a>
+                <Link
+                  to={category.path}
+                  style={{ "textTransform": "capitalize" }}
+                >
+                  {sub_category.name.replace("_", " ")}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
