@@ -44,6 +44,9 @@ class Header extends React.Component {
   }
 
   render() {
+    if (!this.props.categoryDataState) {
+      this.props.getCategory(this.props.categories);
+    }
     let { loggedUserData, location } = this.props;
     let linkDashboard = "/admin";
     if (loggedUserData && loggedUserData.role !== "admin") {
@@ -348,7 +351,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(actions.getCategoriesRequest()),
   getLocations: () => dispatch(actions.getLocationsRequest()),
-  getUserData: data => dispatch(actions.getUserDataRequest(data)),
+  getUserData: data => dispatch(actions.getUserDataRequest(data))
 });
 
 export default connect(

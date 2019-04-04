@@ -9,6 +9,12 @@ import i7 from "../../images/7.png";
 import i8 from "../../images/8.png";
 import i9 from "../../images/9.svg";
 import i10 from "../../images/back_5.svg";
+import p1 from "../../images/jewelery.png";
+import p2 from "../../images/clothing.png";
+import p3 from "../../images/art.png";
+import p4 from "../../images/craftMarkets.png";
+import p5 from "../../images/beachWear.png";
+import p6 from "../../images/giftItems.png";
 import category1 from "../../images/category1.svg";
 import category2 from "../../images/category2.svg";
 import category3 from "../../images/category3.svg";
@@ -19,42 +25,24 @@ import CategoryNav from "../generic/CategoryNav";
 
 export default class index extends Component {
   render() {
-    const {categories } = this.props;
-    // const categories = [
-    //   {
-    //     name: "Duty Free",
-    //     image: category1,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/food"
-    //   },
-    //   {
-    //     name: "Artisan",
-    //     image: category2,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/SPA"
-    //   },
-    //   {
-    //     name: "Crafts",
-    //     image: category3,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/fitness"
-    //   },
-    //   {
-    //     name: "Retails",
-    //     image: category4,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/shopping"
-    //   }
-    // ];
+    const { categories } = this.props;
     const popular = [
       { name: "Nulook Company", image: i5 },
       { name: "Amoy Yae'l Purses", image: i6 },
       { name: "Beenybud Jamaica", image: i7 },
       { name: "Island girl headwraps and more", image: i8 }
     ];
+    const popularTypes = [
+      { name: "jewelry", image: p1 },
+      { name: "Clothing", image: p2 },
+      { name: "Art", image: p3 },
+      { name: "Craft Markets", image: p4 },
+      { name: "Beach Wear", image: p5 },
+      { name: "Gift items", image: p6 }
+    ];
     return (
       <>
-        <CategoryNav categories={categories} />
+        {categories ? <CategoryNav categories={categories} /> : null}
         <div className="first-block row">
           <img src={i1} />
           <div className="text-block">
@@ -105,7 +93,32 @@ export default class index extends Component {
         </div>
         <div className="fifth-block">
           <img src={i10} style={{ width: "100%", transform: "scale(1.2)" }} />
-          <div className="desc">
+          <div className="desc col-9 offset-2 ">
+            <div className="row">
+              {popularTypes.map((item, index) => {
+                return (
+                  <div className="popularType col-6" key={index}>
+                    <div
+                      clasName="popularImage"
+                      style={{
+                        backgroundImage: `url(${item.image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat:'no-repeat',
+                        width: "40%",
+                        borderRadius: "10px 0px 0px 10px",
+
+                      }}
+                    >
+                      {/* <img src={item.image} /> */}
+                    </div>
+                    <div className="popularTitle ">
+                      <h3>{item.name}</h3>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
             <div className="vertical-text">POPULAR PRODUCT TYPES</div>
           </div>
         </div>

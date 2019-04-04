@@ -17,6 +17,9 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as actions from "../../redux/actions";
+import { HashRouter as Router } from "react-router-dom";
+import { localStore } from "../../services/storage";
 // import Login from "../login";
 // import SignUp from "../signup";
 
@@ -52,8 +55,8 @@ const customStylesRegister = {
 Modal.setAppElement("#root");
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modalIsOpen: false,
       about: false,
@@ -70,7 +73,8 @@ class Home extends Component {
       windowResized: false,
       loader: false,
       isMobileScreen: false,
-      modalPublications: false
+      modalPublications: false,
+      categoryData: ""
     };
   }
 
@@ -99,53 +103,75 @@ class Home extends Component {
     this.setState({ modalIsOpen: false });
   };
 
+  handleGetCategory = data => {
+    this.setState({
+      categoryData: data
+    });
+  };
   render() {
-    const categories = [
-      {
-        name: "Duty Free",
-        image: category1,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/duty_free"
-      },
-      {
-        name: "Artisan",
-        image: category3,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/artisan"
-      },
-      {
-        name: "Crafts",
-        image: category2,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/crafts"
-      },
-      {
-        name: "Retails",
-        image: category4,
-        sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-        path: "/retails"
-      }
-    ];
+    const imageArr = [category1, category3, category2, category4];
+    const pathArr = ["/duty_free", "/artisan", "/crafts", "/retails"];
+    const categories = this.state.categoryData.data
+      ? this.state.categoryData.data.map((m, i) => {
+          return {
+            name: m.name,
+            image: imageArr[i],
+            path: pathArr[i],
+            subCategory: m.subCategory
+          };
+        })
+      : null;
+    // const categories = [
+    //   {
+    //     name: "Duty Free",
+    //     image: category1,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/duty_free"
+    //   },
+    //   {
+    //     name: "Artisan",
+    //     image: category3,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/artisan"
+    //   },
+    //   {
+    //     name: "Crafts",
+    //     image: category2,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/crafts"
+    //   },
+    //   {
+    //     name: "Retails",
+    //     image: category4,
+    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
+    //     path: "/retails"
+    //   }
+    // ];
     return (
       <div className="App">
-        <Header modalStateHandler={this.handleModalState} />
+        <Header
+          modalStateHandler={this.handleModalState}
+          getCategory={this.handleGetCategory}
+          categoryDataState={this.state.categoryData}
+        />
         <div className="container-fluid body-top">
           <Switch>
-            {categories.map((category, i) => {
-              return (
-                <Route
-                  path={category.path}
-                  key={i}
-                  render={props => (
-                    <Category
-                      {...props}
-                      category={category}
-                      categories2 ={categories}
-                    />
-                  )}
-                />
-              );
-            })}
+            {categories &&
+              categories.map((category, i) => {
+                return (
+                  <Route
+                    path={category.path}
+                    key={i}
+                    render={props => (
+                      <Category
+                        {...props}
+                        category={category}
+                        categories2={categories}
+                      />
+                    )}
+                  />
+                );
+              })}
             <Route path="/events" component={Events} />
             <Route
               path="/event-details/:id"
@@ -183,5 +209,4 @@ class Home extends Component {
     );
   }
 }
-
 export default Home;

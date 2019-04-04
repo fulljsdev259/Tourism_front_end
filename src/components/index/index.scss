@@ -148,9 +148,44 @@
   .desc {
     position: absolute;
     top: 0;
+    padding: 30px;
+    .popularType {
+      display: flex;
+      margin: 20px 0;
+      .popularImage {
+        // background-size: 130%;
+        // background-position: center;
+        // width: 40%;
+        // height: 200px;
+
+        // img {
+        //   height: 300px;
+        //   width: 100%;
+        // }
+      }
+      .popularTitle {
+        height: 150px;
+        width: 60%;
+        border-radius: 0 10px 10px 0;
+        background: white;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        text-transform: capitalize;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+
     .vertical-text {
-      width: 20%;
+      width: auto;
+      color: white;
       transform: rotate(-90deg);
+      position: absolute;
+      left: -300px;
+      bottom: 280px;
+      font-size: 2.5em;
+      font-weight: 600;
     }
   }
 }
