@@ -556,6 +556,8 @@
 
 .body-top {
   padding-top: 55px;
+  display: flex;
+  flex-direction: column;
 }
 
 .Overlay {
