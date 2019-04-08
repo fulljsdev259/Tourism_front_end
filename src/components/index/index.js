@@ -8,7 +8,7 @@ import i6 from "../../images/6.png";
 import i7 from "../../images/7.png";
 import i8 from "../../images/8.png";
 import i9 from "../../images/9.svg";
-import i10 from "../../images/back_5.svg";
+import i10 from "../../images/back_5.png";
 import p1 from "../../images/jewelery.png";
 import p2 from "../../images/clothing.png";
 import p3 from "../../images/art.png";
@@ -22,6 +22,8 @@ import category4 from "../../images/category4.svg";
 import home_2 from "../../images/home_2.png";
 import ic_settings from "../../images/icon/-e-ic_settings.svg";
 import CategoryNav from "../generic/CategoryNav";
+import { Carousel } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default class index extends Component {
   render() {
@@ -55,7 +57,11 @@ export default class index extends Component {
         <div className="second-block row">
           <img src={home_2} />
           <div className="block">
-            <div className="title">POPULAR ARTISAN STORES IN KINGSTON</div>
+            <div className="title">
+              POPULAR{" "}
+              <span style={{ textDecoration: "underline" }}>ARTISAN</span>{" "}
+              STORES IN KINGSTON
+            </div>
             <div className="setting">
               <div className="setting-title">kingston</div>
               <img className="setting-icon" src={ic_settings} />
@@ -70,44 +76,90 @@ export default class index extends Component {
             ))}
           </div>
         </div>
+
         <div className="third-block row">
-          <img src={i2} style={{ width: "42%" }} />
-          <div className="desc">
-            <div className="type">Swimwear</div>
-            <div className="brand">Jae Jolly</div>
-            <button>ABOUT STYLE JAMAICA</button>
+          <div className="third-block-pc">
+            <img src={i2} style={{ width: "42%" }} />
+            <div className="desc">
+              <div className="type">Swimwear</div>
+              <div className="brand">Jae Jolly</div>
+              <button>ABOUT STYLE JAMAICA</button>
+            </div>
+            <img src={i9} style={{ width: "8%", margin: "4%" }} />
+            <img src={i4} style={{ width: "42%" }} />
+            <div className="desc">
+              <div className="type">Menwear</div>
+              <div className="brand">Bill Edwards</div>
+              <button>ABOUT STYLE JAMAICA</button>
+            </div>
           </div>
-          <img src={i9} style={{ width: "8%", margin: "4%" }} />
-          <img src={i4} style={{ width: "42%" }} />
-          <div className="desc">
-            <div className="type">Menwear</div>
-            <div className="brand">Bill Edwards</div>
-            <button>ABOUT STYLE JAMAICA</button>
+
+          <div className="third-block-mobile">
+            <Carousel indicators={true} controls={true}>
+              <Carousel.Item>
+                <img src={i2} />
+                <Carousel.Caption>
+                  <div className="caption">
+                    <div className="desc">
+                      <div className="type">Swimwear</div>
+                      <div className="brand">Jae Jolly</div>
+                      <Link to="">
+                        <button>ABOUT STYLE JAMAICA</button>
+                      </Link>
+                    </div>
+                  </div>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img src={i4} />
+                <Carousel.Caption>
+                  <div className="caption">
+                    <div className="desc">
+                      <div className="type">Menwear</div>
+                      <div className="brand">Bill Edwards</div>
+                      <Link to="">
+                        <button>ABOUT STYLE JAMAICA</button>
+                      </Link>
+                    </div>
+                  </div>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+            <img className="carouselFixedIImage" src={i9} />
           </div>
         </div>
         <div className="forth-block row">
           <img src={i3} style={{ width: "100%" }} />
           <div className="text">
+            <h2>Craft Markets</h2>
             <div>A true representation of the island's unique culture</div>
           </div>
         </div>
-        <div className="fifth-block">
-          <img src={i10} style={{ width: "100%", transform: "scale(1.2)" }} />
-          <div className="desc col-9 offset-2 ">
+        <div
+          className="fifth-block row"
+          style={{
+            backgroundImage: `url(${i10})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          {/* <img src={i10} style={{ width: "100%" }} /> */}
+          <div className="desc col-md-9 offset-md-2 col-11 offset-1 ">
             <div className="row">
               {popularTypes.map((item, index) => {
                 return (
-                  <div className="popularType col-6" key={index}>
+                  <div className="popularType col-md-6 col-12" key={index}>
                     <div
                       clasName="popularImage"
                       style={{
                         backgroundImage: `url(${item.image})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        backgroundRepeat:'no-repeat',
+                        backgroundRepeat: "no-repeat",
                         width: "40%",
                         borderRadius: "10px 0px 0px 10px",
-
+                        boxShadow: "5px 2px 5px 0 rgba(0,0,0,.09)"
                       }}
                     >
                       {/* <img src={item.image} /> */}

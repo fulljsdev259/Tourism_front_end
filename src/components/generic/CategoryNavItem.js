@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function CategoryNavItem({ category }) {
   return (
-    <div className="category-nav-item">
+    <div className="category-nav-item ">
       <div className="category-nav-item-header">
         <div className="category-img">
           <img src={category.image} />
