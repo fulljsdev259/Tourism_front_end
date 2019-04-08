@@ -22,7 +22,7 @@ const WizardFormFirstPage = props => {
                             label="Your full name"
                         />
                         <Field
-                            name="name"
+                            name="title"
                             type="text"
                             component={ renderField }
                             label="Your company name"

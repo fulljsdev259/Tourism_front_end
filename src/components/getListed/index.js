@@ -64,6 +64,19 @@ class GetListed extends React.Component {
             <Wizard
               onSuccessCompanyListed={this.onSuccessCompanyListed}
               onSubmit={data => {
+                const [first, ...last] =
+                  data.fullName && data.fullName.split(" ");
+                data.userDetails = {
+                  name: {
+                    first,
+                    last: last.join(" ")
+                  },
+                  email: data.email,
+                  password: data.password
+                };
+                delete data.password;
+                delete data.fullName;
+                delete data.email;
                 this.props.addEvent(data);
               }}
               categories={categories}
