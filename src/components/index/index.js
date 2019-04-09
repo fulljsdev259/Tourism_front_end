@@ -55,7 +55,7 @@ export default class index extends Component {
           </div>
         </div>
         <div className="second-block row">
-          <img src={home_2} />
+          <img  className='second-block-img' src={home_2} />
           <div className="block">
             <div className="title">
               POPULAR{" "}
@@ -151,7 +151,7 @@ export default class index extends Component {
                 return (
                   <div className="popularType col-md-6 col-12" key={index}>
                     <div
-                      clasName="popularImage"
+                      className="popularImage"
                       style={{
                         backgroundImage: `url(${item.image})`,
                         backgroundSize: "cover",

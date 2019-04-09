@@ -57,6 +57,9 @@
   font-size: 14px;
   .contact-section {
     padding-right: 100px;
+    @media all and(max-width:991px) {
+      padding-right: 30px;
+    }
     @media all and(max-width:767px) {
       padding-right: 70px;
     }
@@ -89,6 +92,10 @@
   }
   .footer-links {
     text-align: left;
+    @media all and (max-width: 767px) {
+      position: relative;
+      top: 50px;
+    }
     .social-icons {
       display: flex;
       // justify-content: space-evenly;
@@ -107,12 +114,18 @@
     letter-spacing: 0.1px;
     padding-bottom: 10px;
     align-items: center;
-    ul {
+    @media all and (max-width: 767px) {
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
+      position: relative;
+      top: -30px;
+    }
+    .logos {
+      display: flex;
+      justify-content: space-between;
       list-style: none;
-      @media all and (max-width: 850px) {
-        display: block;
+      @media all and (max-width: 767px) {
+        order: 1;
       }
       li {
         display: inline-block;
@@ -130,6 +143,10 @@
     }
     .copyright-text {
       font-size: 0.9em;
+      @media all and (max-width: 767px) {
+        order: 2;
+        margin-bottom: 20px;
+      }
     }
   }
 }

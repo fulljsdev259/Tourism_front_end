@@ -98,11 +98,7 @@ const WizardFormSecondPage = props => {
 };
 const selector = formValueSelector("wizard");
 
-console.log(selector);
-
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
     selectedCategory: selector(state, "categories")
   };

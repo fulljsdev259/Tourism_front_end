@@ -44,3 +44,5 @@ export const getUserDataError = createAction(constants.GET_USER_DATA_ERROR);
 export const submitEventRequest = createAction(constants.SUBMIT_EVENT_REQUEST);
 export const submitEventSuccess = createAction(constants.SUBMIT_EVENT_SUCCESS);
 export const submitEventError = createAction(constants.SUBMIT_EVENT_ERROR);
+
+export const stateChange = createAction(constants.STATE_CHANGE);
