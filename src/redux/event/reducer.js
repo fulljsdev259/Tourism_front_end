@@ -638,7 +638,9 @@ export default handleActions(
     [constants.SUBMIT_EVENT_REQUEST]: handleSubmitEventRequest,
     [constants.SUBMIT_EVENT_SUCCESS]: handleSubmitEventSuccess,
     [constants.SUBMIT_EVENT_ERROR]: handleSubmitEventError,
-    [constants.SUBMIT_EVENT_RESET]: handleSubmitEventReset
+    [constants.SUBMIT_EVENT_RESET]: handleSubmitEventReset,
+
+    [constants.STATE_CHANGE]: handleStateChange
   },
   initialState
 );

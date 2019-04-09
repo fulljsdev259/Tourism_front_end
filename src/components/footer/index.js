@@ -83,9 +83,9 @@ export default class Footer extends React.Component {
       // </footer>
       <footer className="container-fluid">
         <div className="detail-footer row">
-          <div className="col-md-8 offset-md-2 col-sm-10 offset-sm-1  col-10 offset-1 footer-col">
+          <div className="col-md-8 offset-md-2 col-10 offset-1 footer-col">
             <div className="row">
-              <div className="col-md-4 col-sm-12 col-xs-12 contact-section">
+              <div className="col-md-4 col-12  contact-section">
                 <div className="content">
                   <div className="top-img">
                     <img src={mapMain} />
@@ -99,28 +99,27 @@ export default class Footer extends React.Component {
                   <span className="phone">+9876544321</span>
                 </div>
               </div>
-              <div className="col-md-8 col-xs-6 ">
+              <div className="col-md-8 col-12 ">
                 <div className="row">
-                  <div className="col-md-3 col-xs-6">
-                    <div className="row">
-                      <div className="col-md-12 col-xs-6 category-section">
+                  <div className="col-md-3 col-6">
+                    <div className="">
+                      <div className="category-section">
                         <Link to="/entertainment">Duty Free</Link>
                         <Link to="/conferences">Artisian</Link>
                       </div>
                     </div>
                   </div>
 
-                  <div className="col-lg-3">
-                    <div className="row">
-                      <div className="col-md-12 col-xs-6 category-section">
-                        {" "}
+                  <div className="col-md-3 col-6">
+                    <div className="">
+                      <div className="category-section">
                         <Link to="/sport">Crafts</Link>
                         <Link to="/health_wellness">Retails</Link>
                       </div>
                     </div>
                   </div>
 
-                  <div className="col-lg-4 col-xs-6 footer-links">
+                  <div className="col-md-4 col-6 footer-links">
                     <div className="row">
                       <div className="social-icons  col-md-12 col-xs-6">
                         <a
@@ -143,12 +142,12 @@ export default class Footer extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="mobile-copyright col-md-12 col-xs-12">
+                  <div className="mobile-copyright col-md-12 col-12">
                     <div className="copyright-text">
                       Copyright © {currentYear}. Developed by Ministry of
                       Tourism and Powered by Tourism Enhancement Fund
                     </div>
-                    <ul className="logos">
+                    <ul className="logos col-12">
                       <li>
                         <a href="https://www.mot.gov.jm/" target="_BLANK">
                           <img src={footer1} />

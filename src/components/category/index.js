@@ -6,7 +6,12 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import CategoryItem from "../generic/CategoryItem";
 import CategoryNav from "../generic/CategoryNav";
+import CategoryNav2 from "../generic/CategoryNav2";
 import * as actions from "../../redux/actions";
+import duty_free_img from "../../images/duty_free_img.png";
+import retails_img from "../../images/duty_free_img.png";
+import crafts_img from "../../images/crafts_img.png";
+import artisan_img from "../../images/crafts_img.png";
 
 class Category extends Component {
   constructor(props) {
@@ -43,7 +48,7 @@ class Category extends Component {
     }
   }
   render() {
-    const { categories2 } = this.props;
+    const { categories2, location } = this.props;
     // const cat = {
     //   name: "test",
     //   description: "description"
@@ -54,22 +59,63 @@ class Category extends Component {
             category => this.props.location.pathname === "/" + category.name
           )
         : "";
+    const categories = [
+      {
+        name: "duty_free",
+        color: "#fbebec",
+        image: duty_free_img
+      },
+      {
+        name: "artisan",
+        color: "#a9fff1",
+        image: artisan_img
+      },
+      {
+        name: "crafts",
+        color: "#cfbeb6",
+        image: crafts_img
+      },
+      {
+        name: "retails",
+        color: "#fff6fb",
+        image: retails_img
+      }
+    ];
+    const bgcolor = categories.find(m => m.name == cat.name).color;
+    const catImage = categories.find(m => m.name == cat.name).image;
     return (
       <div className="event-page">
-        <CategoryNav categories={categories2} />
+        <div className="row">
+          <CategoryNav2
+            categories={categories2}
+            location={location}
+            cat={cat}
+          />
+        </div>
+
         <div className="row mt-4">
           <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 p-0">
             <TopMenu />
-            {cat && <Description name={cat.name} desc={cat.description} />}
+            {cat && (
+              <Description
+                name={cat.name}
+                desc={cat.description}
+                catImage={catImage}
+              />
+            )}
           </div>
         </div>
-        <div className="event-div row">
+        <div className="event-div row" style={{ background: `${bgcolor}` }}>
           {/* {data.map((event, i) => { */}
-          {this.props.events
-            ? this.props.events.map((event, i) => {
-                return <CategoryItem key={i} event={event} />;
-              })
-            : null}
+          {this.props.events.length ? (
+            this.props.events.map((event, i) => {
+              return <CategoryItem key={i} event={event} />;
+            })
+          ) : (
+            <div className="no-events">
+              {`At this time, there is no Data`}
+            </div>
+          )}
           {/* })} */}
         </div>
       </div>

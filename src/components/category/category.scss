@@ -18,3 +18,25 @@
     }
   }
 }
+.no-events {
+  // width: 100%;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // height: 20rem;
+  // font-size: calc(16px + 1vmin);
+  // color: white;
+  width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 20rem;
+  font-size: calc(16px + 1vmin);
+  color: black;
+  font-weight: 700;
+  text-transform: capitalize;
+  padding: 0 20px;
+}
