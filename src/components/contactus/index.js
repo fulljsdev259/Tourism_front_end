@@ -5,6 +5,7 @@ import contact_r_img from "../../images/contactus.png";
 import { Formik, Form } from "formik";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
+import Loader from "react-loader-spinner";
 
 class ContactUs extends Component {
   render() {
@@ -12,12 +13,12 @@ class ContactUs extends Component {
       <Block1 l_img={l_img} r_img={contact_r_img}>
         <div className="container-fluid">
           <div className="row text-center contact-block">
-            <div className="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-sm-12 col-xs-12 contact-div">
+            <div className="col-lg-8 offset-lg-1 col-md-8 offset-md-2 col-sm-12 col-xs-12 contact-div">
               <div className="row">
-                <div className="col-md-10 offset-md-1 col-sm-10 offset-sm-1 contact-align">
+                <div className="col-12 contact-align">
                   <div className="title">Contact Us</div>
                   <div className="desc">
-                  <div className="info">
+                    <div className="info">
                       Thank you for visiting our website. If you would you like
                       to share your thoughts with us or have a question, please
                       complete the form below and we will respond as soon as we
@@ -117,7 +118,20 @@ class ContactUs extends Component {
                             </div>
                           </div>
                           <div>
-                            <button type="submit">Send</button>
+                            <button type="submit">
+                              {this.props.contactUs.isLoading ? (
+                                <div className="loader-div">
+                                  <Loader
+                                    type="Oval"
+                                    color="#fff"
+                                    height="20"
+                                    width="20"
+                                  />
+                                </div>
+                              ) : (
+                                "Submit"
+                              )}
+                            </button>
                           </div>
                         </Form>
                       )}

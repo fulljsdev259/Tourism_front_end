@@ -8,19 +8,25 @@ import WizardFormThirdPage from "./WizardFormThirdPage";
 class WizardForm extends Component {
   constructor(props) {
     super(props);
-    this.nextPage = this.nextPage.bind(this);
-    this.previousPage = this.previousPage.bind(this);
     this.state = {
       page: 1
     };
   }
-  nextPage() {
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.submitEvent.duplicate_email &&
+      this.props.submitEvent.duplicate_email !== prevProps.submitEvent.duplicate_email
+    ) {
+      this.setState({ page: 1 });
+    }
+  }
+  nextPage = () => {
     this.setState({ page: this.state.page + 1 });
-  }
+  };
 
-  previousPage() {
+  previousPage = () => {
     this.setState({ page: this.state.page - 1 });
-  }
+  };
 
   render() {
     const { onSubmit, categories } = this.props;

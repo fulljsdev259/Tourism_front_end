@@ -45,7 +45,7 @@ class GetListed extends React.Component {
     );
   };
   render() {
-    const { closeModal, categories } = this.props;
+    const { closeModal, categories, submitEvent } = this.props;
     return (
       <div className="getListed">
         <div className="header">
@@ -80,6 +80,7 @@ class GetListed extends React.Component {
                 this.props.addEvent(data);
               }}
               categories={categories}
+              submitEvent={submitEvent}
             />
           </div>
         )}
@@ -90,7 +91,8 @@ class GetListed extends React.Component {
 
 const mapStateToProps = state => ({
   contactUs: state.auth.contactUs,
-  categories: state.event.categories.data
+  categories: state.event.categories.data,
+  submitEvent: state.event.submitevent
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import Block1 from "../generic/Block1";
-import l_img from "../../images/l_img.png";
-import contact_r_img from "../../images/contact_r_img.png";
+// import l_img from "../../images/aboutus_image.png";
+import contact_r_img from "../../images/aboutus_image.png";
 import { Formik, Form } from "formik";
 import "./aboutus.scss";
 
 export default class AboutUs extends Component {
   render() {
     return (
-      <Block1 l_img={l_img} r_img={contact_r_img}>
+      <Block1 l_img={contact_r_img} r_img={contact_r_img}>
         <div className="container-fluid">
           <div className="row text-center about-block">
-            <div className="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-sm-10 col-sm-offset-1 about-div">
+            <div className="col-lg-8 offset-lg-1 col-md-8 offset-md-2 col-sm-10 col-sm-offset-1 col-10 offset-1 about-div">
               <div className="title">About Us</div>
               <div className="desc">
                 <div className="info">

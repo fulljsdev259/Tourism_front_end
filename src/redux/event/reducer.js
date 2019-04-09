@@ -82,7 +82,8 @@ const initialState = {
   submitevent: {
     isLoading: false,
     isSuccess: false,
-    isError: false
+    isError: false,
+    duplicate_email: false
   }
 };
 
@@ -577,7 +578,8 @@ const handleSubmitEventError = (state, action) =>
       isLoading: { $set: false },
       isSuccess: { $set: false },
       isError: { $set: true },
-      message: { $set: action.payload }
+      message: { $set: action.payload },
+      duplicate_email: {$set: action.payload.duplicate}
     }
   });
 const handleSubmitEventReset = (state, action) =>

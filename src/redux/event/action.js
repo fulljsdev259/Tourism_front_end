@@ -117,7 +117,10 @@ export function* addInterestRequest(action) {
         })
       );
       // yield pit(actions.getInterestedEventsRequest())
-      if (action.payload.pathname && action.payload.pathname.includes("event-detail")) {
+      if (
+        action.payload.pathname &&
+        action.payload.pathname.includes("event-detail")
+      ) {
         yield put(actions.getEventByIdRequest(action.payload.id));
       }
       // yield put(actions.getEventsByCategoryRequest(action.payload));
@@ -132,11 +135,16 @@ export function* addInterestRequest(action) {
 export function* addEventRequest(action) {
   try {
     const response = yield call(fireApi, "POST", `addEvent`, action.payload);
-    if (response) {
-      toast.success("Event Submitted");    
+    console.log(response);
+
+    if (response && response.data && response.data.userSignUpMessage) {
+      toast.success(response.data.userSignUpMessage);
       yield put(actions.submitEventSuccess(response.data));
     } else {
-      yield put(actions.submitEventError());
+      if (response.data.message) {
+        toast.error("Email already exists");
+        yield put(actions.submitEventError({ duplicate: true }));
+      }
     }
   } catch (e) {
     yield put(actions.submitEventError());

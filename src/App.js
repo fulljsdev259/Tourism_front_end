@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { HashRouter as Router } from 'react-router-dom';
 import Home from './components/home';
+import { ToastContainer } from 'react-toastify';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
               <Home />
             </div>
           </Router>
+          <ToastContainer />
         </Provider>
     );
   }

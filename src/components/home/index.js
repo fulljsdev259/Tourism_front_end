@@ -204,7 +204,7 @@ class Home extends Component {
           )}
         </Modal>
         <Footer />
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
     );
   }
