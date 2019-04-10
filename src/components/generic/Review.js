@@ -5,7 +5,7 @@ export default function Review({ review }) {
   return (
     <div className="review">
       <div className="top">
-        <div className="name">{review.user_id.name.first + " " + review.user_id.name.last }</div>
+        <div className="name">{review.user_id && review.user_id.name.first + " " + review.user_id.name.last }</div>
         <StarRatings
           rating={JSON.parse(review.stars)}
           // rating={this.state.rating}

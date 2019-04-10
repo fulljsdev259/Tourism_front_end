@@ -2,7 +2,7 @@ import React from "react";
 import CategoryNavItem from "../generic/CategoryNavItem";
 import { Link } from "react-router-dom";
 
-export default function CategoryNav2({ categories, location, cat }) {
+export default function CategoryNav2({ categories, location, cat, getSubCategory }) {
   return (
     <div className="category-nav2 col-md-8 offset-md-2 col-12">
       {categories.map((category, index) => (
@@ -15,7 +15,7 @@ export default function CategoryNav2({ categories, location, cat }) {
               <Link
                 to={category.path}
                 style={{ textTransform: "capitalize" }}
-                className={category.name == cat.name && "active-link"}
+                className={category.name == cat.name ? "active-link" : ''}
               >
                 {category.name.replace("_", " ")}
               </Link>
@@ -27,19 +27,23 @@ export default function CategoryNav2({ categories, location, cat }) {
               <ul className="list-unstyled">
                 {category.subCategory.map((sub_category, i) => (
                   <li key={i}>
-                    <Link
+                    {/* <Link
                       to={category.path}
                       style={{ textTransform: "capitalize" }}
                     >
                       {sub_category.name.replace("_", " ")}
-                    </Link>
+                    </Link> */}
+                    <a onClick={()=>getSubCategory(sub_category._id)}>
+                      {sub_category.name.replace("_", " ")}
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
           ) : null}
         </div>
-      ))}
+      )
+      )}
     </div>
   );
 }

@@ -299,7 +299,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.getEventsByCategoryRequest(data)),
   //   getMonthlyEventsRequest: data =>
   //     dispatch(actions.getMonthlyEventsRequest(data)),
-    stateChange: id => dispatch(actions.stateChange(id)),
+  stateChange: id => dispatch(actions.stateChange(id))
   //   setStorableLocation: value => dispatch(actions.storableLocation(value))
 });
 

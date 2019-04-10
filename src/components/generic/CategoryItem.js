@@ -75,7 +75,8 @@ class CategoryItem extends Component {
             className="img"
             style={{
               backgroundImage: `url(${event.image ? event.image.url : photo})`,
-              backgroundSize: "cover"
+              backgroundSize: "cover",
+              // backgroundPosition: "center"
             }}
           />
         </div>
@@ -98,9 +99,7 @@ class CategoryItem extends Component {
                   //       ? heart_full
                   //       : heart
                   //   }
-                  title={
-                    localStore("token") ? null : "Login first"
-                  }
+                  title={localStore("token") ? null : "Login first"}
                   onClick={() => {
                     if (localStore("token")) {
                       this.props.addInterest({
@@ -124,7 +123,12 @@ class CategoryItem extends Component {
               numberOfStars={5}
               name="rating"
             />
-            9 reviews
+            <div
+              className-="reviews-count"
+              style={{ fontSize: "12px", marginLeft: "10px", color: "#808080" }}
+            >
+              {event.reviews.length} reviews
+            </div>
           </div>
           <div className="middle">
             <div className="event-des">
@@ -133,7 +137,7 @@ class CategoryItem extends Component {
                 : `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt vitae semper quis lectus nulla. Volutpat odio facilisis mauris sit amet massa vitae tortor.`}{" "}
             </div>
 
-            <div>
+            <div className="icon-div">
               <img className="icon" src={mapMarker} />
               {event && event.EventPlace
                 ? event.EventPlace
@@ -150,11 +154,11 @@ class CategoryItem extends Component {
                 : null} */}
               {/* <img className="icon" src={mapMain} /> */}
             </div>
-            <div>
+            <div className="icon-div">
               <img src={phone} className="icon" />
               {event.phone ? event.phone : "123456789"}
             </div>
-            <div style={{ float: "left" }}>
+            <div style={{ float: "left" }} className="icon-div">
               <img src={clock} className="icon" />
               {moment(event.start).format("hh:mm:A") <
                 moment().format("hh:mm:A") &&

@@ -32,14 +32,21 @@ export function* getLocationsRequest(action) {
 
 export function* getEventsByCategoryRequest(action) {
   try {
-    const { page_number, id, ageFlag, eventState, eventCity } = action.payload;
+    const {
+      page_number,
+      id,
+      sub_id,
+      ageFlag,
+      eventState,
+      eventCity
+    } = action.payload;
     const response = yield call(
       fireApi,
       "GET",
-      `events?categories=${id}&page=${page_number}${
+      `events?${id ? "categories=" + id : ""}${
         ageFlag === "all" ? "" : "&contentType=" + ageFlag
-      }${eventState && "&EventState=" + eventState}${eventCity &&
-        "&EventCity=" + eventCity}`
+      }${sub_id ? "&subcategories=" + sub_id : ""}${eventState &&
+        "&EventState=" + eventState}${eventCity && "&EventCity=" + eventCity}`
     );
     if (response) {
       yield put(
@@ -135,8 +142,6 @@ export function* addInterestRequest(action) {
 export function* addEventRequest(action) {
   try {
     const response = yield call(fireApi, "POST", `addEvent`, action.payload);
-    console.log(response);
-
     if (response && response.data && response.data.userSignUpMessage) {
       toast.success(response.data.userSignUpMessage);
       yield put(actions.submitEventSuccess(response.data));
