@@ -2,7 +2,6 @@ import React from "react";
 import Close from "../../images/icon/cross.svg";
 import "./index.scss";
 import Wizard from "../wizard/wizard";
-// import { Modal as Modal1, Button } from 'antd';
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 
@@ -16,7 +15,14 @@ class GetListed extends React.Component {
       companyListedStatus: false
     };
   }
-
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.submitEvent.isSuccess &&
+      this.props.submitEvent.isSuccess !== prevProps.submitEvent.isSuccess
+    ) {
+      this.props.closeModal();
+    }
+  }
   onSuccessCompanyListed = () => {
     this.setState({
       companyListedStatus: true
@@ -45,7 +51,12 @@ class GetListed extends React.Component {
     );
   };
   render() {
-    const { closeModal, categories, submitEvent } = this.props;
+    const {
+      closeModal,
+      categories,
+      submitEvent,
+      submitEventReset
+    } = this.props;
     return (
       <div className="getListed">
         <div className="header">
@@ -81,6 +92,7 @@ class GetListed extends React.Component {
               }}
               categories={categories}
               submitEvent={submitEvent}
+              submitEventReset={submitEventReset}
             />
           </div>
         )}
@@ -96,7 +108,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addEvent: values => dispatch(actions.submitEventRequest(values))
+  addEvent: values => dispatch(actions.submitEventRequest(values)),
+  submitEventReset: () => dispatch(actions.submitEventReset())
 });
 
 export default connect(

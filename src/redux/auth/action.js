@@ -66,6 +66,10 @@ export function* signupRequest(action) {
   }
 }
 
+export function* logout(action) {
+  localStore("clear");
+}
+
 export function* contactUsRequest(action) {
   try {
     const { name, email, message } = action.payload;

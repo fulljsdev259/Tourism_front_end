@@ -15,13 +15,6 @@ import category3 from "../../images/category3.svg";
 import category4 from "../../images/category4.svg";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import * as actions from "../../redux/actions";
-import { HashRouter as Router } from "react-router-dom";
-import { localStore } from "../../services/storage";
-// import Login from "../login";
-// import SignUp from "../signup";
 
 const customStyles = {
   content: {
@@ -204,7 +197,6 @@ class Home extends Component {
           )}
         </Modal>
         <Footer />
-        {/* <ToastContainer /> */}
       </div>
     );
   }

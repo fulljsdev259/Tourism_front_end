@@ -4,6 +4,7 @@ import constants from "./constants";
 export const loginRequest = createAction(constants.LOGIN_REQUEST);
 export const loginSuccess = createAction(constants.LOGIN_SUCCESS);
 export const loginError = createAction(constants.LOGIN_ERROR);
+export const logout = createAction(constants.LOGOUT);
 
 export const signupRequest = createAction(constants.SIGNUP_REQUEST);
 export const signupSuccess = createAction(constants.SIGNUP_SUCCESS);
@@ -44,5 +45,10 @@ export const getUserDataError = createAction(constants.GET_USER_DATA_ERROR);
 export const submitEventRequest = createAction(constants.SUBMIT_EVENT_REQUEST);
 export const submitEventSuccess = createAction(constants.SUBMIT_EVENT_SUCCESS);
 export const submitEventError = createAction(constants.SUBMIT_EVENT_ERROR);
+export const submitEventReset = createAction(constants.SUBMIT_EVENT_RESET);
+
+export const getFeaturedEventsRequest = createAction(constants.GET_FEATURED_EVENTS_REQUEST);
+export const getFeaturedEventsSuccess = createAction(constants.GET_FEATURED_EVENTS_SUCCESS);
+export const getFeaturedEventsError = createAction(constants.GET_FEATURED_EVENTS_ERROR);
 
 export const stateChange = createAction(constants.STATE_CHANGE);

@@ -55,7 +55,7 @@ const WizardFormSecondPage = props => {
               type="select"
               data={categories ? categories.data : []}
               component={renderSelect}
-              label="Select Region"
+              label="Select Category"
             />
             {selectedCategory && (
               <Field
@@ -66,7 +66,7 @@ const WizardFormSecondPage = props => {
                     .subCategory
                 }
                 component={renderSelect}
-                label="Select Manufacturer Type"
+                label="Select Sub-Category"
               />
             )}
             {/*<Field name="typeOfCompany" type="text" component={ renderField } label="Type of your company" />*/}
@@ -76,7 +76,7 @@ const WizardFormSecondPage = props => {
               component={renderTextarea}
               label="Describe your company"
             />
-            <Field name="tags" type="text" component={renderTag} label="Tags" />
+            {/* <Field name="tags" type="text" component={renderTag} label="Tags" /> */}
             {/* <FieldArray name="photo" component={renderMembers} /> */}
             {/*  <Field name="photo" type="file" component={ FileInput } label="Tags" />*/}
 

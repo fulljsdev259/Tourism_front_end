@@ -150,3 +150,25 @@ export function* addEventRequest(action) {
     yield put(actions.submitEventError());
   }
 }
+
+export function* getFeaturedEventsRequest(action) {
+  // const header = {
+  //   Authorization: localStore("token")
+  // };
+  try {
+    const response = yield call(
+      fireApi,
+      "GET",
+      `getFeatured?${action.payload ? "categories=" + action.payload : ""}`,
+      null
+      // header
+    );
+    if (response) {
+      yield put(actions.getFeaturedEventsSuccess(response.data));
+    } else {
+      yield put(actions.getFeaturedEventsError());
+    }
+  } catch (e) {
+    yield put(actions.getFeaturedEventsError());
+  }
+}

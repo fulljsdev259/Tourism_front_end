@@ -579,7 +579,7 @@ const handleSubmitEventError = (state, action) =>
       isSuccess: { $set: false },
       isError: { $set: true },
       message: { $set: action.payload },
-      duplicate_email: {$set: action.payload.duplicate}
+      duplicate_email: { $set: action.payload.duplicate }
     }
   });
 const handleSubmitEventReset = (state, action) =>
@@ -588,7 +588,8 @@ const handleSubmitEventReset = (state, action) =>
       isLoading: { $set: false },
       isSuccess: { $set: false },
       isError: { $set: false },
-      message: { $set: "" }
+      message: { $set: "" },
+      duplicate_email: { $set: false }
     }
   });
 

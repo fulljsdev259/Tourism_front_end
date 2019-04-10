@@ -5,6 +5,7 @@ import { store } from './redux/store';
 import { HashRouter as Router } from 'react-router-dom';
 import Home from './components/home';
 import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 class App extends Component {
   render() {

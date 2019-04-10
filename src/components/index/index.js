@@ -15,19 +15,45 @@ import p3 from "../../images/art.png";
 import p4 from "../../images/craftMarkets.png";
 import p5 from "../../images/beachWear.png";
 import p6 from "../../images/giftItems.png";
-import category1 from "../../images/category1.svg";
-import category2 from "../../images/category2.svg";
-import category3 from "../../images/category3.svg";
-import category4 from "../../images/category4.svg";
 import home_2 from "../../images/home_2.png";
 import ic_settings from "../../images/icon/-e-ic_settings.svg";
 import CategoryNav from "../generic/CategoryNav";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-export default class index extends Component {
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions";
+import { image_formatter } from "../../services/helper";
+class Index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: false
+    };
+    if (props.categories) {
+      const one_category = this.props.categories.data.find(
+        item => item.name == "artisan"
+      );
+      if (one_category) {
+        this.props.getFeaturedEvents(one_category._id);
+      } else {
+        this.props.getFeaturedEvents();
+      }
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.categories && !this.props.featuredEvents.data) {
+      const one_category = this.props.categories.data.find(
+        item => item.name == "artisan"
+      );
+      if (one_category) {
+        this.props.getFeaturedEvents(one_category._id);
+      } else {
+        this.props.getFeaturedEvents();
+      }
+    }
+  }
   render() {
-    const { categories } = this.props;
+    const { categories, featuredEvents } = this.props;
     const popular = [
       { name: "Nulook Company", image: i5 },
       { name: "Amoy Yae'l Purses", image: i6 },
@@ -55,7 +81,7 @@ export default class index extends Component {
           </div>
         </div>
         <div className="second-block row">
-          <img  className='second-block-img' src={home_2} />
+          <img className="second-block-img" src={home_2} />
           <div className="block">
             <div className="title">
               POPULAR{" "}
@@ -68,12 +94,25 @@ export default class index extends Component {
             </div>
           </div>
           <div className="block">
-            {popular.map((item, index) => (
-              <div className="popular" key={index}>
-                <img src={item.image} />
-                <div className="title">{item.name}</div>
-              </div>
-            ))}
+            {featuredEvents &&
+            featuredEvents.data &&
+            featuredEvents.data.trendingEvents &&
+            featuredEvents.data.trendingEvents.results.length ? (
+              featuredEvents.data.trendingEvents.results.map((item, index) => (
+                <div className="popular" key={index}>
+                  <img
+                    src={
+                      item.image
+                        ? image_formatter(item.image.secure_url, 300)
+                        : null
+                    }
+                  />
+                  <div className="title">{item.title}</div>
+                </div>
+              ))
+            ) : (
+              <div className="popular">No Stores for Artisan</div>
+            )}
           </div>
         </div>
 
@@ -103,7 +142,7 @@ export default class index extends Component {
                     <div className="desc">
                       <div className="type">Swimwear</div>
                       <div className="brand">Jae Jolly</div>
-                      <Link to="">
+                      <Link to="/">
                         <button>ABOUT STYLE JAMAICA</button>
                       </Link>
                     </div>
@@ -117,7 +156,7 @@ export default class index extends Component {
                     <div className="desc">
                       <div className="type">Menwear</div>
                       <div className="brand">Bill Edwards</div>
-                      <Link to="">
+                      <Link to="/">
                         <button>ABOUT STYLE JAMAICA</button>
                       </Link>
                     </div>
@@ -129,11 +168,52 @@ export default class index extends Component {
           </div>
         </div>
         <div className="forth-block row">
-          <img src={i3} style={{ width: "100%" }} />
+          {featuredEvents && featuredEvents.data ? (
+            <Carousel indicators={true} controls={true}>
+              {featuredEvents.data.results.map((item, index) => (
+                <Carousel.Item key={index}>
+                  <img
+                    src={
+                      item.image
+                        ? image_formatter(item.image.secure_url, 1200)
+                        : null
+                    }
+                  />
+                  <Carousel.Caption>
+                    <div className="caption">
+                      <div className="desc">
+                        <div className="type">Craft Markets</div>
+                        <div>
+                          A true representation of the island's unique culture
+                        </div>
+                      </div>
+                    </div>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))}
+
+              {/* <Carousel.Item>
+                <img src={i3} />
+                <Carousel.Caption>
+                  <div className="caption">
+                    <div className="desc">
+                      <div className="type">Menwear</div>
+                      <div className="brand">Bill Edwards</div>
+                      <Link to="">
+                        <button>ABOUT STYLE JAMAICA</button>
+                      </Link>
+                    </div>
+                  </div>
+                </Carousel.Caption>
+              </Carousel.Item> */}
+            </Carousel>
+          ) : null}
+
+          {/* <img src={i3} style={{ width: "100%" }} />
           <div className="text">
             <h2>Craft Markets</h2>
             <div>A true representation of the island's unique culture</div>
-          </div>
+          </div> */}
         </div>
         <div
           className="fifth-block row"
@@ -141,7 +221,7 @@ export default class index extends Component {
             backgroundImage: `url(${i10})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            backgroundRepeat: "no-repeat"
           }}
         >
           {/* <img src={i10} style={{ width: "100%" }} /> */}
@@ -178,3 +258,17 @@ export default class index extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  featuredEvents: state.event.featuredEvents.data,
+  categories: state.event.categories.data
+});
+
+const mapDispatchToProps = dispatch => ({
+  getFeaturedEvents: id => dispatch(actions.getFeaturedEventsRequest(id))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Index);

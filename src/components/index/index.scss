@@ -129,6 +129,7 @@
 
   .block:last-child {
     top: 5em;
+    justify-content: left;
     @media all and (max-width: 767px) {
       overflow-x: auto;
       margin: 0 0 0 0px;

@@ -47,11 +47,7 @@ class Header extends React.Component {
     if (!this.props.categoryDataState) {
       this.props.getCategory(this.props.categories);
     }
-    let { loggedUserData, location } = this.props;
-    let linkDashboard = "/admin";
-    if (loggedUserData && loggedUserData.role !== "admin") {
-      linkDashboard = "/user";
-    }
+    let { loggedUserData, location, userdata } = this.props;
     return (
       <div className="fix-header">
         <div className="menuMobile">
@@ -61,7 +57,7 @@ class Header extends React.Component {
             </div>
           </Link>
           <div className="itemDiv">
-            {localStore("token") ? (
+            {/* {localStore("token") ? (
               <span style={{ marginRight: "66px", marginTop: "9px" }}>
                 {loggedUserData && loggedUserData.name
                   ? loggedUserData.name + ", "
@@ -87,7 +83,7 @@ class Header extends React.Component {
                   LOGOUT
                 </span>
               </span>
-            ) : null}
+            ) : null} */}
 
             <button className="menu-toggle" onClick={this.ToggleBody} />
             <nav>
@@ -111,19 +107,35 @@ class Header extends React.Component {
                     marginTop: "10px"
                   }}
                   data-text="GET COMPANY LISTED"
-                  onClick={() => {}}
+                  onClick={() => {
+                    this.ToggleBody();
+                    this.props.modalStateHandler(
+                      true,
+                      true
+                      // false,
+                      // false,
+                      // false,
+                      // false,
+                      // false,
+                      // true,
+                      // true
+                    );
+                  }}
                 >
                   <span className="blueBtn">GET COMPANY LISTED </span>
                 </li>
 
-                {!localStore("token") ? (
+                {!userdata.data ||
+                (userdata.data &&
+                  userdata.data.companyDetails &&
+                  userdata.data.companyDetails.title) ? (
                   <li
                     data-text="GET COMPANY LISTED"
                     className="registerLi"
                     onClick={() => {
                       this.ToggleBody();
                       this.props.modalStateHandler(
-                        false,
+                        true,
                         false,
                         false,
                         false,
@@ -167,20 +179,7 @@ class Header extends React.Component {
             </div>
             <div className="contentMobileMenu">
               <div className="upper-section">
-                <div
-                  className="item"
-                  onClick={() => {
-                    this.props.modalStateHandler(
-                      true,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      true
-                    );
-                  }}
-                >
+                <div className="item">
                   <Link to="/aboutus">About</Link>
                 </div>
                 {/* <div className="item">News</div>
@@ -284,14 +283,22 @@ class Header extends React.Component {
                 <Link to="/contactus">Contact us</Link>
                 {/* <a>Contact us</a> */}
               </div>
-              <div
-                className="getStarted"
-                onClick={() => {
-                  this.props.modalStateHandler(true, true);
-                }}
-              >
-                <a>GET COMPANY LISTED</a>
-              </div>
+              {!userdata.data ||
+              (userdata.data &&
+                userdata.data.companyDetails &&
+                userdata.data.companyDetails.title) ? (
+                <div
+                  className="getStarted"
+                  onClick={() => {
+                    if (userdata.data) {
+                    } else {
+                      this.props.modalStateHandler(true, true);
+                    }
+                  }}
+                >
+                  <a>GET COMPANY LISTED</a>
+                </div>
+              ) : null}
             </div>
           </div>
           {localStore("token") && this.props.userdata.data ? (
@@ -323,6 +330,7 @@ class Header extends React.Component {
                       );
                       localStorage.removeItem("token");
                       localStorage.removeItem("token_user");
+                      this.props.logout();
                     }}
                   >
                     Log Out
@@ -351,7 +359,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(actions.getCategoriesRequest()),
   getLocations: () => dispatch(actions.getLocationsRequest()),
-  getUserData: data => dispatch(actions.getUserDataRequest(data))
+  getUserData: data => dispatch(actions.getUserDataRequest(data)),
+  logout: () => dispatch(actions.logout())
 });
 
 export default connect(

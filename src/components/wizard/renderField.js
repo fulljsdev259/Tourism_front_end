@@ -1,10 +1,5 @@
 import React from "react";
 import "./index.scss";
-// import { Select } from 'antd';
-// import 'antd/dist/antd.css';
-// import './antdCustom.scss';
-
-// const Option = Select.Option;
 
 export const renderField = ({
   input,
@@ -44,7 +39,7 @@ export const renderTextarea = ({
     <label>{label}</label>
     <div>
       <textarea
-        style={{ height: 100 }}
+        style={{ height: 100, width: "100%" }}
         {...input}
         placeholder={placeholder}
         type={type}

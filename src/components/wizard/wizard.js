@@ -18,6 +18,7 @@ class WizardForm extends Component {
       this.props.submitEvent.duplicate_email !== prevProps.submitEvent.duplicate_email
     ) {
       this.setState({ page: 1 });
+      this.props.submitEventReset();
     }
   }
   nextPage = () => {
