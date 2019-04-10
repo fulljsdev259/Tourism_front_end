@@ -241,6 +241,10 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
   .cat {
     width: 70%;
     height: auto;
+    @media all and (max-width: 767px) {
+      width: 100%;
+      padding: 0 15px;
+    }
     div:nth-child(1) {
       font-size: 34px;
       font-weight: 700;
@@ -251,7 +255,7 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
     }
   }
   .cat-img {
-    width:225px;
+    width: 225px;
     height: auto;
     position: relative;
     img {
@@ -266,6 +270,8 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
     }
     @media all and (max-width: 767px) {
       display: none;
+      width: 0;
+      overflow-x: hidden;
     }
   }
   .cat-bg-img {
@@ -275,8 +281,13 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
       display: block;
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 80%;
+      background-size: 100%;
+      height: 150px;
       margin-bottom: 20px;
+      position: absolute;
+      bottom: -20px;
+      right: 0;
+      z-index: -1;
     }
   }
 }
