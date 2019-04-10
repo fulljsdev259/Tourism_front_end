@@ -82,7 +82,7 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
         background: #fff;
         box-shadow: 0.5px 0.5px 2px 0.5px rgba(0, 0, 0, 0.2);
         text-align: left;
-        @media all and (max-width: 991px) {
+        @media all and (max-width: 767px) {
           position: unset;
           top: 62px;
           opacity: 1;
@@ -189,7 +189,7 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
         background: #fff;
         // box-shadow: 0.5px 0.5px 2px 0.5px rgba(0, 0, 0, 0.2);
         text-align: left;
-        @media all and (max-width: 991px) {
+        @media all and (max-width: 767px) {
           position: unset;
           top: 62px;
           opacity: 1;
@@ -254,35 +254,53 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
       margin-bottom: 20px;
     }
   }
-  .cat-img {
-    width: 225px;
-    height: auto;
-    position: relative;
-    img {
-      // position: absolute;
-      // top: -50px;
-      // right:50px;
-      // width: 30%;
-      width: 100%;
-      position: absolute;
-      top: -100px;
-      left: 100px;
-    }
-    @media all and (max-width: 767px) {
-      display: none;
-      width: 0;
-      overflow-x: hidden;
-    }
-  }
+  // .cat-img {
+  //   width: 225px;
+  //   height: auto;
+  //   position: relative;
+  //   img {
+  //     // position: absolute;
+  //     // top: -50px;
+  //     // right:50px;
+  //     // width: 30%;
+  //     width: 100%;
+  //     position: absolute;
+  //     top: -100px;
+  //     left: 100px;
+  //   }
+  //   @media all and (max-width: 767px) {
+  //     display: none;
+  //     width: 0;
+  //     overflow-x: hidden;
+  //   }
+  // }
   .cat-bg-img {
     width: 40%;
-    display: none;
-    @media all and (max-width: 767px) {
-      display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    position: absolute;
+    height: 150px;
+    right: 0;
+    bottom: 80px;
+    background-size: contain;
+    @media all and (max-width: 991px) {
+      // display: block;
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 100%;
+      background-size: 40%;
       height: 150px;
+      margin-bottom: 20px;
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+      z-index: -1;
+    }
+    @media all and (max-width: 767px) {
+      // display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
       margin-bottom: 20px;
       position: absolute;
       bottom: -20px;

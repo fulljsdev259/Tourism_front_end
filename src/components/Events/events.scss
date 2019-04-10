@@ -121,6 +121,9 @@
         //   margin-left: 10px !important;
         //   color: #808080 !important;
         // }
+        @media all and (max-width: 767px) {
+          padding-left: 15px;
+        }
       }
       .middle {
         position: relative;
@@ -137,13 +140,19 @@
         @media all and (max-width: 767px) {
           padding-top: 10px;
           padding-bottom: 0px;
+          padding-left: 15px;
+          padding-bottom: 10px;
         }
         .event-des {
           padding-right: 15%;
           text-align: justify;
           padding-bottom: 10px;
           color: #808080;
+          @media all and (max-width: 767px) {
+            padding-right: 15px;
+          }
         }
+
         .icon-div {
           font-size: 12px;
           display: flex;
@@ -179,7 +188,7 @@
           height: 12px;
           @media all and (max-width: 767px) {
             padding-right: 5px;
-            padding-left: 15px;
+            // padding-left: 15px;
           }
         }
         .desc {
@@ -191,8 +200,10 @@
           flex-direction: row;
           float: right;
           padding-right: 40px;
+          position: relative;
+          bottom: 20px;
           @media all and (max-width: 991px) {
-            padding-top: 10px;
+            // padding-top: 10px;
           }
           @media all and (max-width: 767px) {
             display: none;

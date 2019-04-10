@@ -14,9 +14,9 @@ export default function Description({ name, desc, catImage }) {
         </div>
         <div>{desc && <p>{desc}</p>}</div>
       </div>
-      <div className="cat-img">
+      {/* <div className="cat-img">
         <img src={catImage} />
-      </div>
+      </div> */}
       <div
         className="cat-bg-img"
         style={{ backgroundImage: `url(${catImage})` }}

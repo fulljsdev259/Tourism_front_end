@@ -70,17 +70,17 @@ class CategoryItem extends Component {
         className="events-list"
         style={calendar ? { flexDirection: "column" } : null}
       >
-        <div className="col-lg-3 col-md-4 col-sm-4 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 event-img">
+        <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12  offset-md-1 offset-lg-2 event-img">
           <div
             className="img"
             style={{
               backgroundImage: `url(${event.image ? event.image.url : photo})`,
-              backgroundSize: "cover",
+              backgroundSize: "cover"
               // backgroundPosition: "center"
             }}
           />
         </div>
-        <div className="col-lg-5 col-md-6 col-sm-6 event-detail">
+        <div className="col-lg-5 col-md-6 col-sm-6 col-sm-12 col-xs-12  event-detail">
           <div className="head">
             <div>
               <Link
@@ -91,21 +91,16 @@ class CategoryItem extends Component {
               <div className="mobile-social">
                 <img
                   className="wishlist"
-                  //   src={
-                  //     userdata.data &&
-                  //       event.interested.find(
-                  //         oneInterested => oneInterested._id === userdata.data._id
-                  //       )
-                  //       ? heart_full
-                  //       : heart
-                  //   }
-                  title={localStore("token") ? null : "Login first"}
+                  src={youInterested ? heart_full : heart}
+                  title={localStore("token") ? null : "Login first "}
                   onClick={() => {
                     if (localStore("token")) {
                       this.props.addInterest({
                         id: event._id,
                         pathname: this.props.location.pathname
                       });
+                    } else {
+                      this.props.history.push("/auth");
                     }
                   }}
                 />
@@ -154,18 +149,24 @@ class CategoryItem extends Component {
                 : null} */}
               {/* <img className="icon" src={mapMain} /> */}
             </div>
-            <div className="icon-div">
-              <img src={phone} className="icon" />
-              {event.phone ? event.phone : "123456789"}
+            <div className="row ">
+              <div className="icon-div col-md-12 col-6">
+                <img src={phone} className="icon" />
+                {event.phone ? event.phone : "123456789"}
+              </div>
+              <div
+                style={{ float: "left" }}
+                className="icon-div col-md-12 col-6"
+              >
+                <img src={clock} className="icon" />
+                {moment(event.start).format("hh:mm:A") <
+                  moment().format("hh:mm:A") &&
+                moment(event.end).format("hh:mm:A") > moment().format("hh:mm:A")
+                  ? "Opened now"
+                  : "Closed now"}
+              </div>
             </div>
-            <div style={{ float: "left" }} className="icon-div">
-              <img src={clock} className="icon" />
-              {moment(event.start).format("hh:mm:A") <
-                moment().format("hh:mm:A") &&
-              moment(event.end).format("hh:mm:A") > moment().format("hh:mm:A")
-                ? "Opened now"
-                : "Closed now"}
-            </div>
+
             <div>
               {/* <span className="span"> */}
               {/* <img className="icon" src={mapMain} />{" "}
