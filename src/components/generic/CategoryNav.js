@@ -4,7 +4,7 @@ import CategoryNavItem from "../generic/CategoryNavItem";
 export default function CategoryNav({ categories }) {
   return (
     <div className="category-nav row">
-      {categories && categories.data.map((category, index) => (
+      {categories && categories.map((category, index) => (
         <CategoryNavItem key={index} category={category} />
       ))}
     </div>

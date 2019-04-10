@@ -9,9 +9,9 @@ export default function CategoryNavItem({ category }) {
           <img src={category.image} />
         </div>
         <div className="title">
-          {/* <Link to={category.path} style={{ "textTransform": "capitalize" }}> */}
+          <Link to={category.path} style={{ textTransform: "capitalize" }}>
             {category.name.replace("_", " ")}
-          {/* </Link> */}
+          </Link>
         </div>
       </div>
       {category.subCategory && category.subCategory.length ? (
@@ -19,12 +19,12 @@ export default function CategoryNavItem({ category }) {
           <ul className="list-unstyled">
             {category.subCategory.map((sub_category, i) => (
               <li key={i}>
-                {/* <Link */}
-                  {/* to={category.path} */}
-                  {/* style={{ "textTransform": "capitalize" }} */}
-                {/* > */}
+                <Link
+                  to={category.path}
+                  style={{ textTransform: "capitalize" }}
+                >
                   {sub_category.name.replace("_", " ")}
-                {/* </Link> */}
+                </Link>
               </li>
             ))}
           </ul>

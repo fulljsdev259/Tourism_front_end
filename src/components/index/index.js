@@ -30,7 +30,7 @@ class Index extends Component {
       status: false
     };
     if (props.categories) {
-      const one_category = this.props.categories.data.find(
+      const one_category = this.props.categories.find(
         item => item.name == "artisan"
       );
       if (one_category) {
@@ -42,7 +42,7 @@ class Index extends Component {
   }
   componentDidUpdate(prevProps) {
     if (this.props.categories && !this.props.featuredEvents.data) {
-      const one_category = this.props.categories.data.find(
+      const one_category = this.props.categories.find(
         item => item.name == "artisan"
       );
       if (one_category) {
@@ -261,7 +261,7 @@ class Index extends Component {
 
 const mapStateToProps = state => ({
   featuredEvents: state.event.featuredEvents.data,
-  categories: state.event.categories.data
+  // categories: state.event.categories.data
 });
 
 const mapDispatchToProps = dispatch => ({
