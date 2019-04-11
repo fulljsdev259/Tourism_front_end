@@ -56,35 +56,31 @@ class Auth extends Component {
       >
         <div className="container ">
           <div className="row login-form-row">
-            <div className="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-sm-12 col-xs-12 login-form register-form">
-              <div className="row">
-                <div className="col-md-10 offset-md-1 col-sm-10 offset-sm-1 center-align">
-                  <nav>
-                    <span
-                      className={`form-title ${
-                        location.pathname === "/auth" ||
-                        location.pathname === "/auth/"
-                          ? " active"
-                          : ""
-                      }`}
-                    >
-                      <Link to="/auth/">Log in</Link>
-                    </span>
-                    <span
-                      className={`form-title ${
-                        location.pathname === "/auth/register" ? " active" : ""
-                      }`}
-                    >
-                      <Link to="/auth/register">Sign up</Link>
-                    </span>
-                  </nav>
+            <div className="col-lg-9 offset-lg-1 col-md-7 offset-md-2 col-sm-12 col-xs-12 login-form register-form">
+              <nav>
+                <span
+                  className={`form-title ${
+                    location.pathname === "/auth" ||
+                    location.pathname === "/auth/"
+                      ? " active"
+                      : ""
+                  }`}
+                >
+                  <Link to="/auth/">Log in</Link>
+                </span>
+                <span
+                  className={`form-title ${
+                    location.pathname === "/auth/register" ? " active" : ""
+                  }`}
+                >
+                  <Link to="/auth/register">Sign up</Link>
+                </span>
+              </nav>
 
-                  <Switch>
-                    <Route path="/auth/register" render={() => <Signup />} />
-                    <Route path="/auth/" render={() => <Login />} />
-                  </Switch>
-                </div>
-              </div>
+              <Switch>
+                <Route path="/auth/register" render={() => <Signup />} />
+                <Route path="/auth/" render={() => <Login />} />
+              </Switch>
             </div>
           </div>
         </div>

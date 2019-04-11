@@ -24,32 +24,29 @@
       }
     }
   }
-  .center-align {
-    text-align: center;
-    .logo {
-      margin: 0 auto;
-      width: 125px;
-      position: relative;
-      top: 20px;
-      cursor: pointer;
-    }
+  .logo {
+    margin: 0 auto;
+    width: 125px;
+    position: relative;
+    top: 20px;
+    cursor: pointer;
+  }
 
-    .form-title {
-      font-family: "Open Sans";
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: -0.5px;
-      text-align: center;
-      color: #010101;
-      margin-top: 50px;
-      margin-bottom: 15px;
-      a {
-        text-decoration: none;
-      }
+  .form-title {
+    font-family: "Open Sans";
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #010101;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    a {
+      text-decoration: none;
     }
-    .active {
-      border-bottom: 3px solid $color2;
-    }
+  }
+  .active {
+    border-bottom: 3px solid $color2;
   }
   .fb-btn {
     img {
@@ -91,12 +88,13 @@
     }
   }
   .input-fields {
+    text-align: left;
     label {
       font-family: "Open Sans";
       font-size: 12px;
       color: #808080;
       font-weight: normal;
-      // padding: .2em .6em .3em;
+      padding: 0.2em 0.6em 0.3em;
     }
     label.error {
       color: red;
@@ -245,87 +243,6 @@
     padding-bottom: 15px;
     padding-top: 5px;
   }
-  .center-align {
-    text-align: center;
-    .logo {
-      margin: 0 auto;
-      width: 125px;
-      position: relative;
-      top: 20px;
-      cursor: pointer;
-    }
-
-    .form-title {
-      font-family: "Open Sans";
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: -0.5px;
-      text-align: center;
-      color: #010101;
-      margin-top: 50px;
-      margin-bottom: 15px;
-    }
-  }
-  .fb-btn {
-    img {
-      float: left;
-      padding-left: 15px;
-      width: 35px;
-    }
-    button {
-      background: #355899;
-      text-align: center;
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      font-family: "Open Sans";
-      font-size: 14px;
-      font-weight: 600;
-      color: #ffffff;
-    }
-  }
-  .or-section {
-    margin-top: 20px;
-    @media screen and(max-width:996px ) {
-      display: flex;
-    }
-    .hr-line-section {
-      .hr-line {
-        border: 1px solid #e5e5e5;
-        width: 100%;
-      }
-    }
-    .or-text {
-      position: relative;
-      top: -9px;
-      font-family: "Open Sans";
-      font-size: 12px;
-      text-align: center;
-      color: #808080;
-    }
-  }
-  .input-fields {
-    text-align: left;
-    label {
-      font-family: "Open Sans";
-      font-size: 12px;
-      color: #808080;
-      font-weight: normal;
-      padding: 0.2em 0.6em 0.3em;
-    }
-    label.error {
-      color: red;
-    }
-    input {
-      border: 1px solid #e5e5e5;
-      border-radius: 10px;
-      padding: 8px 10px 8px 20px;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  }
-
   .register-btn {
     button {
       border-radius: 10px;

@@ -241,7 +241,9 @@ class Index extends Component {
                 <div className="reviews">
                   {userdata.data &&
                   data.reviews.find(review => {
-                    return review.user_id._id == userdata.data._id;
+                    return (
+                      review.user_id && review.user_id._id == userdata.data._id
+                    );
                   }) ? (
                     <>
                       {data.reviews
@@ -272,7 +274,9 @@ class Index extends Component {
               {localStore("token") &&
               userdata.data &&
               data.reviews.find(review => {
-                return review.user_id._id == userdata.data._id;
+                return (
+                  review.user_id && review.user_id._id == userdata.data._id
+                );
               }) ? null : (
                 <div className="leave-review">
                   {this.state.leave_review ? (

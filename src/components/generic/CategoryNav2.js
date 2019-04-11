@@ -34,7 +34,7 @@ export default function CategoryNav2({ categories, location, cat, getSubCategory
                     >
                       {sub_category.name.replace("_", " ")}
                     </Link> */}
-                    <a onClick={()=>{getSubCategory(sub_category._id); this.props.history.push('/sdfasdf')}}>
+                    <a onClick={()=>{getSubCategory(sub_category._id)}}>
                       {sub_category.name.replace("_", " ")}
                     </a>
                   </li>
