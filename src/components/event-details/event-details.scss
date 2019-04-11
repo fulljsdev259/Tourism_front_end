@@ -4,11 +4,32 @@
   @media all and (max-width: 767px) {
     flex-direction: column;
   }
+  .arrowBack {
+    color: #808080;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    img {
+      width: 15px;
+      color: #010101;
+      margin-right: 15px;
+    }
+    a {
+      text-decoration: none;
+      color: #808080;
+    }
+    @media all and(min-width:768px) {
+      display: none;
+    }
+  }
   .event-image {
     background-size: cover;
+    display: block;
     @media all and (max-width: 767px) {
       height: 400px;
       order: 2;
+      display: none;
     }
   }
   .left {
@@ -22,7 +43,8 @@
       position: absolute;
       top: 0;
       left: 30%;
-      right: 10px;
+      right: 40px;
+      top: 20px;
       @media all and (max-width: 1199px) {
         left: 10px;
         top: 20px;
@@ -37,6 +59,7 @@
         border-radius: 5px;
         border: 1px solid #bbb;
         box-shadow: 0 0 5px 0px #bbb;
+        margin-top: 10px;
         .day-block {
           display: flex;
           width: 50%;
@@ -80,8 +103,14 @@
   .right {
     // width: 50%;
     padding: 30px 40px !important;
+    @media all and (max-width: 767px) {
+      padding: 0 !important;
+    }
     .block {
       display: flex;
+      @media all and (max-width: 767px) {
+        padding: 0 15px  !important;
+      }
       .category-icon {
         width: 30px;
         height: 30px;
@@ -102,23 +131,85 @@
         margin-left: 10px;
       }
     }
-    .sub-details {
+    .sub-details-section {
+      display: flex;
       flex-direction: column;
-      .sub-detail {
-        display: flex;
+      margin-bottom: 20px;
+      .sub-details {
+        flex-direction: column;
+        .sub-detail {
+          display: flex;
+        }
+        .icon {
+          width: 1em;
+        }
+        .text {
+          font-size: 0.8em;
+          margin-left: 20px;
+        }
+        @media all and (max-width: 767px) {
+          flex-direction: column;
+          order: 2;
+          margin: 10px 0;
+        }
       }
-      .icon {
-        width: 1em;
+      .social-buttons {
+        justify-content: space-between;
+        align-items: center;
+        @media all and (max-width: 767px) {
+          flex-direction: column;
+          order: 3;
+          justify-content: flex-start;
+          text-align: left;
+          align-items: unset;
+        }
+        .favorites-btn {
+          width: 200px;
+          background: #0a65ac;
+          display: flex;
+          align-items: center;
+          font-size: 0.9em;
+          img {
+            width: 1em;
+            margin-right: 8px;
+          }
+        }
+        .social {
+          @media all and (max-width: 767px) {
+            margin-top: 10px;
+          }
+          button {
+            height: 25px;
+            display: flex;
+            align-items: center;
+            svg {
+              width: 0.8em;
+            }
+            .text {
+              font-size: 0.8em;
+              color: #fff;
+              margin-left: 5px;
+            }
+          }
+        }
       }
-      .text {
-        font-size: 0.8em;
-        margin-left: 20px;
+      .event-image-mobile {
+        background-size: cover;
+        display: none;
+        @media all and (max-width: 767px) {
+          display: block;
+          background-size: cover;
+          height: 400px;
+          order: 1;
+        }
       }
     }
   }
   .review-block {
+    padding: 30px 40px !important;
     @media all and (max-width: 767px) {
       order: 4;
+      padding: 15px 15px !important;
     }
     .reviews {
       padding: 20px 0;
@@ -141,36 +232,6 @@
       cursor: pointer;
     }
   }
-  .social-buttons {
-    justify-content: space-between;
-    @media all and (max-width: 767px) {
-      flex-direction: column;
-    }
-    .favorites-btn {
-      width: 200px;
-      img {
-        width: 1em;
-      }
-    }
-    .social {
-      @media all and (max-width: 767px) {
-        margin-top: 10px;
-      }
-      button {
-        height: 25px;
-        display: flex;
-        align-items: center;
-        svg {
-          width: 0.8em;
-        }
-        .text {
-          font-size: 0.8em;
-          color: #fff;
-          margin-left: 5px;
-        }
-      }
-    }
-  }
 }
 
 .pluginConnectTextDark {
@@ -178,4 +239,16 @@
 }
 #u_0_4 {
   display: none !important;
+}
+
+.SocialMediaShareButton {
+  background-color: #029fe1;
+  border-color: #029fe1;
+  padding: 0 5px;
+}
+
+.SocialMediaShareButton:hover {
+  background-color: #029fe1;
+  border-color: #029fe1;
+  padding: 0 5px;
 }

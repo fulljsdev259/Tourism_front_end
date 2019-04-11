@@ -18,6 +18,8 @@ import { Formik, Form } from "formik";
 import { localStore } from "../../services/storage";
 import ReactFBLike from "react-fb-like";
 import { FacebookProvider, Like } from "react-facebook";
+import { Link } from "react-router-dom";
+import arrowBack from "../../images/arrow-left.svg";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -25,6 +27,7 @@ import {
 } from "react-share";
 // import { ReactComponent as Test } from "../../images/event_details_lb.svg";
 import "./event-details.scss";
+
 class Index extends Component {
   state = {
     leave_review: false
@@ -45,7 +48,6 @@ class Index extends Component {
   // }
   render() {
     const { categories, event: data, userdata } = this.props;
-    console.log(data, "ddddddd");
     // const event_sub_details = data
     //   ? [
     //       { image: location_icon, text: data.EventPlace },
@@ -54,6 +56,10 @@ class Index extends Component {
     //       { image: web_icon, text: "account" }
     //     ]
     //   : null;
+    const catImage =
+      data &&
+      data.categories &&
+      categories.find(m => m.name == data.categories.name).image;
     let avgRate,
       sum = 0;
     if (data) {
@@ -63,6 +69,7 @@ class Index extends Component {
         avgRate = 0;
       }
     }
+    console.log(userdata, "uuuu", data, "ddddd");
     let youInterested;
     if (data && userdata && userdata.data) {
       youInterested = data.interested.find(oneInterested => {
@@ -79,7 +86,14 @@ class Index extends Component {
             text={false}
           />
         </FacebookProvider> */}
-
+        {data && data.categories && (
+          <Link to={{ pathname: `/${data.categories.name}` }}>
+            <div className="arrowBack">
+              <img src={arrowBack} />
+              Back to list
+            </div>
+          </Link>
+        )}
         {data && data.title ? (
           <>
             <div
@@ -92,7 +106,7 @@ class Index extends Component {
             <div className="col-md-6 col-12 p-3 right">
               <div>
                 <div className="block">
-                  <img className="category-icon" src={categories[0].image} />
+                  <img className="category-icon" src={categories && catImage} />
                   <div className="title">{data.title}</div>
                 </div>
                 <div className="block">
@@ -114,102 +128,117 @@ class Index extends Component {
                   <div className="desc">{data.content.brief}</div>
                 </div>
               </div>
-              <div className="block sub-details">
-                <div className="event-info">
-                  <div className="place-detail sub-detail">
-                    <img className="icon" src={location_icon} />
-                    <div className="text">
-                      {data && data.EventPlace
-                        ? data.EventPlace
-                        : " place not decided "}{" "}
-                      ,
-                      {data && data.EventState && this.props.places.data
-                        ? this.props.places.data.find(
-                            state => state._id == data.EventState
-                          ).name
-                        : null}
+              <div className='sub-details-section'>
+                <div className="block sub-details">
+                  <div className="event-info">
+                    <div className="place-detail sub-detail">
+                      <img className="icon" src={location_icon} />
+                      <div className="text">
+                        {data && data.EventPlace
+                          ? data.EventPlace
+                          : " place not decided "}{" "}
+                        ,
+                        {data && data.EventState && this.props.places.data
+                          ? this.props.places.data.find(
+                              state => state._id == data.EventState
+                            ).name
+                          : null}
+                      </div>
                     </div>
-                  </div>
-                  <div className="contact-detail  sub-detail ">
-                    <img src={phone_icon} className="icon" />
-                    <div className="text">
-                      {data && data.phone_number
-                        ? data.phone_number
-                        : "Contact number not disclosed"}
+                    <div className="contact-detail  sub-detail ">
+                      <img src={phone_icon} className="icon" />
+                      <div className="text">
+                        {data && data.phone_number
+                          ? data.phone_number
+                          : "Contact number not disclosed"}
+                      </div>
                     </div>
-                  </div>
-                  <div className="email-detail sub-detail">
-                    <img src={email_icon} className="icon" />
-                    <div className="text">
-                      {data && data.email ? data.email : "email not disclosed"}
+                    <div className="email-detail sub-detail">
+                      <img src={email_icon} className="icon" />
+                      <div className="text">
+                        {data && data.email
+                          ? data.email
+                          : "email not disclosed"}
+                      </div>
                     </div>
-                  </div>
-                  <div className="webiste-detail sub-detail">
-                    <img src={web_icon} className="icon" />
-                    <div className="text">
-                      {data && data.website
-                        ? data.website
-                        : "website not disclosed"}
+                    <div className="webiste-detail sub-detail">
+                      <img src={web_icon} className="icon" />
+                      <div className="text">
+                        {data && data.website
+                          ? data.website
+                          : "website not disclosed"}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="block social-buttons mt-3">
-                <button
-                  className="btn btn-primary favorites-btn"
-                  onClick={() => {
-                    if (localStore("token")) {
-                      this.props.addInterestRequest({
-                        id: data._id,
-                        pathname: this.props.location.pathname
-                      });
-                    } else {
-                      this.props.history.push("/auth/");
-                    }
-                  }}
-                  title={localStore("token") ? "" : "Login first"}
-                >
-                  <img
-                    src={data && youInterested ? heart_full_icon : heart_icon}
-                  />
-                  Add to Favorites
-                </button>
-                <div className="social d-flex">
-                  {/* <button className="btn btn-primary px-1 py-0 d-flex">
+                <div className="block social-buttons mt-3">
+                  <button
+                    className="btn btn-primary favorites-btn"
+                    onClick={() => {
+                      if (localStore("token")) {
+                        this.props.addInterestRequest({
+                          id: data._id,
+                          pathname: this.props.location.pathname
+                        });
+                      } else {
+                        this.props.history.push("/auth/");
+                      }
+                    }}
+                    title={localStore("token") ? "" : "Login first"}
+                  >
+                    <img
+                      src={data && youInterested ? heart_full_icon : heart_icon}
+                    />
+                    {data && youInterested
+                      ? `Added to Favorites`
+                      : `Add to Favorites`}
+                  </button>
+                  <div className="social d-flex">
+                    {/* <button className="btn btn-primary px-1 py-0 d-flex">
                     <ThumbsupIcon />
                     <div className="text">like</div>
                   </button> */}
-                  <div
-                    className="fb-like"
-                    data-href={
-                      data.facebookUrl
-                        ? data.facebookUrl
-                        : "https://facebook.com/"
-                    }
-                    data-layout="button_count"
-                    data-action="like"
-                    data-size="large"
-                    data-show-faces="false"
-                    data-share="false"
-                  />
-                  {/* <button className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"> */}
-                  {/* <div className="text">Tweet</div> */}
-                  {/* </button> */}
-                  <TwitterShareButton
-                    className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"
-                    url={`${window.location.origin}/#/event-detail/${data._id}`}
-                    title=""
-                    style={{ height: "28px", alignItems: "center" }}
-                  >
-                    <TwitterIcon width="15px" height="15px" />
                     <div
-                      className="text"
-                      style={{ marginLeft: "5px", fontSize: "12px" }}
+                      className="fb-like"
+                      data-href={
+                        data.facebookUrl
+                          ? data.facebookUrl
+                          : "https://facebook.com/"
+                      }
+                      data-layout="button_count"
+                      data-action="like"
+                      data-size="large"
+                      data-show-faces="false"
+                      data-share="false"
+                    />
+                    {/* <button className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"> */}
+                    {/* <div className="text">Tweet</div> */}
+                    {/* </button> */}
+                    <TwitterShareButton
+                      className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"
+                      url={`${window.location.origin}/#/event-detail/${
+                        data._id
+                      }`}
+                      title=""
+                      style={{ height: "28px", alignItems: "center" }}
                     >
-                      Tweet
-                    </div>
-                  </TwitterShareButton>
+                      <TwitterIcon width="15px" height="15px" />
+                      <div
+                        className="text"
+                        style={{ marginLeft: "5px", fontSize: "12px" }}
+                      >
+                        Tweet
+                      </div>
+                    </TwitterShareButton>
+                  </div>
                 </div>
+                <div
+                  className="col-md-6 col-12 p-0 event-image-mobile"
+                  style={{
+                    backgroundImage: `url(${data.image.secure_url})`,
+                    minHeight: "200px"
+                  }}
+                />
               </div>
             </div>
             <div className="col-md-6 col-12 p-0 left">
@@ -217,13 +246,18 @@ class Index extends Component {
                 style={{
                   width: "100%",
                   position: "relative",
-                  overflow: "hidden"
+                  overflow: "hidden",
+                  backgroundImage: `url(${event_details_lb})`,
+                  backgroundPosition: "center",
+                  backgroundSize: "auto",
+                  minHeight: "350px",
+                  backgroundRepeat: "no-repeat"
                 }}
               >
-                <img
+                {/* <img
                   style={{ transform: "scale(1.24)" }}
                   src={event_details_lb}
-                />
+                /> */}
                 <div className="timings">
                   <div className="small-title">Open Hours</div>
                   <div className="timing">
@@ -277,21 +311,25 @@ class Index extends Component {
                 <div className="reviews">
                   {userdata.data &&
                   data.reviews.find(review => {
-                    return (
-                      review.user_id && review.user_id._id == userdata.data._id
-                    );
+                    return review.user_id
+                      ? review.user_id._id == userdata.data._id
+                      : "";
                   }) ? (
                     <>
                       {data.reviews
                         .filter(review => {
-                          return review.user_id._id == userdata.data._id;
+                          return review.user_id
+                            ? review.user_id._id == userdata.data._id
+                            : "";
                         })
                         .map((review, i) => (
                           <Review key={i} review={review} />
                         ))}
                       {data.reviews
                         .filter(review => {
-                          return review.user_id._id != userdata.data._id;
+                          return review.user_id
+                            ? review.user_id._id != userdata.data._id
+                            : "";
                         })
                         .map(
                           (review, i) =>
@@ -310,9 +348,9 @@ class Index extends Component {
               {localStore("token") &&
               userdata.data &&
               data.reviews.find(review => {
-                return (
-                  review.user_id && review.user_id._id == userdata.data._id
-                );
+                return review.user_id
+                  ? review.user_id._id == userdata.data._id
+                  : "";
               }) ? null : (
                 <div className="leave-review">
                   {this.state.leave_review ? (

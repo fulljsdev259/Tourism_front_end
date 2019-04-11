@@ -80,7 +80,6 @@ class CategoryItem extends Component {
         className="events-list"
         style={calendar ? { flexDirection: "column" } : null}
       >
-        {console.log(event, "eeeeeeeeeeeee")}
         <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12  offset-md-1 offset-lg-2 event-img">
           <div
             className="img"
