@@ -34,7 +34,7 @@ class Index extends Component {
         item => item.name == "artisan"
       );
       if (one_category) {
-        this.props.getFeaturedEvents(one_category._id);
+        this.props.getFeaturedEvents(one_category.id);
       } else {
         this.props.getFeaturedEvents();
       }
@@ -260,7 +260,7 @@ class Index extends Component {
 }
 
 const mapStateToProps = state => ({
-  featuredEvents: state.event.featuredEvents.data,
+  featuredEvents: state.event.featuredEvents.data
   // categories: state.event.categories.data
 });
 

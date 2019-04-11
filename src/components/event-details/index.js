@@ -5,7 +5,7 @@ import location_icon from "../../images/icon/location.svg";
 import email_icon from "../../images/icon/email.svg";
 import heart_icon from "../../images/heart.svg";
 import heart_full_icon from "../../images/heart-full.svg";
-import time_icon from "../../images/icon/-e-ic_time.svg";
+import web_icon from "../../images/icon/-e-ic_time.svg";
 import StarRatings from "react-star-ratings";
 import Review from "../generic/Review";
 import EventSubDetail from "../generic/EventSubDetail";
@@ -45,14 +45,15 @@ class Index extends Component {
   // }
   render() {
     const { categories, event: data, userdata } = this.props;
-    const event_sub_details = data
-      ? [
-          { image: location_icon, text: data.EventPlace },
-          { image: phone_icon, text: "phone number" },
-          { image: email_icon, text: "email" },
-          { image: time_icon, text: "account" }
-        ]
-      : null;
+    console.log(data, "ddddddd");
+    // const event_sub_details = data
+    //   ? [
+    //       { image: location_icon, text: data.EventPlace },
+    //       { image: phone_icon, text: "phone number" },
+    //       { image: email_icon, text: "email" },
+    //       { image: web_icon, text: "account" }
+    //     ]
+    //   : null;
     let avgRate,
       sum = 0;
     if (data) {
@@ -114,9 +115,44 @@ class Index extends Component {
                 </div>
               </div>
               <div className="block sub-details">
-                {event_sub_details.map((info, i) => (
-                  <EventSubDetail key={i} {...info} />
-                ))}
+                <div className="event-info">
+                  <div className="place-detail sub-detail">
+                    <img className="icon" src={location_icon} />
+                    <div className="text">
+                      {data && data.EventPlace
+                        ? data.EventPlace
+                        : " place not decided "}{" "}
+                      ,
+                      {data && data.EventState && this.props.places.data
+                        ? this.props.places.data.find(
+                            state => state._id == data.EventState
+                          ).name
+                        : null}
+                    </div>
+                  </div>
+                  <div className="contact-detail  sub-detail ">
+                    <img src={phone_icon} className="icon" />
+                    <div className="text">
+                      {data && data.phone_number
+                        ? data.phone_number
+                        : "Contact number not disclosed"}
+                    </div>
+                  </div>
+                  <div className="email-detail sub-detail">
+                    <img src={email_icon} className="icon" />
+                    <div className="text">
+                      {data && data.email ? data.email : "email not disclosed"}
+                    </div>
+                  </div>
+                  <div className="webiste-detail sub-detail">
+                    <img src={web_icon} className="icon" />
+                    <div className="text">
+                      {data && data.website
+                        ? data.website
+                        : "website not disclosed"}
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="block social-buttons mt-3">
                 <button
@@ -194,37 +230,37 @@ class Index extends Component {
                     {[
                       {
                         day: "Monday",
-                        time: data.monStartTime + "-" + data.monEndTime
+                        time: data.monStartTime + " - " + data.monEndTime
                       },
                       {
                         day: "Tuesday",
-                        time: data.tueStartTime + "-" + data.tueEndTime
+                        time: data.tueStartTime + " - " + data.tueEndTime
                       },
                       {
                         day: "Wednesday",
-                        time: data.wedStartTime + "-" + data.wedEndTime
+                        time: data.wedStartTime + " - " + data.wedEndTime
                       },
                       {
                         day: "Thursday",
-                        time: data.thrStartTime + "-" + data.thrEndTime
+                        time: data.thrStartTime + " - " + data.thrEndTime
                       },
                       {
                         day: "Friday",
-                        time: data.friStartTime + "-" + data.friEndTime
+                        time: data.friStartTime + " - " + data.friEndTime
                       },
                       {
                         day: "Saturday",
-                        time: data.satStartTime + "-" + data.satEndTime
+                        time: data.satStartTime + " - " + data.satEndTime
                       },
                       {
                         day: "Sunday",
-                        time: data.sunStartTime + "-" + data.sunEndTime
+                        time: data.sunStartTime + " - " + data.sunEndTime
                       }
                     ].map((element, i) => (
                       <div key={i} className="day-block">
                         <div className="day">{element.day}</div>
                         <div className="time">
-                          {element.time && element.time != "-"
+                          {element.time && element.time != " - "
                             ? element.time
                             : "Closed"}
                         </div>
@@ -394,7 +430,8 @@ class Index extends Component {
 
 const mapStateToProps = state => ({
   event: state.event.eventById.data.data,
-  userdata: state.auth.userdata.data
+  userdata: state.auth.userdata.data,
+  places: state.event.locations.data
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -47,7 +47,7 @@ class Category extends Component {
       }
     }
   }
-  getSubCategory=(sub_id)=>{
+  getSubCategory = sub_id => {
     const { filters } = this.props;
     this.props.getEventsByCategoryRequest({
       sub_id: sub_id,
@@ -56,7 +56,7 @@ class Category extends Component {
       eventState: filters.selectedState,
       eventCity: filters.selectedCity
     });
-  }
+  };
   render() {
     const { categories2, location } = this.props;
     // const cat = {
@@ -97,6 +97,7 @@ class Category extends Component {
       <div className="event-page">
         <div className="row">
           <CategoryNav2
+            {...this.props}
             categories={categories2}
             location={location}
             cat={cat}
@@ -106,7 +107,7 @@ class Category extends Component {
 
         <div className="row mt-4">
           <div className="col-lg-8 col-md-10 col-sm-10 col-xs-10 offset-sm-1 offset-md-1 offset-lg-2 p-0">
-            <TopMenu  />
+            <TopMenu />
             {cat && (
               <Description
                 name={cat.name}
@@ -123,9 +124,7 @@ class Category extends Component {
               return <CategoryItem key={i} event={event} />;
             })
           ) : (
-            <div className="no-events">
-              {`At this time, there is no Data `}
-            </div>
+            <div className="no-events">{`At this time, there is no Data `}</div>
           )}
           {/* })} */}
         </div>
