@@ -110,7 +110,9 @@ class Home extends Component {
             name: m.name,
             image: imageArr[i],
             path: pathArr[i],
-            subCategory: m.subCategory
+            subCategory: m.subCategory,
+            description: m.description,
+            id: m._id
           };
         })
       : null;

@@ -138,9 +138,9 @@ class CategoryItem extends Component {
           </div>
           <div className="middle">
             <div className="event-des">
-              {event && event.aboutEvent
-                ? event.aboutEvent
-                : `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt vitae semper quis lectus nulla. Volutpat odio facilisis mauris sit amet massa vitae tortor.`}{" "}
+              {event && event.content
+                ? event.content.brief
+                : `Loremm ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt vitae semper quis lectus nulla. Volutpat odio facilisis mauris sit amet massa vitae tortor.`}{" "}
             </div>
 
             <div className="icon-div">
