@@ -65,11 +65,22 @@ class CategoryItem extends Component {
     //       }
     //     );
     // }
+    const weekSchedule = [
+      { start: event && event.sunStartTime, end: event && event.sunEndTime },
+      { start: event && event.monStartTime, end: event && event.monEndTime },
+      { start: event && event.tueStartTime, end: event && event.tueEndTime },
+      { start: event && event.wedStartTime, end: event && event.wedEndTime },
+      { start: event && event.thrStartTime, end: event && event.thrEndTime },
+      { start: event && event.friStartTime, end: event && event.friEndTime },
+      { start: event && event.satStartTime, end: event && event.satEndTime }
+    ];
+    const d = new Date().getDay();
     return (
       <div
         className="events-list"
         style={calendar ? { flexDirection: "column" } : null}
       >
+        {console.log(event, "eeeeeeeeeeeee")}
         <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12  offset-md-1 offset-lg-2 event-img">
           <div
             className="img"
@@ -158,12 +169,17 @@ class CategoryItem extends Component {
                 style={{ float: "left" }}
                 className="icon-div col-md-12 col-6"
               >
-                <img src={clock} className="icon" />
-                {moment(event.start).format("hh:mm:A") <
-                  moment().format("hh:mm:A") &&
-                moment(event.end).format("hh:mm:A") > moment().format("hh:mm:A")
-                  ? "Opened now"
-                  : "Closed now"}
+                {event && (
+                  <div className="open-status-detail">
+                    <img src={clock} className="icon" />
+                    {moment(weekSchedule[d].start, "hh:mm a").format("HH:mm") <
+                      moment().format("HH:mm") &&
+                    moment(weekSchedule[d].end, "hh:mm a").format("HH:mm") >
+                      moment().format("HH:mm")
+                      ? "Opened now"
+                      : "Closed now"}
+                  </div>
+                )}
               </div>
             </div>
 

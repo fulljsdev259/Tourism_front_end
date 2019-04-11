@@ -2,7 +2,7 @@ import React from "react";
 import CategoryNavItem from "../generic/CategoryNavItem";
 import { Link } from "react-router-dom";
 
-export default function CategoryNav2({ categories, location, cat, getSubCategory }) {
+export default function CategoryNav2({ categories, location, cat, getSubCategory, history }) {
   return (
     <div className="category-nav2 col-lg-8 col-md-10 col-sm-10 col-xs-10 offset-sm-1 offset-md-1 offset-lg-2 p-0">
       {categories.map((category, index) => (
@@ -34,7 +34,7 @@ export default function CategoryNav2({ categories, location, cat, getSubCategory
                     >
                       {sub_category.name.replace("_", " ")}
                     </Link> */}
-                    <a onClick={()=>{getSubCategory(sub_category._id); this.props.history.push('/sdfasdf')}}>
+                    <a onClick={()=>{getSubCategory(sub_category._id);history.push(category.path)}}>
                       {sub_category.name.replace("_", " ")}
                     </a>
                   </li>
