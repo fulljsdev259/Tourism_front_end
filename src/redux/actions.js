@@ -52,3 +52,4 @@ export const getFeaturedEventsSuccess = createAction(constants.GET_FEATURED_EVEN
 export const getFeaturedEventsError = createAction(constants.GET_FEATURED_EVENTS_ERROR);
 
 export const stateChange = createAction(constants.STATE_CHANGE);
+export const getEventByIdUnmount = createAction(constants.GET_EVENT_BY_ID_UNMOUNT);

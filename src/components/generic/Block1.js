@@ -4,7 +4,7 @@ export default class Block1 extends Component {
   render() {
     const { children, l_img, r_img } = this.props;
     return (
-      <div className="child-selector grid-container">
+      <div className="child-selector grid-container row">
         <div
           className="grid-item"
           style={{

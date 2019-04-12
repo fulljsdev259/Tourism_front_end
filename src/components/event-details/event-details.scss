@@ -1,3 +1,7 @@
+.eventDetail-loader {
+  text-align: center;
+}
+
 .event-details {
   display: flex;
   flex-wrap: wrap;
@@ -42,12 +46,18 @@
     .timings {
       position: absolute;
       top: 0;
-      left: 30%;
       right: 40px;
       top: 20px;
+      width: 75%;
       @media all and (max-width: 1199px) {
+        font-size: 12px;
         left: 10px;
         top: 20px;
+        right: 10px;
+        width: 90%;
+      }
+      @media all and (max-width: 767px) {
+        padding-left: 40px;
       }
       .timing {
         font-size: 0.8em;
@@ -60,12 +70,21 @@
         border: 1px solid #bbb;
         box-shadow: 0 0 5px 0px #bbb;
         margin-top: 10px;
+        @media all and (max-width: 767px) {
+          flex-direction: column;
+          padding-left: 2em;
+        }
         .day-block {
           display: flex;
           width: 50%;
           padding: 5px;
+          @media all and (max-width: 767px) {
+            width: 100%;
+            display: flex;
+            align-items: center;
+          }
           .day {
-            width: 80px;
+            width: 70px;
             color: #666;
           }
           .time {
@@ -109,7 +128,7 @@
     .block {
       display: flex;
       @media all and (max-width: 767px) {
-        padding: 0 15px  !important;
+        padding: 0 15px !important;
       }
       .category-icon {
         width: 30px;

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import photo from "../../images/photo2.png";
-import cost from "../../images/cost.png";
+import cost from "../../images/cost_g.png";
 import inactiveCost from "../../images/cost-not-active.svg";
-import web from "../../images/web.png";
-import time from "../../images/time.png";
-import mapMain from "../../images/map-main-color.svg";
+import web from "../../images/web_g.png";
+import time from "../../images/time_g.png";
+import mapMain from "../../images/map-main-color_g.svg";
 import heart from "../../images/heart.svg";
 import heart_full from "../../images/heart-full.svg";
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ class EventItem extends Component {
     }
     return (
       <div className="events-list">
-        <div className="col-lg-3 col-md-4 col-sm-4 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 event-img">
+        <div className="col-lg-3 col-md-4  col-xs-12 offset-md-1 offset-lg-2 event-img">
           {/* <Link to={{ pathname: `/event-detail/${event._id}`, state: event }}> */}
           <div
             className="img"
@@ -44,44 +44,16 @@ class EventItem extends Component {
           {/* </Link> */}
         </div>
         <div
-          className={
-            calendar
-              ? "event-detail"
-              : "col-lg-5 col-md-6 col-sm-6 event-detail"
-          }
+          className="col-lg-5 col-md-6 col-sm-12 event-detail"
+          // style={{ paddingBottom: "10px" }}
         >
           <div className="head">
             <div>
               {/* <Link
                 to={{ pathname: `/event-detail/${event._id}`, state: event }}
               > */}
-                <div className="title">{event.title}</div>
+              <div className="title">{event.title}</div>
               {/* </Link> */}
-              <div className="mobile-social">
-                <img
-                  className="wishlist"
-                  src={heart}
-                  //   src={
-                  //     userdata.data &&
-                  //       event.interested.find(
-                  //         oneInterested => oneInterested._id === userdata.data._id
-                  //       )
-                  //       ? heart_full
-                  //       : heart
-                  //   }
-                  title={
-                    localStore("token") ? null : "Login first "
-                  }
-                  onClick={() => {
-                    if (localStore("token")) {                      
-                      this.props.addInterest({
-                        id: event._id,
-                        pathname: this.props.location.pathname
-                      });
-                    }
-                  }}
-                />
-              </div>
             </div>
             <div className="date">
               {event.start && moment(event.start).format("D MMM, dddd")}
@@ -116,33 +88,11 @@ class EventItem extends Component {
                 {event.start && moment(event.start).format("hh:mm A")}
               </span>
             </div>
-            <div className="desc">{event.content.brief}</div>
-            <div className="social">
-              <img
-                className="wishlist"
-                src={youInterested ? heart_full : heart}
-                title={localStore("token") ? null : "Login first"}
-                onClick={() => {
-                  if (localStore("token")) {
-                    this.props.addInterest({
-                      _id: event._id,
-                      pathname: this.props.location.pathname
-                    });
-                  } else {
-                   this.props.history.push('/auth')
-                  }
-                }}
-              //   <img
-              //   className="wishlist"
-              //   src={youInterested ? heart_full : heart}
-              //   onClick={() => {
-              //     this.props.addInterest({
-              //       event_id: event._id,
-              //       id: event.categories._id
-              //     });
-              //   }}
-              // />
-              />
+            <div
+              className="desc"
+              // style={{ paddingLeft: "0", color: "#808080" }}
+            >
+              {event.content.brief}
             </div>
           </div>
         </div>

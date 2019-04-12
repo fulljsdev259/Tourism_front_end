@@ -15,7 +15,8 @@ class Header extends React.Component {
     this.state = {
       openClass: "",
       auth: false,
-      showLoading: false
+      showLoading: false,
+      activeLi: false
     };
     this.ToggleBody = () => {
       var currentClass = document.getElementsByTagName("body")[0];
@@ -91,13 +92,12 @@ class Header extends React.Component {
                 {" "}
                 <img onClick={this.ToggleBody} className="logo" src={Logo} />
               </Link>
-
               <ul className="menu">
-                <li data-text="ABOUT" onClick={() => {}}>
-                  About
+                <li data-text="ABOUT">
+                  <Link to="/aboutus">About</Link>
                 </li>
                 <li data-text="Events" onClick={() => {}}>
-                  Events
+                  <Link to="/events">Events</Link>
                 </li>
                 <li data-text="CONTACT" onClick={() => {}}>
                   <Link to="/contactus">Contact us</Link>
@@ -226,7 +226,12 @@ class Header extends React.Component {
           </div>
         }
         <div className="menu container">
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => {
+              this.setState({ activeLi: true });
+            }}
+          >
             {" "}
             <div className="logoDiv">
               <img className="logo" src={Logo} />
@@ -248,7 +253,17 @@ class Header extends React.Component {
                   );
                 }}
               >
-                <Link to="/aboutus">About</Link>
+                <Link
+                  to="/aboutus"
+                  className={`  ${
+                    location.pathname === "/aboutus" ? "liActive" : ""
+                  }`}
+                  onClick={() => {
+                    this.setState({ activeLi: true });
+                  }}
+                >
+                  About
+                </Link>
               </div>
               <div
                 className="normal"
@@ -264,7 +279,17 @@ class Header extends React.Component {
                   );
                 }}
               >
-                <Link to="/events">Events</Link>
+                <Link
+                  to="/events"
+                  className={`  ${
+                    location.pathname === "/events" ? "liActive" : ""
+                  }`}
+                  onClick={() => {
+                    this.setState({ activeLi: true });
+                  }}
+                >
+                  Events
+                </Link>
               </div>
               <div
                 className="normal"
@@ -280,7 +305,17 @@ class Header extends React.Component {
                 //   );
                 // }}
               >
-                <Link to="/contactus">Contact us</Link>
+                <Link
+                  to="/contactus"
+                  className={`  ${
+                    location.pathname === "/contactus" ? "liActive" : ""
+                  }`}
+                  onClick={() => {
+                    this.setState({ activeLi: true });
+                  }}
+                >
+                  Contact us
+                </Link>
                 {/* <a>Contact us</a> */}
               </div>
               {!userdata.data ||
@@ -340,7 +375,17 @@ class Header extends React.Component {
             </div>
           ) : (
             <div className="registerDiv col-2">
-              <Link to="/auth/">Login/Register</Link>
+              <Link
+                to="/auth/"
+                className={`  ${
+                  location.pathname === "/auth/" ? "liActive" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ activeLi: true });
+                }}
+              >
+                Login/Register
+              </Link>
             </div>
           )}
         </div>

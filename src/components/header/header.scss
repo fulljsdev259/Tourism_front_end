@@ -99,8 +99,8 @@
         $bp-small: 500px;
         $bp-arrow: 700px;
         $font-primary: "Lusitana", sans-serif;
-        $color: #000000;
-        $color-bg: #fcfcf4;
+        $color: #ffffff;
+        $color-bg: #000000;
         $color-dark: darken($color, 10%);
         $color-lite: lighten($color, 10%);
 
@@ -378,12 +378,20 @@
             padding: 8px 0px 0px 0px;
             white-space: nowrap;
           }
+
+          .liActive {
+            color: #fbc000;
+            padding-bottom: 2px;
+            border-bottom: 2px solid #3d7c61;
+          }
           a {
             text-decoration: none;
             font-weight: bold;
           }
           a:hover {
-            color: #3d7c61;
+            color: #fbc000;
+            // padding-bottom: 2px;
+            // border-bottom: 2px solid #3d7c61;
           }
         }
         .getStarted {
@@ -410,21 +418,39 @@
         }
       }
     }
-
+    // .itemDivActive {
+    //   .item {
+    //     .normal {
+    //       a {
+    //         color: #fbc000;
+    //         padding-bottom: 3px;
+    //         border-bottom: 2px solid #3d7c61;
+    //       }
+    //     }
+    //   }
+    // }
     .registerDiv {
       display: flex;
       flex-direction: column;
       justify-content: center;
       cursor: pointer;
       text-align: center;
+      align-items: center;
+      .liActive {
+        color: #fbc000;
+        padding-bottom: 2px;
+        border-bottom: 2px solid #3d7c61;
+        width: fit-content;
+      }
       a {
         font-size: 14px;
         text-decoration: none;
         font-weight: bold;
         color: #fff;
+        width: fit-content;
       }
       a:hover {
-        color: #3d7c61;
+        color: #fbc000;
       }
       .user-name {
         color: #4c4c4c;

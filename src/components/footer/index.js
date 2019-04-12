@@ -104,8 +104,8 @@ export default class Footer extends React.Component {
                   <div className="col-md-3 col-6">
                     <div className="">
                       <div className="category-section">
-                        <Link to="/entertainment">Duty Free</Link>
-                        <Link to="/conferences">Artisian</Link>
+                        <Link to="/duty_free">Duty Free</Link>
+                        <Link to="/artisian">Artisian</Link>
                       </div>
                     </div>
                   </div>
@@ -113,8 +113,8 @@ export default class Footer extends React.Component {
                   <div className="col-md-3 col-6">
                     <div className="">
                       <div className="category-section">
-                        <Link to="/sport">Crafts</Link>
-                        <Link to="/health_wellness">Retails</Link>
+                        <Link to="/crafts">Crafts</Link>
+                        <Link to="/retails">Retails</Link>
                       </div>
                     </div>
                   </div>

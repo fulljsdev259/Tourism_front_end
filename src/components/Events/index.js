@@ -98,7 +98,7 @@ class Events extends Component {
     ];
     return (
       <div className="row mt-4">
-        <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12 offset-sm-1 offset-md-1 offset-lg-2 p-0">
+        <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12  offset-md-1 offset-lg-2 p-0">
           <Description
             name="Events"
             desc="Vestibulum rutrum quam vitae fringilla tincidunt. Suspendisse nec tortor urna. Ut laoreet sodales nisi, quis iaculis nulla iaculis vitae. Donec sagittis faucibus lacus eget blandit. Ut laoreet sodales nisi, quis iaculis nulla iaculis vitae."

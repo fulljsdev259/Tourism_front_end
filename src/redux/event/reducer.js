@@ -592,7 +592,15 @@ const handleSubmitEventReset = (state, action) =>
       duplicate_email: { $set: false }
     }
   });
-
+const handleEventByIdUnmount = (state, action) =>
+  update(state, {
+    eventById: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      data: { $set: "" }
+    }
+  });
 export default handleActions(
   {
     [constants.LOGOUT]: handleLogout,
@@ -641,7 +649,8 @@ export default handleActions(
     [constants.SUBMIT_EVENT_ERROR]: handleSubmitEventError,
     [constants.SUBMIT_EVENT_RESET]: handleSubmitEventReset,
 
-    [constants.STATE_CHANGE]: handleStateChange
+    [constants.STATE_CHANGE]: handleStateChange,
+    [constants.GET_EVENT_BY_ID_UNMOUNT]: handleEventByIdUnmount
   },
   initialState
 );

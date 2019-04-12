@@ -45,6 +45,7 @@
       border-width: 1px 1px 0px 0px;
       border-radius: 0px 10px 10px 0px;
       background: white;
+      padding-bottom: 10px;
       @media all and (max-width: 767px) {
         // margin: auto 15px;
         border: 1px solid #e5e5e5;
@@ -147,6 +148,7 @@
           padding-right: 15%;
           text-align: justify;
           padding-bottom: 10px;
+          font-size: .9em;
           color: #808080;
           @media all and (max-width: 767px) {
             padding-right: 15px;
@@ -192,8 +194,11 @@
           }
         }
         .desc {
-          font-size: 0.8em;
-          padding: 0 25px;
+          font-size: 0.9em;
+          padding-right: 25px;
+          padding-left: 0;
+          color: #808080;
+          text-align: justify;
         }
         .social {
           display: flex;

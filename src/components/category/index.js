@@ -12,6 +12,7 @@ import duty_free_img from "../../images/duty_free_img.png";
 import retails_img from "../../images/duty_free_img.png";
 import crafts_img from "../../images/crafts_img.png";
 import artisan_img from "../../images/crafts_img.png";
+import Loader from "react-loader-spinner";
 
 class Category extends Component {
   constructor(props) {
@@ -117,16 +118,25 @@ class Category extends Component {
             )}
           </div>
         </div>
+
         <div className="event-div row" style={{ background: `${bgcolor}` }}>
-          {/* {data.map((event, i) => { */}
-          {this.props.events.length ? (
-            this.props.events.map((event, i) => {
-              return <CategoryItem key={i} event={event} />;
-            })
-          ) : (
-            <div className="no-events">{`At this time, there is no Data `}</div>
-          )}
-          {/* })} */}
+          {this.props.filters.eventsByCategory.isLoading ? 
+            <div className="loader-div">
+              <Loader type="Oval" color="#fff" height="30" width="30" />
+            </div>
+            :
+            (
+            this.props.events.length ? (
+              this.props.events.map((event, i) => {
+                return <CategoryItem key={i} event={event} bgcolor={bgcolor} />;
+              })
+            ) : (
+              <div className="no-events">{`At this time, there is no Data `}</div>
+            )
+            )
+          }
+
+     
         </div>
       </div>
     );

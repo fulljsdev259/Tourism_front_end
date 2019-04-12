@@ -36,7 +36,7 @@ class CategoryItem extends Component {
     });
   };
   render() {
-    const { event, userdata, calendar } = this.props;
+    const { event, userdata, calendar,bgcolor } = this.props;
     let youInterested;
     if (event && userdata && userdata.data) {
       youInterested = event.interested.find(oneInterested => {
@@ -94,7 +94,7 @@ class CategoryItem extends Component {
           <div className="head">
             <div>
               <Link
-                to={{ pathname: `/event-details/${event._id}`, state: event }}
+                to={{ pathname: `/event-details/${event._id}` }}
               >
                 <div className="title">{event.title}</div>
               </Link>

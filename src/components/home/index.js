@@ -104,6 +104,7 @@ class Home extends Component {
   render() {
     const imageArr = [category1, category3, category2, category4];
     const pathArr = ["/duty_free", "/artisan", "/crafts", "/retails"];
+    const bgColor = ["#fbebec", "#a9fff1", "#cfbeb6", "#fff6fb"];
     const categories = this.state.categoryData.data
       ? this.state.categoryData.data.map((m, i) => {
           return {
@@ -112,7 +113,8 @@ class Home extends Component {
             path: pathArr[i],
             subCategory: m.subCategory,
             description: m.description,
-            id: m._id
+            id: m._id,
+            bgColor: bgColor[i]
           };
         })
       : null;

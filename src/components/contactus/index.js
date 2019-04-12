@@ -63,7 +63,7 @@ class ContactUs extends Component {
                         handleSubmit,
                         isSubmitting
                       }) => (
-                        <Form>
+                        <Form className='contactForm'>
                           <div className="input-fields">
                             <div className="label">
                               <label>Your Name</label>

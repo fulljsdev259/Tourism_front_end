@@ -20,6 +20,7 @@ import ReactFBLike from "react-fb-like";
 import { FacebookProvider, Like } from "react-facebook";
 import { Link } from "react-router-dom";
 import arrowBack from "../../images/arrow-left.svg";
+import Loader from "react-loader-spinner";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -41,11 +42,12 @@ class Index extends Component {
     // window.location.reload();
     // FB.XFBML.parse();
   }
-  // componentDidMount(){
-  //   if(this.props.location.pathname.includes('event-details') ){
-  //     window.location.reload();
-  //   }
-  // }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  componentWillUnmount() {
+    this.props.getEventByIdUnmount();
+  }
   render() {
     const { categories, event: data, userdata } = this.props;
     // const event_sub_details = data
@@ -56,10 +58,16 @@ class Index extends Component {
     //       { image: web_icon, text: "account" }
     //     ]
     //   : null;
+
     const catImage =
       data &&
       data.categories &&
       categories.find(m => m.name == data.categories.name).image;
+    const catBgColor =
+      data &&
+      data.categories &&
+      categories.find(m => m.name == data.categories.name).bgColor;
+
     let avgRate,
       sum = 0;
     if (data) {
@@ -69,7 +77,6 @@ class Index extends Component {
         avgRate = 0;
       }
     }
-    console.log(userdata, "uuuu", data, "ddddd");
     let youInterested;
     if (data && userdata && userdata.data) {
       youInterested = data.interested.find(oneInterested => {
@@ -128,7 +135,7 @@ class Index extends Component {
                   <div className="desc">{data.content.brief}</div>
                 </div>
               </div>
-              <div className='sub-details-section'>
+              <div className="sub-details-section">
                 <div className="block sub-details">
                   <div className="event-info">
                     <div className="place-detail sub-detail">
@@ -246,12 +253,8 @@ class Index extends Component {
                 style={{
                   width: "100%",
                   position: "relative",
-                  overflow: "hidden",
-                  backgroundImage: `url(${event_details_lb})`,
-                  backgroundPosition: "center",
-                  backgroundSize: "auto",
-                  minHeight: "350px",
-                  backgroundRepeat: "no-repeat"
+                  background: catBgColor,
+                  minHeight: "350px"
                 }}
               >
                 {/* <img
@@ -460,7 +463,14 @@ class Index extends Component {
               )}
             </div>
           </>
-        ) : null}
+        ) : (
+          this.props.isLoading &&
+          !data && (
+            <div className="loader-div">
+              <Loader type="Oval" color="#555"  height="30" width="30"  />
+            </div>
+          )
+        )}
       </div>
     );
   }
@@ -469,13 +479,15 @@ class Index extends Component {
 const mapStateToProps = state => ({
   event: state.event.eventById.data.data,
   userdata: state.auth.userdata.data,
+  isLoading: state.event.eventById.isLoading,
   places: state.event.locations.data
 });
 
 const mapDispatchToProps = dispatch => ({
   getEventById: data => dispatch(actions.getEventByIdRequest(data)),
   addReviewRequest: data => dispatch(actions.addReviewRequest(data)),
-  addInterestRequest: data => dispatch(actions.addInterestRequest(data))
+  addInterestRequest: data => dispatch(actions.addInterestRequest(data)),
+  getEventByIdUnmount: () => dispatch(actions.getEventByIdUnmount()),
 });
 
 export default connect(

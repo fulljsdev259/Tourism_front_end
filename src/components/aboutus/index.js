@@ -10,8 +10,8 @@ export default class AboutUs extends Component {
     return (
       <Block1 l_img={contact_r_img} r_img={contact_r_img}>
         <div className="container-fluid">
-          <div className="row text-center about-block">
-            <div className="col-lg-8 offset-lg-1 col-md-8 offset-md-2 col-sm-10 col-sm-offset-1 col-10 offset-1 about-div">
+          <div className=" text-center about-block">
+            <div className="col-lg-8 offset-lg-1 col-md-8 offset-md-2 col-sm-12 col-xs-12 about-div">
               <div className="title">About Us</div>
               <div className="desc">
                 <div className="info">
