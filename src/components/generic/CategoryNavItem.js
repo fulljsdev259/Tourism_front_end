@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CategoryNavItem({ category }) {
+export default function CategoryNavItem({ category ,handleSubcat}) {
   return (
     <div className="category-nav-item ">
       <div className="category-nav-item-header">
@@ -20,8 +20,10 @@ export default function CategoryNavItem({ category }) {
             {category.subCategory.map((sub_category, i) => (
               <li key={i}>
                 <Link
-                  to={category.path}
+                  to={`${category.path}/${sub_category._id}`}
+                  // to={{ pathname: `/event-detail/${event._id}`, state: event }}
                   style={{ textTransform: "capitalize" }}
+                  onClick={() => handleSubcat(sub_category._id)}
                 >
                   {sub_category.name.replace("_", " ")}
                 </Link>

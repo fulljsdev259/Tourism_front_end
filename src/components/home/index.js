@@ -4,6 +4,7 @@ import Footer from "../footer";
 import Index from "../index";
 import ContactUs from "../contactus";
 import Category from "../category";
+import SubCategory from "../subCategory";
 import Auth from "../auth";
 import AboutUs from "../aboutus";
 import Events from "../Events";
@@ -13,6 +14,10 @@ import category1 from "../../images/category1.svg";
 import category2 from "../../images/category2.svg";
 import category3 from "../../images/category3.svg";
 import category4 from "../../images/category4.svg";
+import duty_free_img from "../../images/duty_free_img.png";
+import retails_img from "../../images/duty_free_img.png";
+import crafts_img from "../../images/crafts_img.png";
+import artisan_img from "../../images/crafts_img.png";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
 
@@ -103,6 +108,7 @@ class Home extends Component {
   };
   render() {
     const imageArr = [category1, category3, category2, category4];
+    const bgImageArr = [duty_free_img, artisan_img, crafts_img, retails_img];
     const pathArr = ["/duty_free", "/artisan", "/crafts", "/retails"];
     const bgColor = ["#fbebec", "#a9fff1", "#cfbeb6", "#fff6fb"];
     const categories = this.state.categoryData.data
@@ -114,7 +120,8 @@ class Home extends Component {
             subCategory: m.subCategory,
             description: m.description,
             id: m._id,
-            bgColor: bgColor[i]
+            bgColor: bgColor[i],
+            bgImage: bgImageArr[i]
           };
         })
       : null;
@@ -157,10 +164,27 @@ class Home extends Component {
               categories.map((category, i) => {
                 return (
                   <Route
+                    exact
                     path={category.path}
                     key={i}
                     render={props => (
                       <Category
+                        {...props}
+                        category={category}
+                        categories2={categories}
+                      />
+                    )}
+                  />
+                );
+              })}
+            {categories &&
+              categories.map((category, i) => {
+                return (
+                  <Route
+                    path={`${category.path}/:id`}
+                    key={i}
+                    render={props => (
+                      <SubCategory
                         {...props}
                         category={category}
                         categories2={categories}

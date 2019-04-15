@@ -247,7 +247,7 @@
     }
     .leave-review {
       font-size: 0.8em;
-      color: blue;
+      color: #007bff;
       cursor: pointer;
     }
   }
@@ -270,4 +270,13 @@
   background-color: #029fe1;
   border-color: #029fe1;
   padding: 0 5px;
+}
+.catBgImage {
+  padding-right: 60px;
+  @media all and (max-width: 991px) {
+    padding-top: 40px;
+  }
+  @media all and (max-width: 767px) {
+    display: none;
+  }
 }

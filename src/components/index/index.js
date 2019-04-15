@@ -23,6 +23,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { image_formatter } from "../../services/helper";
+import mapMarker from "../../images/icon/location_w.svg";
+
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -35,8 +37,6 @@ class Index extends Component {
       );
       if (one_category) {
         this.props.getFeaturedEvents(one_category.id);
-      } else {
-        this.props.getFeaturedEvents();
       }
     }
   }
@@ -46,9 +46,7 @@ class Index extends Component {
         item => item.name == "artisan"
       );
       if (one_category) {
-        this.props.getFeaturedEvents(one_category._id);
-      } else {
-        this.props.getFeaturedEvents();
+        this.props.getFeaturedEvents(one_category.id);
       }
     }
   }
@@ -182,10 +180,22 @@ class Index extends Component {
                   <Carousel.Caption>
                     <div className="caption">
                       <div className="desc">
-                        <div className="type">Craft Markets</div>
-                        <div>
+                        <div className="type">{item.title}</div>
+                        <p>
                           A true representation of the island's unique culture
-                        </div>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="caption2">
+                      <div className="desc2">
+                        <div className="type2">{item.title}</div>
+
+                        <p>
+                          <img src={mapMarker} />
+                          {item.EventPlace
+                            ? item.EventPlace
+                            : `Place not decided`}
+                        </p>
                       </div>
                     </div>
                   </Carousel.Caption>
@@ -260,7 +270,8 @@ class Index extends Component {
 }
 
 const mapStateToProps = state => ({
-  featuredEvents: state.event.featuredEvents.data
+  featuredEvents: state.event.featuredEvents.data,
+  places: state.event.locations.data
   // categories: state.event.categories.data
 });
 

@@ -68,6 +68,11 @@ class Index extends Component {
       data.categories &&
       categories.find(m => m.name == data.categories.name).bgColor;
 
+    const catBgImage =
+      data &&
+      data.categories &&
+      categories.find(m => m.name == data.categories.name).bgImage;
+
     let avgRate,
       sum = 0;
     if (data) {
@@ -309,165 +314,176 @@ class Index extends Component {
               </div>
             </div>
             <div className="col-md-6 col-12 p-3 review-block">
-              <div className="small-title">Reviews</div>
-              {data.reviews.length ? (
-                <div className="reviews">
-                  {userdata.data &&
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="small-title">Reviews</div>
+                  {data.reviews.length ? (
+                    <div className="reviews">
+                      {userdata.data &&
+                      data.reviews.find(review => {
+                        return review.user_id
+                          ? review.user_id._id == userdata.data._id
+                          : "";
+                      }) ? (
+                        <>
+                          {data.reviews
+                            .filter(review => {
+                              return review.user_id
+                                ? review.user_id._id == userdata.data._id
+                                : "";
+                            })
+                            .map((review, i) => (
+                              <Review key={i} review={review} />
+                            ))}
+                          {data.reviews
+                            .filter(review => {
+                              return review.user_id
+                                ? review.user_id._id != userdata.data._id
+                                : "";
+                            })
+                            .map(
+                              (review, i) =>
+                                i < 2 && <Review key={i} review={review} />
+                            )}
+                        </>
+                      ) : (
+                        data.reviews.map(
+                          (review, i) =>
+                            i < 3 && <Review key={i} review={review} />
+                        )
+                      )}
+                    </div>
+                  ) : (
+                    <div className="reviews">Be the first to add review.</div>
+                  )}
+                  {localStore("token") &&
+                  userdata.data &&
                   data.reviews.find(review => {
                     return review.user_id
                       ? review.user_id._id == userdata.data._id
                       : "";
-                  }) ? (
-                    <>
-                      {data.reviews
-                        .filter(review => {
-                          return review.user_id
-                            ? review.user_id._id == userdata.data._id
-                            : "";
-                        })
-                        .map((review, i) => (
-                          <Review key={i} review={review} />
-                        ))}
-                      {data.reviews
-                        .filter(review => {
-                          return review.user_id
-                            ? review.user_id._id != userdata.data._id
-                            : "";
-                        })
-                        .map(
-                          (review, i) =>
-                            i < 2 && <Review key={i} review={review} />
-                        )}
-                    </>
-                  ) : (
-                    data.reviews.map(
-                      (review, i) => i < 3 && <Review key={i} review={review} />
-                    )
-                  )}
-                </div>
-              ) : (
-                <div className="reviews">Be the first to add review.</div>
-              )}
-              {localStore("token") &&
-              userdata.data &&
-              data.reviews.find(review => {
-                return review.user_id
-                  ? review.user_id._id == userdata.data._id
-                  : "";
-              }) ? null : (
-                <div className="leave-review">
-                  {this.state.leave_review ? (
-                    <div>
-                      <Formik
-                        initialValues={{
-                          comment: "",
-                          stars: 0
-                        }}
-                        validate={values => {
-                          let errors = {};
-                          if (!values.comment) {
-                            errors.comment = "Required";
-                          }
-                          if (!values.stars || values.stars == 0) {
-                            errors.stars = "Required";
-                          }
-                          return errors;
-                        }}
-                        onSubmit={(values, actions) => {
-                          this.props.addReviewRequest({
-                            values,
-                            event_id: data._id
-                          });
-                        }}
-                        render={({
-                          values,
-                          errors,
-                          status,
-                          touched,
-                          handleBlur,
-                          handleChange,
-                          handleSubmit,
-                          isSubmitting,
-                          setFieldValue
-                        }) => (
-                          <Form>
-                            <div className="input-fields">
-                              <div>
-                                <textarea
-                                  name="comment"
-                                  value={values.text}
-                                  onChange={handleChange}
-                                />
-                                {errors.comment && touched.comment && (
-                                  <label className="error">
-                                    {errors.comment}
-                                  </label>
-                                )}
-                              </div>
-                              <div>
-                                <StarRatings
-                                  rating={values.stars}
-                                  // rating={this.state.rating}
-                                  starRatedColor="#fbc000"
-                                  changeRating={value =>
-                                    setFieldValue("stars", value)
-                                  }
-                                  starDimension="2em"
-                                  starSpacing="0px"
-                                  numberOfStars={5}
-                                  name="stars"
-                                />
-                                {errors.stars && touched.stars && (
-                                  <label className="error">
-                                    {errors.stars}
-                                  </label>
-                                )}
-                              </div>
-                              <div>
-                                <button
-                                  className="blue-button"
-                                  onClick={() =>
-                                    this.setState({ leave_review: false })
-                                  }
-                                >
-                                  Cancel
-                                </button>
-                                <button
-                                  className="blue-button ml-2"
-                                  type="submit"
-                                >
-                                  Add Review
-                                </button>
-                              </div>
-                            </div>
-                          </Form>
-                        )}
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      className="leave-review"
-                      title={!localStore("token") && "Login First"}
-                      onClick={() => {
-                        if (localStore("token")) {
-                          this.setState({ leave_review: true });
-                        } else {
-                          this.props.history.push("/auth/");
-                        }
-                      }}
-                    >
-                      Leave Review
+                  }) ? null : (
+                    <div className="leave-review">
+                      {this.state.leave_review ? (
+                        <div>
+                          <Formik
+                            initialValues={{
+                              comment: "",
+                              stars: 0
+                            }}
+                            validate={values => {
+                              let errors = {};
+                              if (!values.comment) {
+                                errors.comment = "Required";
+                              }
+                              if (!values.stars || values.stars == 0) {
+                                errors.stars = "Required";
+                              }
+                              return errors;
+                            }}
+                            onSubmit={(values, actions) => {
+                              this.props.addReviewRequest({
+                                values,
+                                event_id: data._id
+                              });
+                            }}
+                            render={({
+                              values,
+                              errors,
+                              status,
+                              touched,
+                              handleBlur,
+                              handleChange,
+                              handleSubmit,
+                              isSubmitting,
+                              setFieldValue
+                            }) => (
+                              <Form>
+                                <div className="input-fields">
+                                  <div>
+                                    <textarea
+                                      name="comment"
+                                      value={values.text}
+                                      onChange={handleChange}
+                                    />
+                                    {errors.comment && touched.comment && (
+                                      <label className="error">
+                                        {errors.comment}
+                                      </label>
+                                    )}
+                                  </div>
+                                  <div>
+                                    <StarRatings
+                                      rating={values.stars}
+                                      // rating={this.state.rating}
+                                      starRatedColor="#fbc000"
+                                      changeRating={value =>
+                                        setFieldValue("stars", value)
+                                      }
+                                      starDimension="2em"
+                                      starSpacing="0px"
+                                      numberOfStars={5}
+                                      name="stars"
+                                    />
+                                    {errors.stars && touched.stars && (
+                                      <label className="error">
+                                        {errors.stars}
+                                      </label>
+                                    )}
+                                  </div>
+                                  <div>
+                                    <button
+                                      className="blue-button"
+                                      onClick={() =>
+                                        this.setState({ leave_review: false })
+                                      }
+                                    >
+                                      Cancel
+                                    </button>
+                                    <button
+                                      className="blue-button ml-2"
+                                      type="submit"
+                                    >
+                                      Add Review
+                                    </button>
+                                  </div>
+                                </div>
+                              </Form>
+                            )}
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className="leave-review"
+                          title={!localStore("token") && "Login First"}
+                          onClick={() => {
+                            if (localStore("token")) {
+                              this.setState({ leave_review: true });
+                            } else {
+                              this.props.history.push("/auth/");
+                            }
+                          }}
+                        >
+                          Leave Review
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
-              )}
+                <div className="col-md-6 catBgImage">
+                  <img
+                    src={catBgImage}
+                    width="100%"
+                  />
+                </div>
+              </div>
             </div>
           </>
         ) : (
           this.props.isLoading &&
           !data && (
             <div className="loader-div">
-              <Loader type="Oval" color="#555"  height="30" width="30"  />
+              <Loader type="Oval" color="#555" height="30" width="30" />
             </div>
           )
         )}
@@ -487,7 +503,7 @@ const mapDispatchToProps = dispatch => ({
   getEventById: data => dispatch(actions.getEventByIdRequest(data)),
   addReviewRequest: data => dispatch(actions.addReviewRequest(data)),
   addInterestRequest: data => dispatch(actions.addInterestRequest(data)),
-  getEventByIdUnmount: () => dispatch(actions.getEventByIdUnmount()),
+  getEventByIdUnmount: () => dispatch(actions.getEventByIdUnmount())
 });
 
 export default connect(

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./category.scss";
+import "./subCategory.scss";
 import TopMenu from "../generic/TopMenu";
 import Description from "../generic/Description";
 import { withRouter } from "react-router-dom";
@@ -14,7 +14,7 @@ import crafts_img from "../../images/crafts_img.png";
 import artisan_img from "../../images/crafts_img.png";
 import Loader from "react-loader-spinner";
 
-class Category extends Component {
+class SubCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,51 +31,51 @@ class Category extends Component {
   }
   componentDidMount() {
     const { filters } = this.props;
-    if (filters.categories && filters.categories.data && !this.state.id) {
-      const oneCategory = filters.categories.data.data.find(category => {
-        return category.name === this.props.match.path.replace("/", "");
-      });
+    // if (filters.categories && filters.categories.data && !this.state.id) {
+    //   const oneCategory = filters.categories.data.data.find(category => {
+    //     return category.name === this.props.match.path.replace("/", "");
+    //   });
 
-      if (oneCategory) {
-        if (!this.state.id) {
-          this.setState({ id: oneCategory._id });
-        }
-        this.props.getEventsByCategoryRequest({
-          id: oneCategory._id,
-          page_number: 1,
-          ageFlag: filters.ageFlag,
-          eventState: filters.selectedState,
-          eventCity: filters.selectedCity
-        });
-      }
-    }
-  }
-  getSubCategory = sub_id => {
-    // this.setState({
-    //   setSubcat: 'ho'
-    // });
-    const { filters } = this.props;
+    //   if (oneCategory) {
+    //   if (this.state.id != this.props.match.params.id) {
+    //     this.setState({ id: this.props.match.params.id });
+    //   }
     this.props.getEventsByCategoryRequest({
-      sub_id: sub_id,
+      sub_id: this.props.match.params.id,
       page_number: 1,
       ageFlag: filters.ageFlag,
       eventState: filters.selectedState,
       eventCity: filters.selectedCity
     });
-  };
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      const { filters } = this.props;
+      // if (filters.categories && filters.categories.data && !this.state.id) {
+      //   const oneCategory = filters.categories.data.data.find(category => {
+      //     return category.name === this.props.match.path.replace("/", "");
+      //   });
 
+      //   if (oneCategory) {
+      //   if (this.state.id != this.props.match.params.id) {
+      //     this.setState({ id: this.props.match.params.id });
+      //   }
+      this.props.getEventsByCategoryRequest({
+        sub_id: this.props.match.params.id,
+        page_number: 1,
+        ageFlag: filters.ageFlag,
+        eventState: filters.selectedState,
+        eventCity: filters.selectedCity
+      });
+      //   }
+    }
+  }
+  handleSubcat = sub_id => {
+    this.setState({ id: sub_id });
+  };
   render() {
     const { categories2, location } = this.props;
-    // const cat = {
-    //   name: "test",
-    //   description: "description"
-    // };
-    const cat =
-      this.props.categories && this.props.categories.data
-        ? this.props.categories.data.find(
-            category => this.props.location.pathname === "/" + category.name
-          )
-        : "";
+    const cat = this.props.category;
     const categories = [
       {
         name: "duty_free",
@@ -104,11 +104,11 @@ class Category extends Component {
       <div className="event-page">
         <div className="row">
           <CategoryNav2
+            handleSubcat={this.handleSubcat}
             {...this.props}
             categories={categories2}
             location={location}
             cat={cat}
-            getSubCategory={this.getSubCategory}
           />
         </div>
 
@@ -165,5 +165,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Category)
+  )(SubCategory)
 );

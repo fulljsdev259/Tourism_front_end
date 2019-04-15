@@ -2,7 +2,14 @@ import React from "react";
 import CategoryNavItem from "../generic/CategoryNavItem";
 import { Link } from "react-router-dom";
 
-export default function CategoryNav2({ categories, location, cat, getSubCategory, history }) {
+export default function CategoryNav2({
+  categories,
+  location,
+  cat,
+  getSubCategory,
+  history,
+  handleSubcat
+}) {
   return (
     <div className="category-nav2 col-lg-8 col-md-10 col-sm-10 col-xs-10 offset-sm-1 offset-md-1 offset-lg-2 p-0">
       {categories.map((category, index) => (
@@ -15,7 +22,7 @@ export default function CategoryNav2({ categories, location, cat, getSubCategory
               <Link
                 to={category.path}
                 style={{ textTransform: "capitalize" }}
-                className={category.name == cat.name ? "active-link" : ''}
+                className={category.name == cat.name ? "active-link" : ""}
               >
                 {category.name.replace("_", " ")}
               </Link>
@@ -27,24 +34,31 @@ export default function CategoryNav2({ categories, location, cat, getSubCategory
               <ul className="list-unstyled">
                 {category.subCategory.map((sub_category, i) => (
                   <li key={i}>
-                    {/* <Link
-                      to={category.path}
+                    <Link
+                      to={`${category.path}/${sub_category._id}`}
+                      // to={{ pathname: `/event-detail/${event._id}`, state: event }}
                       style={{ textTransform: "capitalize" }}
-                      onClick={()=>getSubCategory(sub_category._id)}
+                      onClick={()=>handleSubcat(sub_category._id)}
                     >
                       {sub_category.name.replace("_", " ")}
-                    </Link> */}
-                    <a onClick={()=>{getSubCategory(sub_category._id);history.push(category.path)}}>
+                    </Link>
+                    {/* <a
+                      onClick={() => {
+                        history.push(category.path);
+                        setTimeout(() => {
+                          getSubCategory(sub_category._id);
+                        }, 0);
+                      }}
+                    >
                       {sub_category.name.replace("_", " ")}
-                    </a>
+                    </a> */}
                   </li>
                 ))}
               </ul>
             </div>
           ) : null}
         </div>
-      )
-      )}
+      ))}
     </div>
   );
 }

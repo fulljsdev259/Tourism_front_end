@@ -58,7 +58,7 @@ class Auth extends Component {
           <div className="row login-form-row">
             <div className="col-lg-8 offset-lg-1 col-md-7 offset-md-2 col-sm-12 col-xs-12 login-form register-form">
               <div className="form-section">
-                <nav>
+                <nav style={{ paddingBottom: "30px" }}>
                   <span
                     className={`form-title ${
                       location.pathname === "/auth" ||
@@ -74,7 +74,7 @@ class Auth extends Component {
                       location.pathname === "/auth/register" ? " active" : ""
                     }`}
                   >
-                    <Link to="/auth/register">Sign up</Link>
+                    <Link to="/auth/register">Register</Link>
                   </span>
                 </nav>
 
