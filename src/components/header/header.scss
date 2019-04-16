@@ -112,7 +112,6 @@
           left: 0;
           margin: auto;
         }
-
         ul {
           list-style: none;
           margin: 0;
@@ -249,7 +248,7 @@
               box-shadow: 0 6px 8px 0 rgba(211, 207, 207, 0.5);
             }
             &:before {
-              content: "";
+              // content: "";
               @include position-center;
               left: auto;
               background-color: #5165ff;
@@ -259,7 +258,7 @@
             }
             &:after {
               opacity: 0;
-              content: attr(data-text);
+              // content: attr(data-text);
               @include position-center;
               color: #fff;
               overflow: hidden;
@@ -448,6 +447,9 @@
         font-weight: bold;
         color: #fff;
         width: fit-content;
+        @media all and (max-width: 767px) {
+          color: #4c4c4c;
+        }
       }
       a:hover {
         color: #fbc000;

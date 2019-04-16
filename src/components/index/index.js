@@ -24,12 +24,15 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { image_formatter } from "../../services/helper";
 import mapMarker from "../../images/icon/location_w.svg";
+import { stat } from "fs";
 
 class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: false
+      status: false,
+      stateName: "",
+      stateId: ""
     };
     if (props.categories) {
       const one_category = this.props.categories.find(
@@ -50,8 +53,18 @@ class Index extends Component {
       }
     }
   }
+
+  handleInputChange = state => {
+    this.setState({ stateName: state.name, stateId: state._id });
+  };
   render() {
-    const { categories, featuredEvents } = this.props;
+    const { categories, featuredEvents, places } = this.props;
+    if (this.state.stateId == "" && places.data) {
+      this.setState({
+        stateId: places.data[0]._id,
+        stateName: places.data[0].name
+      });
+    }
     const popular = [
       { name: "Nulook Company", image: i5 },
       { name: "Amoy Yae'l Purses", image: i6 },
@@ -80,15 +93,61 @@ class Index extends Component {
         </div>
         <div className="second-block row">
           <img className="second-block-img" src={home_2} />
-          <div className="block">
-            <div className="title">
+          <div className="block block1_1">
+            <div
+              className="block-title"
+              style={{ textTransform: "uppercase" }}
+            >
               POPULAR{" "}
-              <span style={{ textDecoration: "underline" }}>ARTISAN</span>{" "}
-              STORES IN KINGSTON
+              <span
+                style={{
+                  textDecoration: "underline"
+                }}
+              >
+                ARTISAN
+              </span>{" "}
+              STORES IN {" "} {this.state.stateName}
             </div>
-            <div className="setting">
-              <div className="setting-title">kingston</div>
-              <img className="setting-icon" src={ic_settings} />
+            <div className="place-nav">
+              {places.data && places.data.length ? (
+                <div className="place-nav-item setting ">
+                  <div className="place-nav-item-header">
+                    <div className="place-title setting-title">
+                      <a style={{ textTransform: "capitalize" }}>
+                        {this.state.stateName == ""
+                          ? places.data[0].name
+                          : this.state.stateName}
+                      </a>
+                    </div>
+                  </div>
+                  <div className="place-nav-item-dropdown rounded-bottom">
+                    <ul className="list-unstyled">
+                      {/* <li>
+                        <a
+                          onClick={() =>
+                            this.handleInputChange("All Locations")
+                          }
+                        >
+                          All Locations
+                        </a>
+                      </li> */}
+                      {places.data.map((state, i) => (
+                        <li key={i}>
+                          <a
+                            style={{ textTransform: "capitalize" }}
+                            onClick={() => this.handleInputChange(state)}
+                          >
+                            {state.name.replace("_", " ")}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className=" setting-icon">
+                    <img className="place-img" src={ic_settings} />
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
           <div className="block">
@@ -96,18 +155,26 @@ class Index extends Component {
             featuredEvents.data &&
             featuredEvents.data.trendingEvents &&
             featuredEvents.data.trendingEvents.results.length ? (
-              featuredEvents.data.trendingEvents.results.map((item, index) => (
-                <div className="popular" key={index}>
-                  <img
-                    src={
-                      item.image
-                        ? image_formatter(item.image.secure_url, 300)
-                        : null
-                    }
-                  />
-                  <div className="title">{item.title}</div>
-                </div>
-              ))
+              featuredEvents.data.trendingEvents.results
+                .filter(m =>
+                  this.state.stateId ? m.EventState == this.state.stateId : m
+                )
+                .map((item, index) => (
+                  <span key={index}>
+                    {index < 4 && (
+                      <div className="popular">
+                        <img
+                          src={
+                            item.image
+                              ? image_formatter(item.image.secure_url, 300)
+                              : null
+                          }
+                        />
+                        <div className="title">{item.title}</div>
+                      </div>
+                    )}
+                  </span>
+                ))
             ) : (
               <div className="popular">No Stores for Artisan</div>
             )}

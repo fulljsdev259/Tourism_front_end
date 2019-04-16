@@ -94,13 +94,19 @@ class Header extends React.Component {
               </Link>
               <ul className="menu">
                 <li data-text="ABOUT">
-                  <Link to="/aboutus">About</Link>
+                  <Link to="/aboutus" onClick={this.ToggleBody}>
+                    About
+                  </Link>
                 </li>
-                <li data-text="Events" onClick={() => {}}>
-                  <Link to="/events">Events</Link>
+                <li data-text="Events">
+                  <Link to="/events" onClick={this.ToggleBody}>
+                    Events
+                  </Link>
                 </li>
-                <li data-text="CONTACT" onClick={() => {}}>
-                  <Link to="/contactus">Contact us</Link>
+                <li data-text="CONTACT">
+                  <Link to="/contactus" onClick={this.ToggleBody}>
+                    Contact us
+                  </Link>
                 </li>
                 <li
                   style={{
@@ -156,7 +162,9 @@ class Header extends React.Component {
                         //     : ""
                         // }`}
                       >
-                        Register / Login
+                        <Link to="/auth/" onClick={this.ToggleBody}>
+                          Register / Login
+                        </Link>
                       </div>
                     </div>
                   </li>

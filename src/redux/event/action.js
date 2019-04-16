@@ -160,6 +160,7 @@ export function* getFeaturedEventsRequest(action) {
   // const header = {
   //   Authorization: localStore("token")
   // };
+  // const { cat_id, state_id } = action.payload;
   try {
     const response = yield call(
       fireApi,
