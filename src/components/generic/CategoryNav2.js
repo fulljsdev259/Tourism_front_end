@@ -4,15 +4,11 @@ import { Link } from "react-router-dom";
 
 export default function CategoryNav2({
   categories,
-  location,
-  cat,
-  getSubCategory,
-  history,
   handleSubcat
 }) {
   return (
     <div className="category-nav2 col-lg-8 col-md-10 col-sm-10 col-xs-10 offset-sm-1 offset-md-1 offset-lg-2 p-0">
-      {categories.map((category, index) => (
+      {categories && categories.map((category, index) => (
         <div className="category-nav-item2 " key={index}>
           <div className="category-nav-item-header2">
             <div className="category-img2">
@@ -22,7 +18,7 @@ export default function CategoryNav2({
               <Link
                 to={category.path}
                 style={{ textTransform: "capitalize" }}
-                className={category.name == cat.name ? "active-link" : ""}
+                className={"active-link"}
               >
                 {category.name.replace("_", " ")}
               </Link>
@@ -42,16 +38,6 @@ export default function CategoryNav2({
                     >
                       {sub_category.name.replace("_", " ")}
                     </Link>
-                    {/* <a
-                      onClick={() => {
-                        history.push(category.path);
-                        setTimeout(() => {
-                          getSubCategory(sub_category._id);
-                        }, 0);
-                      }}
-                    >
-                      {sub_category.name.replace("_", " ")}
-                    </a> */}
                   </li>
                 ))}
               </ul>

@@ -50,20 +50,6 @@ class Category extends Component {
       }
     }
   }
-  getSubCategory = sub_id => {
-    // this.setState({
-    //   setSubcat: 'ho'
-    // });
-    const { filters } = this.props;
-    this.props.getEventsByCategoryRequest({
-      sub_id: sub_id,
-      page_number: 1,
-      ageFlag: filters.ageFlag,
-      eventState: filters.selectedState,
-      eventCity: filters.selectedCity
-    });
-  };
-
   render() {
     const { categories2, location } = this.props;
     // const cat = {
@@ -108,7 +94,6 @@ class Category extends Component {
             categories={categories2}
             location={location}
             cat={cat}
-            getSubCategory={this.getSubCategory}
           />
         </div>
 

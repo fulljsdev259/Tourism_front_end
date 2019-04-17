@@ -38,9 +38,6 @@ class Index extends Component {
     if (props.match.params.id) {
       props.getEventById(props.match.params.id);
     }
-
-    // window.location.reload();
-    // FB.XFBML.parse();
   }
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -62,15 +59,18 @@ class Index extends Component {
     const catImage =
       data &&
       data.categories &&
+      categories &&
       categories.find(m => m.name == data.categories.name).image;
     const catBgColor =
       data &&
       data.categories &&
+      categories &&
       categories.find(m => m.name == data.categories.name).bgColor;
 
     const catBgImage =
       data &&
       data.categories &&
+      categories &&
       categories.find(m => m.name == data.categories.name).bgImage;
 
     let avgRate,
@@ -90,14 +90,30 @@ class Index extends Component {
     }
     return (
       <div className="event-details row">
-        {/* <ReactFBLike language="en_US" appId="717589285046812" version="v2.12"  share="" showFaces="" width=""/> */}
-        {/* <FacebookProvider appId="2194646720630049">
+        {/* <ReactFBLike
+          language="en_US"
+          appId="717589285046812"
+          version="v2.12"
+          share=""
+          showFaces=""
+          width=""
+        /> */}
+
+        {/* <FacebookProvider
+          appId="2194646720630049"
+          className="fbblikee"
+          style={{ display: "none" }}
+        >
           <Like
             href="http://www.facebook.com"
             colorScheme="dark"
             text={false}
+            version="8.0.4"
+            className="fbblikee"
+            style={{ display: "none" }}
           />
         </FacebookProvider> */}
+
         {data && data.categories && (
           <Link to={{ pathname: `/${data.categories.name}` }}>
             <div className="arrowBack">
@@ -471,10 +487,7 @@ class Index extends Component {
                   )}
                 </div>
                 <div className="col-md-6 catBgImage">
-                  <img
-                    src={catBgImage}
-                    width="100%"
-                  />
+                  <img src={catBgImage} width="100%" />
                 </div>
               </div>
             </div>
@@ -482,8 +495,8 @@ class Index extends Component {
         ) : (
           this.props.isLoading &&
           !data && (
-            <div className="loader-div">
-              <Loader type="Oval" color="#555" height="30" width="30" />
+            <div className="loader-div" style={{ margin: "40px auto" }}>
+              <Loader type="Oval" color="#555" height="30" width="100vw" />
             </div>
           )
         )}

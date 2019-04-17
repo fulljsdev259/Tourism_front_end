@@ -13,8 +13,11 @@ class Login extends Component {
         <div className="fb-btn">
           <FacebookLogin
             appId="2194646720630049"
+            autoLoad={true}
             fields="name,email,picture"
-            callback={this.responseFacebook}
+            callback={this.props.responseFacebook}
+            icon="fa-facebook"
+            textButton="Log in with Facebook"
           />
         </div>
         <div className="row or-section">
@@ -137,7 +140,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginRequest: data => dispatch(actions.loginRequest(data))
+  loginRequest: data => dispatch(actions.loginRequest(data)),
 });
 
 export default withRouter(

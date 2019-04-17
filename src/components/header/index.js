@@ -9,6 +9,8 @@ import * as actions from "../../redux/actions";
 import { localStore } from "../../services/storage";
 import { ReactComponent as UserIcon } from "../../images/user.svg";
 import user from "../../images/user.svg";
+import CategoryNav3 from "../generic/CategoryNav3";
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +50,7 @@ class Header extends React.Component {
     if (!this.props.categoryDataState) {
       this.props.getCategory(this.props.categories);
     }
-    let { loggedUserData, location, userdata } = this.props;
+    let { loggedUserData, location, userdata, categories2 } = this.props;
     return (
       <div className="fix-header">
         <div className="menuMobile">
@@ -88,22 +90,40 @@ class Header extends React.Component {
 
             <button className="menu-toggle" onClick={this.ToggleBody} />
             <nav>
+              <div className="row">
+                <CategoryNav3 {...this.props} categories={categories2} handleClick={this.ToggleBody}/>
+              </div>
               <Link to="/">
                 {" "}
                 <img onClick={this.ToggleBody} className="logo" src={Logo} />
               </Link>
               <ul className="menu">
-                <li data-text="ABOUT">
+                <li
+                  data-text="ABOUT"
+                  style={{
+                    marginRight: "10px"
+                  }}
+                >
                   <Link to="/aboutus" onClick={this.ToggleBody}>
                     About
                   </Link>
                 </li>
-                <li data-text="Events">
+                <li
+                  data-text="Events"
+                  style={{
+                    marginRight: "10px"
+                  }}
+                >
                   <Link to="/events" onClick={this.ToggleBody}>
                     Events
                   </Link>
                 </li>
-                <li data-text="CONTACT">
+                <li
+                  data-text="CONTACT"
+                  style={{
+                    marginRight: "10px"
+                  }}
+                >
                   <Link to="/contactus" onClick={this.ToggleBody}>
                     Contact us
                   </Link>
@@ -162,7 +182,7 @@ class Header extends React.Component {
                         //     : ""
                         // }`}
                       >
-                        <Link to="/auth/" onClick={this.ToggleBody}>
+                        <Link to="/auth">
                           Register / Login
                         </Link>
                       </div>

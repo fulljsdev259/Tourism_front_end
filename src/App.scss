@@ -12,6 +12,17 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
 @import "./components/Events/events.scss";
 @import "./components/event-details/event-details.scss";
 
+// #u_0_4 {
+//   display: none !important;
+// }
+// .pluginConnectTextDark {
+//   display: none !important;
+// }
+
+// .fbblikee {
+//   display: none !important;
+// }
+
 .category-nav {
   width: 90%;
   justify-content: space-between;
@@ -340,6 +351,62 @@ textarea {
   }
 }
 
-.loader-div{
+.loader-div {
   text-align: center !important;
+}
+
+.category-nav3 {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 30px;
+  margin-top: 60px;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out,
+  -webkit-transform 0.2s ease-out;
+transition-delay: 0.75s;
+  .category-nav-item-header3 {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out,
+    -webkit-transform 0.2s ease-out;
+  transition-delay: 0.75s;
+  }
+
+  .category-nav-item3 {
+    flex-shrink: 0;
+    flex-grow: 1;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out,
+      -webkit-transform 0.2s ease-out;
+    transition-delay: 0.75s;
+  }
+  .category-nav-item3:not(:first-child) {
+    margin-left: 1em;
+  }
+
+  @each $current-color in $category-colors {
+    $i: index($category-colors, $current-color);
+    .category-nav-item3:nth-child(#{$i}) {
+      text-align: center;
+      display: flex;
+      .category-img3 {
+        img {
+          width: 40px;
+          height: 40 px;
+        }
+      }
+      .title3 {
+        font-size: 14px;
+        font-weight: 600;
+        margin: auto 0px;
+        box-shadow: inset 0px -30px 0 -20px $current-color;
+        a {
+          color: #000000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+.ReactModal__Content {
+  border-radius: 1px 0px 0px 0px !important;
 }

@@ -56,7 +56,7 @@ class Auth extends Component {
       >
         <div className="container ">
           <div className="row login-form-row">
-            <div className="col-lg-8 offset-lg-1 col-md-7 offset-md-2 col-sm-12 col-xs-12 login-form register-form">
+            <div className="col-lg-8 offset-lg-1 col-md-8 offset-md-1 col-sm-12 col-xs-12 login-form register-form">
               <div className="form-section">
                 <nav style={{ paddingBottom: "30px" }}>
                   <span
@@ -79,8 +79,18 @@ class Auth extends Component {
                 </nav>
 
                 <Switch>
-                  <Route path="/auth/register" render={() => <Signup />} />
-                  <Route path="/auth/" render={() => <Login />} />
+                  <Route
+                    path="/auth/register"
+                    render={() => (
+                      <Signup responseFacebook={this.responseFacebook} />
+                    )}
+                  />
+                  <Route
+                    path="/auth/"
+                    render={() => (
+                      <Login responseFacebook={this.responseFacebook} />
+                    )}
+                  />
                 </Switch>
               </div>
             </div>
@@ -97,7 +107,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // signupRequest: data => dispatch(actions.signupRequest(data))
+  socialLogin: data => dispatch(actions.socialLoginRequest(data))
 });
 
 export default withRouter(

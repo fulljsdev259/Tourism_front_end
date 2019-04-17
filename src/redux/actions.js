@@ -10,6 +10,10 @@ export const signupRequest = createAction(constants.SIGNUP_REQUEST);
 export const signupSuccess = createAction(constants.SIGNUP_SUCCESS);
 export const signupError = createAction(constants.SIGNUP_ERROR);
 
+export const socialLoginRequest = createAction(constants.SOCIAL_LOGIN_REQUEST);
+export const socialLoginSuccess = createAction(constants.SOCIAL_LOGIN_SUCCESS);
+export const socialLoginError = createAction(constants.SOCIAL_LOGIN_ERROR);
+
 export const getCategoriesRequest = createAction(constants.GET_CATEGORIES_REQUEST);
 export const getCategoriesSuccess = createAction(constants.GET_CATEGORIES_SUCCESS);
 export const getCategoriesError = createAction(constants.GET_CATEGORIES_ERROR);

@@ -5,10 +5,10 @@ import {
   signupRequest,
   getUserDataRequest,
   //   isAlreadyLoggedIn,
-    logout,
+  logout,
   //   updateUserRequest,
   //   updatePasswordRequest,
-  //   socialLoginRequest,
+  socialLoginRequest,
   contactUsRequest
 } from "./auth/action";
 import {
@@ -24,14 +24,14 @@ import {
   //   unlikeCommentRequest,
   //   getInterestedEventsRequest,
   //   searchEventsRequest,
-    getFeaturedEventsRequest
+  getFeaturedEventsRequest
 } from "./event/action";
 
 function* watchActions() {
   yield takeLatest(constants.LOGIN_REQUEST, loginRequest);
   yield takeLatest(constants.SIGNUP_REQUEST, signupRequest);
-  //   yield takeLatest(constants.SOCIAL_LOGIN_REQUEST, socialLoginRequest);
-    yield takeLatest(constants.GET_USER_DATA_REQUEST, getUserDataRequest);
+  yield takeLatest(constants.SOCIAL_LOGIN_REQUEST, socialLoginRequest);
+  yield takeLatest(constants.GET_USER_DATA_REQUEST, getUserDataRequest);
   //   yield takeLatest(constants.UPDATE_USER_REQUEST, updateUserRequest);
   //   yield takeLatest(constants.UPDATE_PASSWORD_REQUEST, updatePasswordRequest);
   //   yield takeLatest(
@@ -45,7 +45,7 @@ function* watchActions() {
   );
   yield takeLatest(constants.GET_EVENT_BY_ID_REQUEST, getEventByIdRequest);
   //   yield takeLatest(constants.IS_ALREADY_LOGGED_IN, isAlreadyLoggedIn);
-    yield takeLatest(constants.LOGOUT, logout);
+  yield takeLatest(constants.LOGOUT, logout);
   //   yield takeLatest(constants.ADD_COMMENT_REQUEST, addCommentRequest);
   //   yield takeLatest(constants.LIKE_COMMENT_REQUEST, likeCommentRequest);
   //   yield takeLatest(constants.UNLIKE_COMMENT_REQUEST, unlikeCommentRequest);
@@ -54,10 +54,10 @@ function* watchActions() {
   //     constants.GET_INTERESTED_EVENTS_REQUEST,
   //     getInterestedEventsRequest
   //   );
-    yield takeLatest(
-      constants.GET_FEATURED_EVENTS_REQUEST,
-      getFeaturedEventsRequest
-    );
+  yield takeLatest(
+    constants.GET_FEATURED_EVENTS_REQUEST,
+    getFeaturedEventsRequest
+  );
   //   yield takeLatest(constants.SEARCH_EVENTS_REQUEST, searchEventsRequest);
   yield takeLatest(constants.ADD_INTEREST_REQUEST, addInterestRequest);
   yield takeLatest(constants.CONTACT_US_REQUEST, contactUsRequest);

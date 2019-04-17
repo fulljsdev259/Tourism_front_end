@@ -66,6 +66,35 @@ export function* signupRequest(action) {
   }
 }
 
+export function* socialLoginRequest(action) {
+  try {
+    const { name, email, imageUrl } = action.payload;
+    let [first, ...last] = name.split(" ");
+    last = last.join(" ");
+    const response = yield call(fireApi, "POST", "social/login", {
+      email,
+      imageUrl,
+      name: {
+        first,
+        last
+      }
+    });
+    if (response) {
+      if (response.data && response.data.token) {
+        localStore("token", response.data.token);
+        yield put(actions.socialLoginSuccess());
+        // yield put(actions.getInterestedEventsRequest());
+        yield put(actions.getUserDataRequest(response.data.token));
+      } else {
+        toast.error(response.data.message);
+        yield put(actions.socialLoginError());
+      }
+    }
+  } catch (e) {
+    yield put(actions.socialLoginError());
+  }
+}
+
 export function* logout(action) {
   localStore("clear");
 }

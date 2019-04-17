@@ -19,8 +19,11 @@ class SignUp extends Component {
         <div className="fb-btn">
           <FacebookLogin
             appId="2194646720630049"
+            autoLoad={true}
             fields="name,email,picture"
-            callback={this.responseFacebook}
+            callback={this.props.responseFacebook}
+            textButton="Log in with Facebook"
+            icon="fa-facebook"
           />
         </div>
         <div className="row or-section">

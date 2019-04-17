@@ -31,11 +31,11 @@ const customStyles = {
     border: "none",
     marginLeft: window.innerWidth <= 767 ? "0%" : "35%",
     transform: "translate(0%, 0%)"
+    // borderRadius: "1px 4px 4px"
   }
 };
 
 const customStylesRegister = {
-
   content: {
     top: "0%",
     left: "0%",
@@ -46,6 +46,7 @@ const customStylesRegister = {
     backgroundColor: "#5165FF",
     marginLeft: window.innerWidth <= 767 ? "0%" : "35%",
     transform: "translate(0%, 0%)"
+    // borderRadius: "1px 4px 4px"
   }
 };
 
@@ -156,6 +157,7 @@ class Home extends Component {
           modalStateHandler={this.handleModalState}
           getCategory={this.handleGetCategory}
           categoryDataState={this.state.categoryData}
+          categories2={categories}
         />
         <div className="container-fluid body-top">
           <Switch>
