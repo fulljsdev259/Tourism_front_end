@@ -60,38 +60,14 @@ class Header extends React.Component {
             </div>
           </Link>
           <div className="itemDiv">
-            {/* {localStore("token") ? (
-              <span style={{ marginRight: "66px", marginTop: "9px" }}>
-                {loggedUserData && loggedUserData.name
-                  ? loggedUserData.name + ", "
-                  : null}
-
-                <br />
-                <span
-                  onClick={() => {
-                    this.setState({
-                      apiCall: true
-                    });
-                    this.props.modalStateHandler(false, false);
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("token_user");
-                    this.props.history.push("/");
-                    setTimeout(() => {
-                      this.setState({
-                        apiCall: false
-                      });
-                    }, 1000);
-                  }}
-                >
-                  LOGOUT
-                </span>
-              </span>
-            ) : null} */}
-
             <button className="menu-toggle" onClick={this.ToggleBody} />
             <nav>
               <div className="row">
-                <CategoryNav3 {...this.props} categories={categories2} handleClick={this.ToggleBody}/>
+                <CategoryNav3
+                  {...this.props}
+                  categories={categories2}
+                  handleClick={this.ToggleBody}
+                />
               </div>
               <Link to="/">
                 {" "}
@@ -105,7 +81,7 @@ class Header extends React.Component {
                   }}
                 >
                   <Link to="/aboutus" onClick={this.ToggleBody}>
-                    About
+                    ABOUT
                   </Link>
                 </li>
                 <li
@@ -115,7 +91,7 @@ class Header extends React.Component {
                   }}
                 >
                   <Link to="/events" onClick={this.ToggleBody}>
-                    Events
+                    EVENTS
                   </Link>
                 </li>
                 <li
@@ -125,36 +101,65 @@ class Header extends React.Component {
                   }}
                 >
                   <Link to="/contactus" onClick={this.ToggleBody}>
-                    Contact us
+                    CONTACT US
                   </Link>
                 </li>
-                <li
-                  style={{
-                    marginTop: "10px"
-                  }}
-                  data-text="GET COMPANY LISTED"
-                  onClick={() => {
-                    this.ToggleBody();
-                    this.props.modalStateHandler(
-                      true,
-                      true
-                      // false,
-                      // false,
-                      // false,
-                      // false,
-                      // false,
-                      // true,
-                      // true
-                    );
-                  }}
-                >
-                  <span className="blueBtn">GET COMPANY LISTED </span>
-                </li>
-
                 {!userdata.data ||
                 (userdata.data &&
                   userdata.data.companyDetails &&
                   userdata.data.companyDetails.title) ? (
+                  <li
+                    style={{
+                      marginTop: "10px"
+                    }}
+                    data-text="GET COMPANY LISTED"
+                    onClick={() => {
+                      if (userdata.data) {
+                      } else {
+                        this.ToggleBody();
+                        this.props.modalStateHandler(true, true);
+                      }
+                    }}
+                  >
+                    <span className="blueBtn">GET COMPANY LISTED </span>
+                  </li>
+                ) : null}
+
+                {localStore("token") && this.props.userdata.data ? (
+                  <li data-text="GET COMPANY LISTED" className="registerLi">
+                    <div className="lower-section">
+                      <div className="registerDiv logged-in">
+                        <div className="name">
+                          {this.props.userdata.data.name.first}{" "}
+                          {this.props.userdata.data.name.last}
+                        </div>
+                        <div>{this.props.userdata.data.email}</div>
+                        <div className="hr" />
+                        <div
+                          className="logout"
+                          onClick={() => {
+                            this.setState({
+                              apiCall: true
+                            });
+                            this.props.modalStateHandler(
+                              false,
+                              false,
+                              false,
+                              false,
+                              false,
+                              false,
+                              false
+                            );
+                            localStorage.removeItem("token");
+                            this.props.logout();
+                          }}
+                        >
+                          LOG OUT
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ) : (
                   <li
                     data-text="GET COMPANY LISTED"
                     className="registerLi"
@@ -172,24 +177,11 @@ class Header extends React.Component {
                     }}
                   >
                     <div className="lower-section">
-                      <div
-                        className="registerDiv"
-                        // className={`registerDiv ${
-                        //   location.pathname == "/auth" ||
-                        //   location.pathname == "/auth/" ||
-                        //   location.pathname == "/auth/register"
-                        //     ? "link-active"
-                        //     : ""
-                        // }`}
-                      >
-                        <Link to="/auth">
-                          Register / Login
-                        </Link>
+                      <div className="registerDiv">
+                        <Link to="/auth">REGISTER / LOGIN</Link>
                       </div>
                     </div>
                   </li>
-                ) : (
-                  <li data-text="GET COMPANY LISTED" className="registerLi" />
                 )}
               </ul>
             </nav>
@@ -392,7 +384,6 @@ class Header extends React.Component {
                         false
                       );
                       localStorage.removeItem("token");
-                      localStorage.removeItem("token_user");
                       this.props.logout();
                     }}
                   >

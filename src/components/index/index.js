@@ -81,7 +81,12 @@ class Index extends Component {
     ];
     return (
       <>
-        {categories ? <CategoryNav categories={categories} /> : null}
+        {categories ? (
+          <CategoryNav
+            categories={categories}
+            handleSubcat={this.props.handleSubcat}
+          />
+        ) : null}
         <div className="first-block row">
           <img src={i1} />
           <div className="text-block">
@@ -94,10 +99,7 @@ class Index extends Component {
         <div className="second-block row">
           <img className="second-block-img" src={home_2} />
           <div className="block block1_1">
-            <div
-              className="block-title"
-              style={{ textTransform: "uppercase" }}
-            >
+            <div className="block-title" style={{ textTransform: "uppercase" }}>
               POPULAR{" "}
               <span
                 style={{
@@ -106,7 +108,7 @@ class Index extends Component {
               >
                 ARTISAN
               </span>{" "}
-              STORES IN {" "} {this.state.stateName}
+              STORES IN {this.state.stateName}
             </div>
             <div className="place-nav">
               {places.data && places.data.length ? (

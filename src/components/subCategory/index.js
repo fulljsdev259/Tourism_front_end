@@ -70,9 +70,6 @@ class SubCategory extends Component {
       //   }
     }
   }
-  handleSubcat = sub_id => {
-    this.setState({ id: sub_id });
-  };
   render() {
     const { categories2, location } = this.props;
     const cat = this.props.category;
@@ -104,7 +101,7 @@ class SubCategory extends Component {
       <div className="event-page">
         <div className="row">
           <CategoryNav2
-            handleSubcat={this.handleSubcat}
+            handleSubcat={this.props.handleSubcat}
             {...this.props}
             categories={categories2}
             location={location}

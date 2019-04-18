@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { Formik, Form } from "formik";
 import { localStore } from "../../services/storage";
-import ReactFBLike from "react-fb-like";
+// import ReactFBLike from "react-fb-like";
 import { FacebookProvider, Like } from "react-facebook";
 import { Link } from "react-router-dom";
 import arrowBack from "../../images/arrow-left.svg";
@@ -226,7 +226,7 @@ class Index extends Component {
                     <ThumbsupIcon />
                     <div className="text">like</div>
                   </button> */}
-                    <div
+                    {/* <div
                       className="fb-like"
                       data-href={
                         data.facebookUrl
@@ -238,7 +238,7 @@ class Index extends Component {
                       data-size="large"
                       data-show-faces="false"
                       data-share="false"
-                    />
+                    /> */}
                     {/* <button className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"> */}
                     {/* <div className="text">Tweet</div> */}
                     {/* </button> */}

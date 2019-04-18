@@ -118,8 +118,11 @@
           padding: 0;
           li {
             cursor: pointer;
-            padding: 6px 20px;
+            padding: 6px 50px;
             font-size: 18px;
+            &:last-child {
+              padding: 6px 0px;
+            }
           }
         }
 
@@ -234,7 +237,7 @@
             margin: 30px -20px 0px -40px;
             height: 50vh;
             @media (max-width: 767px) {
-              margin: 30px -20px 0px -60px;
+              margin: 0;
             }
           }
           li {
@@ -290,10 +293,26 @@
                 @media (max-width: 767px) {
                   margin-left: 0;
                   background: #3d7c61;
-                  width: 115vw;
+                  width: 100vw;
                   padding-left: 0;
-
                 }
+              }
+              .logged-in {
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 50px;
+                color: white;
+                font-weight: 500;
+                .name {
+                  font-size: 1.2em;
+                  font-weight: 600;
+                }
+                .hr {
+                  margin: 20px 0;
+                  height: 1px;
+                  background-color: white;
+                  width: 80%;
+                } 
               }
             }
           }
@@ -453,8 +472,8 @@
         color: #fff;
         width: fit-content;
         @media all and (max-width: 767px) {
-            color: #fff;
-            font-size: 16px;
+          color: #fff;
+          font-size: 16px;
         }
       }
       a:hover {
@@ -582,18 +601,18 @@
 .Overlay {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 45%;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.75);
+  z-index: 5555;
+  @media all and (max-width: 767px) {
+    left: 0;
+  }
 }
 
 .body-top {
   padding-top: 55px;
   display: flex;
   flex-direction: column;
-}
-
-.Overlay {
-  z-index: 5555;
 }

@@ -106,6 +106,9 @@ class Home extends Component {
       categoryData: data
     });
   };
+  handleSubcat = sub_id => {
+    this.setState({ id: sub_id });
+  };
   render() {
     const imageArr = [category1, category3, category2, category4];
     const bgImageArr = [duty_free_img, artisan_img, crafts_img, retails_img];
@@ -173,6 +176,7 @@ class Home extends Component {
                         {...props}
                         category={category}
                         categories2={categories}
+                        handleSubcat={this.handleSubcat}
                       />
                     )}
                   />
@@ -189,6 +193,7 @@ class Home extends Component {
                         {...props}
                         category={category}
                         categories2={categories}
+                        handleSubcat={this.handleSubcat}
                       />
                     )}
                   />
@@ -207,7 +212,13 @@ class Home extends Component {
             <Route path="/contactus" component={ContactUs} />
             <Route
               path="/"
-              render={props => <Index {...props} categories={categories} />}
+              render={props => (
+                <Index
+                  {...props}
+                  categories={categories}
+                  handleSubcat={this.handleSubcat}
+                />
+              )}
             />
           </Switch>
         </div>

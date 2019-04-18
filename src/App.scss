@@ -362,14 +362,14 @@ textarea {
   margin: 30px;
   margin-top: 60px;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out,
-  -webkit-transform 0.2s ease-out;
-transition-delay: 0.75s;
+    -webkit-transform 0.2s ease-out;
+  transition-delay: 0.75s;
   .category-nav-item-header3 {
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease-out, opacity 0.2s ease-out,
-    -webkit-transform 0.2s ease-out;
-  transition-delay: 0.75s;
+      -webkit-transform 0.2s ease-out;
+    transition-delay: 0.75s;
   }
 
   .category-nav-item3 {
@@ -408,5 +408,7 @@ transition-delay: 0.75s;
   }
 }
 .ReactModal__Content {
-  border-radius: 1px 0px 0px 0px !important;
+  @media all and (max-width: 767px) {
+    border-radius: 1px 0px 0px 0px !important;
+  }
 }

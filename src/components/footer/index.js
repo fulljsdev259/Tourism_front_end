@@ -105,7 +105,7 @@ export default class Footer extends React.Component {
                     <div className="">
                       <div className="category-section">
                         <Link to="/duty_free">Duty Free</Link>
-                        <Link to="/artisian">Artisian</Link>
+                        <Link to="/artisan">Artisan</Link>
                       </div>
                     </div>
                   </div>
