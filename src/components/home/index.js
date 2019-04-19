@@ -71,7 +71,6 @@ class Home extends Component {
       windowResized: false,
       loader: false,
       isMobileScreen: false,
-      modalPublications: false,
       categoryData: ""
     };
   }
@@ -83,8 +82,7 @@ class Home extends Component {
     getListed,
     // news,
     // register,
-    modalIsOpen = true,
-    modalPublications = false
+    modalIsOpen = true
   ) => {
     this.setState({
       // about,
@@ -93,8 +91,7 @@ class Home extends Component {
       getListed,
       // news,
       // register,
-      modalIsOpen,
-      modalPublications
+      modalIsOpen
     });
   };
   closeModal = () => {

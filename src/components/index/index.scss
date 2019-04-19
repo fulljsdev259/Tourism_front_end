@@ -96,7 +96,7 @@
       font-weight: 600;
       color: #f1f1f1;
       // width: 70%;
-      @media all and (max-width: 991px) {
+      @media all and (max-width: 1199px) {
         font-size: 1.5em;
         line-height: initial;
       }
@@ -116,7 +116,7 @@
         text-align: -webkit-right;
         height: fit-content;
         margin-right: 10px;
-        flex-direction: column;
+        // flex-direction: column;
       }
       .setting-title {
         font-size: 1.5em;
@@ -544,7 +544,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    width: 55%;
+    width: 50%;
     @media all and (max-width: 767px) {
       width: 100%;
       min-height: 500px;
@@ -590,7 +590,7 @@
   }
   .grid-item:nth-child(2) {
     background-repeat: no-repeat;
-    width: 45%;
+    width: 50%;
     position: relative;
     background-size: cover;
     @media all and (max-width: 767px) {

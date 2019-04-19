@@ -141,6 +141,18 @@ class Header extends React.Component {
                             this.setState({
                               apiCall: true
                             });
+                            this.props.modalStateHandler(false, false);
+                          }}
+                        >
+                          ACCOUNT SETTINGS
+                        </div>
+                        <div
+                          className="logout"
+                          onClick={() => {
+                            this.setState({
+                              apiCall: true
+                            });
+                            this.ToggleBody();
                             this.props.modalStateHandler(
                               false,
                               false,
@@ -368,6 +380,27 @@ class Header extends React.Component {
                     </h6>
                     <span>{this.props.userdata.data.email}</span>
                   </div>
+                  <button
+                    className="logout"
+                    onClick={() => {
+                      this.setState({
+                        apiCall: true
+                      });
+                      this.props.modalStateHandler(
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      );
+                      localStorage.removeItem("token");
+                      this.props.logout();
+                    }}
+                  >
+                    Account Settings
+                  </button>
                   <button
                     className="logout"
                     onClick={() => {
