@@ -6,8 +6,8 @@ import {
   getUserDataRequest,
   //   isAlreadyLoggedIn,
   logout,
-  //   updateUserRequest,
-  //   updatePasswordRequest,
+    updateUserRequest,
+    updatePasswordRequest,
   socialLoginRequest,
   contactUsRequest
 } from "./auth/action";
@@ -32,8 +32,8 @@ function* watchActions() {
   yield takeLatest(constants.SIGNUP_REQUEST, signupRequest);
   yield takeLatest(constants.SOCIAL_LOGIN_REQUEST, socialLoginRequest);
   yield takeLatest(constants.GET_USER_DATA_REQUEST, getUserDataRequest);
-  //   yield takeLatest(constants.UPDATE_USER_REQUEST, updateUserRequest);
-  //   yield takeLatest(constants.UPDATE_PASSWORD_REQUEST, updatePasswordRequest);
+    yield takeLatest(constants.UPDATE_USER_REQUEST, updateUserRequest);
+    yield takeLatest(constants.UPDATE_PASSWORD_REQUEST, updatePasswordRequest);
   //   yield takeLatest(
   //     constants.GET_MONTHLY_EVENTS_REQUEST,
   //     getMonthlyEventsRequest

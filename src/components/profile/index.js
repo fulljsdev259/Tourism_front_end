@@ -17,7 +17,7 @@ class Profile extends Component {
     return (
       <div className="">
         <div className="row profile-row">
-          <div className="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-1 profile-form">
+          <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-1 col-sm-8 offset-sm-1 profile-form">
             <div className="profile-title">
               <h3>Personal information</h3>
             </div>
@@ -47,7 +47,7 @@ class Profile extends Component {
                     return errors;
                   }}
                   onSubmit={(values, actions) => {
-                    // this.props.updateUser({ id: data._id, data: values });
+                    this.props.updateUser({ id: data._id, data: values });
                   }}
                   render={({
                     values,
@@ -142,7 +142,7 @@ class Profile extends Component {
                     return errors;
                   }}
                   onSubmit={(values, actions) => {
-                    // this.props.updatePassword({ id: data._id, data: values });
+                    this.props.updatePassword({ id: data._id, data: values });
                   }}
                   render={({
                     values,
@@ -225,8 +225,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getUserData: data => dispatch(actions.getUserDataRequest(data)),
-//   updateUser: data => dispatch(actions.updateUserRequest(data)),
-//   updatePassword: data => dispatch(actions.updatePasswordRequest(data))
+  updateUser: data => dispatch(actions.updateUserRequest(data)),
+  updatePassword: data => dispatch(actions.updatePasswordRequest(data))
 });
 
 export default connect(

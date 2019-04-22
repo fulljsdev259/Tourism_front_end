@@ -207,55 +207,55 @@ const handleLogout = (state, action) =>
     }
   });
 
-// const handleUpdateUserRequest = (state, action) =>
-//   update(state, {
-//     profileInfoUpdate: {
-//       isLoading: { $set: true },
-//       isSuccess: { $set: false },
-//       isError: { $set: false }
-//     }
-//   });
-// const handleUpdateUserSuccess = (state, action) =>
-//   update(state, {
-//     profileInfoUpdate: {
-//       isLoading: { $set: false },
-//       isSuccess: { $set: true },
-//       isError: { $set: false }
-//     }
-//   });
-// const handleUpdateUserError = (state, action) =>
-//   update(state, {
-//     profileInfoUpdate: {
-//       isLoading: { $set: false },
-//       isSuccess: { $set: false },
-//       isError: { $set: true }
-//     }
-//   });
+const handleUpdateUserRequest = (state, action) =>
+  update(state, {
+    profileInfoUpdate: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false }
+    }
+  });
+const handleUpdateUserSuccess = (state, action) =>
+  update(state, {
+    profileInfoUpdate: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false }
+    }
+  });
+const handleUpdateUserError = (state, action) =>
+  update(state, {
+    profileInfoUpdate: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true }
+    }
+  });
 
-// const handleUpdatePasswordRequest = (state, action) =>
-//   update(state, {
-//     passwordUpdate: {
-//       isLoading: { $set: true },
-//       isSuccess: { $set: false },
-//       isError: { $set: false }
-//     }
-//   });
-// const handleUpdatePasswordSuccess = (state, action) =>
-//   update(state, {
-//     passwordUpdate: {
-//       isLoading: { $set: false },
-//       isSuccess: { $set: true },
-//       isError: { $set: false }
-//     }
-//   });
-// const handleUpdatePasswordError = (state, action) =>
-//   update(state, {
-//     passwordUpdate: {
-//       isLoading: { $set: false },
-//       isSuccess: { $set: false },
-//       isError: { $set: true }
-//     }
-//   });
+const handleUpdatePasswordRequest = (state, action) =>
+  update(state, {
+    passwordUpdate: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false }
+    }
+  });
+const handleUpdatePasswordSuccess = (state, action) =>
+  update(state, {
+    passwordUpdate: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false }
+    }
+  });
+const handleUpdatePasswordError = (state, action) =>
+  update(state, {
+    passwordUpdate: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true }
+    }
+  });
 
 const handleAddInterestRequest = (state, action) =>
   update(state, {
@@ -489,13 +489,13 @@ export default handleActions(
     [constants.SOCIAL_LOGIN_SUCCESS]: handleSocialLoginSuccess,
     [constants.SOCIAL_LOGIN_ERROR]: handleSocialLoginError,
     
-    // [constants.UPDATE_USER_REQUEST]: handleUpdateUserRequest,
-    // [constants.UPDATE_USER_SUCCESS]: handleUpdateUserSuccess,
-    // [constants.UPDATE_USER_ERROR]: handleUpdateUserError,
+    [constants.UPDATE_USER_REQUEST]: handleUpdateUserRequest,
+    [constants.UPDATE_USER_SUCCESS]: handleUpdateUserSuccess,
+    [constants.UPDATE_USER_ERROR]: handleUpdateUserError,
     
-    // [constants.UPDATE_PASSWORD_REQUEST]: handleUpdatePasswordRequest,
-    // [constants.UPDATE_PASSWORD_SUCCESS]: handleUpdatePasswordSuccess,
-    // [constants.UPDATE_PASSWORD_ERROR]: handleUpdatePasswordError
+    [constants.UPDATE_PASSWORD_REQUEST]: handleUpdatePasswordRequest,
+    [constants.UPDATE_PASSWORD_SUCCESS]: handleUpdatePasswordSuccess,
+    [constants.UPDATE_PASSWORD_ERROR]: handleUpdatePasswordError,
     
     [constants.CONTACT_US_REQUEST]: handleContactUsRequest,
     [constants.CONTACT_US_SUCCESS]: handleContactUsSuccess,

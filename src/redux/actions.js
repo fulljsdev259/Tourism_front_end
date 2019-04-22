@@ -46,6 +46,14 @@ export const getUserDataRequest = createAction(constants.GET_USER_DATA_REQUEST);
 export const getUserDataSuccess = createAction(constants.GET_USER_DATA_SUCCESS);
 export const getUserDataError = createAction(constants.GET_USER_DATA_ERROR);
 
+export const updateUserRequest = createAction(constants.UPDATE_USER_REQUEST);
+export const updateUserSuccess = createAction(constants.UPDATE_USER_SUCCESS);
+export const updateUserError = createAction(constants.UPDATE_USER_ERROR);
+
+export const updatePasswordRequest = createAction(constants.UPDATE_PASSWORD_REQUEST);
+export const updatePasswordSuccess = createAction(constants.UPDATE_PASSWORD_SUCCESS);
+export const updatePasswordError = createAction(constants.UPDATE_PASSWORD_ERROR);
+
 export const submitEventRequest = createAction(constants.SUBMIT_EVENT_REQUEST);
 export const submitEventSuccess = createAction(constants.SUBMIT_EVENT_SUCCESS);
 export const submitEventError = createAction(constants.SUBMIT_EVENT_ERROR);

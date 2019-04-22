@@ -8,32 +8,37 @@
   display: none;
 }
 .first-block {
-  position: relative;
+  // position: relative;
   padding-bottom: 2em;
-  display: block;
   order: 2;
+  min-height: 300px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
   @media all and (max-width: 767px) {
     order: 1;
-    padding-bottom: 0em;
+    padding-bottom: 1em;
+    min-height: 200px;
   }
-  img {
-    width: 100%;
-    filter: brightness(75%);
-    @media all and (max-width: 767px) {
-      display: block;
-      height: 200px;
-      object-fit: cover;
-    }
-  }
+  // img {
+  //   width: 100%;
+  //   filter: brightness(75%);
+  //   @media all and (max-width: 767px) {
+  //     display: block;
+  //     height: 200px;
+  //     object-fit: cover;
+  //   }
+  // }
   .text-block {
     color: white;
-    position: absolute;
-    bottom: 3em;
-    left: 3em;
+    // position: absolute;
+    // bottom: 3em;
+    // left: 3em;
     text-shadow: 0px 5px 19px rgba(0, 0, 0, 0.91);
     @media all and (max-width: 767px) {
-      left: 1em;
-      bottom: 1em;
+      // left: 1em;
+      // bottom: 1em;
     }
     .title {
       font-size: 4em;
@@ -53,13 +58,14 @@
 }
 
 .second-block {
-  position: relative;
+  // position: relative;
   padding-bottom: 2em;
-  display: block;
+  display: flex;
   order: 3;
-  @media all and (min-width: 768px) {
-    min-height: calc(300px + 2em);
-  }
+  min-height: auto;
+  // @media all and (max-width: 768px) {
+  //   min-height: calc(300px + 2em);
+  // }
   .second-block-img {
     @media all and (min-width: 768px) {
       min-height: 300px;
@@ -76,20 +82,22 @@
     align-items: center;
     @media all and(max-width:767px) {
       align-items: baseline;
+      max-width: 100%;
     }
   }
   .block {
-    position: absolute;
-    top: 20px;
-    margin: 0 3em;
-    width: calc(100% - 6em);
+    // position: absolute;
+    // top: 20px;
+    // margin: 0 3em;
+    // width: calc(100% - 6em);
     display: flex;
     justify-content: space-between;
+    margin: 10px auto;
     // align-items: center;
     @media all and(max-width:767px) {
       height: fit-content;
-      margin: 0 0 0 15px;
-      width: calc(100% - 1em);
+      margin: 15px 0 15px 15px;
+      max-width: 100%;
     }
     .block-title {
       font-size: 2em;
@@ -367,6 +375,9 @@
       .carousel-item {
         img {
           width: 100%;
+          @media all and (max-width: 767px) {
+            width: fit-content;
+          }
         }
         .desc {
           position: absolute;
@@ -817,7 +828,7 @@
         @media all and(max-width:767px) {
           top: 58px;
           min-width: 200px;
-          font-size: .8em;
+          font-size: 0.8em;
         }
       }
 

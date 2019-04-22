@@ -87,18 +87,33 @@ class Index extends Component {
             handleSubcat={this.props.handleSubcat}
           />
         ) : null}
-        <div className="first-block row">
-          <img src={i1} />
-          <div className="text-block">
+        <div
+          className="first-block row "
+          style={{
+            backgroundImage: `url(${i1})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        >
+          {/* <img src={i1} /> */}
+          <div className="text-block container">
             <div className="title">Shop Jamaica.</div>
             <div className="sub-title">
               Jamaica's best shopping offerings at your fingertips.
             </div>
           </div>
         </div>
-        <div className="second-block row">
-          <img className="second-block-img" src={home_2} />
-          <div className="block block1_1">
+        <div
+          className="second-block row"
+          style={{
+            backgroundImage: `url(${home_2})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        >
+          {/* <img className="second-block-img" src={home_2} /> */}
+          <div className="block block1_1 container">
+       
             <div className="block-title" style={{ textTransform: "uppercase" }}>
               POPULAR{" "}
               <span
@@ -152,7 +167,7 @@ class Index extends Component {
               ) : null}
             </div>
           </div>
-          <div className="block">
+          <div className="block container">
             {featuredEvents &&
             featuredEvents.data &&
             featuredEvents.data.trendingEvents &&

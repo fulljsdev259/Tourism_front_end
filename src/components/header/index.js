@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../images/logo.gif";
+import Logo from "../../images/logo.png";
 import Menu from "../../images/icon/menu.svg";
 import profile from "../../images/oval.png";
 import Close from "../../images/icon/cross.svg";
@@ -62,44 +62,29 @@ class Header extends React.Component {
           <div className="itemDiv">
             <button className="menu-toggle" onClick={this.ToggleBody} />
             <nav>
-              <div className="row">
-                <CategoryNav3
-                  {...this.props}
-                  categories={categories2}
-                  handleClick={this.ToggleBody}
-                />
-              </div>
-              <Link to="/">
+              {/* <Link to="/">
                 {" "}
                 <img onClick={this.ToggleBody} className="logo" src={Logo} />
-              </Link>
+              </Link> */}
               <ul className="menu">
-                <li
-                  data-text="ABOUT"
-                  style={{
-                    marginRight: "10px"
-                  }}
-                >
+                <li className="row ">
+                  <CategoryNav3
+                    {...this.props}
+                    categories={categories2}
+                    handleClick={this.ToggleBody}
+                  />
+                </li>
+                <li data-text="ABOUT">
                   <Link to="/aboutus" onClick={this.ToggleBody}>
                     ABOUT
                   </Link>
                 </li>
-                <li
-                  data-text="Events"
-                  style={{
-                    marginRight: "10px"
-                  }}
-                >
+                <li data-text="Events">
                   <Link to="/events" onClick={this.ToggleBody}>
                     EVENTS
                   </Link>
                 </li>
-                <li
-                  data-text="CONTACT"
-                  style={{
-                    marginRight: "10px"
-                  }}
-                >
+                <li data-text="CONTACT">
                   <Link to="/contactus" onClick={this.ToggleBody}>
                     CONTACT US
                   </Link>
@@ -189,7 +174,7 @@ class Header extends React.Component {
                     }}
                   >
                     <div className="lower-section">
-                      <div className="registerDiv">
+                      <div className="registerDiv logged-in">
                         <Link to="/auth">REGISTER / LOGIN</Link>
                       </div>
                     </div>
@@ -258,170 +243,175 @@ class Header extends React.Component {
           </div>
         }
         <div className="menu container">
-          <Link
-            to="/"
-            onClick={() => {
-              this.setState({ activeLi: true });
-            }}
-          >
-            {" "}
-            <div className="logoDiv">
-              <img className="logo" src={Logo} />
-            </div>
-          </Link>
-          <div className="itemDiv">
-            <div className="item">
-              <div
-                className="normal"
-                onClick={() => {
-                  this.props.modalStateHandler(
-                    true,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    true
-                  );
-                }}
-              >
-                <Link
-                  to="/aboutus"
-                  className={`  ${
-                    location.pathname === "/aboutus" ? "liActive" : ""
-                  }`}
-                  onClick={() => {
-                    this.setState({ activeLi: true });
-                  }}
-                >
-                  About
-                </Link>
-              </div>
-              <div
-                className="normal"
-                onClick={() => {
-                  this.props.modalStateHandler(
-                    false,
-                    false,
-                    true,
-                    false,
-                    false,
-                    false,
-                    true
-                  );
-                }}
-              >
-                <Link
-                  to="/events"
-                  className={`  ${
-                    location.pathname === "/events" ? "liActive" : ""
-                  }`}
-                  onClick={() => {
-                    this.setState({ activeLi: true });
-                  }}
-                >
-                  Events
-                </Link>
-              </div>
-              <div
-                className="normal"
-                // onClick={() => {
-                //   this.props.modalStateHandler(
-                //     false,
-                //     true,
-                //     false,
-                //     false,
-                //     false,
-                //     false,
-                //     true
-                //   );
-                // }}
-              >
-                <Link
-                  to="/contactus"
-                  className={`  ${
-                    location.pathname === "/contactus" ? "liActive" : ""
-                  }`}
-                  onClick={() => {
-                    this.setState({ activeLi: true });
-                  }}
-                >
-                  Contact us
-                </Link>
-                {/* <a>Contact us</a> */}
-              </div>
-              {!userdata.data ||
-              (userdata.data &&
-                userdata.data.companyDetails &&
-                userdata.data.companyDetails.title) ? (
-                <div
-                  className="getStarted"
-                  onClick={() => {
-                    if (userdata.data) {
-                    } else {
-                      this.props.modalStateHandler(true, true);
-                    }
-                  }}
-                >
-                  <a>GET COMPANY LISTED</a>
-                </div>
-              ) : null}
-            </div>
-          </div>
-          {localStore("token") && this.props.userdata.data ? (
-            <div className="col-2 profileDiv">
-              <div className="dropdown">
-                <img className="dropbtn" src={user} />
-                <div className="dropdown-content">
-                  <div className="logged-user">
-                    <h6>
-                      {this.props.userdata.data.name.first}{" "}
-                      {this.props.userdata.data.name.last}
-                    </h6>
-                    <span>{this.props.userdata.data.email}</span>
-                  </div>
-                  <button className="logout">
-                    <Link to="/profile">Account Settings</Link>
-                  </button>
-                  <button
-                    className="logout"
-                    onClick={() => {
-                      this.setState({
-                        apiCall: true
-                      });
-                      this.props.modalStateHandler(
-                        false,
-                        false,
-                        false,
-                        false,
-                        false,
-                        false,
-                        false
-                      );
-                      localStorage.removeItem("token");
-                      this.props.logout();
-                    }}
-                  >
-                    <a> Log Out</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="registerDiv col-2">
+          <div className="row">
+            <div className="col-2">
               <Link
-                to="/auth/"
-                className={`  ${
-                  location.pathname === "/auth/" ? "liActive" : ""
-                }`}
+                to="/"
                 onClick={() => {
                   this.setState({ activeLi: true });
                 }}
               >
-                Login/Register
+                {" "}
+                <div className="logoDiv">
+                  <img className="logo" src={Logo} />
+                </div>
               </Link>
             </div>
-          )}
+
+            <div className="itemDiv col-8">
+              <div className="item">
+                <div
+                  className="normal"
+                  onClick={() => {
+                    this.props.modalStateHandler(
+                      true,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      true
+                    );
+                  }}
+                >
+                  <Link
+                    to="/aboutus"
+                    className={`  ${
+                      location.pathname === "/aboutus" ? "liActive" : ""
+                    }`}
+                    onClick={() => {
+                      this.setState({ activeLi: true });
+                    }}
+                  >
+                    About
+                  </Link>
+                </div>
+                <div
+                  className="normal"
+                  onClick={() => {
+                    this.props.modalStateHandler(
+                      false,
+                      false,
+                      true,
+                      false,
+                      false,
+                      false,
+                      true
+                    );
+                  }}
+                >
+                  <Link
+                    to="/events"
+                    className={`  ${
+                      location.pathname === "/events" ? "liActive" : ""
+                    }`}
+                    onClick={() => {
+                      this.setState({ activeLi: true });
+                    }}
+                  >
+                    Events
+                  </Link>
+                </div>
+                <div
+                  className="normal"
+                  // onClick={() => {
+                  //   this.props.modalStateHandler(
+                  //     false,
+                  //     true,
+                  //     false,
+                  //     false,
+                  //     false,
+                  //     false,
+                  //     true
+                  //   );
+                  // }}
+                >
+                  <Link
+                    to="/contactus"
+                    className={`  ${
+                      location.pathname === "/contactus" ? "liActive" : ""
+                    }`}
+                    onClick={() => {
+                      this.setState({ activeLi: true });
+                    }}
+                  >
+                    Contact us
+                  </Link>
+                  {/* <a>Contact us</a> */}
+                </div>
+                {!userdata.data ||
+                (userdata.data &&
+                  userdata.data.companyDetails &&
+                  userdata.data.companyDetails.title) ? (
+                  <div
+                    className="getStarted"
+                    onClick={() => {
+                      if (userdata.data) {
+                      } else {
+                        this.props.modalStateHandler(true, true);
+                      }
+                    }}
+                  >
+                    <a>GET COMPANY LISTED</a>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+            {localStore("token") && this.props.userdata.data ? (
+              <div className="col-2 profileDiv">
+                <div className="dropdown">
+                  <img className="dropbtn" src={user} />
+                  <div className="dropdown-content">
+                    <div className="logged-user">
+                      <h6>
+                        {this.props.userdata.data.name.first}{" "}
+                        {this.props.userdata.data.name.last}
+                      </h6>
+                      <span>{this.props.userdata.data.email}</span>
+                    </div>
+                    <button className="logout">
+                      <Link to="/profile">Account Settings</Link>
+                    </button>
+                    <button
+                      className="logout"
+                      onClick={() => {
+                        this.setState({
+                          apiCall: true
+                        });
+                        this.props.modalStateHandler(
+                          false,
+                          false,
+                          false,
+                          false,
+                          false,
+                          false,
+                          false
+                        );
+                        localStorage.removeItem("token");
+                        this.props.logout();
+                      }}
+                    >
+                      <a> Log Out</a>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="registerDiv col-2">
+                <Link
+                  to="/auth/"
+                  className={`  ${
+                    location.pathname === "/auth/" ? "liActive" : ""
+                  }`}
+                  onClick={() => {
+                    this.setState({ activeLi: true });
+                  }}
+                >
+                  Login/Register
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

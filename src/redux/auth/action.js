@@ -138,3 +138,69 @@ export function* getUserDataRequest(action) {
     yield put(actions.getUserDataError());
   }
 }
+export function* updateUserRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  const { name, email, receiveEmails } = action.payload.data;
+  let [first, ...last] = name.split(" ");
+  last = last.join(" ");
+  try {
+    const response = yield call(
+      fireApi,
+      "PUT",
+      `user/update/${action.payload.id}`,
+      {
+        name: {
+          first,
+          last
+        },
+        email,
+        receiveEmails
+      },
+      header
+    );
+    if (response) {
+      if (response.data.success) {
+        toast.success("User Information Updated");
+        yield put(actions.updateUserSuccess(response.data));
+        yield put(actions.getUserDataRequest());
+      } else {
+        yield put(actions.logout());
+      }
+    } else {
+      toast.error(response.data.message);
+      yield put(actions.updateUserError());
+    }
+  } catch (e) {
+    yield put(actions.updateUserError());
+  }
+}
+
+export function* updatePasswordRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  try {
+    const response = yield call(
+      fireApi,
+      "PUT",
+      `user/updatePassword`,
+      { password: action.payload.data.password },
+      header
+    );
+    if (response) {
+      if (response.data.success) {
+        toast.success("Password Updated");
+        yield put(actions.updatePasswordSuccess(response.data));
+      } else {
+        yield put(actions.logout());
+      }
+    } else {
+      toast.error(response.data.message);
+      yield put(actions.updatePasswordError());
+    }
+  } catch (e) {
+    yield put(actions.updatePasswordError());
+  }
+}

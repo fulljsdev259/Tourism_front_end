@@ -1,135 +1,137 @@
-.profile-row{
-    background-image: linear-gradient(110deg, rgb(255, 108, 201) 29%, rgb(133, 89, 240) 69%);
+.profile-row {
+  // background-image: linear-gradient(110deg, rgb(255, 108, 201) 29%, rgb(133, 89, 240) 69%);
 }
 .profile-form {
-    background: white;
-    margin-top: 70px;
-    margin-bottom: 70px;
-    border-radius: 15px;
-    padding-left:25px;
-    padding-right:25px;
-    @media all and (max-width: 767px ) {
-        margin: 15px;
-        margin-top: 20px;
-        padding:20px;
+  background: white;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  border-radius: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  @media all and (max-width: 767px) {
+    margin: 15px;
+    margin-top: 20px;
+    padding: 20px;
+  }
+  .profile-title {
+    margin: 40px auto;
+    h3 {
+      font-family: "Open Sans";
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: -0.5px;
+      color: #212529;
     }
-    .profile-title {
-        margin: 40px auto;
-        h3 {
-            font-family: 'Open Sans';
-            font-size: 26px;
-            font-weight: bold;
-            letter-spacing: -0.5px;
-            color: #010101;
-        }
+  }
+  .input-fields-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    label {
+      font-family: "Open Sans";
+      font-size: 12px;
+      font-weight: normal;
+      font-style: normal;
+      color: #808080;
+      text-align: left;
     }
-    .input-fields-section {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
-        label {
-            font-family: 'Open Sans';
-            font-size: 12px;
-            font-weight: normal;
-            font-style: normal;
-            color: #808080;
-            text-align: left;
-        }  
-        label.error {
-            padding: 8px 5px 8px 5px;
-            color: red;
-        }
-        .input-field{
-            border: 1px solid #e5e5e5;
-            border-radius: 10px;
-            padding: 8px 10px 8px 20px;
-            font-family: 'Open Sans';
-            font-size: 18px;
-            color: #010101;
-            @media all and (max-width: 767px ) {
-                border-radius: 15px;
-            }
-        }
-        .input-field::placeholder {
-            font-family: 'Open Sans';
-            font-size: 18px;
-            color: #010101;
-        }
+    label.error {
+      padding: 8px 5px 8px 5px;
+      color: red;
     }
-    .notifications-checkmark {
-        .notification-text {
-            font-family: 'Open Sans';
-            font-size: 12px;
-            color: #010101;
-            position: relative;
-            left: 10px;
-            top: -3px;
-        }
-        label {
-            font-family: "Open Sans";
-            font-size: 14px;
-            color: #010101;
-            font-weight: normal;
-        }
-        input[type="checkbox"] {
-            display: none;
-            border: 1px solid;
-        }
-        
-        input[type="checkbox"] + label:before {
-            content: "";
-            border: 0.1em solid #e5e5e5;
-            border-radius: 0.2em;
-            display: inline-block;
-            width: 27px;
-            height: 27px;
-            border-radius: 5px;
-            padding-left: 0.1em;
-            padding-top: 0.1em;
-            margin-right: 0.2em;
-            vertical-align: bottom;
-            color: transparent;
-            transition: 0.2s;
-            background-color: white;
-        }
-    
-        input[type="checkbox"] + label:active:before {
-            transform: scale(0);
-        }
-    
-        input[type="checkbox"]:checked + label:before {
-            content:  url('../../images/checkmark.svg');
-            background-color: white;
-            border: 0.1em solid #e5e5e5;
-        
-        }
+    .input-field {
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      padding: 8px 10px 8px 20px;
+      font-family: "Open Sans";
+      font-size: 18px;
+      color: #212529;
+      @media all and (max-width: 767px) {
+        font-size: 14px;
+      }
     }
-    .hr-div{
-        margin:0 auto;
-        border-bottom: 1px solid #e5e5e5;
+    .input-field::placeholder {
+      font-family: "Open Sans";
+      font-size: 18px;
+      color: #212529;
     }
-    .save-changes {
-        margin: 50px auto;
-        .save-btn {
-            border-radius: 15px;
-            background-image: linear-gradient(135deg,#ff6cc9 29%, #8559f0 57%);
-            font-family: 'Open Sans';
-            font-size: 18px;
-            font-weight: 800;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: -0.5px;
-            text-align: right;
-            color: #ffffff;
-            text-transform: uppercase;
-            border: none;
-            padding: 10px 55px;
-            @media all and (max-width: 767px ) {
-                text-align: center;
-                border-radius: 15px;
-                width: 100%;
-            }
-        }
+  }
+  .notifications-checkmark {
+    .notification-text {
+      font-family: "Open Sans";
+      font-size: 12px;
+      color: #212529;
+      position: relative;
+      left: 10px;
+      top: -3px;
     }
+    label {
+      font-family: "Open Sans";
+      font-size: 14px;
+      color: #212529;
+      font-weight: normal;
+    }
+    input[type="checkbox"] {
+      display: none;
+      border: 1px solid;
+    }
+
+    input[type="checkbox"] + label:before {
+      content: "";
+      border: 0.1em solid #e5e5e5;
+      border-radius: 0.2em;
+      display: inline-block;
+      width: 27px;
+      height: 27px;
+      border-radius: 5px;
+      padding-left: 0.1em;
+      padding-top: 0.1em;
+      margin-right: 0.2em;
+      vertical-align: bottom;
+      color: transparent;
+      transition: 0.2s;
+      background-color: white;
+    }
+
+    input[type="checkbox"] + label:active:before {
+      transform: scale(0);
+    }
+
+    input[type="checkbox"]:checked + label:before {
+      content: url("../../images/checkmark.svg");
+      background-color: white;
+      border: 0.1em solid #e5e5e5;
+    }
+  }
+  .hr-div {
+    margin: 0 auto;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .save-changes {
+    margin: 50px auto;
+    .save-btn {
+      border-radius: 10px;
+      background: #2955ae;
+      font-family: "Open Sans";
+      font-size: 18px;
+      font-weight: 800;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.5px;
+      text-align: right;
+      color: #ffffff;
+      text-transform: uppercase;
+      border: none;
+      padding: 10px 55px;
+      @media all and (max-width: 767px) {
+        text-align: center;
+        width: 100%;
+        font-size: 14px;
+      }
+      @media all and (max-width: 424px) {
+        font-size: 12px;
+      }
+    }
+  }
 }
