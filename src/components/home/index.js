@@ -8,6 +8,7 @@ import SubCategory from "../subCategory";
 import Auth from "../auth";
 import AboutUs from "../aboutus";
 import Events from "../Events";
+import Profile from "../profile";
 import EventDetails from "../event-details";
 import GetListed from "../getListed";
 import category1 from "../../images/category1.svg";
@@ -207,6 +208,7 @@ class Home extends Component {
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/auth" component={Auth} />
             <Route path="/contactus" component={ContactUs} />
+            <Route path="/profile" component={Profile} />
             <Route
               path="/"
               render={props => (

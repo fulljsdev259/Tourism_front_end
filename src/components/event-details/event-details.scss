@@ -57,7 +57,9 @@
         width: 90%;
       }
       @media all and (max-width: 767px) {
-        padding-left: 40px;
+        position: unset;
+        width: 100%;
+        padding: 20px 10px;
       }
       .timing {
         font-size: 0.8em;

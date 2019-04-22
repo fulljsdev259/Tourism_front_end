@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../images/logo.png";
+import Logo from "../../images/logo.gif";
 import Menu from "../../images/icon/menu.svg";
 import profile from "../../images/oval.png";
 import Close from "../../images/icon/cross.svg";
@@ -380,26 +380,8 @@ class Header extends React.Component {
                     </h6>
                     <span>{this.props.userdata.data.email}</span>
                   </div>
-                  <button
-                    className="logout"
-                    onClick={() => {
-                      this.setState({
-                        apiCall: true
-                      });
-                      this.props.modalStateHandler(
-                        false,
-                        false,
-                        false,
-                        false,
-                        false,
-                        false,
-                        false
-                      );
-                      localStorage.removeItem("token");
-                      this.props.logout();
-                    }}
-                  >
-                    Account Settings
+                  <button className="logout">
+                    <Link to="/profile">Account Settings</Link>
                   </button>
                   <button
                     className="logout"
@@ -420,7 +402,7 @@ class Header extends React.Component {
                       this.props.logout();
                     }}
                   >
-                    Log Out
+                    <a> Log Out</a>
                   </button>
                 </div>
               </div>

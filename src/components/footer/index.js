@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.scss";
-import Logo from "../../images/Tourism_Linkages_Network_Logo.gif";
+import Logo from "../../images/logo.gif";
 import Menu from "../../images/icon/menu.svg";
 import Close from "../../images/icon/cross.svg";
 import footer1 from "../../images/footer1.png";
