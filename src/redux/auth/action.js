@@ -95,6 +95,25 @@ export function* socialLoginRequest(action) {
   }
 }
 
+export function* forgotRequest(action) {
+  try {
+    const { email } = action.payload;
+    const response = yield call(fireApi, "POST", "forget/password", {
+      email
+    });
+    if (response) {
+      if (response.data) {
+        toast.success(response.data.message);
+        yield put(actions.forgotSuccess());
+      } else {
+        toast.error(response.data.message);
+        yield put(actions.forgotError());
+      }
+    }
+  } catch (e) {
+    yield put(actions.forgotError());
+  }
+}
 export function* logout(action) {
   localStore("clear");
 }

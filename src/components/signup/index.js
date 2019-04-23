@@ -22,7 +22,7 @@ class SignUp extends Component {
             autoLoad={true}
             fields="name,email,picture"
             callback={this.props.responseFacebook}
-            textButton="Log in with Facebook"
+            textButton="Register with Facebook"
             icon="fa-facebook"
           />
         </div>
@@ -143,7 +143,7 @@ class SignUp extends Component {
                   )}
                 </div>
               </div>
-              <div className="remember-me">
+              <div className="remember-me" style={{ display: "flex" }}>
                 <input
                   type="checkbox"
                   id="receiveEmails"
@@ -163,7 +163,7 @@ class SignUp extends Component {
                       <Loader type="Oval" color="#fff" height="20" width="20" />
                     </div>
                   ) : (
-                    "Sign Up"
+                    "REGISTER"
                   )}
                 </button>
               </div>

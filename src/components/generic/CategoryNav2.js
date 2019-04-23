@@ -22,7 +22,6 @@ export default function CategoryNav2({
               >
                 {category.name.replace("_", " ")}
               </Link>
-              {/* {location.pathname==category.path && alert('true')} */}
             </div>
           </div>
           {category.subCategory && category.subCategory.length ? (

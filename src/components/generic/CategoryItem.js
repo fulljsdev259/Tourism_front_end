@@ -36,7 +36,7 @@ class CategoryItem extends Component {
     });
   };
   render() {
-    const { event, userdata, calendar,bgcolor } = this.props;
+    const { event, userdata, calendar, bgcolor } = this.props;
     let youInterested;
     if (event && userdata && userdata.data) {
       youInterested = event.interested.find(oneInterested => {
@@ -93,9 +93,7 @@ class CategoryItem extends Component {
         <div className="col-lg-5 col-md-6 col-sm-6 col-sm-12 col-xs-12  event-detail">
           <div className="head">
             <div>
-              <Link
-                to={{ pathname: `/event-details/${event._id}` }}
-              >
+              <Link to={{ pathname: `/event-details/${event._id}` }}>
                 <div className="title">{event.title}</div>
               </Link>
               <div className="mobile-social">
@@ -147,22 +145,18 @@ class CategoryItem extends Component {
               {event && event.EventPlace
                 ? event.EventPlace
                 : " place not decided "}
-              {/* 
-              {event && event.EventPlace
-                ? event.EventPlace
-                : " place not decided "}{" "}
               ,
-              {event.EventState && this.props.places.data
+              {event && event.EventState && this.props.places.data
                 ? this.props.places.data.find(
                     state => state._id == event.EventState
                   ).name
-                : null} */}
+                : null}
               {/* <img className="icon" src={mapMain} /> */}
             </div>
             <div className="row ">
               <div className="icon-div col-md-12 col-6">
                 <img src={phone} className="icon" />
-                {event.phone ? event.phone : "123456789"}
+                {event.phone_number ? event.phone_number : "123456789"}
               </div>
               <div
                 style={{ float: "left" }}

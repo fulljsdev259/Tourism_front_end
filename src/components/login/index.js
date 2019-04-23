@@ -95,7 +95,7 @@ class Login extends Component {
                   )}
                 </div>
               </div>
-              <div className="remember-me">
+              <div className="remember-me" style={{ display: "flex" }}>
                 <div>
                   <input
                     type="checkbox"
@@ -114,7 +114,7 @@ class Login extends Component {
                     e.preventDefault();
                   }}
                 >
-                  Forgot password?
+                  <Link to="/auth/forgotPassword"> Forgot password?</Link>
                 </span>
               </div>
               <div className="login-btn">
@@ -140,7 +140,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginRequest: data => dispatch(actions.loginRequest(data)),
+  loginRequest: data => dispatch(actions.loginRequest(data))
 });
 
 export default withRouter(

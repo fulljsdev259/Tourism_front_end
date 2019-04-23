@@ -21,6 +21,7 @@ import crafts_img from "../../images/crafts_img.png";
 import artisan_img from "../../images/crafts_img.png";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
+import ForgotPass from "../forgot-pass";
 
 const customStyles = {
   content: {
@@ -206,6 +207,7 @@ class Home extends Component {
             />
             <Redirect from="/event-details" to="/events" />
             <Route path="/aboutus" component={AboutUs} />
+            <Route path="/auth/forgotPassword" component={ForgotPass} />
             <Route path="/auth" component={Auth} />
             <Route path="/contactus" component={ContactUs} />
             <Route path="/profile" component={Profile} />

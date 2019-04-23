@@ -275,6 +275,7 @@
 }
 .catBgImage {
   padding-right: 60px;
+  transform: rotate(-50deg);
   @media all and (max-width: 991px) {
     padding-top: 40px;
   }

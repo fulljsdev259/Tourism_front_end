@@ -126,10 +126,11 @@ class Header extends React.Component {
                             this.setState({
                               apiCall: true
                             });
+                            this.ToggleBody();
                             this.props.modalStateHandler(false, false);
                           }}
                         >
-                          ACCOUNT SETTINGS
+                          <Link to="/profile">ACCOUNT SETTINGS</Link>
                         </div>
                         <div
                           className="logout"
@@ -151,7 +152,7 @@ class Header extends React.Component {
                             this.props.logout();
                           }}
                         >
-                          LOG OUT
+                          <a> LOG OUT</a>
                         </div>
                       </div>
                     </div>
@@ -401,7 +402,10 @@ class Header extends React.Component {
                 <Link
                   to="/auth/"
                   className={`  ${
-                    location.pathname === "/auth/" ? "liActive" : ""
+                    location.pathname === "/auth/" ||
+                    location.pathname === "/auth/register"
+                      ? "liActive"
+                      : ""
                   }`}
                   onClick={() => {
                     this.setState({ activeLi: true });

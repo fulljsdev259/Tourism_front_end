@@ -3,14 +3,15 @@ import "./footer.scss";
 import Logo from "../../images/logo.gif";
 import Menu from "../../images/icon/menu.svg";
 import Close from "../../images/icon/cross.svg";
-import footer1 from "../../images/footer1.png";
-import footer2 from "../../images/footer2.png";
-import footer3 from "../../images/footer3.png";
-import footer4 from "../../images/footer4.png";
-import footer5 from "../../images/footer5.png";
-import f11 from "../../images/f11.png";
-import f12 from "../../images/f12.jpg";
-import f13 from "../../images/f13.jpg";
+import f1 from "../../images/footer/f1.png";
+import f2 from "../../images/footer/f2.png";
+import f3 from "../../images/footer/f3.png";
+import f4 from "../../images/footer/f4.png";
+import f5 from "../../images/footer/f5.png";
+import f6 from "../../images/footer/f6.png";
+import f7 from "../../images/footer/f7.png";
+import f8 from "../../images/footer/f8.png";
+import f9 from "../../images/footer/f9.png";
 import fb from "../../images/icon/fb.svg";
 import twitter from "../../images/icon/twitter/blue_b.svg";
 import insta from "../../images/icon/insta.svg";
@@ -150,33 +151,12 @@ export default class Footer extends React.Component {
                     <ul className="logos col-12">
                       <li>
                         <a href="https://www.mot.gov.jm/" target="_BLANK">
-                          <img src={footer1} />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="http://www.jamaicatradeandinvest.org/"
-                          target="_BLANK"
-                        >
-                          <img src={f13} />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
-                          target="_BLANK"
-                        >
-                          <img src={footer4} />
+                          <img src={f1} />
                         </a>
                       </li>
                       <li>
                         <a href="http://www.jtbonline.org/" target="_BLANK">
-                          <img src={f11} />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="http://www.jhta.org/" target="_BLANK">
-                          <img src={footer5} />
+                          <img src={f2} />
                         </a>
                       </li>
                       <li>
@@ -184,20 +164,45 @@ export default class Footer extends React.Component {
                           href="https://www.instagram.com/thejmea_/"
                           target="_BLANK"
                         >
-                          <img src={footer2} />
+                          <img src={f3} />
                         </a>
                       </li>
                       <li>
                         <a href="https://www.jbdc.net/" target="_BLANK">
-                          <img src={footer3} />
+                          <img src={f4} />
                         </a>
                       </li>
-                      {/* <a href="https://rada.gov.jm/" target="_BLANK">
-                                    <img src={f12} />
-                                </a>
-                                <a href="http://www.jtbonline.org/" target="_BLANK">
-                                    <img src={f11} />
-                                </a> */}
+                      <li>
+                        <a
+                          href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
+                          target="_BLANK"
+                        >
+                          <img src={f5} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="http://www.jhta.org/" target="_BLANK">
+                          <img src={f6} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="http://www.jhta.org/" target="_BLANK">
+                          <img src={f7} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="http://www.jhta.org/" target="_BLANK">
+                          <img src={f8} />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="http://www.jamaicatradeandinvest.org/"
+                          target="_BLANK"
+                        >
+                          <img src={f9} />
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 </div>

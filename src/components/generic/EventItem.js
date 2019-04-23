@@ -38,7 +38,8 @@ class EventItem extends Component {
             className="img"
             style={{
               backgroundImage: `url(${event.image ? event.image.url : photo})`,
-              backgroundSize: "cover"
+              backgroundSize: "cover",
+              backgroundPosition: "center"
             }}
           />
           {/* </Link> */}

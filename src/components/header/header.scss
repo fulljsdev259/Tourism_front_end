@@ -249,7 +249,7 @@
             transform: translate3d(0, 36px, 0);
             padding-top: 30px;
             span {
-              background-color: #5165ff;
+              background-color: #2955ae;
               padding: 10px;
               color: white;
               border-radius: 4px;
@@ -259,7 +259,7 @@
               // content: "";
               @include position-center;
               left: auto;
-              background-color: #5165ff;
+              background-color: #2955ae;
               width: 0;
               overflow: hidden;
               transition: width 0.14s ease-out;
@@ -392,6 +392,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-width: 450px;
       .item {
         display: flex;
         justify-content: flex-end;
@@ -489,6 +490,7 @@
         @media all and (max-width: 767px) {
           color: #fff;
           font-size: 16px;
+          font-weight: unset;
         }
       }
       a:hover {
@@ -506,7 +508,8 @@
     .profileDiv {
       // flex: 1;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
+      align-items: center;
       font-size: 14px;
       .dropbtn {
         height: 35px;

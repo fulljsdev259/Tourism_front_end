@@ -44,7 +44,7 @@
       font-size: 4em;
       font-weight: 600;
       @media all and (max-width: 767px) {
-        font-size: 2em;
+        font-size: 2.5em;
       }
     }
     .sub-title {
@@ -59,10 +59,11 @@
 
 .second-block {
   // position: relative;
-  padding-bottom: 2em;
+  padding-bottom: 1em;
   display: flex;
   order: 3;
   min-height: auto;
+  margin-bottom: 1em;
   // @media all and (max-width: 768px) {
   //   min-height: calc(300px + 2em);
   // }
@@ -768,8 +769,9 @@
       justify-content: flex-end;
 
       @media all and (max-width: 767px) {
-        display: flex;
         align-items: flex-end;
+        flex-direction: column;
+
       }
       .place-img {
         // padding: 7px;

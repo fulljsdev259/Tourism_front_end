@@ -30,30 +30,28 @@ class TopMenu extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { filters } = this.props;
     if (this.props.places.data && this.props.categories.data) {
-      if (this.props.match.path !== "/calendarview") {
-        if (
-          filters.selectedCity !== prevProps.filters.selectedCity ||
-          filters.selectedState !== prevProps.filters.selectedState ||
-          filters.ageFlag !== prevProps.filters.ageFlag ||
-          !this.state.status
-        ) {
-          this.setState({ status: true });
-          const oneCategory = this.props.categories.data.find(category => {
-            return category.name === this.props.match.path.replace("/", "");
-          });
-          if (oneCategory) {
-            if (!this.state.id) {
-              this.setState({ id: oneCategory._id });
-            }
-            this.props.getEventsByCategoryRequest({
-              id: oneCategory._id,
-              page_number: 1,
-              ageFlag: filters.ageFlag,
-              eventState: filters.selectedState,
-              eventCity: filters.selectedCity
-            });
-          }
-        }
+      if (
+        filters.selectedCity !== prevProps.filters.selectedCity ||
+        filters.selectedState !== prevProps.filters.selectedState ||
+        filters.ageFlag !== prevProps.filters.ageFlag ||
+        !this.state.status
+      ) {
+        this.setState({ status: true });
+        const oneCategory = this.props.categories.data.find(category => {
+          return category.name === this.props.match.path.replace("/", "");
+        });
+        // if (oneCategory) {
+        //   if (!this.state.id) {
+        //     this.setState({ id: oneCategory._id });
+        //   }
+        this.props.getEventsByCategoryRequest({
+          sub_id: this.props.match.params.id && this.props.match.params.id,
+          id: oneCategory && oneCategory._id,
+          page_number: 1,
+          ageFlag: filters.ageFlag,
+          eventState: filters.selectedState,
+          eventCity: filters.selectedCity
+        });
       }
       // if (this.props.isGeolocationEnabled) {
       //   if (filters.storableLocation && filters.storableLocation.city) {

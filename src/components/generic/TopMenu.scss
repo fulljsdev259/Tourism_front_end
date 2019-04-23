@@ -131,9 +131,10 @@
               li:not(:first-child):hover {
                 background-image: linear-gradient(
                   135deg,
-                  #faba34 29%,
+                  #0a8b4d 29%,
                   #387f4c 43%
                 );
+                color: white;
                 a {
                   color: white;
                 }

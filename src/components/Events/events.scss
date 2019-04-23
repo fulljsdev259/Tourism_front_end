@@ -160,6 +160,10 @@
           display: flex;
           padding-bottom: 5px;
           align-items: center;
+          .open-status-detail{
+            display: flex;
+            align-items: center;
+          }
         }
         .span {
           display: inline-block;

@@ -55,35 +55,40 @@ const initialState = {
     isLoading: false,
     isSuccess: false,
     isError: false
-  }
+  },
+  forgotPassword: {
+    isLoading: false,
+    isSuccess: false,
+    isError: false
+  },
 };
-// const handleForgotRequest = (state, action) =>
-//   update(state, {
-//     login: {
-//       isLoading: { $set: true },
-//       isSuccess: { $set: false },
-//       isError: { $set: false },
-//       message: { $set: "" }
-//     }
-//   });
-// const handleForgotError = (state, action) =>
-//   update(state, {
-//     login: {
-//       isLoading: { $set: false },
-//       isSuccess: { $set: false },
-//       isError: { $set: true },
-//       message: { $set: action.payload }
-//     }
-//   });
-// const handleForgotSuccess = (state, action) =>
-//   update(state, {
-//     login: {
-//       isLoading: { $set: false },
-//       isSuccess: { $set: true },
-//       isError: { $set: false },
-//       data: { $set: action.payload }
-//     }
-//   });
+const handleForgotRequest = (state, action) =>
+  update(state, {
+    forgotPassword: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const handleForgotError = (state, action) =>
+  update(state, {
+    forgotPassword: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+const handleForgotSuccess = (state, action) =>
+  update(state, {
+    forgotPassword: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false },
+      data: { $set: action.payload }
+    }
+  });
 const handleLoginRequest = (state, action) =>
   update(state, {
     login: {
@@ -480,6 +485,10 @@ export default handleActions(
     [constants.SIGNUP_SUCCESS]: handleSignupSuccess,
     [constants.SIGNUP_ERROR]: handleSignupError,
     [constants.SIGNUP_RESET]: handleSignupReset,
+
+    [constants.FORGOT_REQUEST]: handleForgotRequest,
+    [constants.FORGOT_SUCCESS]: handleForgotSuccess,
+    [constants.FORGOT_ERROR]: handleForgotError,
     
     [constants.GET_USER_DATA_REQUEST]: handleUserDataRequest,
     [constants.GET_USER_DATA_SUCCESS]: handleUserDataSuccess,

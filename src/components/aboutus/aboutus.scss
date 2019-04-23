@@ -40,6 +40,9 @@
           ul {
             text-decoration: none;
             display: inline-block;
+            @media all and (max-width: 767px) {
+              padding-left: 20px;
+            }
             li {
               display: block;
               padding: 8px 0;

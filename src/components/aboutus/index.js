@@ -12,7 +12,7 @@ export default class AboutUs extends Component {
         <div className="container-fluid">
           <div className=" text-center about-block">
             <div className="col-lg-8 offset-lg-1 col-md-8 offset-md-2 col-sm-12 col-xs-12 about-div">
-              <div className="title">About Us</div>
+              <div className="title">About us</div>
               <div className="desc">
                 <div className="info">
                   <h6>THE TOURISM LINKAGES NETWORK</h6>
