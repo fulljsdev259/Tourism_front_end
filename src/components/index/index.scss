@@ -55,6 +55,20 @@
       }
     }
   }
+  .block1-menuImage{
+    display: none;
+    @media all and (max-width: 767px) {
+      display: block;
+      position: absolute;
+      top: 55px;
+      width: 90px;
+      right: 20px;
+    }
+    @media all and (max-width: 424px) {
+      width: 70px;
+      right: 10px;
+    }
+  }
 }
 
 .second-block {
@@ -62,7 +76,7 @@
   padding-bottom: 1em;
   display: flex;
   order: 3;
-  min-height: auto;
+  min-height: 350px;
   margin-bottom: 1em;
   // @media all and (max-width: 768px) {
   //   min-height: calc(300px + 2em);
@@ -121,6 +135,7 @@
       justify-content: space-between;
       align-items: center;
       height: fit-content;
+      cursor: pointer;
       @media all and (max-width: 767px) {
         text-align: -webkit-right;
         height: fit-content;
@@ -163,6 +178,21 @@
       // width: calc(100% - 1em);
       // right: 0;
     }
+    .noData{
+      width: 100%;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      align-items: center;
+      height: 10rem;
+      font-size: calc(16px + 1vmin);
+      color: #f1f1f1;
+      font-weight: 700;
+      text-transform: capitalize;
+      padding: 0 20px;
+    }
     .popular {
       width: auto;
       text-align: center;
@@ -171,6 +201,7 @@
       margin-right: 20px;
       // min-width: 250px;
       height: 100%;
+      cursor: pointer;
       img {
         border-radius: 10px 10px 0 0;
         height: 80%;
@@ -389,6 +420,9 @@
             font-size: 5em;
             font-weight: 600;
             text-shadow: 0px 5px 19px rgba(0, 0, 0, 0.91);
+            cursor: pointer;
+            width: fit-content;
+            height: fit-content;
             @media all and (max-width: 767px) {
               font-size: 2.5em;
             }
@@ -424,6 +458,7 @@
               font-size: 1em;
               font-weight: 500;
               text-shadow: 0px 5px 19px rgba(0, 0, 0, 0.91);
+              cursor: pointer;
             }
             p {
               font-size: 18px;
@@ -771,7 +806,6 @@
       @media all and (max-width: 767px) {
         align-items: flex-end;
         flex-direction: column;
-
       }
       .place-img {
         // padding: 7px;

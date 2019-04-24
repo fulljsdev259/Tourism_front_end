@@ -24,6 +24,9 @@ class Auth extends Component {
       password: ""
     };
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   componentDidUpdate(prevProps) {
     if (
       this.props.signup.isSuccess &&

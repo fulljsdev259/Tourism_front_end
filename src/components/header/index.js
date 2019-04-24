@@ -10,6 +10,7 @@ import { localStore } from "../../services/storage";
 import { ReactComponent as UserIcon } from "../../images/user.svg";
 import user from "../../images/user.svg";
 import CategoryNav3 from "../generic/CategoryNav3";
+import MenuImage from "../../images/menuImage.svg";
 
 class Header extends React.Component {
   constructor(props) {
@@ -67,7 +68,10 @@ class Header extends React.Component {
                 <img onClick={this.ToggleBody} className="logo" src={Logo} />
               </Link> */}
               <ul className="menu">
-                <li className="row ">
+                <li
+                  className="row "
+                  style={{ background: "#fff", paddingBottom: "20px" }}
+                >
                   <CategoryNav3
                     {...this.props}
                     categories={categories2}
@@ -109,7 +113,12 @@ class Header extends React.Component {
                     <span className="blueBtn">GET COMPANY LISTED </span>
                   </li>
                 ) : null}
-
+                <img
+                  className="menuImage-mobile"
+                  src={MenuImage}
+                  width="80px"
+                  style={{ position: "absolute", right: "10%", top: "20%" }}
+                />
                 {localStore("token") && this.props.userdata.data ? (
                   <li data-text="GET COMPANY LISTED" className="registerLi">
                     <div className="lower-section">
@@ -176,7 +185,9 @@ class Header extends React.Component {
                   >
                     <div className="lower-section">
                       <div className="registerDiv logged-in">
-                        <Link to="/auth">REGISTER / LOGIN</Link>
+                        <Link to="/auth" style={{ paddingTop: "20px" }}>
+                          REGISTER / LOGIN
+                        </Link>
                       </div>
                     </div>
                   </li>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CategoryNavItem({ category ,handleSubcat}) {
+export default function CategoryNavItem({ category, handleSubcat }) {
   return (
     <div className="category-nav-item ">
       <div className="category-nav-item-header">
@@ -27,6 +27,9 @@ export default function CategoryNavItem({ category ,handleSubcat}) {
                 >
                   {sub_category.name.replace("_", " ")}
                 </Link>
+                <span style={{ marginLeft: "15px", color: "#aaaaaa" }}>
+                  {sub_category.itemCount}
+                </span>
               </li>
             ))}
           </ul>

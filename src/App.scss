@@ -24,6 +24,25 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
 // }
 .categoryDiv {
   order: 1;
+  align-items: baseline;
+  .homePageImage {
+    position: absolute;
+    left: 1%;
+    width: 75px;
+    @media all and (max-width: 1199px) {
+    }
+    @media all and (max-width: 1100px) {
+    }
+    @media all and (max-width: 991px) {
+      // width: 50px;
+    }
+    @media all and (max-width: 800px) {
+      // width: 50px;
+    }
+    @media all and (max-width: 767px) {
+      display: none;
+    }
+  }
   @media all and (max-width: 767px) {
     order: 2;
   }
@@ -196,7 +215,7 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
           color: #000000;
           text-decoration: none;
         }
-        .active-link {
+        .active-cat {
           padding-bottom: 10px;
           border-bottom: 2px solid $current-color;
         }
@@ -273,7 +292,16 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
       text-transform: capitalize;
     }
     div:nth-child(2) {
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
+      p{
+        @media all and (max-width:767px) {
+          margin-bottom: 5rem;
+        }
+        // @media all and (max-width:424px) {
+        //   margin-bottom: 5rem;
+        // }
+
+      }
     }
   }
   // .cat-img {
@@ -297,21 +325,29 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
   //   }
   // }
   .cat-bg-img {
-    width: 40%;
+    // width: 40%;
+    // background-repeat: no-repeat;
+    // background-position: right;
+    // background-size: 50%;
+    // position: absolute;
+    // height: 150px;
+    // right: 0;
+    // bottom: 80px;
+    // background-size: contain;
+        width: 30%;
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: 50%;
+    background-position: right;
+    /* background-size: 50%; */
     position: absolute;
-    height: 150px;
+    height: 100%;
     right: 0;
-    bottom: 80px;
+    bottom: 50px;
     background-size: contain;
     @media all and (max-width: 991px) {
-      // display: block;
       background-repeat: no-repeat;
-      background-position: center;
-      background-size: 40%;
-      height: 150px;
+      background-position: right;
+      background-size: contain;
+      height: 100%;
       margin-bottom: 20px;
       position: absolute;
       bottom: 20px;
@@ -319,13 +355,13 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
       z-index: -1;
     }
     @media all and (max-width: 767px) {
-      // display: block;
+      height: 150px;
       background-repeat: no-repeat;
-      background-position: center;
-      background-size: 50%;
-      margin-bottom: 20px;
+      background-position: right;
+      background-size: contain;
       position: absolute;
-      bottom: -20px;
+      bottom: 0;
+      margin-bottom: 0px;
       right: 0;
       z-index: -1;
     }

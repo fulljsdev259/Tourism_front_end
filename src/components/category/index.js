@@ -30,6 +30,7 @@ class Category extends Component {
     };
   }
   componentDidMount() {
+    window.scrollTo(0,0);
     const { filters } = this.props;
     if (filters.categories && filters.categories.data && !this.state.id) {
       const oneCategory = filters.categories.data.data.find(category => {
@@ -98,7 +99,7 @@ class Category extends Component {
         </div>
 
         <div className="row mt-4">
-          <div className="col-lg-8 col-md-10 col-sm-10 col-xs-10 offset-sm-1 offset-md-1 offset-lg-2 p-0">
+          <div className="col-lg-8 col-md-10 col-sm-12 col-xs-10 offset-md-1 offset-lg-2 p-0">
             <TopMenu />
             {cat && (
               <Description

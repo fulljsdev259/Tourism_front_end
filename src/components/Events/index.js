@@ -6,6 +6,9 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Events extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const data = [
       {

@@ -24,7 +24,8 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { image_formatter } from "../../services/helper";
 import mapMarker from "../../images/icon/location_w.svg";
-import { stat } from "fs";
+import MenuImage from "../../images/menuImage.svg";
+import Loader from "react-loader-spinner";
 
 class Index extends Component {
   constructor(props) {
@@ -42,6 +43,9 @@ class Index extends Component {
         this.props.getFeaturedEvents(one_category.id);
       }
     }
+  }
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
   componentDidUpdate(prevProps) {
     if (this.props.categories && !this.props.featuredEvents.data) {
@@ -95,13 +99,14 @@ class Index extends Component {
             backgroundPosition: "center"
           }}
         >
-          {/* <img src={i1} /> */}
+          {/* <img src={HomePageImage} /> */}
           <div className="text-block container">
             <div className="title">Shop Jamaica.</div>
             <div className="sub-title">
               Jamaica's best shopping offerings at your fingertips.
             </div>
           </div>
+          <img className='block1-menuImage'src={MenuImage} />
         </div>
         <div
           className="second-block row"
@@ -113,13 +118,14 @@ class Index extends Component {
         >
           {/* <img className="second-block-img" src={home_2} /> */}
           <div className="block block1_1 container">
-       
             <div className="block-title" style={{ textTransform: "uppercase" }}>
               POPULAR{" "}
               <span
                 style={{
-                  textDecoration: "underline"
+                  textDecoration: "underline",
+                  cursor: "pointer"
                 }}
+                onClick={() => this.props.history.push("/artisan")}
               >
                 ARTISAN
               </span>{" "}
@@ -172,28 +178,44 @@ class Index extends Component {
             featuredEvents.data &&
             featuredEvents.data.trendingEvents &&
             featuredEvents.data.trendingEvents.results.length ? (
-              featuredEvents.data.trendingEvents.results
-                .filter(m =>
-                  this.state.stateId ? m.EventState == this.state.stateId : m
-                )
-                .map((item, index) => (
-                  <span key={index}>
-                    {index < 4 && (
-                      <div className="popular">
-                        <img
-                          src={
-                            item.image
-                              ? image_formatter(item.image.secure_url, 300)
-                              : null
+              featuredEvents.data.trendingEvents.results.filter(
+                m => this.state.stateId && m.EventState == this.state.stateId
+              ).length ? (
+                featuredEvents.data.trendingEvents.results
+                  .filter(
+                    m1 =>
+                      this.state.stateId && m1.EventState == this.state.stateId
+                  )
+                  .map((item, index) => (
+                    <span key={index}>
+                      {index < 4 && (
+                        <div
+                          className="popular"
+                          onClick={() =>
+                            this.props.history.push(
+                              `/event-details/${item._id}`
+                            )
                           }
-                        />
-                        <div className="title">{item.title}</div>
-                      </div>
-                    )}
-                  </span>
-                ))
+                        >
+                          <img
+                            src={
+                              item.image
+                                ? image_formatter(item.image.secure_url, 300)
+                                : null
+                            }
+                          />
+                          <div className="title">{item.title}</div>
+                        </div>
+                      )}
+                    </span>
+                  ))
+              ) : (
+                <div className="noData">At this time, there is no data</div>
+              )
             ) : (
-              <div className="popular">No Stores for Artisan</div>
+              <div className="loader-div" style={{ margin: "40px auto" }}>
+                <Loader type="Oval" color="#555" height="30" />
+              </div>
             )}
           </div>
         </div>
@@ -264,7 +286,16 @@ class Index extends Component {
                   <Carousel.Caption>
                     <div className="caption">
                       <div className="desc">
-                        <div className="type">{item.title}</div>
+                        <div
+                          className="type"
+                          onClick={() =>
+                            this.props.history.push(
+                              `/event-details/${item._id}`
+                            )
+                          }
+                        >
+                          {item.title}
+                        </div>
                         <p>
                           A true representation of the island's unique culture
                         </p>
@@ -272,7 +303,16 @@ class Index extends Component {
                     </div>
                     <div className="caption2">
                       <div className="desc2">
-                        <div className="type2">{item.title}</div>
+                        <div
+                          className="type2"
+                          onClick={() =>
+                            this.props.history.push(
+                              `/event-details/${item._id}`
+                            )
+                          }
+                        >
+                          {item.title}
+                        </div>
 
                         <p>
                           <img src={mapMarker} />
@@ -301,7 +341,11 @@ class Index extends Component {
                 </Carousel.Caption>
               </Carousel.Item> */}
             </Carousel>
-          ) : null}
+          ) : (
+            <div className="loader-div" style={{ margin: "40px auto" }}>
+              <Loader type="Oval" color="#555" height="30" />
+            </div>
+          )}
 
           {/* <img src={i3} style={{ width: "100%" }} />
           <div className="text">
