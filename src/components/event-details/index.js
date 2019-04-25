@@ -73,6 +73,12 @@ class Index extends Component {
       categories &&
       categories.find(m => m.name == data.categories.name).bgImage;
 
+      const catBg =
+      data &&
+      data.categories &&
+      categories &&
+      categories.find(m => m.name == data.categories.name).bg;
+
     let avgRate,
       sum = 0;
     if (data) {
@@ -274,7 +280,10 @@ class Index extends Component {
                 style={{
                   width: "100%",
                   position: "relative",
-                  background: catBgColor,
+                  backgroundImage: `url(${catBg})`,
+                  backgroundRepeat: "no-repeate",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
                   minHeight: "350px"
                 }}
               >
@@ -436,7 +445,7 @@ class Index extends Component {
                                       changeRating={value =>
                                         setFieldValue("stars", value)
                                       }
-                                      starDimension="2em"
+                                      starDimension="1.5em"
                                       starSpacing="0px"
                                       numberOfStars={5}
                                       name="stars"

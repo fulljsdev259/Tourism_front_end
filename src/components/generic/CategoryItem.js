@@ -36,7 +36,7 @@ class CategoryItem extends Component {
     });
   };
   render() {
-    const { event, userdata, calendar, bgcolor } = this.props;
+    const { event, userdata, calendar } = this.props;
     let youInterested;
     if (event && userdata && userdata.data) {
       youInterested = event.interested.find(oneInterested => {

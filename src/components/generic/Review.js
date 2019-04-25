@@ -11,7 +11,7 @@ export default function Review({ review }) {
           // rating={this.state.rating}
           starRatedColor="#fbc000"
           // changeRating={this.changeRating}
-          starDimension="0.8em"
+          starDimension="1em"
           starSpacing="0px"
           numberOfStars={5}
           name="rating"

@@ -240,8 +240,11 @@
       display: flex;
       font-weight: 600;
       padding-top: 5px;
+      align-content: center;
+      align-items: center;
       .name {
-        margin-right: 5px;
+        margin-right: 8px;
+        padding-top: 2px;
       }
     }
     .text {
@@ -296,3 +299,4 @@
 // .fbblikee{
 //   display: none !important;
 // }
+

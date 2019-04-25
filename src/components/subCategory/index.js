@@ -12,6 +12,9 @@ import duty_free_img from "../../images/duty_free_img.png";
 import retails_img from "../../images/duty_free_img.png";
 import crafts_img from "../../images/crafts_img.png";
 import artisan_img from "../../images/crafts_img.png";
+import bg_dutyFree from "../../images/bg_dutyFree.png";
+import bg_crafts from "../../images/bg_crafts.png";
+import bg_artisan from "../../images/bg_artisan.png";
 import Loader from "react-loader-spinner";
 
 class SubCategory extends Component {
@@ -71,32 +74,61 @@ class SubCategory extends Component {
     }
   }
   render() {
-    const { categories2, location } = this.props;
+    const { categories2, location,category } = this.props;
     const cat = this.props.category;
-    const categories = [
-      {
-        name: "duty_free",
-        color: "#fbebec",
-        image: duty_free_img
-      },
-      {
-        name: "artisan",
-        color: "#a9fff1",
-        image: artisan_img
-      },
-      {
-        name: "crafts",
-        color: "#cfbeb6",
-        image: crafts_img
-      },
-      {
-        name: "retails",
-        color: "#fff6fb",
-        image: retails_img
-      }
-    ];
-    const bgcolor = categories.find(m => m.name == cat.name).color;
-    const catImage = categories.find(m => m.name == cat.name).image;
+//     const categories = [
+//       {
+//         name: "duty_free",
+//         color: "#fbebec",
+//         image: duty_free_img,
+//         bgImage: bg_dutyFree
+//       },
+//       {
+//         name: "artisan",
+//         color: "#a9fff1",
+//         image: artisan_img,
+//         bgImage: bg_artisan
+//       },
+//       {
+//         name: "crafts",
+//         color: "#cfbeb6",
+//         image: crafts_img,
+//         bgImage: bg_crafts
+//       },
+//       {
+//         name: "retails",
+//         color: "#fff6fb",
+//         image: retails_img
+//       }
+//     ];
+// console.log(categories2,'cccccccc',category)
+  //   const catImage =
+  //   data &&
+  //   data.categories &&
+  //   categories &&
+  //   categories.find(m => m.name == data.categories.name).image;
+  // const bgcolor =
+  //   data &&
+  //   data.categories &&
+  //   categories &&
+  //   categories.find(m => m.name == data.categories.name).bgColor;
+
+  // const catImage =
+  //   data &&
+  //   data.categories &&
+  //   categories &&
+  //   categories.find(m => m.name == data.categories.name).bgImage;
+
+  //   const bgImage =
+  //   data &&
+  //   data.categories &&
+  //   categories &&
+  //   categories.find(m => m.name == data.categories.name).bg;
+
+
+    const bgcolor =category.bgcolor;
+    const catImage = category.bgImage;
+    const bgImage = category.bg;
     return (
       <div className="event-page">
         <div className="row">
@@ -105,7 +137,6 @@ class SubCategory extends Component {
             {...this.props}
             categories={categories2}
             location={location}
-            cat={cat}
           />
         </div>
 
@@ -122,14 +153,23 @@ class SubCategory extends Component {
           </div>
         </div>
 
-        <div className="event-div row" style={{ background: `${bgcolor}` }}>
+        <div
+          className="event-div row"
+          style={{
+            // background: bgcolor,
+            backgroundImage: `url(${bgImage})`,
+            backgroundRepeat: "no-repeate",
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+          }}
+        >
           {this.props.filters.eventsByCategory.isLoading ? (
             <div className="loader-div">
               <Loader type="Oval" color="#fff" height="30" width="30" />
             </div>
           ) : this.props.events.length ? (
             this.props.events.map((event, i) => {
-              return <CategoryItem key={i} event={event} bgcolor={bgcolor} />;
+              return <CategoryItem key={i} event={event} />;
             })
           ) : (
             <div className="no-events">{`At this time, there is no Data `}</div>

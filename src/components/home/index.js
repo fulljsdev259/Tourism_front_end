@@ -19,6 +19,9 @@ import duty_free_img from "../../images/duty_free_img.png";
 import retails_img from "../../images/duty_free_img.png";
 import crafts_img from "../../images/crafts_img.png";
 import artisan_img from "../../images/crafts_img.png";
+import bg_dutyFree from "../../images/bg_dutyFree.png";
+import bg_crafts from "../../images/bg_crafts.png";
+import bg_artisan from "../../images/bg_artisan.png";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
 import ForgotPass from "../forgot-pass";
@@ -112,7 +115,8 @@ class Home extends Component {
     const imageArr = [category1, category3, category2, category4];
     const bgImageArr = [duty_free_img, artisan_img, crafts_img, retails_img];
     const pathArr = ["/duty_free", "/artisan", "/crafts", "/retails"];
-    const bgColor = ["#fbebec", "#a9fff1", "#cfbeb6", "#fff6fb"];
+    const bgColorArr = ["#fbebec", "#a9fff1", "#cfbeb6", "#fff6fb"];
+    const bgArr = [bg_dutyFree, bg_artisan, bg_crafts, bg_crafts];
     const categories = this.state.categoryData.data
       ? this.state.categoryData.data.map((m, i) => {
           return {
@@ -122,8 +126,9 @@ class Home extends Component {
             subCategory: m.subCategory,
             description: m.description,
             id: m._id,
-            bgColor: bgColor[i],
-            bgImage: bgImageArr[i]
+            bgColor: bgColorArr[i],
+            bgImage: bgImageArr[i],
+            bg: bgArr[i]
           };
         })
       : null;
@@ -202,7 +207,7 @@ class Home extends Component {
             <Route
               path="/event-details/:id"
               render={props => (
-                <EventDetails {...props} categories={categories} />
+                <EventDetails {...props} categories={categories}  />
               )}
             />
             <Redirect from="/event-details" to="/events" />

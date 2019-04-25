@@ -8,7 +8,8 @@ export default class Block1 extends Component {
         <div
           className="grid-item"
           style={{
-            backgroundImage: window.innerWidth <= 767 ? `url(${r_img})` : "none"
+            backgroundImage: window.innerWidth <= 767 ? `url(${r_img})` : "none",
+            scrollbarWidth: 'none',
           }}
         >
           {children}

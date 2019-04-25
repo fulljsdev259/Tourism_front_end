@@ -108,7 +108,7 @@ class Events extends Component {
           />
           <TopMenu />
         </div>
-        <div className="event-div">
+        <div className="event-div" style={{ background: "#fbc000" }}>
           {/* {this.props.events */}
           {/* ? this.props.events.map((event, i) => { */}
           {data.map((event, i) => {
