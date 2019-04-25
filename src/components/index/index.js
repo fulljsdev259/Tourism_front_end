@@ -123,7 +123,7 @@ class Index extends Component {
               <span
                 style={{
                   // textDecoration: "underline",
-                  cursor: "pointer"
+                  // cursor: "pointer"
                 }}
                 onClick={() => this.props.history.push("/artisan")}
               >
