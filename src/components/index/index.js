@@ -122,7 +122,7 @@ class Index extends Component {
               POPULAR{" "}
               <span
                 style={{
-                  textDecoration: "underline",
+                  // textDecoration: "underline",
                   cursor: "pointer"
                 }}
                 onClick={() => this.props.history.push("/artisan")}
