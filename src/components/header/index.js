@@ -93,26 +93,26 @@ class Header extends React.Component {
                     CONTACT US
                   </Link>
                 </li>
-                {!userdata.data ||
+                {/* {!userdata.data ||
                 (userdata.data &&
                   userdata.data.companyDetails &&
-                  userdata.data.companyDetails.title) ? (
-                  <li
-                    style={{
-                      marginTop: "10px"
-                    }}
-                    data-text="GET COMPANY LISTED"
-                    onClick={() => {
-                      if (userdata.data) {
-                      } else {
-                        this.ToggleBody();
-                        this.props.modalStateHandler(true, true);
-                      }
-                    }}
-                  >
-                    <span className="blueBtn">GET COMPANY LISTED </span>
-                  </li>
-                ) : null}
+                  userdata.data.companyDetails.title) ? ( */}
+                <li
+                  style={{
+                    marginTop: "10px"
+                  }}
+                  data-text="GET COMPANY LISTED"
+                  onClick={() => {
+                    if (userdata.data) {
+                    } else {
+                      this.ToggleBody();
+                      this.props.modalStateHandler(true, true);
+                    }
+                  }}
+                >
+                  <span className="blueBtn">GET COMPANY LISTED </span>
+                </li>
+                {/* ) : null} */}
                 <img
                   className="menuImage-mobile"
                   src={MenuImage}
@@ -140,6 +140,18 @@ class Header extends React.Component {
                           }}
                         >
                           <Link to="/profile">ACCOUNT SETTINGS</Link>
+                        </div>
+                        <div
+                          className="logout"
+                          onClick={() => {
+                            this.setState({
+                              apiCall: true
+                            });
+                            this.ToggleBody();
+                            this.props.modalStateHandler(false, false);
+                          }}
+                        >
+                          <Link to="/company">COMPANY PAGE</Link>
                         </div>
                         <div
                           className="logout"
@@ -234,7 +246,7 @@ class Header extends React.Component {
                     );
                   }}
                 >
-                  <a>GET COMPANY LISTED</a>
+                  <a>GET COMPANY LISTEDdd</a>
                 </div>
               </div>
             </div>
@@ -351,22 +363,21 @@ class Header extends React.Component {
                   </Link>
                   {/* <a>Contact us</a> */}
                 </div>
-                {!userdata.data ||
+                {/* {!userdata.data ||
                 (userdata.data &&
                   userdata.data.companyDetails &&
-                  userdata.data.companyDetails.title) ? (
-                  <div
-                    className="getStarted"
-                    onClick={() => {
-                      if (userdata.data) {
-                      } else {
-                        this.props.modalStateHandler(true, true);
-                      }
-                    }}
-                  >
-                    <a>GET COMPANY LISTED</a>
-                  </div>
-                ) : null}
+                  userdata.data.companyDetails.title) ? ( */}
+                <div
+                  className="getStarted"
+                  onClick={() => {
+                    {
+                      this.props.modalStateHandler(true, true);
+                    }
+                  }}
+                >
+                  <a>GET COMPANY LISTED</a>
+                </div>
+                {/* ) : null} */}
               </div>
             </div>
             {localStore("token") && this.props.userdata.data ? (
@@ -384,6 +395,14 @@ class Header extends React.Component {
                     <button className="logout">
                       <Link to="/profile">Account Settings</Link>
                     </button>
+                    {userdata.data &&
+                    userdata.data.companyDetails &&
+                    userdata.data.companyDetails.title ? (
+                      <button className="logout">
+                        <Link to="/company">Company Page</Link>
+                      </button>
+                    ) : null}
+
                     <button
                       className="logout"
                       onClick={() => {

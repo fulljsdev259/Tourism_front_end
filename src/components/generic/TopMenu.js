@@ -33,7 +33,6 @@ class TopMenu extends Component {
       if (
         filters.selectedCity !== prevProps.filters.selectedCity ||
         filters.selectedState !== prevProps.filters.selectedState ||
-        filters.ageFlag !== prevProps.filters.ageFlag ||
         !this.state.status
       ) {
         this.setState({ status: true });
@@ -62,7 +61,9 @@ class TopMenu extends Component {
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   render() {
+
     const { pathname } = this.props.location;
     // const states = [];
     const states = [
@@ -134,7 +135,7 @@ class TopMenu extends Component {
                 </span>
                 <div className="more-options">
                   <ul>
-                    <li>
+                    {/* <li>
                       <div className="search">
                         <img src={search} />
                         <input
@@ -144,13 +145,13 @@ class TopMenu extends Component {
                           placeholder="Search State"
                         />
                       </div>
-                    </li>
+                    </li> */}
                     {states}
                   </ul>
                 </div>
               </span>
               <span>
-                <ul className="some-cities">
+                <ul className="some-cities" style={{ display: "none" }}>
                   {selected_city && (
                     <li className="active">{selected_city.name}</li>
                   )}
@@ -194,41 +195,6 @@ class TopMenu extends Component {
                 ) : null}
               </span>
             </div>
-            {/* <div className="menu-links-right">
-              <div className="age-section">
-                <a
-                //   className={this.props.filters.ageFlag ? "active" : null}
-                //   onClick={() => this.props.ageFlagChange(true)}
-                >
-                  <span>Adults only</span>
-                  <span className="dot" />
-                </a>
-                <a
-                //   className={!this.props.filters.ageFlag ? "active" : null}
-                //   onClick={() => this.props.ageFlagChange(false)}
-                >
-                  <span>Kids</span>
-                  <span className="dot" />
-                </a>
-              </div>
-              <div className="view-section">
-                <Link
-                  //   className={pathname !== "/calenderview" ? "active" : null}
-                  to="/entertainment"
-                >
-                  <span>List view</span>
-                  <span className="dot" />
-                </Link>
-                <Link
-                  //   className={pathname === "/calenderview" ? "active" : null}
-                  to="/calenderview"
-                >
-                  <span>Calender view</span>
-                  <span className="dot" />
-                </Link>
-              </div>
-            </div>
-          </div> */}
             <div className="mobile-menu-links">
               {/* <div className="menu-links-left"> */}
               <div

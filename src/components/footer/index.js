@@ -181,7 +181,7 @@ export default class Footer extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="http://www.jhta.org/" target="_BLANK">
+                        <a target="_BLANK">
                           <img src={f6} />
                         </a>
                       </li>
@@ -191,7 +191,7 @@ export default class Footer extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="http://www.jhta.org/" target="_BLANK">
+                        <a target="_BLANK">
                           <img src={f8} />
                         </a>
                       </li>

@@ -73,7 +73,7 @@ class Index extends Component {
       categories &&
       categories.find(m => m.name == data.categories.name).bgImage;
 
-      const catBg =
+    const catBg =
       data &&
       data.categories &&
       categories &&
@@ -96,30 +96,6 @@ class Index extends Component {
     }
     return (
       <div className="event-details row">
-        {/* <ReactFBLike
-          language="en_US"
-          appId="717589285046812"
-          version="v2.12"
-          share=""
-          showFaces=""
-          width=""
-        /> */}
-
-        {/* <FacebookProvider
-          appId="2194646720630049"
-          className="fbblikee"
-          style={{ display: "none" }}
-        >
-          <Like
-            href="http://www.facebook.com"
-            colorScheme="dark"
-            text={false}
-            version="8.0.4"
-            className="fbblikee"
-            style={{ display: "none" }}
-          />
-        </FacebookProvider> */}
-
         {data && data.categories && (
           <Link to={{ pathname: `/${data.categories.name}` }}>
             <div className="arrowBack">
@@ -227,7 +203,26 @@ class Index extends Component {
                       ? `Added to Favorites`
                       : `Add to Favorites`}
                   </button>
-                  <div className="social d-flex">
+                  <div
+                    className="social d-flex"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginRight: "15%"
+                    }}
+                  >
+                    <FacebookProvider
+                      appId="2194646720630049"
+                      className="fbblikee"
+                    >
+                      <Like
+                        href="http://www.facebook.com"
+                        colorScheme="dark"
+                        layout="button_count"
+                        version="8.0.4"
+                        className="fbblikee"
+                      />
+                    </FacebookProvider>
                     {/* <button className="btn btn-primary px-1 py-0 d-flex">
                     <ThumbsupIcon />
                     <div className="text">like</div>
@@ -254,12 +249,16 @@ class Index extends Component {
                         data._id
                       }`}
                       title=""
-                      style={{ height: "28px", alignItems: "center" }}
+                      style={{
+                        height: "19px",
+                        alignItems: "center",
+                        marginTop: "3px"
+                      }}
                     >
-                      <TwitterIcon width="15px" height="15px" />
+                      <TwitterIcon width="12px" height="12px" />
                       <div
                         className="text"
-                        style={{ marginLeft: "5px", fontSize: "12px" }}
+                        style={{ marginLeft: "5px", fontSize: "10px" }}
                       >
                         Tweet
                       </div>

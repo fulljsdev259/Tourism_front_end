@@ -9,6 +9,8 @@ import Auth from "../auth";
 import AboutUs from "../aboutus";
 import Events from "../Events";
 import Profile from "../profile";
+import Company from "../company";
+import CompanyDetails from "../companyDetails";
 import EventDetails from "../event-details";
 import GetListed from "../getListed";
 import category1 from "../../images/category1.svg";
@@ -204,13 +206,21 @@ class Home extends Component {
                 );
               })}
             <Route path="/events" component={Events} />
+            <Route path="/company" component={Company} />
             <Route
               path="/event-details/:id"
               render={props => (
-                <EventDetails {...props} categories={categories}  />
+                <EventDetails {...props} categories={categories} />
+              )}
+            />
+            <Route
+              path="/companyDetails/:id"
+              render={props => (
+                <CompanyDetails {...props} categories={categories} />
               )}
             />
             <Redirect from="/event-details" to="/events" />
+            <Redirect from="/companyDetails" to="/company" />
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/auth/forgotPassword" component={ForgotPass} />
             <Route path="/auth" component={Auth} />
