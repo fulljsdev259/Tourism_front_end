@@ -9,5 +9,7 @@ export default function fireAjax(method, api_url, data, headers) {
     return axios.post(url, data, { headers });
   } else if (method === "PUT") {
     return axios.put(url, data, { headers });
+  } else if (method === "DELETE") {
+    return axios.delete(url, data, { headers });
   }
 }

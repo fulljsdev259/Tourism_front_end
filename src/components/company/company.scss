@@ -1,3 +1,14 @@
-.companyList{
-    min-height: 62vh;
+.companyList {
+  min-height: 62vh;
+  .companyTable {
+    td {
+      img {
+        cursor: pointer;
+      }
+      a {
+        cursor: pointer;
+        text-decoration: none;
+      }
+    }
+  }
 }

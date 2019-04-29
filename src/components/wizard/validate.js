@@ -7,9 +7,9 @@ const validate = values => {
   if (!values.title) {
     errors.title = "Company Name Required";
   }
-  if (!values.password) {
-    errors.password = " Password Required";
-  }
+  // if (!values.password) {
+  //   errors.password = " Password Required";
+  // }
   if (!values.firstName) {
     errors.firstName = "Required";
   }
@@ -17,7 +17,7 @@ const validate = values => {
     errors.lastName = "Required";
   }
   if (!values.email) {
-    errors.email = "Required";
+    // errors.email = "Required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Invalid email address";
   }
@@ -53,10 +53,10 @@ const validate = values => {
     errors.address = "Address is required";
   }
 
-  if (!values.phoneNumber) {
+  if (!values.phone_number) {
     errors.phoneNumber = "Phone Number is required";
-  } else if (!/^[0-9]*$/.test(values.phoneNumber)) {
-    errors.phoneNumber = "Invalid";
+  } else if (!/^[0-9]*$/.test(values.phone_number)) {
+    errors.phone_number = "Invalid";
   }
 
   // if ( !values.website ) {

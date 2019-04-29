@@ -76,6 +76,23 @@ export function* getEventByIdRequest(action) {
   }
 }
 
+export function* getUserPostByIdRequest(action) {
+  try {
+    const response = yield call(
+      fireApi,
+      "GET",
+      `events/getUserPostById/${action.payload}`
+    );
+    if (response) {
+      yield put(actions.getUserPostByIdSuccess(response.data));
+    } else {
+      yield put(actions.getUserPostByIdError());
+    }
+  } catch (e) {
+    yield put(actions.getUserPostByIdError());
+  }
+}
+
 export function* addReviewRequest(action) {
   const header = {
     Authorization: localStore("token")
@@ -145,6 +162,7 @@ export function* addEventRequest(action) {
     if (response && response.data && response.data.userSignUpMessage) {
       toast.success(response.data.userSignUpMessage);
       yield put(actions.submitEventSuccess(response.data));
+      // yield put(actions.getUserPostByIdRequest(action.payload.user_id));
     } else {
       if (response.data.message) {
         toast.error("Email already exists");
@@ -153,6 +171,36 @@ export function* addEventRequest(action) {
     }
   } catch (e) {
     yield put(actions.submitEventError());
+  }
+}
+
+export function* updateEventRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  try {
+    const response = yield call(
+      fireApi,
+      "PUT",
+      `updateEvent/${action.payload.id}`,
+      action.payload.data,
+      header
+    );
+    if (
+      response.data.success
+      //  && response.data && response.data.userSignUpMessage
+    ) {
+      toast.success("Information updated successfully!");
+      yield put(actions.updateEventSuccess(response.data));
+      yield put(actions.getUserPostByIdRequest(action.payload.user_id));
+    } else {
+      // if (response.data.message) {
+      //   // toast.error("Email already exists");
+      yield put(actions.updateEventError({ duplicate: true }));
+      // /}
+    }
+  } catch (e) {
+    yield put(actions.updateEventError());
   }
 }
 
@@ -176,5 +224,30 @@ export function* getFeaturedEventsRequest(action) {
     }
   } catch (e) {
     yield put(actions.getFeaturedEventsError());
+  }
+}
+
+export function* deleteEventRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  const { eventId, userId } = action.payload;
+  try {
+    const response = yield call(
+      fireApi,
+      "DELETE",
+      `deleteEvent/${eventId}`,
+      null,
+      header
+    );
+    if (response.data.success) {
+      toast.success("Company deleted successfully");
+      yield put(actions.deleteEventSuccess(response.data));
+      yield put(actions.getUserPostByIdRequest(userId));
+    } else {
+      yield put(actions.deleteEventError());
+    }
+  } catch (e) {
+    yield put(actions.deleteEventError());
   }
 }

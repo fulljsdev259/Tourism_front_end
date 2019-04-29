@@ -146,6 +146,7 @@ export function* getUserDataRequest(action) {
     if (response) {
       if (response.data.success) {
         yield put(actions.getUserDataSuccess(response.data));
+        yield put(actions.getUserPostByIdRequest(response.data._id));
       } else {
         // yield put(actions.logout());
       }
@@ -183,7 +184,7 @@ export function* updateUserRequest(action) {
       if (response.data.success) {
         toast.success("User Information Updated");
         yield put(actions.updateUserSuccess(response.data));
-        yield put(actions.getUserDataRequest());
+        yield put(actions.getUserDataRequest(header.Authorization));
       } else {
         yield put(actions.logout());
       }

@@ -96,6 +96,29 @@ class Index extends Component {
     }
     return (
       <div className="event-details row">
+        {/* <ReactFBLike
+          language="en_US"
+          appId="717589285046812"
+          version="v2.12"
+          share=""
+          showFaces=""
+          width=""
+        />
+
+        <FacebookProvider
+          appId="2194646720630049"
+          className="fbblikee"
+        >
+          <Like
+            href="http://www.facebook.com"
+            colorScheme="dark"
+            text={false}
+            layout="button_count" 
+            version="8.0.4"
+            className="fbblikee"
+          />
+        </FacebookProvider> */}
+
         {data && data.categories && (
           <Link to={{ pathname: `/${data.categories.name}` }}>
             <div className="arrowBack">

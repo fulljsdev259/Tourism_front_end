@@ -10,7 +10,7 @@ import {
     updatePasswordRequest,
   socialLoginRequest,
   contactUsRequest,
-  forgotRequest
+  forgotRequest,
 } from "./auth/action";
 import {
   //   getMonthlyEventsRequest,
@@ -25,7 +25,10 @@ import {
   //   unlikeCommentRequest,
   //   getInterestedEventsRequest,
   //   searchEventsRequest,
-  getFeaturedEventsRequest
+  getFeaturedEventsRequest,
+  getUserPostByIdRequest,
+  updateEventRequest,
+  deleteEventRequest,
 } from "./event/action";
 
 function* watchActions() {
@@ -65,7 +68,10 @@ function* watchActions() {
   yield takeLatest(constants.ADD_REVIEW_REQUEST, addReviewRequest);
 
   yield takeLatest(constants.SUBMIT_EVENT_REQUEST, addEventRequest);
-  yield takeLatest(constants.FORGOT_REQUEST,forgotRequest)
+  yield takeLatest(constants.FORGOT_REQUEST,forgotRequest);
+  yield takeLatest(constants.GET_USER_POST_BY_ID_REQUEST,getUserPostByIdRequest);
+  yield takeLatest(constants.UPDATE_EVENT_REQUEST,updateEventRequest);
+  yield takeLatest(constants.DELETE_EVENT_REQUEST,deleteEventRequest);
 }
 
 export default function* rootSaga() {

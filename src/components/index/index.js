@@ -46,6 +46,7 @@ class Index extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
+
   }
   componentDidUpdate(prevProps) {
     if (this.props.categories && !this.props.featuredEvents.data) {
@@ -106,7 +107,7 @@ class Index extends Component {
               Jamaica's best shopping offerings at your fingertips.
             </div>
           </div>
-          <img className='block1-menuImage'src={MenuImage} />
+          <img className="block1-menuImage" src={MenuImage} />
         </div>
         <div
           className="second-block row"
@@ -121,10 +122,12 @@ class Index extends Component {
             <div className="block-title" style={{ textTransform: "uppercase" }}>
               POPULAR{" "}
               <span
-                style={{
-                  // textDecoration: "underline",
-                  // cursor: "pointer"
-                }}
+                style={
+                  {
+                    // textDecoration: "underline",
+                    // cursor: "pointer"
+                  }
+                }
                 onClick={() => this.props.history.push("/artisan")}
               >
                 ARTISAN
@@ -399,12 +402,15 @@ class Index extends Component {
 
 const mapStateToProps = state => ({
   featuredEvents: state.event.featuredEvents.data,
-  places: state.event.locations.data
+  places: state.event.locations.data,
+  post: state.event.postById.data,
+  userdata: state.auth.userdata.data
   // categories: state.event.categories.data
 });
 
 const mapDispatchToProps = dispatch => ({
-  getFeaturedEvents: id => dispatch(actions.getFeaturedEventsRequest(id))
+  getFeaturedEvents: id => dispatch(actions.getFeaturedEventsRequest(id)),
+  getUserPostById: data => dispatch(actions.getUserPostByIdRequest(data))
 });
 
 export default connect(

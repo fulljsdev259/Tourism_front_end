@@ -196,19 +196,19 @@ class WizardFormThirdPage extends React.Component {
                             </div>
                         */}
               <Field
-                name="phoneNumber"
+                name="phone_number"
                 type="text"
                 component={renderField}
                 label="Phone number"
               />
               <Field
-                name="facebook"
+                name="facebook_url"
                 type="text"
                 component={renderField}
                 label="Facebook Url"
               />
               <Field
-                name="instagram"
+                name="insta_url"
                 type="text"
                 component={renderField}
                 label="Instagram"

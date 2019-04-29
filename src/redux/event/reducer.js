@@ -46,6 +46,13 @@ const initialState = {
     message: "",
     data: ""
   },
+  postById: {
+    isLoading: false,
+    isSuccess: false,
+    isError: false,
+    message: "",
+    data: ""
+  },
   interested: {
     isLoading: false,
     isSuccess: false,
@@ -84,6 +91,17 @@ const initialState = {
     isSuccess: false,
     isError: false,
     duplicate_email: false
+  },
+  updateEvent: {
+    isLoading: false,
+    isSuccess: false,
+    isError: false,
+    duplicate_email: false
+  },
+  deleteEvent: {
+    isLoading: false,
+    isSuccess: false,
+    isError: false
   }
 };
 
@@ -242,6 +260,34 @@ const handleEventByIdSuccess = (state, action) =>
 const handleEventByIdError = (state, action) =>
   update(state, {
     eventById: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+
+const handleUserPostByIdRequest = (state, action) =>
+  update(state, {
+    postById: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const handleUserPostByIdSuccess = (state, action) =>
+  update(state, {
+    postById: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false },
+      data: { $set: action.payload }
+    }
+  });
+const handleUserPostByIdError = (state, action) =>
+  update(state, {
+    postById: {
       isLoading: { $set: false },
       isSuccess: { $set: false },
       isError: { $set: true },
@@ -592,6 +638,60 @@ const handleSubmitEventReset = (state, action) =>
       duplicate_email: { $set: false }
     }
   });
+const handleUpdateEventRequest = (state, action) =>
+  update(state, {
+    updateEvent: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const handleUpdateEventSuccess = (state, action) =>
+  update(state, {
+    updateEvent: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false },
+      data: { $set: action.payload }
+    }
+  });
+const handleUpdateEventError = (state, action) =>
+  update(state, {
+    updateEvent: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload },
+      duplicate_email: { $set: action.payload.duplicate }
+    }
+  });
+const handleDeleteEventRequest = (state, action) =>
+  update(state, {
+    deleteEvent: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const handleDeleteEventSuccess = (state, action) =>
+  update(state, {
+    deleteEvent: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false }
+    }
+  });
+const handleDeleteEventError = (state, action) =>
+  update(state, {
+    deleteEvent: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
 const handleEventByIdUnmount = (state, action) =>
   update(state, {
     eventById: {
@@ -619,6 +719,11 @@ export default handleActions(
     [constants.GET_EVENT_BY_ID_REQUEST]: handleEventByIdRequest,
     [constants.GET_EVENT_BY_ID_SUCCESS]: handleEventByIdSuccess,
     [constants.GET_EVENT_BY_ID_ERROR]: handleEventByIdError,
+
+    [constants.GET_USER_POST_BY_ID_REQUEST]: handleUserPostByIdRequest,
+    [constants.GET_USER_POST_BY_ID_SUCCESS]: handleUserPostByIdSuccess,
+    [constants.GET_USER_POST_BY_ID_ERROR]: handleUserPostByIdError,
+
     [constants.SHARE_POST]: handlesharePost,
     [constants.ADD_INTEREST_REQUEST]: handleInterestRequest,
     [constants.ADD_INTEREST_SUCCESS]: handleInterestSuccess,
@@ -648,6 +753,14 @@ export default handleActions(
     [constants.SUBMIT_EVENT_SUCCESS]: handleSubmitEventSuccess,
     [constants.SUBMIT_EVENT_ERROR]: handleSubmitEventError,
     [constants.SUBMIT_EVENT_RESET]: handleSubmitEventReset,
+
+    [constants.UPDATE_EVENT_REQUEST]: handleUpdateEventRequest,
+    [constants.UPDATE_EVENT_SUCCESS]: handleUpdateEventSuccess,
+    [constants.UPDATE_EVENT_ERROR]: handleUpdateEventError,
+
+    [constants.DELETE_EVENT_REQUEST]: handleDeleteEventRequest,
+    [constants.DELETE_EVENT_SUCCESS]: handleDeleteEventSuccess,
+    [constants.DELETE_EVENT_ERROR]: handleDeleteEventError,
 
     [constants.STATE_CHANGE]: handleStateChange,
     [constants.GET_EVENT_BY_ID_UNMOUNT]: handleEventByIdUnmount

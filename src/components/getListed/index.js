@@ -55,7 +55,8 @@ class GetListed extends React.Component {
       closeModal,
       categories,
       submitEvent,
-      submitEventReset
+      submitEventReset,
+      userdata
     } = this.props;
     return (
       <div className="getListed">
@@ -93,6 +94,7 @@ class GetListed extends React.Component {
               categories={categories}
               submitEvent={submitEvent}
               submitEventReset={submitEventReset}
+              userdata={userdata}
             />
           </div>
         )}
@@ -104,7 +106,8 @@ class GetListed extends React.Component {
 const mapStateToProps = state => ({
   contactUs: state.auth.contactUs,
   categories: state.event.categories.data,
-  submitEvent: state.event.submitevent
+  submitEvent: state.event.submitevent,
+  userdata: state.auth.userdata.data,
 });
 
 const mapDispatchToProps = dispatch => ({

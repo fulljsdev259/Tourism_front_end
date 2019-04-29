@@ -52,6 +52,23 @@ export const getEventByIdSuccess = createAction(
 );
 export const getEventByIdError = createAction(constants.GET_EVENT_BY_ID_ERROR);
 
+export const getUserPostByIdRequest = createAction(
+  constants.GET_USER_POST_BY_ID_REQUEST
+);
+export const getUserPostByIdSuccess = createAction(
+  constants.GET_USER_POST_BY_ID_SUCCESS
+);
+export const getUserPostByIdError = createAction(
+  constants.GET_USER_POST_BY_ID_ERROR
+);
+export const deleteEventRequest = createAction(constants.DELETE_EVENT_REQUEST);
+export const deleteEventSuccess = createAction(constants.DELETE_EVENT_SUCCESS);
+export const deleteEventError = createAction(constants.DELETE_EVENT_ERROR);
+
+export const updateEventRequest = createAction(constants.UPDATE_EVENT_REQUEST);
+export const updateEventSuccess = createAction(constants.UPDATE_EVENT_SUCCESS);
+export const updateEventError = createAction(constants.UPDATE_EVENT_ERROR);
+
 export const addReviewRequest = createAction(constants.ADD_REVIEW_REQUEST);
 export const addReviewSuccess = createAction(constants.ADD_REVIEW_SUCCESS);
 export const addReviewError = createAction(constants.ADD_REVIEW_ERROR);

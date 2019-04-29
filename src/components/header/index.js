@@ -52,6 +52,9 @@ class Header extends React.Component {
       this.props.getCategory(this.props.categories);
     }
     let { loggedUserData, location, userdata, categories2 } = this.props;
+    if (!this.props.post.data && userdata.data) {
+      this.props.getUserPostById(userdata.data._id);
+    }
     return (
       <div className="fix-header">
         <div className="menuMobile">
@@ -102,15 +105,16 @@ class Header extends React.Component {
                     marginTop: "10px"
                   }}
                   data-text="GET COMPANY LISTED"
-                  onClick={() => {
-                    if (userdata.data) {
-                    } else {
+                >
+                  <span
+                    className="blueBtn"
+                    onClick={() => {
                       this.ToggleBody();
                       this.props.modalStateHandler(true, true);
-                    }
-                  }}
-                >
-                  <span className="blueBtn">GET COMPANY LISTED </span>
+                    }}
+                  >
+                    GET COMPANY LISTED{" "}
+                  </span>
                 </li>
                 {/* ) : null} */}
                 <img
@@ -151,7 +155,11 @@ class Header extends React.Component {
                             this.props.modalStateHandler(false, false);
                           }}
                         >
-                          <Link to="/company">COMPANY PAGE</Link>
+                          {userdata.data &&
+                          userdata.data.companyDetails &&
+                          userdata.data.companyDetails.title ? (
+                            <Link to="/company">COMPANY PAGE</Link>
+                          ) : null}
                         </div>
                         <div
                           className="logout"
@@ -170,6 +178,7 @@ class Header extends React.Component {
                               false
                             );
                             localStorage.removeItem("token");
+                            this.props.history.push("/");
                             this.props.logout();
                           }}
                         >
@@ -246,7 +255,7 @@ class Header extends React.Component {
                     );
                   }}
                 >
-                  <a>GET COMPANY LISTEDdd</a>
+                  <a>GET COMPANY LISTED</a>
                 </div>
               </div>
             </div>
@@ -420,6 +429,7 @@ class Header extends React.Component {
                         );
                         localStorage.removeItem("token");
                         this.props.logout();
+                        this.props.history.push("/");
                       }}
                     >
                       <a> Log Out</a>
@@ -456,14 +466,16 @@ const mapStateToProps = state => ({
   categories: state.event.categories.data,
   locations: state.event.locations.data,
   login: state.auth.login,
-  userdata: state.auth.userdata.data
+  userdata: state.auth.userdata.data,
+  post: state.event.postById.data
 });
 
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(actions.getCategoriesRequest()),
   getLocations: () => dispatch(actions.getLocationsRequest()),
   getUserData: data => dispatch(actions.getUserDataRequest(data)),
-  logout: () => dispatch(actions.logout())
+  logout: () => dispatch(actions.logout()),
+  getUserPostById: data => dispatch(actions.getUserPostByIdRequest(data))
 });
 
 export default connect(

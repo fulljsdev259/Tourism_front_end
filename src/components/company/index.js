@@ -3,15 +3,28 @@ import { connect } from "react-redux";
 import { Formik, Form } from "formik";
 import Trash from "../../images/trash.svg";
 import { Link } from "react-router-dom";
-import './company.scss'
+import "./company.scss";
+import * as actions from "../../redux/actions";
 // import Table from 'rc-table';
 
 class Company extends Component {
+  constructor(props) {
+    super(props);
+    // this.state = {
+    //   ApiCall: true
+    // };
+  }
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
-    const { data } = this.props.userdata;
+    const { data } = this.props.post;
+    // if (this.state.ApiCall && data) {
+    //   this.props.getUserPostById(data._id);
+    //   this.setState({
+    //     ApiCall: false
+    //   });
+    // }
     // const columns = [{
     //     title: 'Name', dataIndex: 'name', key:'name', width: 100,
     //   }, {
@@ -28,7 +41,7 @@ class Company extends Component {
     return (
       <div className="col-md-8 offset-md-2 col-10 offset-1 companyList">
         {/* <Table columns={columns} data={data} /> */}
-        <table class="table table-hover companyTable ">
+        <table className="table table-hover companyTable ">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -37,17 +50,28 @@ class Company extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>
-                <Link to={{ pathname: `/companyDetails/` }}>
-                  {data && data.companyDetails.title}
-                </Link>
-              </td>
-              <td>
-                <img src={Trash} width="20" />
-              </td>
-            </tr>
+            {data &&
+              this.props.userdata.data &&
+              data.map((m, i) => (
+                <tr key={i}>
+                  <th scope="row">{i + 1}</th>
+                  <td>
+                    <Link to={{ pathname: `/companyDetails/${m._id}` }}>
+                      {m.title}
+                    </Link>
+                  </td>
+                  <td
+                    onClick={() =>
+                      this.props.deleteEvent({
+                        eventId: m._id,
+                        userId: this.props.userdata.data._id
+                      })
+                    }
+                  >
+                    <img src={Trash} width="20" />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -56,10 +80,14 @@ class Company extends Component {
 }
 
 const mapStateToProps = state => ({
-  userdata: state.auth.userdata.data
+  userdata: state.auth.userdata.data,
+  post: state.event.postById.data
 });
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = dispatch => ({
+  deleteEvent: data => dispatch(actions.deleteEventRequest(data))
+  // getUserPostById: data => dispatch(actions.getUserPostByIdRequest(data))
+});
 
 export default connect(
   mapStateToProps,
