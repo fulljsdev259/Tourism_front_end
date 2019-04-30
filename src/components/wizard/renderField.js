@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.scss";
+import TimePicker from "../generic/TimePicker";
 
 export const renderField = ({
   input,
@@ -65,6 +66,7 @@ export const renderSelect = ({
   <div className="renderSelect">
     <label>{label}</label>
     <select {...input} defaultValue="" className="custom-select">
+    <option >select option</option>
       {data.map((d, i) => {
         return (
           <option key={i} value={d._id}>
@@ -72,6 +74,32 @@ export const renderSelect = ({
           </option>
         );
       })}
+    </select>
+
+    <div>
+      {touched && error && (
+        <span>
+          <sup>*</sup>
+          {error}
+        </span>
+      )}
+    </div>
+  </div>
+);
+
+export const renderTimeSelect = ({
+  input,
+  label,
+  type,
+  data,
+  meta: { touched, error }
+}) => (
+  <div className="renderSelect">
+    <label>{label}</label>
+    <select  defaultValue="" className="custom-select">
+      {/* {data.map((d, i) => { */}
+         <TimePicker />;
+      {/* })} */}
     </select>
 
     <div>

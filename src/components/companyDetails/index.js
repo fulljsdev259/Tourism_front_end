@@ -4,16 +4,24 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import Loader from "react-loader-spinner";
 import subCategory from "../subCategory";
+import button1 from "../../images/button.svg";
+import button2 from "../../images/button2.svg";
+import { Button, Collapse } from "react-bootstrap";
+import TimePickerUpdate from "../generic/TimePickerUpdate";
 
 class CompanyDetails extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false
+    };
   }
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
     const { data } = this.props.post;
+    const { open } = this.state;
     const { categories } = this.props;
     const companyData =
       data && data.find(m => m._id == this.props.match.params.id);
@@ -37,7 +45,28 @@ class CompanyDetails extends Component {
                     facebook_url: companyData.facebook_url,
                     insta_url: companyData.insta_url,
                     fax: companyData.fax,
-                    website: companyData.website
+                    website: companyData.website,
+                    monStartTime: companyData.monStartTime,
+                    monEndTime: companyData.monEndTime,
+                    tueStartTime: companyData.tueStartTime,
+                    tueEndTime: companyData.tueEndTime,
+                    wedStartTime: companyData.wedStartTime,
+                    wedEndTime: companyData.wedEndTime,
+                    thrStartTime: companyData.thrStartTime,
+                    thrEndTime: companyData.thrEndTime,
+                    friStartTime: companyData.friStartTime,
+                    friEndTime: companyData.friEndTime,
+                    satStartTime: companyData.satStartTime,
+                    satEndTime: companyData.satEndTime,
+                    sunStartTime: companyData.sunStartTime,
+                    sunEndTime: companyData.sunEndTime,
+                    openMonday: companyData.monStartTime ? "true" : "false",
+                    openTuesday: companyData.tueStartTime ? "true" : "false",
+                    openWednesday: companyData.wedStartTime ? "true" : "false",
+                    openThursday: companyData.thrStartTime ? "true" : "false",
+                    openFriday: companyData.friStartTime ? "true" : "false",
+                    openSaturday: companyData.satStartTime ? "true" : "false",
+                    openSunday: companyData.sunStartTime ? "true" : "false"
                   }}
                   // enableReinitialize
                   validate={values => {
@@ -329,6 +358,422 @@ class CompanyDetails extends Component {
                             <label className="error">{errors.fax}</label>
                           )}
                         </div>
+                        <Button
+                          onClick={() => this.setState({ open: !open })}
+                          aria-controls="example-collapse-text"
+                          aria-expanded={open}
+                          style={{
+                            border: "unset",
+                            background: "unset",
+                            color: "#212529"
+                          }}
+                        >
+                          <img src={button1} />
+                          <a> Edit open Hours</a>
+                        </Button>
+                        <Collapse in={open}>
+                          <div id="example-collapse-text">
+                            <div>
+                              <div className="input-fields">
+                                <label>Monday</label>
+                                <div>
+                                  <select
+                                    name="openMonday"
+                                    value={values.openMonday}
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    id="openMonday"
+                                  >
+                                    <option value={true}>Opened</option>
+                                    <option value={false}>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {values.openMonday == "true" && (
+                                <>
+                                  <div className="input-fields">
+                                    <label>Open Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="monStartTime"
+                                        id="monStartTime"
+                                        value={values.monStartTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.monStartTime &&
+                                        touched.monStartTime && (
+                                          <label className="error">
+                                            {errors.monStartTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                  <div className="input-fields">
+                                    <label>Close Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="monEndTime"
+                                        id="monEndTime"
+                                        value={values.monEndTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.monEndTime &&
+                                        touched.monEndTime && (
+                                          <label className="error">
+                                            {errors.monEndTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            <div>
+                              <div className="input-fields">
+                                <label>Tuesday</label>
+                                <div>
+                                  <select
+                                    name="openTuesday"
+                                    value={values.openTuesday}
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    id="openTuesday"
+                                  >
+                                    <option value={true}>Opened</option>
+                                    <option value={false}>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {values.openTuesday == "true" && (
+                                <>
+                                  <div className="input-fields">
+                                    <label>Open Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="tueStartTime"
+                                        id="tueStartTime"
+                                        value={values.tueStartTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.tueStartTime &&
+                                        touched.tueStartTime && (
+                                          <label className="error">
+                                            {errors.tueStartTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                  <div className="input-fields">
+                                    <label>Close Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="tueEndTime"
+                                        id="tueEndTime"
+                                        value={values.tueEndTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.tueEndTime &&
+                                        touched.tueEndTime && (
+                                          <label className="error">
+                                            {errors.tueEndTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            <div>
+                              <div className="input-fields">
+                                <label>Wednesday</label>
+                                <div>
+                                  <select
+                                    name="openWednesday"
+                                    value={values.openWednesday}
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    id="openWednesday"
+                                  >
+                                    <option value={true}>Opened</option>
+                                    <option value={false}>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {values.openWednesday == "true" && (
+                                <>
+                                  <div className="input-fields">
+                                    <label>Open Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="wedStartTime"
+                                        id="wedStartTime"
+                                        value={values.wedStartTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.wedStartTime &&
+                                        touched.wedStartTime && (
+                                          <label className="error">
+                                            {errors.wedStartTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                  <div className="input-fields">
+                                    <label>Close Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="wedEndTime"
+                                        id="wedEndTime"
+                                        value={values.wedEndTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.wedEndTime &&
+                                        touched.wedEndTime && (
+                                          <label className="error">
+                                            {errors.wedEndTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            <div>
+                              <div className="input-fields">
+                                <label>Thursday</label>
+                                <div>
+                                  <select
+                                    name="openThursday"
+                                    value={values.openThursday}
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    id="openThursday"
+                                  >
+                                    <option value={true}>Opened</option>
+                                    <option value={false}>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {values.openThursday == "true" && (
+                                <>
+                                  <div className="input-fields">
+                                    <label>Open Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="thrStartTime"
+                                        id="thrStartTime"
+                                        value={values.thrStartTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.thrStartTime &&
+                                        touched.thrStartTime && (
+                                          <label className="error">
+                                            {errors.thrStartTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                  <div className="input-fields">
+                                    <label>Close Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="thrEndTime"
+                                        id="thrEndTime"
+                                        value={values.thrEndTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.thrEndTime &&
+                                        touched.thrEndTime && (
+                                          <label className="error">
+                                            {errors.thrEndTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            <div>
+                              <div className="input-fields">
+                                <label>Friday</label>
+                                <div>
+                                  <select
+                                    name="openFriday"
+                                    value={values.openFriday}
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    id="openFriday"
+                                  >
+                                    <option value={true}>Opened</option>
+                                    <option value={false}>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {values.openFriday == "true" && (
+                                <>
+                                  <div className="input-fields">
+                                    <label>Open Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="friStartTime"
+                                        id="friStartTime"
+                                        value={values.friStartTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.friStartTime &&
+                                        touched.friStartTime && (
+                                          <label className="error">
+                                            {errors.friStartTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                  <div className="input-fields">
+                                    <label>Close Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="friEndTime"
+                                        id="friEndTime"
+                                        value={values.friEndTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.friEndTime &&
+                                        touched.friEndTime && (
+                                          <label className="error">
+                                            {errors.friEndTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            <div>
+                              <div className="input-fields">
+                                <label>Saturday</label>
+                                <div>
+                                  <select
+                                    name="openSaturday"
+                                    value={values.openSaturday}
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    id="openSaturday"
+                                  >
+                                    <option value={true}>Opened</option>
+                                    <option value={false}>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {values.openSaturday == "true" && (
+                                <>
+                                  <div className="input-fields">
+                                    <label>Open Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="satStartTime"
+                                        id="satStartTime"
+                                        value={values.satStartTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.satStartTime &&
+                                        touched.satStartTime && (
+                                          <label className="error">
+                                            {errors.satStartTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                  <div className="input-fields">
+                                    <label>Close Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="satEndTime"
+                                        id="satEndTime"
+                                        value={values.satEndTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.satEndTime &&
+                                        touched.satEndTime && (
+                                          <label className="error">
+                                            {errors.satEndTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            <div>
+                              <div className="input-fields">
+                                <label>Sunday</label>
+                                <div>
+                                  <select
+                                    name="openSunday"
+                                    value={values.openSunday}
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    id="openSunday"
+                                  >
+                                    <option value={true}>Opened</option>
+                                    <option value={false}>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {values.openSunday == "true" && (
+                                <>
+                                  <div className="input-fields">
+                                    <label>Open Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="sunStartTime"
+                                        id="sunStartTime"
+                                        value={values.sunStartTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.sunStartTime &&
+                                        touched.sunStartTime && (
+                                          <label className="error">
+                                            {errors.sunStartTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                  <div className="input-fields">
+                                    <label>Close Time</label>
+                                    <div>
+                                      <TimePickerUpdate
+                                        name="sunEndTime"
+                                        id="sunEndTime"
+                                        value={values.sunEndTime}
+                                        onChange={handleChange}
+                                      />
+
+                                      {errors.sunEndTime &&
+                                        touched.sunEndTime && (
+                                          <label className="error">
+                                            {errors.sunEndTime}
+                                          </label>
+                                        )}
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </Collapse>
                         <div className="save-changes">
                           <button type="submit" className="save-btn">
                             Update Company Info
