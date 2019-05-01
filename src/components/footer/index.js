@@ -3,15 +3,15 @@ import "./footer.scss";
 import Logo from "../../images/logo.gif";
 import Menu from "../../images/icon/menu.svg";
 import Close from "../../images/icon/cross.svg";
-import f1 from "../../images/footer/f1.png";
-import f2 from "../../images/footer/f2.png";
-import f3 from "../../images/footer/f3.png";
-import f4 from "../../images/footer/f4.png";
-import f5 from "../../images/footer/f5.png";
-import f6 from "../../images/footer/f6.png";
-import f7 from "../../images/footer/f7.png";
-import f8 from "../../images/footer/f8.png";
-import f9 from "../../images/footer/f9.png";
+import f1 from "../../images/footer/f11.png";
+import f2 from "../../images/footer/f22.png";
+import f3 from "../../images/footer/f33.png";
+import f4 from "../../images/footer/f44.png";
+import f5 from "../../images/footer/f55.png";
+import f6 from "../../images/footer/f66.png";
+import f7 from "../../images/footer/f77.png";
+import f8 from "../../images/footer/f88.png";
+import f9 from "../../images/footer/f99.png";
 import fb from "../../images/icon/fb.svg";
 import twitter from "../../images/icon/twitter/blue_b.svg";
 import insta from "../../images/icon/insta.svg";
@@ -148,7 +148,10 @@ export default class Footer extends React.Component {
                       Copyright © {currentYear}. Developed by Ministry of
                       Tourism and Powered by Tourism Enhancement Fund
                     </div>
-                    <ul className="logos col-12">
+                    <ul
+                      className="logos col-12"
+                      // style={{  alignItems: "center" }}
+                    >
                       <li>
                         <a href="https://www.mot.gov.jm/" target="_BLANK">
                           <img src={f1} />
@@ -200,7 +203,11 @@ export default class Footer extends React.Component {
                           href="http://www.jamaicatradeandinvest.org/"
                           target="_BLANK"
                         >
-                          <img src={f9} />
+                          <img
+                            className="f9image"
+                            src={f9}
+                            style={{ filter: "saturate(8) " }}
+                          />
                         </a>
                       </li>
                     </ul>

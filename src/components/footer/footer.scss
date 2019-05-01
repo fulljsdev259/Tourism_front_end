@@ -124,8 +124,10 @@
       display: flex;
       justify-content: space-between;
       list-style: none;
+      align-items: center;
       @media all and (max-width: 767px) {
         order: 1;
+        align-items: unset;
       }
       li {
         display: inline-block;
@@ -135,6 +137,21 @@
           // width: 40px;
           height: 20px;
           margin-left: 10px;
+          @media all and (max-width: 767px) {
+            height: 15px;
+          }
+          @media all and (max-width: 424px) {
+            height: 12px;
+          }
+        }
+        .f9image{
+          height: 35px;
+          @media all and (max-width: 767px) {
+            height: 25px;
+          }
+          @media all and (max-width: 424px) {
+            height: 23px;
+          }
         }
         img:nth-child(1) {
           margin-left: -20px;

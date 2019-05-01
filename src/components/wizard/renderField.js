@@ -94,7 +94,7 @@ export const renderTimeSelect = ({
   data,
   meta: { touched, error }
 }) => (
-  <div className="renderSelect">
+  <div className="renderSelectTime">
     <label>{label}</label>
     <select  defaultValue="" className="custom-select">
       {/* {data.map((d, i) => { */}

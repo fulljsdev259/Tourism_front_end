@@ -63,7 +63,6 @@ class TopMenu extends Component {
   };
 
   render() {
-
     const { pathname } = this.props.location;
     // const states = [];
     const states = [
@@ -73,6 +72,7 @@ class TopMenu extends Component {
     ];
     const cities = [];
     const more_cities = [];
+    const more_states = [];
     let selected_city;
     if (this.props.places.data) {
       const stateData = this.props.places.data.find(
@@ -84,11 +84,15 @@ class TopMenu extends Component {
             .toLowerCase()
             .includes(this.state.search_state.toLowerCase())
         ) {
-          states.push(
-            <li key={i} onClick={() => this.props.stateChange(state._id)}>
-              {state.name}
-            </li>
-          );
+          if (i < 3) {
+            states.push(
+              <li key={i} onClick={() => this.props.stateChange(state._id)}>
+                {state.name}
+              </li>
+            );
+          } else {
+            more_states.push(state);
+          }
         }
       });
       if (stateData)
@@ -96,7 +100,7 @@ class TopMenu extends Component {
           if (this.props.filters.selectedCity === city._id) {
             selected_city = city;
           } else {
-            if (index < 5) {
+            if (index < 3) {
               cities.push(
                 <li key={index} onClick={() => this.props.cityChange(city._id)}>
                   {city.name}
@@ -150,15 +154,50 @@ class TopMenu extends Component {
                   </ul>
                 </div>
               </span>
-              <span>
-                <ul className="some-cities" style={{ display: "none" }}>
-                  {selected_city && (
-                    <li className="active">{selected_city.name}</li>
-                  )}
-                  {cities}
-                </ul>
-              </span>
-              <span className="more-options-btn">
+
+              <span className="more-options-btn more-options-btn-state">
+                {more_states.length ? (
+                  <>
+                    <span className="more-text">More ...</span>
+                    <div className="more-options-state">
+                      <ul>
+                        {/* <li>
+                          <div className="search">
+                            <img src={search} />
+                            <input
+                              name="search_city"
+                              type="text"
+                              onChange={this.handleInputChange}
+                              placeholder="Search city"
+                            />
+                          </div>
+                        </li> */}
+                        {more_states
+                          .filter(state =>
+                            state.name
+                              .toLowerCase()
+                              .includes(this.state.search_state.toLowerCase())
+                          )
+                          .map((state, index) => (
+                            <li
+                              key={index}
+                              onClick={() => this.props.stateChange(state._id)}
+                            >
+                              {state.name}
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  </>
+                ) : null}
+                <span>
+                  <ul className="some-cities" style={{ display: "none" }}>
+                    {selected_city && (
+                      <li className="active">{selected_city.name}</li>
+                    )}
+                    {cities}
+                  </ul>
+                </span>
                 {more_cities.length ? (
                   <>
                     <span className="text">more ...</span>

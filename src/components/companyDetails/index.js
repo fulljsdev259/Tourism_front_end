@@ -28,7 +28,7 @@ class CompanyDetails extends Component {
     return (
       <div className="">
         <div className="row profile-row">
-          <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-1 col-sm-8 offset-sm-1 profile-form">
+          <div className="col-lg-9 offset-lg-2 col-md-9 offset-md-1 col-sm-9 offset-sm-1 profile-form">
             <div className="profile-title">
               <h3>Company information</h3>
             </div>
@@ -365,7 +365,11 @@ class CompanyDetails extends Component {
                           style={{
                             border: "unset",
                             background: "unset",
-                            color: "#212529"
+                            color: "#212529",
+                            margin: "10px 0px 30px",
+                            paddingLeft: "0px",
+                            fontSize: "x-large",
+                            fontWeight: "900"
                           }}
                         >
                           <img src={button1} />
@@ -373,7 +377,7 @@ class CompanyDetails extends Component {
                         </Button>
                         <Collapse in={open}>
                           <div id="example-collapse-text">
-                            <div>
+                            <div className="weekdayOpen">
                               <div className="input-fields">
                                 <label>Monday</label>
                                 <div>
@@ -390,7 +394,7 @@ class CompanyDetails extends Component {
                                 </div>
                               </div>
                               {values.openMonday == "true" && (
-                                <>
+                                <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
                                     <div>
@@ -427,10 +431,10 @@ class CompanyDetails extends Component {
                                         )}
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               )}
                             </div>
-                            <div>
+                            <div className="weekdayOpen">
                               <div className="input-fields">
                                 <label>Tuesday</label>
                                 <div>
@@ -447,7 +451,7 @@ class CompanyDetails extends Component {
                                 </div>
                               </div>
                               {values.openTuesday == "true" && (
-                                <>
+                                <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
                                     <div>
@@ -484,10 +488,10 @@ class CompanyDetails extends Component {
                                         )}
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               )}
                             </div>
-                            <div>
+                            <div className="weekdayOpen">
                               <div className="input-fields">
                                 <label>Wednesday</label>
                                 <div>
@@ -504,7 +508,7 @@ class CompanyDetails extends Component {
                                 </div>
                               </div>
                               {values.openWednesday == "true" && (
-                                <>
+                                <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
                                     <div>
@@ -541,10 +545,10 @@ class CompanyDetails extends Component {
                                         )}
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               )}
                             </div>
-                            <div>
+                            <div className="weekdayOpen">
                               <div className="input-fields">
                                 <label>Thursday</label>
                                 <div>
@@ -561,7 +565,7 @@ class CompanyDetails extends Component {
                                 </div>
                               </div>
                               {values.openThursday == "true" && (
-                                <>
+                                <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
                                     <div>
@@ -598,10 +602,10 @@ class CompanyDetails extends Component {
                                         )}
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               )}
                             </div>
-                            <div>
+                            <div className="weekdayOpen">
                               <div className="input-fields">
                                 <label>Friday</label>
                                 <div>
@@ -618,7 +622,7 @@ class CompanyDetails extends Component {
                                 </div>
                               </div>
                               {values.openFriday == "true" && (
-                                <>
+                                <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
                                     <div>
@@ -655,10 +659,10 @@ class CompanyDetails extends Component {
                                         )}
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               )}
                             </div>
-                            <div>
+                            <div className="weekdayOpen">
                               <div className="input-fields">
                                 <label>Saturday</label>
                                 <div>
@@ -675,7 +679,7 @@ class CompanyDetails extends Component {
                                 </div>
                               </div>
                               {values.openSaturday == "true" && (
-                                <>
+                                <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
                                     <div>
@@ -712,10 +716,10 @@ class CompanyDetails extends Component {
                                         )}
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               )}
                             </div>
-                            <div>
+                            <div className="weekdayOpen">
                               <div className="input-fields">
                                 <label>Sunday</label>
                                 <div>
@@ -732,7 +736,7 @@ class CompanyDetails extends Component {
                                 </div>
                               </div>
                               {values.openSunday == "true" && (
-                                <>
+                                <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
                                     <div>
@@ -769,7 +773,7 @@ class CompanyDetails extends Component {
                                         )}
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               )}
                             </div>
                           </div>

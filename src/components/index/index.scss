@@ -2,15 +2,16 @@
   // position: relative;
   padding-bottom: 2em;
   order: 2;
-  min-height: 300px;
+  min-height: 380px;
   display: flex;
   align-items: flex-end;
   padding-bottom: 2em;
   margin-bottom: 2em;
+  background-repeat: no-repeat;
   @media all and (max-width: 767px) {
     order: 1;
     padding-bottom: 1em;
-    min-height: 200px;
+    min-height: 280px;
   }
   // img {
   //   width: 100%;
