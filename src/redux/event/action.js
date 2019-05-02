@@ -159,8 +159,8 @@ export function* addInterestRequest(action) {
 export function* addEventRequest(action) {
   try {
     const response = yield call(fireApi, "POST", `addEvent`, action.payload);
-    if (response && response.data && response.data.userSignUpMessage) {
-      toast.success(response.data.userSignUpMessage);
+    if (response && response.data && response.statusText == "OK") {
+      toast.success("Details saved successfully");
       yield put(actions.submitEventSuccess(response.data));
       // yield put(actions.getUserPostByIdRequest(action.payload.user_id));
     } else {

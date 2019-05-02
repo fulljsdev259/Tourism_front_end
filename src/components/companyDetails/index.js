@@ -8,6 +8,7 @@ import button1 from "../../images/button.svg";
 import button2 from "../../images/button2.svg";
 import { Button, Collapse } from "react-bootstrap";
 import TimePickerUpdate from "../generic/TimePickerUpdate";
+import moment from "moment";
 
 class CompanyDetails extends Component {
   constructor(props) {
@@ -37,8 +38,11 @@ class CompanyDetails extends Component {
                 <Formik
                   initialValues={{
                     title: companyData.title,
-                    categories: companyData.categories._id,
-                    subcategories: companyData.subcategories._id,
+                    categories:
+                      companyData.categories && companyData.categories._id,
+                    subcategories:
+                      companyData.subcategories &&
+                      companyData.subcategories._id,
                     description: companyData.description,
                     address: companyData.address,
                     phone_number: companyData.phone_number,
@@ -100,6 +104,90 @@ class CompanyDetails extends Component {
                     }
                     if (!values.website) {
                       errors.website = "Required";
+                    }
+                    if (values.monStartTime) {
+                      if (!values.monEndTime) {
+                        errors.monEndTime = "Enter Closed Time";
+                      } else if (
+                        moment(values.monStartTime, "hh:mm a").format(
+                          "HH:mm"
+                        ) >=
+                        moment(values.monEndTime, "hh:mm a").format("HH:mm")
+                      ) {
+                        errors.monEndTime = "invalid Time";
+                      }
+                    }
+                    if (values.tueStartTime) {
+                      if (!values.tueEndTime) {
+                        errors.tueEndTime = "Enter Closed Time";
+                      } else if (
+                        moment(values.tueStartTime, "hh:mm a").format(
+                          "HH:mm"
+                        ) >=
+                        moment(values.tueEndTime, "hh:mm a").format("HH:mm")
+                      ) {
+                        errors.tueEndTime = "invalid Time";
+                      }
+                    }
+                    if (values.wedStartTime) {
+                      if (!values.wedEndTime) {
+                        errors.wedEndTime = "Enter Closed Time";
+                      } else if (
+                        moment(values.wedStartTime, "hh:mm a").format(
+                          "HH:mm"
+                        ) >=
+                        moment(values.wedEndTime, "hh:mm a").format("HH:mm")
+                      ) {
+                        errors.wedEndTime = "invalid Time";
+                      }
+                    }
+                    if (values.thrStartTime) {
+                      if (!values.thrEndTime) {
+                        errors.thrEndTime = "Enter Closed Time";
+                      } else if (
+                        moment(values.thrStartTime, "hh:mm a").format(
+                          "HH:mm"
+                        ) >=
+                        moment(values.thrEndTime, "hh:mm a").format("HH:mm")
+                      ) {
+                        errors.thrEndTime = "invalid Time";
+                      }
+                    }
+                    if (values.friStartTime) {
+                      if (!values.friEndTime) {
+                        errors.friEndTime = "Enter Closed Time";
+                      } else if (
+                        moment(values.friStartTime, "hh:mm a").format(
+                          "HH:mm"
+                        ) >=
+                        moment(values.friEndTime, "hh:mm a").format("HH:mm")
+                      ) {
+                        errors.friEndTime = "invalid Time";
+                      }
+                    }
+                    if (values.satStartTime) {
+                      if (!values.satEndTime) {
+                        errors.satEndTime = "Enter Closed Time";
+                      } else if (
+                        moment(values.satStartTime, "hh:mm a").format(
+                          "HH:mm"
+                        ) >=
+                        moment(values.satEndTime, "hh:mm a").format("HH:mm")
+                      ) {
+                        errors.satEndTime = "invalid Time";
+                      }
+                    }
+                    if (values.sunStartTime) {
+                      if (!values.sunEndTime) {
+                        errors.sunEndTime = "Enter Closed Time";
+                      } else if (
+                        moment(values.sunStartTime, "hh:mm a").format(
+                          "HH:mm"
+                        ) >=
+                        moment(values.sunEndTime, "hh:mm a").format("HH:mm")
+                      ) {
+                        errors.sunEndTime = "invalid Time";
+                      }
                     }
                     return errors;
                   }}
@@ -407,7 +495,13 @@ class CompanyDetails extends Component {
 
                                       {errors.monStartTime &&
                                         touched.monStartTime && (
-                                          <label className="error">
+                                          <label
+                                            className="error"
+                                            style={{
+                                              padding: "8px 5px 8px 5px",
+                                              color: "red"
+                                            }}
+                                          >
                                             {errors.monStartTime}
                                           </label>
                                         )}
@@ -423,12 +517,17 @@ class CompanyDetails extends Component {
                                         onChange={handleChange}
                                       />
 
-                                      {errors.monEndTime &&
-                                        touched.monEndTime && (
-                                          <label className="error">
-                                            {errors.monEndTime}
-                                          </label>
-                                        )}
+                                      {errors.monEndTime && touched.monEndTime && (
+                                        <label
+                                          className="error"
+                                          style={{
+                                            padding: "8px 5px 8px 5px",
+                                            color: "red"
+                                          }}
+                                        >
+                                          {errors.monEndTime}
+                                        </label>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -464,7 +563,13 @@ class CompanyDetails extends Component {
 
                                       {errors.tueStartTime &&
                                         touched.tueStartTime && (
-                                          <label className="error">
+                                          <label
+                                            className="error"
+                                            style={{
+                                              padding: "8px 5px 8px 5px",
+                                              color: "red"
+                                            }}
+                                          >
                                             {errors.tueStartTime}
                                           </label>
                                         )}
@@ -480,12 +585,17 @@ class CompanyDetails extends Component {
                                         onChange={handleChange}
                                       />
 
-                                      {errors.tueEndTime &&
-                                        touched.tueEndTime && (
-                                          <label className="error">
-                                            {errors.tueEndTime}
-                                          </label>
-                                        )}
+                                      {errors.tueEndTime && touched.tueEndTime && (
+                                        <label
+                                          className="error"
+                                          style={{
+                                            padding: "8px 5px 8px 5px",
+                                            color: "red"
+                                          }}
+                                        >
+                                          {errors.tueEndTime}
+                                        </label>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -521,7 +631,13 @@ class CompanyDetails extends Component {
 
                                       {errors.wedStartTime &&
                                         touched.wedStartTime && (
-                                          <label className="error">
+                                          <label
+                                            className="error"
+                                            style={{
+                                              padding: "8px 5px 8px 5px",
+                                              color: "red"
+                                            }}
+                                          >
                                             {errors.wedStartTime}
                                           </label>
                                         )}
@@ -537,12 +653,17 @@ class CompanyDetails extends Component {
                                         onChange={handleChange}
                                       />
 
-                                      {errors.wedEndTime &&
-                                        touched.wedEndTime && (
-                                          <label className="error">
-                                            {errors.wedEndTime}
-                                          </label>
-                                        )}
+                                      {errors.wedEndTime && touched.wedEndTime && (
+                                        <label
+                                          className="error"
+                                          style={{
+                                            padding: "8px 5px 8px 5px",
+                                            color: "red"
+                                          }}
+                                        >
+                                          {errors.wedEndTime}
+                                        </label>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -578,7 +699,13 @@ class CompanyDetails extends Component {
 
                                       {errors.thrStartTime &&
                                         touched.thrStartTime && (
-                                          <label className="error">
+                                          <label
+                                            className="error"
+                                            style={{
+                                              padding: "8px 5px 8px 5px",
+                                              color: "red"
+                                            }}
+                                          >
                                             {errors.thrStartTime}
                                           </label>
                                         )}
@@ -594,12 +721,17 @@ class CompanyDetails extends Component {
                                         onChange={handleChange}
                                       />
 
-                                      {errors.thrEndTime &&
-                                        touched.thrEndTime && (
-                                          <label className="error">
-                                            {errors.thrEndTime}
-                                          </label>
-                                        )}
+                                      {errors.thrEndTime && touched.thrEndTime && (
+                                        <label
+                                          className="error"
+                                          style={{
+                                            padding: "8px 5px 8px 5px",
+                                            color: "red"
+                                          }}
+                                        >
+                                          {errors.thrEndTime}
+                                        </label>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -635,7 +767,13 @@ class CompanyDetails extends Component {
 
                                       {errors.friStartTime &&
                                         touched.friStartTime && (
-                                          <label className="error">
+                                          <label
+                                            className="error"
+                                            style={{
+                                              padding: "8px 5px 8px 5px",
+                                              color: "red"
+                                            }}
+                                          >
                                             {errors.friStartTime}
                                           </label>
                                         )}
@@ -651,12 +789,17 @@ class CompanyDetails extends Component {
                                         onChange={handleChange}
                                       />
 
-                                      {errors.friEndTime &&
-                                        touched.friEndTime && (
-                                          <label className="error">
-                                            {errors.friEndTime}
-                                          </label>
-                                        )}
+                                      {errors.friEndTime && touched.friEndTime && (
+                                        <label
+                                          className="error"
+                                          style={{
+                                            padding: "8px 5px 8px 5px",
+                                            color: "red"
+                                          }}
+                                        >
+                                          {errors.friEndTime}
+                                        </label>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -692,7 +835,13 @@ class CompanyDetails extends Component {
 
                                       {errors.satStartTime &&
                                         touched.satStartTime && (
-                                          <label className="error">
+                                          <label
+                                            className="error"
+                                            style={{
+                                              padding: "8px 5px 8px 5px",
+                                              color: "red"
+                                            }}
+                                          >
                                             {errors.satStartTime}
                                           </label>
                                         )}
@@ -708,12 +857,17 @@ class CompanyDetails extends Component {
                                         onChange={handleChange}
                                       />
 
-                                      {errors.satEndTime &&
-                                        touched.satEndTime && (
-                                          <label className="error">
-                                            {errors.satEndTime}
-                                          </label>
-                                        )}
+                                      {errors.satEndTime && touched.satEndTime && (
+                                        <label
+                                          className="error"
+                                          style={{
+                                            padding: "8px 5px 8px 5px",
+                                            color: "red"
+                                          }}
+                                        >
+                                          {errors.satEndTime}
+                                        </label>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -749,7 +903,13 @@ class CompanyDetails extends Component {
 
                                       {errors.sunStartTime &&
                                         touched.sunStartTime && (
-                                          <label className="error">
+                                          <label
+                                            className="error"
+                                            style={{
+                                              padding: "8px 5px 8px 5px",
+                                              color: "red"
+                                            }}
+                                          >
                                             {errors.sunStartTime}
                                           </label>
                                         )}
@@ -765,12 +925,17 @@ class CompanyDetails extends Component {
                                         onChange={handleChange}
                                       />
 
-                                      {errors.sunEndTime &&
-                                        touched.sunEndTime && (
-                                          <label className="error">
-                                            {errors.sunEndTime}
-                                          </label>
-                                        )}
+                                      {errors.sunEndTime && touched.sunEndTime && (
+                                        <label
+                                          className="error"
+                                          style={{
+                                            padding: "8px 5px 8px 5px",
+                                            color: "red"
+                                          }}
+                                        >
+                                          {errors.sunEndTime}
+                                        </label>
+                                      )}
                                     </div>
                                   </div>
                                 </div>

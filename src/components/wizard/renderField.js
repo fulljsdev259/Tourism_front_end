@@ -96,11 +96,11 @@ export const renderTimeSelect = ({
 }) => (
   <div className="renderSelectTime">
     <label>{label}</label>
-    <select  defaultValue="" className="custom-select">
+    {/* <select  defaultValue="" className="custom-select"> */}
       {/* {data.map((d, i) => { */}
-         <TimePicker />;
+         <TimePicker value="12:00 AM" {...input} />
       {/* })} */}
-    </select>
+    {/* </select> */}
 
     <div>
       {touched && error && (

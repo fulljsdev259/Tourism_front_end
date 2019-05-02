@@ -38,13 +38,13 @@ class TimePicker extends Component {
       );
     }
     return (
-      //   <select
-      //     value={this.props.value}
-      //     onChange={this.props.onChange}
-      //     name={this.props.name}
-      //   >
-      <>{options}</>
-      //   </select>
+        <select
+          value={this.props.value}
+          onChange={this.props.onChange}
+          name={this.props.name}
+        >
+      {options}
+        </select>
     );
   }
 }

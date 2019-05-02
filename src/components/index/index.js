@@ -46,7 +46,6 @@ class Index extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
-
   }
   componentDidUpdate(prevProps) {
     if (this.props.categories && !this.props.featuredEvents.data) {
@@ -279,12 +278,20 @@ class Index extends Component {
             <Carousel indicators={true} controls={true}>
               {featuredEvents.data.results.map((item, index) => (
                 <Carousel.Item key={index}>
-                  <img
+                  {/* <img
                     src={
                       item.image
                         ? image_formatter(item.image.secure_url, 1200)
                         : null
                     }
+                  /> */}
+                  <div
+                    className="carouselImage"
+                    style={{
+                      backgroundImage: `url(${item.image.secure_url})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "top"
+                    }}
                   />
                   <Carousel.Caption>
                     <div className="caption">

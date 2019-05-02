@@ -76,19 +76,23 @@ class GetListed extends React.Component {
             <Wizard
               onSuccessCompanyListed={this.onSuccessCompanyListed}
               onSubmit={data => {
-                const [first, ...last] =
-                  data.fullName && data.fullName.split(" ");
-                data.userDetails = {
-                  name: {
-                    first,
-                    last: last.join(" ")
-                  },
-                  email: data.email,
-                  password: data.password
-                };
-                delete data.password;
-                delete data.fullName;
-                delete data.email;
+                if (data.fullName) {
+                  const [first, ...last] =
+                    data.fullName && data.fullName.split(" ");
+                  data.userDetails = {
+                    name: {
+                      first,
+                      last: last.join(" ")
+                    },
+                    email: data.email,
+                    password: data.password
+                  };
+                  delete data.password;
+                  delete data.fullName;
+                  delete data.email;
+                } else {
+                  data.user_id = userdata.data && userdata.data._id;
+                }
                 this.props.addEvent(data);
               }}
               categories={categories}
@@ -107,7 +111,7 @@ const mapStateToProps = state => ({
   contactUs: state.auth.contactUs,
   categories: state.event.categories.data,
   submitEvent: state.event.submitevent,
-  userdata: state.auth.userdata.data,
+  userdata: state.auth.userdata.data
 });
 
 const mapDispatchToProps = dispatch => ({
