@@ -8,6 +8,7 @@ import button1 from "../../images/button.svg";
 import button2 from "../../images/button2.svg";
 import { Button, Collapse } from "react-bootstrap";
 import TimePickerUpdate from "../generic/TimePickerUpdate";
+import moment from "moment";
 
 class CompanyDetails extends Component {
   constructor(props) {
@@ -20,11 +21,12 @@ class CompanyDetails extends Component {
     window.scrollTo(0, 0);
   }
   render() {
+
     const { data } = this.props.post;
     const { open } = this.state;
     const { categories } = this.props;
     const companyData =
-      data && data.find(m => m._id == this.props.match.params.id);
+      data && data.find(m => m._id == this.props.match.params.id);      
     return (
       <div className="">
         <div className="row profile-row">
@@ -37,8 +39,8 @@ class CompanyDetails extends Component {
                 <Formik
                   initialValues={{
                     title: companyData.title,
-                    categories: companyData.categories._id,
-                    subcategories: companyData.subcategories._id,
+                    categories: companyData.categories && companyData.categories._id,
+                    subcategories: companyData.subcategories && companyData.subcategories._id,
                     description: companyData.description,
                     address: companyData.address,
                     phone_number: companyData.phone_number,
@@ -101,6 +103,20 @@ class CompanyDetails extends Component {
                     if (!values.website) {
                       errors.website = "Required";
                     }
+                    if(values.monStartTime){
+                      console.log(values.monStartTime,'mmmmmmmmmmm',values.monEndTime)
+                      console.log((moment(values.monStartTime, "hh:mm: a".format("HH:mm")) >= moment(values.monEndTime, "hh:mm: a".format("HH:mm"))))
+                      if(!values.monEndTime){
+                        errors.monEndTime = "Please enter closing Time"
+                      }
+
+                      else if(moment(values.monStartTime, "hh:mm: a".format("HH:mm")) >= moment(values.monEndTime, "hh:mm: a".format("HH:mm"))){
+                        
+                        errors.monEndTime = "Invalid Time";
+
+                      }
+                    }
+
                     return errors;
                   }}
                   onSubmit={(values, actions) => {

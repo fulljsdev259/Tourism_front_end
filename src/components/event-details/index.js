@@ -136,7 +136,7 @@ class Index extends Component {
                 minHeight: "350px"
               }}
             />
-            <div className="col-md-6 col-12 p-3 right">
+            <div className="col-md-5 col-12 p-3 right">
               <div>
                 <div className="block">
                   <img className="category-icon" src={categories && catImage} />
@@ -230,8 +230,7 @@ class Index extends Component {
                     className="social d-flex"
                     style={{
                       display: "flex",
-                      alignItems: "center",
-                      marginRight: "15%"
+                      alignItems: "center"                      
                     }}
                   >
                     <FacebookProvider
