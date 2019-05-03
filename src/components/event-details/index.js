@@ -321,7 +321,7 @@ class Index extends Component {
                   src={event_details_lb}
                 /> */}
                 <div className="timings">
-                  <div className="small-title">Open Hours</div>
+                  <div className="small-title openhours">Open Hours</div>
                   <div className="timing">
                     <div className="small-title2">Open Hours</div>
                     {[
