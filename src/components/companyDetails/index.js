@@ -103,9 +103,7 @@ class CompanyDetails extends Component {
                     if (!values.website) {
                       errors.website = "Required";
                     }
-                    if(values.monStartTime){
-                      console.log(values.monStartTime,'mmmmmmmmmmm',values.monEndTime)
-                      console.log((moment(values.monStartTime, "hh:mm: a".format("HH:mm")) >= moment(values.monEndTime, "hh:mm: a".format("HH:mm"))))
+                    if(values.monStartTime){                    
                       if(!values.monEndTime){
                         errors.monEndTime = "Please enter closing Time"
                       }

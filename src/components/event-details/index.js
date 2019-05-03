@@ -313,8 +313,9 @@ class Index extends Component {
                   src={event_details_lb}
                 /> */}
                 <div className="timings">
-                  <div className="small-title">Open Hours</div>
+                  <div className="small-title openhours">Open Hours</div>
                   <div className="timing">
+                  <div class="small-title px-1 openhours-mobile"><h6>Open Hours</h6></div>
                     {[
                       {
                         day: "Monday",
