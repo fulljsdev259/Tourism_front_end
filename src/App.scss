@@ -59,11 +59,9 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
         overflow-x: auto;
         flex-wrap: nowrap;
         margin: 15px auto;
-        align-items: flex-start;
+        align-items: stretch;
         padding: 5px;
         width: 100%;
-      }
-      @media all and (max-width: 767px) {
         order: 2;
       }
       .category-nav-item-header {
@@ -125,6 +123,7 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
               top: 62px;
               opacity: 1;
               z-index: 999;
+              flex: 1;
             }
             > ul li {
               padding: 8px 10px 8px 20px;
@@ -149,6 +148,10 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
               z-index: 999;
             }
           }
+        }
+        .category-nav-item:nth-child(4) {
+          transform: scaleX(0.9);
+          margin-left: 5px;
         }
       }
     }
@@ -293,14 +296,13 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
     }
     div:nth-child(2) {
       // margin-bottom: 20px;
-      p{
-        @media all and (max-width:767px) {
+      p {
+        @media all and (max-width: 767px) {
           margin-bottom: 5rem;
         }
         // @media all and (max-width:424px) {
         //   margin-bottom: 5rem;
         // }
-
       }
     }
   }
@@ -334,7 +336,7 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
     // right: 0;
     // bottom: 80px;
     // background-size: contain;
-        width: 30%;
+    width: 30%;
     background-repeat: no-repeat;
     background-position: right;
     /* background-size: 50%; */
@@ -377,7 +379,9 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
   border-radius: 5px;
   background: $button-color;
   border: none;
-  font-family: "Open Sans";
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  -webkit-font-smoothing: antialiased;
   font-size: 1em;
   font-weight: 800;
   letter-spacing: -0.5px;

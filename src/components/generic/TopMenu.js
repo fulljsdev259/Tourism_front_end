@@ -20,11 +20,16 @@ class TopMenu extends Component {
       search_city: "",
       search_state: "",
       state: "",
+      search_state_mobile: "",
       city: "",
       ageFlag: false,
       id: "",
-      status: true,
-      location_status: ""
+      status: false,
+      location_status: "",
+      displayState: false,
+      displayCity: false,
+      displayAge: false,
+      displayCal: false
     };
   }
   componentDidUpdate(prevProps, prevState) {
@@ -39,23 +44,20 @@ class TopMenu extends Component {
         const oneCategory = this.props.categories.data.find(category => {
           return category.name === this.props.match.path.replace("/", "");
         });
-        // if (oneCategory) {
-        //   if (!this.state.id) {
-        //     this.setState({ id: oneCategory._id });
-        //   }
-        this.props.getEventsByCategoryRequest({
-          sub_id: this.props.match.params.id && this.props.match.params.id,
-          id: oneCategory && oneCategory._id,
-          page_number: 1,
-          ageFlag: filters.ageFlag,
-          eventState: filters.selectedState,
-          eventCity: filters.selectedCity
-        });
+        if (oneCategory) {
+          if (!this.state.id) {
+            this.setState({ id: oneCategory._id });
+          }
+          this.props.getEventsByCategoryRequest({
+            sub_id: this.props.match.params.id && this.props.match.params.id,
+            id: oneCategory && oneCategory._id,
+            page_number: 1,
+            ageFlag: filters.ageFlag,
+            eventState: filters.selectedState,
+            eventCity: filters.selectedCity
+          });
+        }
       }
-      // if (this.props.isGeolocationEnabled) {
-      //   if (filters.storableLocation && filters.storableLocation.city) {
-      //   }
-      // }
     }
   }
   handleInputChange = e => {
@@ -63,9 +65,8 @@ class TopMenu extends Component {
   };
 
   render() {
-    const { pathname } = this.props.location;
-    // const states = [];
-    const states = [
+    let states = [];
+    states = [
       <li key={-1} onClick={() => this.props.stateChange("")}>
         All Locations
       </li>
@@ -73,9 +74,11 @@ class TopMenu extends Component {
     const cities = [];
     const more_cities = [];
     const more_states = [];
-    let selected_city;
+    let stateData = "";
+    let selected_city = "";
+
     if (this.props.places.data) {
-      const stateData = this.props.places.data.find(
+      stateData = this.props.places.data.find(
         state => this.props.filters.selectedState === state._id
       );
       this.props.places.data.map((state, i) => {
@@ -84,25 +87,30 @@ class TopMenu extends Component {
             .toLowerCase()
             .includes(this.state.search_state.toLowerCase())
         ) {
-          if (i < 3) {
-            states.push(
-              <li key={i} onClick={() => this.props.stateChange(state._id)}>
-                {state.name}
-              </li>
-            );
-          } else {
-            more_states.push(state);
-          }
+          states.push(
+            <li key={i} onClick={() => this.props.stateChange(state._id)}>
+              {state.name}
+            </li>
+          );
         }
       });
-      if (stateData)
+      if (stateData) {
         stateData.cities.map((city, index) => {
           if (this.props.filters.selectedCity === city._id) {
             selected_city = city;
           } else {
             if (index < 3) {
               cities.push(
-                <li key={index} onClick={() => this.props.cityChange(city._id)}>
+                <li
+                  key={index}
+                  style={{
+                    fontWeight:
+                      this.props.filters.selectedCity === city._id
+                        ? "700"
+                        : "600"
+                  }}
+                  onClick={() => this.props.cityChange(city._id)}
+                >
                   {city.name}
                 </li>
               );
@@ -111,6 +119,7 @@ class TopMenu extends Component {
             }
           }
         });
+      }
     }
 
     const state_place = () => {
@@ -122,98 +131,30 @@ class TopMenu extends Component {
       }
       return "All Locations";
     };
+
     return (
       <div className="">
         <div className="col-12 top-menu">
           <div className="menu-links">
             <div className="menu-links-left">
-              <img src={mapMain} />
               <span className="more-options-btn">
-                <span className="text">
-                  {state_place()}
-                  {/* {this.props.places.data && this.props.filters.selectedState
-                    ? this.props.places.data.find(
-                        state => this.props.filters.selectedState === state._id
-                      ).name
-                    : "All"} */}
-                </span>
-                <div className="more-options">
-                  <ul>
-                    {/* <li>
-                      <div className="search">
-                        <img src={search} />
-                        <input
-                          name="search_state"
-                          type="text"
-                          onChange={this.handleInputChange}
-                          placeholder="Search State"
-                        />
-                      </div>
-                    </li> */}
-                    {states}
-                  </ul>
+                <img src={mapMain} />
+                <span className="text">{state_place()}</span>
+                <div className="more-options-state">
+                  <ul>{states}</ul>
                 </div>
               </span>
+              <span className="text">{selected_city.name}</span>
+              <span>
+                <ul className="some-cities">{cities}</ul>
+              </span>
 
-              <span className="more-options-btn more-options-btn-state">
-                {more_states.length ? (
-                  <>
-                    <span className="more-text">More ...</span>
-                    <div className="more-options-state">
-                      <ul>
-                        {/* <li>
-                          <div className="search">
-                            <img src={search} />
-                            <input
-                              name="search_city"
-                              type="text"
-                              onChange={this.handleInputChange}
-                              placeholder="Search city"
-                            />
-                          </div>
-                        </li> */}
-                        {more_states
-                          .filter(state =>
-                            state.name
-                              .toLowerCase()
-                              .includes(this.state.search_state.toLowerCase())
-                          )
-                          .map((state, index) => (
-                            <li
-                              key={index}
-                              onClick={() => this.props.stateChange(state._id)}
-                            >
-                              {state.name}
-                            </li>
-                          ))}
-                      </ul>
-                    </div>
-                  </>
-                ) : null}
-                <span>
-                  <ul className="some-cities" style={{ display: "none" }}>
-                    {selected_city && (
-                      <li className="active">{selected_city.name}</li>
-                    )}
-                    {cities}
-                  </ul>
-                </span>
+              <span className="more-options-btn more-options-btn-cities">
                 {more_cities.length ? (
                   <>
                     <span className="text">more ...</span>
                     <div className="more-options">
                       <ul>
-                        <li>
-                          <div className="search">
-                            <img src={search} />
-                            <input
-                              name="search_city"
-                              type="text"
-                              onChange={this.handleInputChange}
-                              placeholder="Search city"
-                            />
-                          </div>
-                        </li>
                         {more_cities
                           .filter(city =>
                             city.name
@@ -232,6 +173,15 @@ class TopMenu extends Component {
                     </div>
                   </>
                 ) : null}
+
+                {/* <span>
+                  <ul className="some-cities" style={{ display: "none" }}>
+                    {selected_city && (
+                      <li className="active">{selected_city.name}</li>
+                    )}
+                    {cities}
+                  </ul>
+                </span> */}
               </span>
             </div>
             <div className="mobile-menu-links">
@@ -302,7 +252,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.getEventsByCategoryRequest(data)),
   //   getMonthlyEventsRequest: data =>
   //     dispatch(actions.getMonthlyEventsRequest(data)),
-  stateChange: id => dispatch(actions.stateChange(id))
+  stateChange: id => dispatch(actions.stateChange(id)),
+  cityChange: id => dispatch(actions.cityChange(id))
   //   setStorableLocation: value => dispatch(actions.storableLocation(value))
 });
 

@@ -537,7 +537,7 @@ const handleStateChange = (state, action) => {
   if (stateData && stateData.cities && stateData.cities.length) {
     return update(state, {
       selectedState: { $set: action.payload },
-      selectedCity: { $set: stateData.cities[0]._id }
+      selectedCity: { $set: "" }
     });
   } else {
     return update(state, {

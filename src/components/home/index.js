@@ -229,11 +229,13 @@ class Home extends Component {
             <Route
               path="/"
               render={props => (
-                <Index
-                  {...props}
-                  categories={categories}
-                  handleSubcat={this.handleSubcat}
-                />
+                <>
+                  <Index
+                    {...props}
+                    categories={categories}
+                    handleSubcat={this.handleSubcat}
+                  />
+                </>
               )}
             />
           </Switch>

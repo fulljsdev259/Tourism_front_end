@@ -115,6 +115,7 @@ export const getFeaturedEventsError = createAction(
 );
 
 export const stateChange = createAction(constants.STATE_CHANGE);
+export const cityChange = createAction(constants.CITY_CHANGE);
 export const getEventByIdUnmount = createAction(
   constants.GET_EVENT_BY_ID_UNMOUNT
 );

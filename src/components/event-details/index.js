@@ -31,7 +31,8 @@ import "./event-details.scss";
 
 class Index extends Component {
   state = {
-    leave_review: false
+    leave_review: false,
+    fb: ""
   };
   constructor(props) {
     super(props);
@@ -41,6 +42,18 @@ class Index extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
+    // this.setState({
+    //   fb: (
+    //     <FacebookProvider appId="2194646720630049">
+    //       <Like
+    //         href="http://www.facebook.com"
+    //         colorScheme="dark"
+    //         layout="button_count"
+    //         version="8.0.4"
+    //       />
+    //     </FacebookProvider>
+    //   )
+    // });
   }
   componentWillUnmount() {
     this.props.getEventByIdUnmount();
@@ -104,8 +117,8 @@ class Index extends Component {
           showFaces=""
           width=""
         />
-
-        <FacebookProvider
+ */}
+        {/* <FacebookProvider
           appId="2194646720630049"
           className="fbblikee"
         >
@@ -113,12 +126,11 @@ class Index extends Component {
             href="http://www.facebook.com"
             colorScheme="dark"
             text={false}
-            layout="button_count" 
+            // layout="button_count" 
             version="8.0.4"
             className="fbblikee"
           />
         </FacebookProvider> */}
-
         {data && data.categories && (
           <Link to={{ pathname: `/${data.categories.name}` }}>
             <div className="arrowBack">
@@ -230,19 +242,15 @@ class Index extends Component {
                     className="social d-flex"
                     style={{
                       display: "flex",
-                      alignItems: "center"                      
+                      alignItems: "center"
                     }}
                   >
-                    <FacebookProvider
-                      appId="2194646720630049"
-                      className="fbblikee"
-                    >
+                    <FacebookProvider appId="2194646720630049">
                       <Like
                         href="http://www.facebook.com"
                         colorScheme="dark"
                         layout="button_count"
                         version="8.0.4"
-                        className="fbblikee"
                       />
                     </FacebookProvider>
                     {/* <button className="btn btn-primary px-1 py-0 d-flex">
@@ -315,6 +323,7 @@ class Index extends Component {
                 <div className="timings">
                   <div className="small-title">Open Hours</div>
                   <div className="timing">
+                    <div className="small-title2">Open Hours</div>
                     {[
                       {
                         day: "Monday",

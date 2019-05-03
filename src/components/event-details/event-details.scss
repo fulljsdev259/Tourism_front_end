@@ -61,6 +61,12 @@
         width: 100%;
         padding: 20px 10px;
       }
+      .small-title {
+        display: block;
+        @media all and (max-width: 767px) {
+          display: none;
+        }
+      }
       .timing {
         font-size: 0.8em;
         width: 100%;
@@ -75,6 +81,16 @@
         @media all and (max-width: 767px) {
           flex-direction: column;
           padding-left: 2em;
+        }
+        .small-title2 {
+          display: none;
+          @media all and (max-width: 767px) {
+            display: block;
+            margin-left: 5px;
+            font-size: 15px;
+            margin-bottom: 5px;
+            font-weight: 500;
+          }
         }
         .day-block {
           display: flex;
@@ -172,7 +188,6 @@
           flex-direction: column;
           order: 2;
           margin: 10px 0;
-          
         }
       }
       .social-buttons {
@@ -186,7 +201,7 @@
           text-align: left;
           align-items: unset;
         }
-        .favorites-btn {          
+        .favorites-btn {
           background: #0a65ac;
           display: flex;
           align-items: center;
@@ -300,4 +315,3 @@
 // .fbblikee{
 //   display: none !important;
 // }
-
