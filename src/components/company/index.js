@@ -39,7 +39,7 @@ class Company extends Component {
     //     { name: 'Rose', age: 36, address: 'some where', key:'2' },
     //   ];
     return (
-      <div className="col-md-8 offset-md-2 col-10 offset-1 companyList">
+      <div className="col-md-8 offset-md-2 col-xs-10 offset-xs-1 companyList">
         {/* <Table columns={columns} data={data} /> */}
         <table className="table table-hover companyTable ">
           <thead>
