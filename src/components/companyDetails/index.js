@@ -21,11 +21,12 @@ class CompanyDetails extends Component {
     window.scrollTo(0, 0);
   }
   render() {
+
     const { data } = this.props.post;
     const { open } = this.state;
     const { categories } = this.props;
     const companyData =
-      data && data.find(m => m._id == this.props.match.params.id);
+      data && data.find(m => m._id == this.props.match.params.id);      
     return (
       <div className="">
         <div className="row profile-row">

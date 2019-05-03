@@ -120,10 +120,6 @@ const validate = values => {
     errors.category = "Category is required";
   }
 
-  // if ( !values.typeOfCompany ) {
-  //     errors.typeOfCompany = 'Type of Company is required'
-  // }
-
   // if ( !values.description ) {
   //     errors.description = 'description is required'
   // }
@@ -131,7 +127,6 @@ const validate = values => {
   if (!values.address) {
     errors.address = "Address is required";
   }
-
   if (!values.phone_number) {
     errors.phoneNumber = "Phone Number is required";
   } else if (!/^[0-9]*$/.test(values.phone_number)) {

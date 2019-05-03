@@ -172,20 +172,21 @@
           flex-direction: column;
           order: 2;
           margin: 10px 0;
+          
         }
       }
       .social-buttons {
         justify-content: space-between;
         align-items: center;
         @media all and (max-width: 767px) {
+          display: block;
           flex-direction: column;
           order: 3;
           justify-content: flex-start;
           text-align: left;
           align-items: unset;
         }
-        .favorites-btn {
-          width: 200px;
+        .favorites-btn {          
           background: #0a65ac;
           display: flex;
           align-items: center;
