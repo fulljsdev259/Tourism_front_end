@@ -99,7 +99,7 @@ class TopMenu extends Component {
           if (this.props.filters.selectedCity === city._id) {
             selected_city = city;
           } else {
-            if (index < 3) {
+            if (index < 2) {
               cities.push(
                 <li
                   key={index}
@@ -134,47 +134,73 @@ class TopMenu extends Component {
 
     return (
       <div className="">
-        <div className="col-12 top-menu">
-          <div className="menu-links">
-            <div className="menu-links-left">
-              <span className="more-options-btn">
-                <img src={mapMain} />
-                <span className="text">{state_place()}</span>
-                <div className="more-options-state">
-                  <ul>{states}</ul>
-                </div>
-              </span>
-              <span className="text">{selected_city.name}</span>
-              <span>
-                <ul className="some-cities">{cities}</ul>
-              </span>
-
-              <span className="more-options-btn more-options-btn-cities">
-                {more_cities.length ? (
-                  <>
-                    <span className="text">more ...</span>
-                    <div className="more-options">
-                      <ul>
-                        {more_cities
-                          .filter(city =>
-                            city.name
-                              .toLowerCase()
-                              .includes(this.state.search_city.toLowerCase())
-                          )
-                          .map((city, index) => (
-                            <li
-                              key={index}
-                              onClick={() => this.props.cityChange(city._id)}
-                            >
-                              {city.name}
-                            </li>
-                          ))}
-                      </ul>
+        <div className="col-lg-12 col-md-12 top-menu">
+          <div className="menu-links row">
+            <div className="menu-links-left col-lg-12 col-md-12 ">
+              <div className="row">
+                {/* <div> */}
+                <div className="menu-div-1 col-lg-3 col-md-3">
+                  <span className="more-options-btn">
+                    <img src={mapMain} />
+                    <span className="text">{state_place()}</span>
+                    <div className="more-options-state">
+                      <ul>{states}</ul>
                     </div>
-                  </>
-                ) : null}
+                  </span>
+                </div>
+                <div className="menu-div-2 col-lg-2 col-md-2">
+                  <span className="text2">{selected_city.name}</span>
+                </div>
+                {/* </div> */}
 
-                {/* <span>
+                <div
+                  className="menu-div-3 col-lg-4 col-md-4"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <span>
+                    <ul
+                      className="some-cities"
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between"
+                      }}
+                    >
+                      {cities}
+                    </ul>
+                  </span>
+                </div>
+
+                <div className="menu-div-4 col-lg-2 col-md-2">
+                  <span className="more-options-btn more-options-btn-cities">
+                    {more_cities.length ? (
+                      <>
+                        <span className="text">more ...</span>
+                        <div className="more-options">
+                          <ul>
+                            {more_cities
+                              .filter(city =>
+                                city.name
+                                  .toLowerCase()
+                                  .includes(
+                                    this.state.search_city.toLowerCase()
+                                  )
+                              )
+                              .map((city, index) => (
+                                <li
+                                  key={index}
+                                  onClick={() =>
+                                    this.props.cityChange(city._id)
+                                  }
+                                >
+                                  {city.name}
+                                </li>
+                              ))}
+                          </ul>
+                        </div>
+                      </>
+                    ) : null}
+
+                    {/* <span>
                   <ul className="some-cities" style={{ display: "none" }}>
                     {selected_city && (
                       <li className="active">{selected_city.name}</li>
@@ -182,21 +208,105 @@ class TopMenu extends Component {
                     {cities}
                   </ul>
                 </span> */}
-              </span>
+                  </span>
+                </div>
+              </div>
             </div>
+
+            <div className="mobile-menu-links-left col-lg-12 col-md-12 ">
+              <div className="row">
+                <div className="col-sm-12" style={{ position: "unset" }}>
+                  <div className="row">
+                    <div
+                      className="menu-div-1 col-xs-6 col-sm-6"
+                      style={{ width: "55%" }}
+                    >
+                      <span className="more-options-btn">
+                        <img src={mapMain} />
+                        <span className="text">{state_place()}</span>
+                        <div className="more-options-state">
+                          <ul>{states}</ul>
+                        </div>
+                      </span>
+                    </div>
+                    <div
+                      className="menu-div-2 col-xs-6 col-sm-6"
+                      style={{ width: "45%" }}
+                    >
+                      <span className="text2">{selected_city.name}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col=sm-12" style={{ position: "unset" }}>
+                  <div className="row">
+                    <div
+                      className="menu-div-3 col-lg-4 col-md-4"
+                      style={{ width: "100%" }}
+                    >
+                      <span>
+                        <ul className="some-cities">{cities}</ul>
+                      </span>
+                    </div>
+
+                    <div
+                      className="menu-div-4 col-lg-2 col-md-2"
+                      style={{ width: "100%" }}
+                    >
+                      <span className="more-options-btn more-options-btn-cities">
+                        {more_cities.length ? (
+                          <>
+                            <span
+                              className="text"
+                              style={{ paddingLeft: "40px" }}
+                            >
+                              more ...
+                            </span>
+                            <div className="more-options">
+                              <ul>
+                                {more_cities
+                                  .filter(city =>
+                                    city.name
+                                      .toLowerCase()
+                                      .includes(
+                                        this.state.search_city.toLowerCase()
+                                      )
+                                  )
+                                  .map((city, index) => (
+                                    <li
+                                      key={index}
+                                      onClick={() =>
+                                        this.props.cityChange(city._id)
+                                      }
+                                    >
+                                      {city.name}
+                                    </li>
+                                  ))}
+                              </ul>
+                            </div>
+                          </>
+                        ) : null}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/*             
             <div className="mobile-menu-links">
-              {/* <div className="menu-links-left"> */}
+              <div className="menu-links-left">
               <div
                 className="state-list"
-                //   onClick={e => {
-                //     e.stopPropagation();
-                //     this.refs.cityList.style.display = "none";
-                //     this.refs.ageList.style.display = "none";
-                //     this.refs.viewList.style.display = "none";
-                //     this.refs.stateList.style.display = "block";
-                //   }}
+                  onClick={e => {
+                    e.stopPropagation();
+                    this.refs.cityList.style.display = "none";
+                    this.refs.ageList.style.display = "none";
+                    this.refs.viewList.style.display = "none";
+                    this.refs.stateList.style.display = "block";
+                  }}
               >
-                {/* <img src={mapMain} /> */}
+                <img src={mapMain} />
                 {this.props.places.data && this.props.filters.selectedState
                   ? this.props.places.data.find(
                       state => this.props.filters.selectedState === state._id
@@ -204,15 +314,15 @@ class TopMenu extends Component {
                   : null}
                 <ul
                   ref="stateList"
-                  // value={this.props.filters.selectedState}
-                  // onChange={e => this.props.stateChange(e.target.value)}
+                  value={this.props.filters.selectedState}
+                  onChange={e => this.props.stateChange(e.target.value)}
                 >
                   <li
-                  //   onClick={e => {
-                  //     e.stopPropagation();
-                  //     e.preventDefault();
-                  //     this.refs.stateList.style.display = "none";
-                  //   }}
+                    onClick={e => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      this.refs.stateList.style.display = "none";
+                    }}
                   >
                     x
                   </li>
@@ -228,8 +338,9 @@ class TopMenu extends Component {
                       </li>
                     ))}
                 </ul>
+                </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
