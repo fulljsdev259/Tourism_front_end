@@ -183,6 +183,10 @@
         .text {
           font-size: 0.8em;
           margin-left: 20px;
+          font-weight: 400;
+          min-width: unset;
+          padding-top: unset;
+          color: unset;
         }
         @media all and (max-width: 767px) {
           flex-direction: column;
