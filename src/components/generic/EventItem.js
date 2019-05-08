@@ -64,7 +64,7 @@ class EventItem extends Component {
             <div>
               <span className="span">
                 <img className="icon" src={mapMain} />{" "}
-                {event.EventPlace ? event.EventPlace : "Not Decided"}
+                {event.EventPlace ? event.EventPlace  : ""}
               </span>
               <span className="span">
                 {event.Price ? (

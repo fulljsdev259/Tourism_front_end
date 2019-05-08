@@ -44,10 +44,10 @@ class TopMenu extends Component {
         const oneCategory = this.props.categories.data.find(category => {
           return category.name === this.props.match.path.replace("/", "");
         });
-        if (oneCategory) {
-          if (!this.state.id) {
-            this.setState({ id: oneCategory._id });
-          }
+        // if (oneCategory) {
+        //   if (!this.state.id) {
+        //     this.setState({ id: oneCategory._id });
+        //   }
           this.props.getEventsByCategoryRequest({
             sub_id: this.props.match.params.id && this.props.match.params.id,
             id: oneCategory && oneCategory._id,
@@ -56,7 +56,7 @@ class TopMenu extends Component {
             eventState: filters.selectedState,
             eventCity: filters.selectedCity
           });
-        }
+        // }
       }
     }
   }

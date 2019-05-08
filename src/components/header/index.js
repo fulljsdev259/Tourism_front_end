@@ -87,9 +87,12 @@ class Header extends React.Component {
                   </Link>
                 </li>
                 <li data-text="Events">
-                  <Link to="/events" onClick={this.ToggleBody}>
+                  {/* <Link to="/events" onClick={this.ToggleBody}>
                     EVENTS
-                  </Link>
+                  </Link> */}
+                  <a href="https://www.topeventsinjamaica.com/#/shopping"  target="_blank">
+                    EVENTS
+                  </a>
                 </li>
                 <li data-text="CONTACT">
                   <Link to="/contactus" onClick={this.ToggleBody}>
@@ -333,7 +336,7 @@ class Header extends React.Component {
                     );
                   }}
                 >
-                  <Link
+                  {/* <Link
                     to="/events"
                     className={`  ${
                       location.pathname === "/events" ? "liActive" : ""
@@ -342,8 +345,11 @@ class Header extends React.Component {
                       this.setState({ activeLi: true });
                     }}
                   >
+                    Eventssss
+                  </Link> */}
+                  <a href="https://www.topeventsinjamaica.com/#/shopping" target="_blank">
                     Events
-                  </Link>
+                  </a>
                 </div>
                 <div
                   className="normal"

@@ -8,6 +8,7 @@ import heart_full_icon from "../../images/heart-full.svg";
 import web_icon from "../../images/icon/-e-ic_time.svg";
 import StarRatings from "react-star-ratings";
 import Review from "../generic/Review";
+import CategoryNav2 from "../generic/CategoryNav2"
 import EventSubDetail from "../generic/EventSubDetail";
 import { relative } from "path";
 import { ReactComponent as TwitterIcon } from "../../images/icon/twitter.svg";
@@ -109,6 +110,9 @@ class Index extends Component {
     }
     return (
       <div className="event-details row">
+           <CategoryNav2
+            {...this.props}
+          /> 
         {/* <ReactFBLike
           language="en_US"
           appId="717589285046812"
@@ -180,9 +184,8 @@ class Index extends Component {
                       <img className="icon" src={location_icon} />
                       <div className="text">
                         {data && data.EventPlace
-                          ? data.EventPlace
-                          : " place not decided "}{" "}
-                        ,
+                          ? data.EventPlace + ' , '
+                          : ""}               
                         {data && data.EventState && this.props.places.data
                           ? this.props.places.data.find(
                               state => state._id == data.EventState

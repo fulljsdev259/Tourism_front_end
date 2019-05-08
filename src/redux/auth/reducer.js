@@ -41,11 +41,6 @@ const initialState = {
     isSuccess: false,
     isError: false
   },
-  forgetPassword: {
-    isLoading: false,
-    isSuccess: false,
-    isError: false
-  },
   contactUs: {
     isLoading: false,
     isSuccess: false,

@@ -142,10 +142,9 @@ class CategoryItem extends Component {
 
             <div className="icon-div">
               <img className="icon" src={mapMarker} />
-              {event && event.EventPlace
-                ? event.EventPlace
-                : " place not decided "}
-              ,
+              {event && event.EventPlace 
+                ? event.EventPlace  + ' , '
+                : ""}
               {event && event.EventState && this.props.places.data
                 ? this.props.places.data.find(
                     state => state._id == event.EventState

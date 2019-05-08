@@ -328,7 +328,7 @@ class Index extends Component {
                           <img src={mapMarker} />
                           {item.EventPlace
                             ? item.EventPlace
-                            : `Place not decided`}
+                            : ""}
                         </p>
                       </div>
                     </div>

@@ -111,7 +111,7 @@ class ForgotPass extends Component {
 }
 
 const mapStateToProps = state => ({
-  forgot: state.auth.login,
+  forgot: state.auth.forgotPassword,
   userdata: state.auth.userdata
 });
 
