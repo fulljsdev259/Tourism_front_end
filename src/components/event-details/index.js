@@ -290,7 +290,7 @@ class Index extends Component {
                     >
                       <TwitterIcon width="12px" height="12px" />
                       <div
-                        className="text"
+                        className="twitter-icon"
                         style={{ marginLeft: "5px", fontSize: "10px" }}
                       >
                         Tweet
