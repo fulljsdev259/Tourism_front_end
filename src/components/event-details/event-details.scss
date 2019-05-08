@@ -274,6 +274,11 @@
       font-size: 0.8em;
       color: #007bff;
       cursor: pointer;
+      .input-fields textarea {
+        @media all and(min-width:767px) {
+          width: 90%;
+        }        
+      }      
     }
   }
 }
