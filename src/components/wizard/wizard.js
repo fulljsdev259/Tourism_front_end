@@ -34,7 +34,7 @@ class WizardForm extends Component {
   // collapseState = () => {
   //   this.setState({ open: !this.state.open });
   // };
-  render() {
+  render() {    
     const { onSubmit, categories, userdata } = this.props;
     const { page, open } = this.state;
     return (

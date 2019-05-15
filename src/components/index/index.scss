@@ -505,7 +505,7 @@
     height: 750px;
   }
   .desc {
-    position: absolute;
+    position: relative;
     top: 0;
     padding: 30px;
     @media all and (max-width: 767px) {
@@ -516,6 +516,12 @@
       margin: 20px 0;
       @media all and (max-width: 767px) {
         margin: 8px 0;
+      }
+      >a{
+        display: flex;
+        width: 100%;
+        text-decoration: none;
+        color: unset; 
       }
       .popularImage {
         // background-size: 130%;
@@ -561,12 +567,11 @@
       transform: rotate(-90deg);
       position: absolute;
       left: -300px;
-      bottom: 285px;
+      top: 50%;
       font-size: 2.5em;
       font-weight: 600;
       @media all and (max-width: 767px) {
-        left: -240px;
-        bottom: 440px;
+        left: -240px;        
         font-size: 2.3em;
         font-weight: 600;
       }

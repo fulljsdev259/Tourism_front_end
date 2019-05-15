@@ -16,6 +16,7 @@ import p4 from "../../images/craftMarkets.png";
 import p5 from "../../images/beachWear.png";
 import p6 from "../../images/giftItems.png";
 import home_2 from "../../images/home_2.png";
+import placeholder_img from "../../images/placeholder.jpg";
 import ic_settings from "../../images/icon/-e-ic_settings.svg";
 import CategoryNav from "../generic/CategoryNav";
 import { Carousel } from "react-bootstrap";
@@ -26,6 +27,8 @@ import { image_formatter } from "../../services/helper";
 import mapMarker from "../../images/icon/location_w.svg";
 import MenuImage from "../../images/menuImage.svg";
 import Loader from "react-loader-spinner";
+
+let bannerUrlIndex = "";
 
 class Index extends Component {
   constructor(props) {
@@ -62,6 +65,7 @@ class Index extends Component {
     this.setState({ stateName: state.name, stateId: state._id });
   };
   render() {
+    console.log(this.props,"popularTypes-props");
     const { categories, featuredEvents, places } = this.props;
     if (this.state.stateId == "" && places.data) {
       this.setState({
@@ -69,20 +73,17 @@ class Index extends Component {
         stateName: places.data[0].name
       });
     }
+    
+     (featuredEvents.data && featuredEvents.data.homepageDetails)
+      ?bannerUrlIndex = Math.floor(Math.random() * (+(featuredEvents.data.homepageDetails.length + 1) - +(0)))
+      :bannerUrlIndex = ""
+      
     const popular = [
       { name: "Nulook Company", image: i5 },
       { name: "Amoy Yae'l Purses", image: i6 },
       { name: "Beenybud Jamaica", image: i7 },
       { name: "Island girl headwraps and more", image: i8 }
-    ];
-    const popularTypes = [
-      { name: "jewelry", image: p1 },
-      { name: "Clothing", image: p2 },
-      { name: "Art", image: p3 },
-      { name: "Craft Markets", image: p4 },
-      { name: "Beach Wear", image: p5 },
-      { name: "Gift items", image: p6 }
-    ];
+    ];    
     return (
       <>
         {categories ? (
@@ -91,10 +92,11 @@ class Index extends Component {
             handleSubcat={this.props.handleSubcat}
           />
         ) : null}
+        
         <div
           className="first-block row "
           style={{
-            backgroundImage: `url(${i1})`,
+            backgroundImage: `url(${(bannerUrlIndex !== "")?featuredEvents.data && featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url : i1})`,
             backgroundSize: "cover",
             backgroundPosition: "center"
           }}
@@ -108,6 +110,7 @@ class Index extends Component {
           </div>
           <img className="block1-menuImage" src={MenuImage} />
         </div>
+        
         <div
           className="second-block row"
           style={{
@@ -201,7 +204,7 @@ class Index extends Component {
                         >
                           <img
                             src={
-                              item.image
+                              item && item.image
                                 ? image_formatter(item.image.secure_url, 300)
                                 : null
                             }
@@ -363,6 +366,9 @@ class Index extends Component {
             <div>A true representation of the island's unique culture</div>
           </div> */}
         </div>
+        {
+          (featuredEvents.data && featuredEvents.data.popularSubCategory.length > 0 )
+          ?    
         <div
           className="fifth-block row"
           style={{
@@ -374,34 +380,52 @@ class Index extends Component {
         >
           {/* <img src={i10} style={{ width: "100%" }} /> */}
           <div className="desc col-md-9 offset-md-2 col-11 offset-1 ">
-            <div className="row">
-              {popularTypes.map((item, index) => {
+            <div className="row">    
+                  
+              { 
+                featuredEvents.data.popularSubCategory.slice(0,6).map((data, index) => {
                 return (
-                  <div className="popularType col-md-6 col-12" key={index}>
-                    <div
-                      className="popularImage"
-                      style={{
-                        backgroundImage: `url(${item.image})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat",
-                        width: "40%",
-                        borderRadius: "10px 0px 0px 10px",
-                        boxShadow: "5px 2px 5px 0 rgba(0,0,0,.09)"
-                      }}
-                    >
-                      {/* <img src={item.image} /> */}
-                    </div>
-                    <div className="popularTitle ">
-                      <h3>{item.name}</h3>
-                    </div>
-                  </div>
+                  
+                      <div className="popularType col-md-6 col-12" key={index}
+                        onClick={()=>{
+                            
+                          }
+                        }
+                      >
+                       <Link
+                       to={`${data.parentCategory.name}/${data._id}`}
+                       >
+                        <div
+                          className="popularImage"
+                          style={{
+                            backgroundImage: `url(${(data.image && data.image.secure_url)?data.image.secure_url:placeholder_img})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                            width: "40%",
+                            borderRadius: "10px 0px 0px 10px",
+                            boxShadow: "5px 2px 5px 0 rgba(0,0,0,.09)"
+                          }}
+                        >
+                          {/* <img src={item.image} /> */}
+                        </div>
+                        <div className="popularTitle ">
+                          <h3>{data.name}</h3>
+                        </div>
+                        </Link>
+                      </div>                                       
                 );
               })}
+              
             </div>
             <div className="vertical-text">POPULAR PRODUCT TYPES</div>
+            
           </div>
         </div>
+        
+        :<div></div>
+        
+        }
       </>
     );
   }
@@ -411,7 +435,8 @@ const mapStateToProps = state => ({
   featuredEvents: state.event.featuredEvents.data,
   places: state.event.locations.data,
   post: state.event.postById.data,
-  userdata: state.auth.userdata.data
+  userdata: state.auth.userdata.data,
+ 
   // categories: state.event.categories.data
 });
 
