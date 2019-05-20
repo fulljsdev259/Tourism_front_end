@@ -64,8 +64,7 @@ class Index extends Component {
   handleInputChange = state => {
     this.setState({ stateName: state.name, stateId: state._id });
   };
-  render() {
-    console.log(this.props,"popularTypes-props");
+  render() {    
     const { categories, featuredEvents, places } = this.props;
     if (this.state.stateId == "" && places.data) {
       this.setState({
@@ -75,7 +74,7 @@ class Index extends Component {
     }
     
      (featuredEvents.data && featuredEvents.data.homepageDetails)
-      ?bannerUrlIndex = Math.floor(Math.random() * (+(featuredEvents.data.homepageDetails.length + 1) - +(0)))
+      ?bannerUrlIndex = Math.floor(Math.random() * (+(featuredEvents.data.homepageDetails.length) - +(0)))
       :bannerUrlIndex = ""
       
     const popular = [
@@ -204,7 +203,7 @@ class Index extends Component {
                         >
                           <img
                             src={
-                              item && item.image
+                            item.image
                                 ? image_formatter(item.image.secure_url, 300)
                                 : null
                             }
@@ -277,7 +276,7 @@ class Index extends Component {
           </div>
         </div>
         <div className="forth-block row">
-          {featuredEvents && featuredEvents.data ? (
+          {featuredEvents && featuredEvents.data && featuredEvents.data.results ? (
             <Carousel indicators={true} controls={true}>
               {featuredEvents.data.results.map((item, index) => (
                 <Carousel.Item key={index}>
@@ -291,7 +290,7 @@ class Index extends Component {
                   <div
                     className="carouselImage"
                     style={{
-                      backgroundImage: `url(${item.image.secure_url})`,
+                      backgroundImage: `url(${(item&&item.image.secure_url)?item.image.secure_url:placeholder_img})`,
                       backgroundSize: "cover",
                       backgroundPosition: "top"
                     }}
