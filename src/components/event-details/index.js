@@ -302,7 +302,7 @@ class Index extends Component {
                 <div
                   className="col-md-6 col-12 p-0 event-image-mobile"
                   style={{
-                    backgroundImage: `url(${data.image.secure_url})`,
+                    backgroundImage: `url(${data&&data.image&&data.image.secure_url?data.image.secure_url:placeholder_img})`,
                     minHeight: "200px"
                   }}
                 />
