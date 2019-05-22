@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.scss";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
