@@ -18,6 +18,7 @@ import * as actions from "../../redux/actions";
 import { Formik, Form } from "formik";
 import { localStore } from "../../services/storage";
 // import ReactFBLike from "react-fb-like";
+import placeholder_img from "../../images/placeholder.jpg";
 import { FacebookProvider, Like } from "react-facebook";
 import { Link } from "react-router-dom";
 import arrowBack from "../../images/arrow-left.svg";
@@ -148,7 +149,7 @@ class Index extends Component {
             <div
               className="col-md-6 col-12 p-0 event-image"
               style={{
-                backgroundImage: `url(${data.image.secure_url})`,
+                backgroundImage: `url(${data&&data.image&&data.image.secure_url?data.image.secure_url:placeholder_img})`,
                 minHeight: "350px"
               }}
             />
