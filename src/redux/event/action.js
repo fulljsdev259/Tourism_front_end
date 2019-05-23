@@ -158,14 +158,14 @@ export function* addInterestRequest(action) {
 
 export function* addEventRequest(action) {
   try {
-    const response = yield call(fireApi, "POST", `addEvent`, action.payload);
-    if (response && response.data && response.statusText == "OK") {
+    const response = yield call(fireApi, "POST", `addEvent`, action.payload);    
+    if (response && response.data && response.data._id) {
       toast.success("Details saved successfully");
       yield put(actions.submitEventSuccess(response.data));
       // yield put(actions.getUserPostByIdRequest(action.payload.user_id));
     } else {
-      if (response.data.message) {
-        toast.error("Email already exists");
+      if (response.data && response.data.message && response.data.message.includes("duplicate key")) {
+        toast.error("User is already registered, login to add commpany");        
         yield put(actions.submitEventError({ duplicate: true }));
       }
     }

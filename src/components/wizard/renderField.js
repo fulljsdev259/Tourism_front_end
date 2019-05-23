@@ -66,7 +66,7 @@ export const renderSelect = ({
   <div className="renderSelect">
     <label>{label}</label>
     <select {...input} defaultValue="" className="custom-select">
-    <option >select option</option>
+    <option value="" >select option</option>
       {data.map((d, i) => {
         return (
           <option key={i} value={d._id}>

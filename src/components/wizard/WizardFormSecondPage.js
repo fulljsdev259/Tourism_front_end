@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Field, reduxForm, FieldArray, formValueSelector } from "redux-form";
 import validate from "./validate";
 import {
@@ -51,10 +51,16 @@ const WizardFormSecondPage = props => {
     open_friday,
     open_saturday,
     open_sunday,
-    handleClick
+    handleClick,
+    userdata
   } = props;
+  
+  
+  const [fileName, setFileName] = useState(0);  
 
   const arr = [{ name: "Yes", _id: true }, { name: "No", _id: false }];
+  
+  
   return (
     <div>
       <div className="inActiveHeader">
@@ -68,7 +74,7 @@ const WizardFormSecondPage = props => {
             <div className="number">2</div>
             <div className="subHeading">About your company</div>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
             <Field
               name="categories"
               className="custom-select"
@@ -82,7 +88,8 @@ const WizardFormSecondPage = props => {
                 name="subcategories"
                 type="select"
                 data={
-                  categories.data && categories.data.find(item => selectedCategory === item._id)
+                  categories.data &&
+                  categories.data.find(item => selectedCategory === item._id)
                     .subCategory
                 }
                 component={renderSelect}
@@ -304,7 +311,42 @@ const WizardFormSecondPage = props => {
             </Collapse>
             {/* <Field name="tags" type="text" component={renderTag} label="Tags" /> */}
             {/* <FieldArray name="photo" component={renderMembers} /> */}
-            {/*  <Field name="photo" type="file" component={ FileInput } label="Tags" />*/}
+            <div className="input-fields">
+              <label>Upload Event Image</label>
+              <div className="addImage">      
+              {/* <Field 
+                name="image"
+                type="file"
+                label="image"
+                component={({input})=> */}
+                <input
+                    // {...input}
+                  type="file"
+                  // id="myimage"
+                  name="image"
+                  // accept="image/png, image/jpeg"
+                  // style={{ opacity: "1" }}
+                  onChange={e => {
+                    props.change('image', e.target.files[0])
+                    // this.props.userdata.append(e.target.files[0]);
+                    // console.log(e, e.target.value, e.target.files[0]);
+                    // console.log('userdata',this.props.userdata);
+                    
+                  }}
+                    // const formData = new FormData();
+                    // formData.append("image", e.target.files[0]);
+                    // this.setState({
+                    //   image: formData
+                    // });
+                    // this.setState({ image: e.target.files[0] });
+                  //   setFileName(e.target.value);
+                  //   console.log(e, 'file','current',e.target.value);
+                  // }}
+                />
+               
+                {/* </Field> */}
+              </div>
+            </div>
 
             <div>
               <button type="submit" className="nextsignup">

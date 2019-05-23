@@ -4,6 +4,7 @@ import "./index.scss";
 import Wizard from "../wizard/wizard";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
+import {jsonToFormData} from "../../services/helper.js"
 
 class GetListed extends React.Component {
   constructor() {
@@ -93,7 +94,18 @@ class GetListed extends React.Component {
                 } else {
                   data.user_id = userdata.data && userdata.data._id;
                 }
-                this.props.addEvent(data);
+                
+                // let initialFormData = {};
+                // let formData = jsonToFormData (data, initialFormData);
+                // let userData = JSON.stringify(data.userDetails);
+                var newformData = Object.assign(data,{userInfo:JSON.stringify(data.userDetails || null)});                                
+                // console.log(data.apppend('userDetails',JSON.stringify(data.userDetails)));
+                let form_Data = new FormData();
+                for ( let key in newformData ) {
+                  form_Data.append(key, newformData[key]);
+
+                }
+                this.props.addEvent(form_Data);
               }}
               categories={categories}
               submitEvent={submitEvent}

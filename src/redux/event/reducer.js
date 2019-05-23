@@ -625,7 +625,7 @@ const handleSubmitEventError = (state, action) =>
       isSuccess: { $set: false },
       isError: { $set: true },
       message: { $set: action.payload },
-      duplicate_email: { $set: action.payload.duplicate }
+      duplicate_email: { $set: action.payload&&action.payload.duplicate }
     }
   });
 const handleSubmitEventReset = (state, action) =>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import photo from "../../images/photo2.png";
+import placeholder_image from "../../images/placeholder.jpg";
 import cost from "../../images/cost_g.png";
 import inactiveCost from "../../images/cost-not-active.svg";
 import web from "../../images/web_g.png";
@@ -37,7 +37,7 @@ class EventItem extends Component {
           <div
             className="img"
             style={{
-              backgroundImage: `url(${event.image ? event.image.url : photo})`,
+              backgroundImage: `url(${(event.image && event.image.url)  ? event.image.url : placeholder_image})`,
               backgroundSize: "cover",
               backgroundPosition: "center"
             }}

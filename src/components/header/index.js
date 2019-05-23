@@ -90,7 +90,7 @@ class Header extends React.Component {
                   {/* <Link to="/events" onClick={this.ToggleBody}>
                     EVENTS
                   </Link> */}
-                  <a href="https://www.topeventsinjamaica.com/#/shopping"  target="_blank">
+                  <a href="https://www.topeventsinjamaica.com/shopping"  target="_blank">
                     EVENTS
                   </a>
                 </li>
@@ -347,7 +347,7 @@ class Header extends React.Component {
                   >
                     Eventssss
                   </Link> */}
-                  <a href="https://www.topeventsinjamaica.com/#/shopping" target="_blank">
+                  <a href="https://www.topeventsinjamaica.com/shopping" target="_blank">
                     Events
                   </a>
                 </div>

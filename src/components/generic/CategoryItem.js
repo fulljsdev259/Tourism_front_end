@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import photo from "../../images/photo2.png";
+import placeholder_img from "../../images/placeholder.jpg";
 // import jamrock from "../../images/jamrock.png";
 // import band from "../../images/band.png";
 import cost from "../../images/cost.png";
@@ -84,7 +84,7 @@ class CategoryItem extends Component {
           <div
             className="img"
             style={{
-              backgroundImage: `url(${event.image ? event.image.url : photo})`,
+              backgroundImage: `url(${(event.image && event.image.url) ? event.image.url : placeholder_img})`,
               backgroundSize: "cover"
               // backgroundPosition: "center"
             }}

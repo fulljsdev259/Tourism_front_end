@@ -14,7 +14,7 @@ const WizardFormFirstPage = props => {
             <div className="number">1</div>
             <div className="subHeading">General information</div>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
             {userdata.data && userdata.data._id ? (
               <div>
                 <Field
