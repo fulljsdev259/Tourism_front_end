@@ -26,7 +26,8 @@ import Loader from "react-loader-spinner";
 import {
   FacebookShareButton,
   TwitterShareButton,
-  EmailShareButton
+  EmailShareButton,
+  FacebookIcon
 } from "react-share";
 // import { ReactComponent as Test } from "../../images/event_details_lb.svg";
 import "./event-details.scss";
@@ -249,14 +250,14 @@ class Index extends Component {
                       alignItems: "center"
                     }}
                   >
-                    <FacebookProvider appId="2194646720630049">
+                    {/* <FacebookProvider appId="2194646720630049">
                       <Like
                         href="http://www.facebook.com"
                         colorScheme="dark"
                         layout="button_count"
                         version="8.0.4"
                       />
-                    </FacebookProvider>
+                    </FacebookProvider> */}
                     {/* <button className="btn btn-primary px-1 py-0 d-flex">
                     <ThumbsupIcon />
                     <div className="text">like</div>
@@ -277,6 +278,15 @@ class Index extends Component {
                     {/* <button className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"> */}
                     {/* <div className="text">Tweet</div> */}
                     {/* </button> */}
+                    <FacebookShareButton
+                      // className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"
+                      url={`http://ec2-18-222-212-140.us-east-2.compute.amazonaws.com/#/event-detail/${
+                        data._id
+                      }`}
+                      className="fb-share-btn"
+                    >
+                        <FacebookIcon size={15}/> <div>Share</div>
+                    </FacebookShareButton>
                     <TwitterShareButton
                       className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"
                       url={`${window.location.origin}/#/event-detail/${
