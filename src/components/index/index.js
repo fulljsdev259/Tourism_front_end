@@ -91,11 +91,13 @@ class Index extends Component {
             handleSubcat={this.props.handleSubcat}
           />
         ) : null}
-        
-        <div
+        { (featuredEvents.data && featuredEvents.data.homepageDetails)?
+        (<div
           className="first-block row "
           style={{
-            backgroundImage: `url(${(bannerUrlIndex !== "")?featuredEvents.data && featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url : i1})`,
+            
+            backgroundImage: `url(${(featuredEvents.data && featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url)?featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url:null})`,
+            // backgroundImage: `url(${featuredEvents.data && featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url?featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url:placeholder_img})`,
             backgroundSize: "cover",
             backgroundPosition: "center"
           }}
@@ -108,8 +110,14 @@ class Index extends Component {
             </div>
           </div>
           <img className="block1-menuImage" src={MenuImage} />
-        </div>
-        
+        </div>)
+        :
+        (
+              <div className="loader-div" style={{ margin: "40px auto" }}>
+                <Loader type="Oval" color="#555" height="30" />
+              </div>
+            )
+        }
         <div
           className="second-block row"
           style={{
@@ -382,7 +390,7 @@ class Index extends Component {
             <div className="row">    
                   
               { 
-                featuredEvents.data.popularSubCategory.slice(0,6).map((data, index) => {
+                featuredEvents.data.popularSubCategory.sort(() => Math.random() - 0.5).slice(0,6).map((data, index) => {
                 return (
                   
                       <div className="popularType col-md-6 col-12" key={index}
