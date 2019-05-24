@@ -128,7 +128,7 @@ class Category extends Component {
             backgroundImage: `url(${bgImage})`,
             backgroundRepeat: "no-repeate",
             backgroundPosition: "center",
-            backgroundSize: "cover"
+            backgroundSize: "contain"
           }}
         >
           {this.props.filters.eventsByCategory.isLoading ? (

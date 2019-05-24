@@ -241,6 +241,7 @@
           perspective: 1000;
           color: #000000;
           background: #fff6e7;
+          overflow: scroll;
           @media (max-width: 359px) {
             top: 55%;
           }
@@ -257,6 +258,7 @@
             opacity: 0;
             transform: translate3d(0, 36px, 0);
             padding-top: 20px;
+            width: 100%;
             span {
               background-color: #2955ae;
               padding: 10px;
@@ -295,7 +297,24 @@
 
             .lower-section {
               background-color: #fbfcff;
-              height: 100%;
+              
+                .top-footer-icons {
+                  ul{ 
+                    li {
+                      padding: 6px !important;
+                    }
+                  }
+                }
+              #mobile-footer{
+                .footer-col{
+                  border-top: none;
+                }
+              }
+              .social-logos{              
+                  li {
+                    padding: 10px !important;
+                    }                  
+                }
               .registerDiv {
                 padding: 20px 10px 10px 10px;
                 margin-left: 30px;
@@ -317,8 +336,8 @@
                 align-items: flex-start;
                 padding: 2vh 50px;
                 color: white;
-                font-weight: 500;
-                height: 100vh;
+                font-weight: 500;       
+                width: 100%;       
                 div {
                   margin-bottom: 10px;
                 }
