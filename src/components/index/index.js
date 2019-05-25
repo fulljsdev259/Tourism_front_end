@@ -64,6 +64,10 @@ class Index extends Component {
   handleInputChange = state => {
     this.setState({ stateName: state.name, stateId: state._id });
   };
+
+  onAboutJamicaClick=()=>{
+    this.props.history.push("/about-style-jamica")
+  }
   render() {    
     const { categories, featuredEvents, places } = this.props;
     if (this.state.stateId == "" && places.data) {
@@ -238,14 +242,14 @@ class Index extends Component {
             <div className="desc">
               <div className="type">Swimwear</div>
               <div className="brand">Jae Jolly</div>
-              <button>ABOUT STYLE JAMAICA</button>
+              <button onClick={this.onAboutJamicaClick}>ABOUT STYLE JAMAICA</button>
             </div>
             <img src={i9} style={{ width: "8%", margin: "4%" }} />
             <img src={i4} style={{ width: "42%" }} />
             <div className="desc">
               <div className="type">Menwear</div>
               <div className="brand">Bill Edwards</div>
-              <button>ABOUT STYLE JAMAICA</button>
+              <button onClick={this.onAboutJamicaClick}>ABOUT STYLE JAMAICA</button>
             </div>
           </div>
 
@@ -259,7 +263,7 @@ class Index extends Component {
                       <div className="type">Swimwear</div>
                       <div className="brand">Jae Jolly</div>
                       <Link to="/">
-                        <button>ABOUT STYLE JAMAICA</button>
+                        <button onClick={this.onAboutJamicaClick}>ABOUT STYLE JAMAICA</button>
                       </Link>
                     </div>
                   </div>
@@ -273,7 +277,7 @@ class Index extends Component {
                       <div className="type">Menwear</div>
                       <div className="brand">Bill Edwards</div>
                       <Link to="/">
-                        <button>ABOUT STYLE JAMAICA</button>
+                        <button onClick={this.onAboutJamicaClick}>ABOUT STYLE JAMAICA</button>
                       </Link>
                     </div>
                   </div>
@@ -288,13 +292,7 @@ class Index extends Component {
             <Carousel indicators={true} controls={true}>
               {featuredEvents.data.results.map((item, index) => (
                 <Carousel.Item key={index}>
-                  {/* <img
-                    src={
-                      item.image
-                        ? image_formatter(item.image.secure_url, 1200)
-                        : null
-                    }
-                  /> */}
+         
                   <div
                     className="carouselImage"
                     style={{
@@ -346,32 +344,12 @@ class Index extends Component {
                 </Carousel.Item>
               ))}
 
-              {/* <Carousel.Item>
-                <img src={i3} />
-                <Carousel.Caption>
-                  <div className="caption">
-                    <div className="desc">
-                      <div className="type">Menwear</div>
-                      <div className="brand">Bill Edwards</div>
-                      <Link to="">
-                        <button>ABOUT STYLE JAMAICA</button>
-                      </Link>
-                    </div>
-                  </div>
-                </Carousel.Caption>
-              </Carousel.Item> */}
             </Carousel>
           ) : (
             <div className="loader-div" style={{ margin: "40px auto" }}>
               <Loader type="Oval" color="#555" height="30" />
             </div>
           )}
-
-          {/* <img src={i3} style={{ width: "100%" }} />
-          <div className="text">
-            <h2>Craft Markets</h2>
-            <div>A true representation of the island's unique culture</div>
-          </div> */}
         </div>
         {
           (featuredEvents.data && featuredEvents.data.popularSubCategory.length > 0 )
