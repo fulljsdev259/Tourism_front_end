@@ -167,6 +167,8 @@ class Home extends Component {
           getCategory={this.handleGetCategory}
           categoryDataState={this.state.categoryData}
           categories2={categories}
+          handleSubcat={this.handleSubcat}
+
         />
         <div className="container-fluid body-top">
           <Switch>

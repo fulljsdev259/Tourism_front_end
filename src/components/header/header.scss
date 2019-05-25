@@ -644,8 +644,11 @@
     width: 100%;
     margin-top: 0px;
     top: 0px;
-    background: $header-color;
-    box-shadow: $header-box-shadow;
+    .black-header{
+      box-shadow: $header-box-shadow;
+      background: $header-color;
+
+    }
   }
 }
 

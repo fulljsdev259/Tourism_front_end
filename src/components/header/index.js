@@ -25,6 +25,7 @@ import twitter from "../../images/icon/twitter/blue_b.svg";
 import insta from "../../images/icon/insta.svg";
 import mapMain from "../../images/map-main-color_g.svg";
 import phone from "../../images/phone_g.svg";
+import CategoryNav from "../generic/CategoryNav";
 
 class Header extends React.Component {
   constructor(props) {
@@ -74,7 +75,9 @@ class Header extends React.Component {
       this.props.getUserPostById(userdata.data._id);
     }
     return (
+    
       <div className="fix-header">
+        <div className="black-header">
         <div className="menuMobile">
           <Link to="/">
             <div className="logoDiv">
@@ -471,14 +474,12 @@ class Header extends React.Component {
                 <div className="item">
                   <Link to="/aboutus">About</Link>
                 </div>
-                {/* <div className="item">News</div>
-                        <div className="item">Events</div> */}
+            
                 <div className="item" onClick={() => {}}>
                   <Link to="/events">Events</Link>
                 </div>
                 <div className="item" onClick={() => {}}>
                   <Link to="/contactus">Contact us</Link>
-                  {/* <a>Contact us</a> */}
                 </div>
                 <div
                   className="getStarted"
@@ -501,13 +502,7 @@ class Header extends React.Component {
             <div className="lower-section">
               <div
                 className="registerDiv"
-                //         className={`registerDiv ${
-                //   location.pathname == "/auth" ||
-                //   location.pathname == "/auth/" ||
-                //   location.pathname == "/auth/register"
-                //     ? "link-active"
-                //     : ""
-                // }`}
+       
               >
                 <Link to="/auth">Register / Login</Link>
               </div>
@@ -573,34 +568,13 @@ class Header extends React.Component {
                     );
                   }}
                 >
-                  {/* <Link
-                    to="/events"
-                    className={`  ${
-                      location.pathname === "/events" ? "liActive" : ""
-                    }`}
-                    onClick={() => {
-                      this.setState({ activeLi: true });
-                    }}
-                  >
-                    Eventssss
-                  </Link> */}
+
                   <a href="https://www.topeventsinjamaica.com/shopping" target="_blank">
                     Events
                   </a>
                 </div>
                 <div
                   className="normal"
-                  // onClick={() => {
-                  //   this.props.modalStateHandler(
-                  //     false,
-                  //     true,
-                  //     false,
-                  //     false,
-                  //     false,
-                  //     false,
-                  //     true
-                  //   );
-                  // }}
                 >
                   <Link
                     to="/contactus"
@@ -613,12 +587,8 @@ class Header extends React.Component {
                   >
                     Contact us
                   </Link>
-                  {/* <a>Contact us</a> */}
                 </div>
-                {/* {!userdata.data ||
-                (userdata.data &&
-                  userdata.data.companyDetails &&
-                  userdata.data.companyDetails.title) ? ( */}
+             
                 <div
                   className="getStarted"
                   onClick={() => {
@@ -700,7 +670,15 @@ class Header extends React.Component {
             )}
           </div>
         </div>
+     </div>
+     <CategoryNav
+            categories={this.props.categories2}
+            handleSubcat={this.props.handleSubcat}
+          />
       </div>
+     
+          
+    
     );
   }
 }

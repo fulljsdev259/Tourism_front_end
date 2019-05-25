@@ -6,7 +6,7 @@ export default function CategoryNav({ categories, handleSubcat }) {
   return (
     <div className="row categoryDiv">
       {/* <div > */}
-        <img  className='homePageImage' src={MenuImage} />
+       {window.location.pathname ==="/" && <img  className='homePageImage' src={MenuImage} />}
       {/* </div> */}
       <div className="container container-mobile ">
         <div className="category-nav row">
