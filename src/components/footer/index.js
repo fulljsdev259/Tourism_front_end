@@ -90,9 +90,12 @@ export default class Footer extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="row">
+               
+              </div>
+            </div>
+            <div className="row">
                   <div className="mobile-copyright col-md-12 col-12">
-                    <div className="copyright-text">
+                    <div className="copyright-text text-center">
                       Copyright © {currentYear}. Developed by Ministry of
                       Tourism and Powered by Tourism Enhancement Fund
                     </div>
@@ -161,8 +164,6 @@ export default class Footer extends React.Component {
                     </ul>
                   </div>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
 
