@@ -176,50 +176,11 @@ class CategoryItem extends Component {
             </div>
 
             <div>
-              {/* <span className="span"> */}
-              {/* <img className="icon" src={mapMain} />{" "}
-                {event.EventPlace ? event.EventPlace : "Not Decided"} */}
-              {/* </span> */}
-              {/* <span className="span">
-                {event.Price ? (
-                  <>
-                    <img className="icon" src={cost} />{" "}
-                    {`from $ ${event.Price}`}
-                  </>
-                ) : (
-                  <>
-                    <img className="icon" src={inactiveCost} /> Sold out{" "}
-                  </>
-                )}
-              </span> */}
             </div>
             <div>
-              {/* <span className="span web-color">
-                <img className="icon" src={web} />{" "}
-                {event.website ? event.website : "website.com"}
-              </span> */}
-              {/* <span className="span">
-                <img className="icon" src={time} />{" "}
-                {event.start && moment(event.start).format("hh:mm A")}
-              </span> */}
+
             </div>
             <div className="social">
-              {/* {event.interested.slice(0, 5).map((p, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    <img
-                      className="inner"
-                      style={{
-                        marginLeft: `${i * 10}px`,
-                        zIndex: getZIndex(i)
-                      }} 
-                       src={people}
-                    /> */}
-              {/* } */}
-              {/* </React.Fragment>
-                );
-              })} */}
-              {/* <span className="peopleCount">{interestPeople}</span> */}
               <img
                 className="wishlist"
                 src={youInterested ? heart_full : heart}
@@ -235,29 +196,8 @@ class CategoryItem extends Component {
                   }
                 }}
               />
-              {/* <img
-                className="share"
-                // src={share}
-
-                onClick={() => {
-                  this.props.sharePost(event);
-                  document.getElementById("shareMenu").style.top = "0px";
-                }}
-              /> */}
             </div>
           </div>
-          {/* <div className="bottom">
-            <Link
-              to={{ pathname: `/event-detail/${event._id}`, state: event }}
-              style={
-                {
-                  // backgroundImage: getgradient("/" + event.categories.name)
-                }
-              }
-            >
-              view details
-            </Link>
-          </div> */}
         </div>
       </div>
     );

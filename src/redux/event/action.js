@@ -251,3 +251,25 @@ export function* deleteEventRequest(action) {
     yield put(actions.deleteEventError());
   }
 }
+
+export function* getInterestRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  try {
+    const response = yield call(
+      fireApi,
+      "GET",
+      `getInterestedEvents`,
+      null,
+      header
+    );
+    if (response.data.success) {
+      // console.log(response.data);
+      
+      yield put(actions.getInterestSuccess(response.data));
+    } 
+  } catch (e) {
+    yield put(actions.getInterestError());
+  }
+}

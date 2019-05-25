@@ -119,3 +119,7 @@ export const cityChange = createAction(constants.CITY_CHANGE);
 export const getEventByIdUnmount = createAction(
   constants.GET_EVENT_BY_ID_UNMOUNT
 );
+
+export const getInterestRequest = createAction(constants.GET_INTEREST_REQUEST);
+export const getInterestSuccess = createAction(constants.GET_INTEREST_SUCCESS);
+export const getInterestError = createAction(constants.GET_INTEREST_ERROR);

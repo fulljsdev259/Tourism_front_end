@@ -102,7 +102,13 @@ const initialState = {
     isLoading: false,
     isSuccess: false,
     isError: false
-  }
+  },
+wishLists:{
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  data:[]
+}
 };
 
 const handleMonthlyEventsRequest = (state, action) =>
@@ -701,6 +707,40 @@ const handleEventByIdUnmount = (state, action) =>
       data: { $set: "" }
     }
   });
+
+
+  const getInterestRequest = (state, action) =>
+  update(state, {
+    wishLists: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const getInterestSuccess = (state, action) =>{
+  console.log(action,'33333333333333');
+  
+  return update(state, {
+    wishLists: {
+      data:{ $set:action.payload.data.results },
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false }
+    }
+  })
+}
+const getInterestError = (state, action) =>
+  update(state, {
+    wishLists: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+
+
 export default handleActions(
   {
     [constants.LOGOUT]: handleLogout,
@@ -763,7 +803,11 @@ export default handleActions(
     [constants.DELETE_EVENT_ERROR]: handleDeleteEventError,
 
     [constants.STATE_CHANGE]: handleStateChange,
-    [constants.GET_EVENT_BY_ID_UNMOUNT]: handleEventByIdUnmount
+    [constants.GET_EVENT_BY_ID_UNMOUNT]: handleEventByIdUnmount,
+
+    [constants.GET_INTEREST_REQUEST]: getInterestRequest,
+    [constants.GET_INTEREST_SUCCESS]: getInterestSuccess,
+    [constants.GET_INTEREST_ERROR]: getInterestError,
   },
   initialState
 );

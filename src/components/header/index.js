@@ -650,9 +650,14 @@ class Header extends React.Component {
                     {userdata.data &&
                     userdata.data.companyDetails &&
                     userdata.data.companyDetails.title ? (
+                      <>
                       <button className="logout">
                         <Link to="/company">Company Page</Link>
                       </button>
+                       <button className="logout">
+                       <Link to="/wishlist">WishList</Link>
+                     </button>
+                     </>
                     ) : null}
 
                     <button

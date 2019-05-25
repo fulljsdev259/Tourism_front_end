@@ -29,6 +29,7 @@ import {
   getUserPostByIdRequest,
   updateEventRequest,
   deleteEventRequest,
+  getInterestRequest
 } from "./event/action";
 
 function* watchActions() {
@@ -72,6 +73,8 @@ function* watchActions() {
   yield takeLatest(constants.GET_USER_POST_BY_ID_REQUEST,getUserPostByIdRequest);
   yield takeLatest(constants.UPDATE_EVENT_REQUEST,updateEventRequest);
   yield takeLatest(constants.DELETE_EVENT_REQUEST,deleteEventRequest);
+  yield takeLatest(constants.GET_INTEREST_REQUEST,getInterestRequest);
+
 }
 
 export default function* rootSaga() {

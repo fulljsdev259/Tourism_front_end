@@ -28,6 +28,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
 import ForgotPass from "../forgot-pass";
 import AboutStyleJamica from "../AboutStyleJamica"
+import WishList from "../wishList"
 const customStyles = {
   content: {
     top: "0%",
@@ -201,6 +202,8 @@ class Home extends Component {
             <Route path="/contactus" component={ContactUs} />
             <Route path="/profile" component={Profile} />
             <Route path="/about-style-jamica" component={AboutStyleJamica}/>
+            <Route path="/wishlist" component={WishList}/>
+
             <Route
               path="/"
               render={props => (
