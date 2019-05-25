@@ -29,59 +29,7 @@ export default class Footer extends React.Component {
     let d = new Date();
     let currentYear = d.getFullYear();
     return (
-      // <footer className="footer">
-      //   <div>
-      //     <a href="https://www.mot.gov.jm/" target="_BLANK">
-      //       <img src={footer1} />
-      //     </a>
-      //     <a href="http://www.jamaicatradeandinvest.org/" target="_BLANK">
-      //       <img src={f13} />
-      //     </a>
-      //     <a
-      //       href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
-      //       target="_BLANK"
-      //     >
-      //       <img src={footer4} />
-      //     </a>
-      //     <a href="https://rada.gov.jm/" target="_BLANK">
-      //       <img src={f12} />
-      //     </a>
-      //     <a href="http://www.jtbonline.org/" target="_BLANK">
-      //       <img src={f11} />
-      //     </a>
-      //     <a href="http://www.jhta.org/" target="_BLANK">
-      //       <img src={footer5} />
-      //     </a>
-      //     <a href="https://www.instagram.com/thejmea_/" target="_BLANK">
-      //       <img src={footer2} />
-      //     </a>
-      //     <a href="https://www.jbdc.net/" target="_BLANK">
-      //       <img src={footer3} />
-      //     </a>
-      //   </div>
-      //   <div className="copyright">
-      //     <span>
-      //       Copyright © {currentYear}. Developed by Ministry of Tourism and
-      //       Powered by Tourism Enhancement Fund
-      //     </span>
-      //     <div className="social-icons">
-      //       <a href="https://www.facebook.com/tefjamaica/" target="_BLANK">
-      //         <img src={fb} />
-      //       </a>
-      //       {/*
-      //                   <a href="https://www.mot.gov.jm/" target="_BLANK">
-      //                       <img src={twitter} />
-      //                   </a>
-      //               */}
-      //       <a
-      //         href="https://www.instagram.com/tourismenhancementfundja/"
-      //         target="_BLANK"
-      //       >
-      //         <img src={insta} />
-      //       </a>
-      //     </div>
-      //   </div>
-      // </footer>
+  
       <footer className="container-fluid">
         <div className="detail-footer row">
           <div className="col-md-8 offset-md-2 col-10 offset-1 footer-col">

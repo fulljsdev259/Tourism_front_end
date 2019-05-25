@@ -27,7 +27,8 @@ import bg_artisan from "../../images/bg_artisan.png";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
 import ForgotPass from "../forgot-pass";
-
+import AboutStyleJamica from "../AboutStyleJamica"
+import WishList from "../wishList"
 const customStyles = {
   content: {
     top: "0%",
@@ -134,32 +135,6 @@ class Home extends Component {
           };
         })
       : null;
-    // const categories = [
-    //   {
-    //     name: "Duty Free",
-    //     image: category1,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/duty_free"
-    //   },
-    //   {
-    //     name: "Artisan",
-    //     image: category3,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/artisan"
-    //   },
-    //   {
-    //     name: "Crafts",
-    //     image: category2,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/crafts"
-    //   },
-    //   {
-    //     name: "Retails",
-    //     image: category4,
-    //     sub_categories: ["Alcohol", "Electronics", "Jewelry", "Souvenir Shops"],
-    //     path: "/retails"
-    //   }
-    // ];
     return (
       <div className="App">
         <Header
@@ -228,6 +203,9 @@ class Home extends Component {
             <Route path="/auth" component={Auth} />
             <Route path="/contactus" component={ContactUs} />
             <Route path="/profile" component={Profile} />
+            <Route path="/about-style-jamica" component={AboutStyleJamica}/>
+            <Route path="/wishlist" component={WishList}/>
+
             <Route
               path="/"
               render={props => (
