@@ -108,6 +108,13 @@ wishLists:{
   isSuccess: false,
   isError: false,
   data:[]
+},
+Artists: {
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  message: false,
+  data: []
 }
 };
 
@@ -741,6 +748,37 @@ const getInterestError = (state, action) =>
   });
 
 
+  const getArtistsRequest = (state, action) =>
+  update(state, {
+    Artists: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const getArtistsSuccess = (state, action) =>{
+  
+  return update(state, {
+    Artists: {
+      data:{ $set:action.payload.data},
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false }
+    }
+  })
+}
+const getArtistsError = (state, action) =>
+  update(state, {
+    Artists: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+
+
 export default handleActions(
   {
     [constants.LOGOUT]: handleLogout,
@@ -808,6 +846,11 @@ export default handleActions(
     [constants.GET_INTEREST_REQUEST]: getInterestRequest,
     [constants.GET_INTEREST_SUCCESS]: getInterestSuccess,
     [constants.GET_INTEREST_ERROR]: getInterestError,
+
+    [constants.GET_ARTISTS_REQUEST]: getArtistsRequest,
+    [constants.GET_ARTISTS_SUCCESS]: getArtistsSuccess,
+    [constants.GET_ARTISTS_ERROR]: getArtistsError,
+    
   },
   initialState
 );

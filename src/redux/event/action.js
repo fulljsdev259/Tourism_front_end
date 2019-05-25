@@ -273,3 +273,25 @@ export function* getInterestRequest(action) {
     yield put(actions.getInterestError());
   }
 }
+
+export function* getArtistsRequest(action){
+  const header = {
+    Authorization: localStore("token")
+  };
+  try {
+    const response = yield call(
+      fireApi,
+      "GET",
+      `getAllArtist`,
+      null,
+      header
+    );
+    if (response.data.success) {
+      console.log(response.data);
+      
+      yield put(actions.getArtistsSuccess(response.data));
+    } 
+  } catch (e) {
+    yield put(actions.getArtistsError());
+  }
+}
