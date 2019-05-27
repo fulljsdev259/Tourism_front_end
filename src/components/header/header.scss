@@ -638,7 +638,7 @@
   }
 
   .fix-header {
-    position: fixed;
+    position: sticky;
     z-index: 5554;
     background: #fff;
     width: 100%;
@@ -665,14 +665,14 @@
   }
 }
 
-.body-top {
-  padding-top: 62px;
-  display: flex;
-  flex-direction: column;
-  @media all and (max-width: 991px) {
-    padding-top: 45px;
-  }
-  @media all and (max-width: 767px) {
-    padding-top: 55px;
-  }
-}
+// .body-top {
+//   padding-top: 62px;
+//   display: flex;
+//   flex-direction: column;
+//   @media all and (max-width: 991px) {
+//     padding-top: 45px;
+//   }
+//   @media all and (max-width: 767px) {
+//     padding-top: 55px;
+//   }
+// }

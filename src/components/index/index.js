@@ -89,12 +89,7 @@ class Index extends Component {
     ];    
     return (
       <>
-        {categories ? (
-          <CategoryNav
-            categories={categories}
-            handleSubcat={this.props.handleSubcat}
-          />
-        ) : null}
+      
         { (featuredEvents.data && featuredEvents.data.homepageDetails)?
         (<div
           className="first-block row "
@@ -122,6 +117,12 @@ class Index extends Component {
               </div>
             )
         }
+          {categories && window.screen.width<769 ? (
+          <CategoryNav
+            categories={categories}
+            handleSubcat={this.props.handleSubcat}
+          />
+        ) : null}
         <div
           className="second-block row"
           style={{

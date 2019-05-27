@@ -676,10 +676,12 @@ class Header extends React.Component {
           </div>
         </div>
      </div>
+     {window.screen.width >768 &&
      <CategoryNav
             categories={this.props.categories2}
             handleSubcat={this.props.handleSubcat}
           />
+      }
       </div>
      
           
