@@ -11,20 +11,27 @@ class index extends Component {
         this.props.getArtistsRequest();
     }
     render() {
-        console.log(this.props.artists,'art');
+        
+        const stylejamaica = this.props.artists.data;
+
+        console.log(this.props,'websire-----------',stylejamaica);
         return (
-            <div className="about-style-zamica-container">
+            <div className="about-style-zamica-container event-div">
             <img src={i9}/>
                 <h1>About Style Jamica</h1>
-                {/* <p>description</p> */}
-
-                {
-                     this.props.artists.map(
-                        (artist, index)=>(
-                            <AboutStyleJamaica  props = {artists}/>
-                        )
-                    )  
+                {stylejamaica && stylejamaica.websiteDetails &&
+                 <p>{stylejamaica.websiteDetails.description}</p> 
+               
                 }
+                <div className="artists">
+                    {
+                        stylejamaica && stylejamaica.data.map(
+                            (artist, index)=>(
+                                <AboutStyleJamaica  artists={artist}/>
+                            )
+                        )  
+                    }
+                </div>
             </div>
         )
     }
@@ -33,7 +40,7 @@ const mapStateToProps = state => {
     console.log(state,'state');
     
     return{
-        artists:state.event.Artists.data,
+        artists:state.event.Artists.data    ,
         userdata: state.auth.userdata.data,
 
     }

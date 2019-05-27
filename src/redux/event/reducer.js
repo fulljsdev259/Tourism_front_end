@@ -758,10 +758,12 @@ const getInterestError = (state, action) =>
     }
   });
 const getArtistsSuccess = (state, action) =>{
+  console.log(action.payload,'22222222222');
   
   return update(state, {
+    
     Artists: {
-      data:{ $set:action.payload.data},
+      data:{ $set:action.payload},
       isLoading: { $set: false },
       isSuccess: { $set: true },
       isError: { $set: false }
