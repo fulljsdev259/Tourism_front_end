@@ -12,7 +12,7 @@ class Login extends Component {
       <>
         <div className="fb-btn">
           <FacebookLogin
-            appId="2194646720630049"
+            appId="596567484169310"
             autoLoad={true}
             fields="name,email,picture"
             callback={this.props.responseFacebook}
