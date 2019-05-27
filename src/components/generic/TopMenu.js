@@ -29,7 +29,8 @@ class TopMenu extends Component {
       displayState: false,
       displayCity: false,
       displayAge: false,
-      displayCal: false
+      displayCal: false,
+      show:false
     };
   }
   componentDidUpdate(prevProps, prevState) {
@@ -63,7 +64,16 @@ class TopMenu extends Component {
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
+  hideList=()=>{
+    this.setState({
+      show:false
+    })
+  }
+  showList=()=>{
+    this.setState({
+      show:true
+    })
+  }
   render() {
     let states = [];
     states = [
@@ -140,11 +150,12 @@ class TopMenu extends Component {
               <div className="row">
                 {/* <div> */}
                 <div className="menu-div-1 col-lg-3 col-md-3">
-                  <span className="more-options-btn">
+                  <span className="more-options-btn" onMouseOver={this.showList}>
                     <img src={mapMain} />
                     <span className="text">{state_place()}</span>
-                    <div className="more-options-state">
-                      <ul>{states}</ul>
+                    <div className="more-options-state" >
+                     {this.state.show && <ul onMouseLeave={this.hideList} onClick={this.hideList}>{states}</ul>}
+
                     </div>
                   </span>
                 </div>
@@ -199,15 +210,7 @@ class TopMenu extends Component {
                         </div>
                       </>
                     ) : null}
-
-                    {/* <span>
-                  <ul className="some-cities" style={{ display: "none" }}>
-                    {selected_city && (
-                      <li className="active">{selected_city.name}</li>
-                    )}
-                    {cities}
-                  </ul>
-                </span> */}
+z
                   </span>
                 </div>
               </div>
@@ -221,11 +224,11 @@ class TopMenu extends Component {
                       className="menu-div-1 col-xs-6 col-sm-6"
                       style={{ width: "55%" }}
                     >
-                      <span className="more-options-btn">
+                      <span className="more-options-btn" onMouseOver={this.showList}>
                         <img src={mapMain} />
                         <span className="text">{state_place()}</span>
                         <div className="more-options-state">
-                          <ul>{states}</ul>
+                          {this.state.show && <ul onMouseLeave={this.hideList} onClick={this.hideList}>{states}</ul>}
                         </div>
                       </span>
                     </div>
