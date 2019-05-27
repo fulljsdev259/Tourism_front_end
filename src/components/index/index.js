@@ -36,7 +36,8 @@ class Index extends Component {
     this.state = {
       status: false,
       stateName: "",
-      stateId: ""
+      stateId: "",
+      show:false
     };
     if (props.categories) {
       const one_category = this.props.categories.find(
@@ -62,9 +63,21 @@ class Index extends Component {
   }
 
   handleInputChange = state => {
-    this.setState({ stateName: state.name, stateId: state._id });
+    this.setState({ stateName: state.name, stateId: state._id ,show:false});
   };
+  listHover=()=>{
+    console.log('222222222222222')
+    this.setState({
+      show:true
+    })
+  }
 
+  listHoverOut=()=>{
+    console.log('11111111111222222222222222')
+    this.setState({
+      show:false
+    })
+  }
   onAboutJamicaClick=()=>{
     this.props.history.push("/about-style-jamica")
   }
@@ -101,12 +114,10 @@ class Index extends Component {
           style={{
             
             backgroundImage: `url(${(featuredEvents.data && featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url)?featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url:null})`,
-            // backgroundImage: `url(${featuredEvents.data && featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url?featuredEvents.data.homepageDetails[bannerUrlIndex].image.secure_url:placeholder_img})`,
             backgroundSize: "cover",
             backgroundPosition: "center"
           }}
         >
-          {/* <img src={HomePageImage} /> */}
           <div className="text-block container">
             <div className="title">Shop Jamaica.</div>
             <div className="sub-title">
@@ -130,24 +141,21 @@ class Index extends Component {
             backgroundPosition: "center"
           }}
         >
-          {/* <img className="second-block-img" src={home_2} /> */}
           <div className="block block1_1 container">
             <div className="block-title" style={{ textTransform: "uppercase" }}>
               POPULAR{" "}
               <span
-                style={
-                  {
-                    // textDecoration: "underline",
-                    // cursor: "pointer"
-                  }
-                }
                 onClick={() => this.props.history.push("/artisan")}
               >
                 ARTISAN
               </span>{" "}
               STORES IN {this.state.stateName}
             </div>
-            <div className="place-nav">
+
+            
+            <div className="place-nav"
+             onMouseOver={()=>{this.listHover()}}
+            >
               {places.data && places.data.length ? (
                 <div className="place-nav-item setting ">
                   <div className="place-nav-item-header">
@@ -159,19 +167,15 @@ class Index extends Component {
                       </a>
                     </div>
                   </div>
-                  <div className="place-nav-item-dropdown rounded-bottom">
-                    <ul className="list-unstyled">
-                      {/* <li>
-                        <a
-                          onClick={() =>
-                            this.handleInputChange("All Locations")
-                          }
-                        >
-                          All Locations
-                        </a>
-                      </li> */}
+                  {this.state.show &&
+                  <div className="place-nav-item-dropdown rounded-bottom" 
+                  >
+                    <ul className="list-unstyled"
+                        onMouseLeave={()=>{this.listHoverOut()}}
+                    >
                       {places.data.map((state, i) => (
-                        <li key={i}>
+                        <li key={i}
+                        >
                           <a
                             style={{ textTransform: "capitalize" }}
                             onClick={() => this.handleInputChange(state)}
@@ -182,6 +186,7 @@ class Index extends Component {
                       ))}
                     </ul>
                   </div>
+                  }
                   <div className=" setting-icon">
                     <img className="place-img" src={ic_settings} />
                   </div>

@@ -832,16 +832,18 @@
       }
       .place-nav-item-dropdown {
         position: absolute;
-        opacity: 0;
+        // opacity: 0;
         // width: 100%;
         top: 40px;
         transition: all 0.3s;
-        z-index: -1;
+        // z-index: -1;
         background: #fff;
         box-shadow: 0.5px 0.5px 2px 0.5px rgba(0, 0, 0, 0.2);
         text-align: left;
         right: 0;
         min-width: 250px;
+        opacity: 1;
+        z-index: 999;
         // @media all and (max-width: 767px) {
         //   position: unset;
         //   top: 62px;
@@ -871,9 +873,7 @@
 
       &:hover {
         .place-nav-item-dropdown {
-          top: 40px;
-          opacity: 1;
-          z-index: 999;
+          
           @media all and(max-width:767px) {
             top: 58px;
           }
