@@ -25,6 +25,7 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
 .categoryDiv {
   order: 1;
   align-items: baseline;
+  margin: 0 auto; 
   .homePageImage {
     position: absolute;
     left: 1%;
@@ -110,7 +111,8 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
           }
           .category-nav-item-dropdown {
             position: absolute;
-            opacity: 0;
+            // opacity: 0;
+            display: none;
             width: 100%;
             top: 70px;
             transition: all 0.3s;
@@ -121,7 +123,8 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
             @media all and (max-width: 767px) {
               position: unset;
               top: 62px;
-              opacity: 1;
+              // opacity: 1;
+              display: block;
               z-index: 999;
               flex: 1;
             }
@@ -144,7 +147,8 @@ $category-colors: #ef2947, #00a992, #997362, #eda8cd;
           &:hover {
             .category-nav-item-dropdown {
               top: 62px;
-              opacity: 1;
+              // opacity: 1;
+              display: block;
               z-index: 999;
             }
           }

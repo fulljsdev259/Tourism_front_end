@@ -96,7 +96,7 @@ export default class Card extends Component {
               name="rating"
             />
             <div
-              className-="reviews-count"
+              className="reviews-count"
               style={{ fontSize: "12px", marginLeft: "10px", color: "#808080" }}
             >
               {reviews.length} reviews

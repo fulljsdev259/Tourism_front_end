@@ -4,26 +4,43 @@ import i9 from "../../images/image_3_.svg";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-
+import AboutStyleJamaica from "./AboutStyleJamaicaComponent";
 
 class index extends Component {
     componentDidMount(){
         this.props.getArtistsRequest();
     }
     render() {
-        // console.log(this.props.sdfsdf)
+        
+        const stylejamaica = this.props.artists.data;
+
+        console.log(this.props,'websire-----------',stylejamaica);
         return (
-            <div className="about-style-zamica-container">
+            <div className="about-style-zamica-container event-div">
             <img src={i9}/>
                 <h1>About Style Jamica</h1>
-                {/* <p>description</p> */}
+                {stylejamaica && stylejamaica.websiteDetails &&
+                 <p>{stylejamaica.websiteDetails.description}</p> 
+               
+                }
+                <div className="artists">
+                    {
+                        stylejamaica && stylejamaica.data.map(
+                            (artist, index)=>(
+                                <AboutStyleJamaica  artists={artist}/>
+                            )
+                        )  
+                    }
+                </div>
             </div>
         )
     }
 }
 const mapStateToProps = state => {
+    console.log(state,'state');
+    
     return{
-        wishList:state.event.wishLists.data,
+        artists:state.event.Artists.data    ,
         userdata: state.auth.userdata.data,
 
     }
