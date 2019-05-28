@@ -517,11 +517,11 @@
       @media all and (max-width: 767px) {
         margin: 8px 0;
       }
-      >a{
+      > a {
         display: flex;
         width: 100%;
         text-decoration: none;
-        color: unset; 
+        color: unset;
       }
       .popularImage {
         // background-size: 130%;
@@ -571,7 +571,7 @@
       font-size: 2.5em;
       font-weight: 600;
       @media all and (max-width: 767px) {
-        left: -240px;        
+        left: -240px;
         font-size: 2.3em;
         font-weight: 600;
       }
@@ -873,12 +873,66 @@
 
       &:hover {
         .place-nav-item-dropdown {
-          
           @media all and(max-width:767px) {
             top: 58px;
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .popular-artist-mobile {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popular-artist-desktop {
+    display: none !important;
+  }
+  .popular-artist-mobile {
+    top: 6em;
+    display:flex;
+    justify-content: center;
+    overflow-x: show;
+    .popular {
+      width: auto;
+      text-align: center;
+      box-shadow: 5px 2px 5px 0 rgba(0, 0, 0, 0.09);
+      border-radius: 10px;
+      margin-right: 20px;
+      height: 100%;
+      cursor: pointer;
+      > img {
+        border-radius: 10px 10px 0 0;
+        height: 80%;
+      }
+      .title {
+        color: black;
+        background: white;
+        padding: 10px;
+        border-radius: 0 0 10px 10px;
+        font-size: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 20%;
+        font-weight: 600;
+      }
+    }
+    .carousel .carousel-indicators li {
+      border-radius: 50%;
+      border: 1px solid #fff;
+      width: 10px;
+      height: 10px;
+      margin-left: 10px;
+      background: transparent;
+    }
+    .carousel-indicators {
+      margin-bottom: 0rem;
+      bottom:-20px;
     }
   }
 }

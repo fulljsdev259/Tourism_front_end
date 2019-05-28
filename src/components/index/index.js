@@ -99,7 +99,8 @@ class Index extends Component {
       { name: "Amoy Yae'l Purses", image: i6 },
       { name: "Beenybud Jamaica", image: i7 },
       { name: "Island girl headwraps and more", image: i8 }
-    ];    
+    ];  
+    let arr1=[],arr2=[],carsoCard  
     return (
       <>
       
@@ -195,7 +196,127 @@ class Index extends Component {
               ) : null}
             </div>
           </div>
-          <div className="block container">
+         
+         
+          <div className="block container popular-artist popular-artist-mobile" >
+{featuredEvents &&
+featuredEvents.data &&
+featuredEvents.data.trendingEvents &&
+featuredEvents.data.trendingEvents.results.length ? (
+  featuredEvents.data.trendingEvents.results.filter(
+    m => this.state.stateId && m.EventState == this.state.stateId
+  ).length ? 
+ 
+  <Carousel indicators={true} controls={false}>
+  
+    {featuredEvents.data.trendingEvents.results
+      .filter(
+        m1 =>
+          this.state.stateId && m1.EventState == this.state.stateId
+      )
+      .forEach((item, index) => {   
+        arr2.push(item)  
+                    
+        carsoCard = <Carousel.Item key={index}>
+        {(index +1) %2 ==1 &&
+        <span key={index}>
+            <div
+              className="popular"
+              onClick={() =>
+                this.props.history.push(
+                  `/event-details/${item._id}`
+                )
+              }
+            >
+              <img
+                src={
+                  item.image
+                    ? image_formatter(item.image.secure_url, 300)
+                    : null
+                }
+                />
+              <div className="title">{item.title}</div>
+
+            </div>
+         
+        </span>
+        }
+        {(index + 1) % 2 ==0 &&
+        <div style={{display:"flex"}}>
+          
+          <span key={index}>
+            <div
+              className="popular"
+              onClick={() =>
+                this.props.history.push(
+                  `/event-details/${arr2[index-1]._id}`
+                )
+              }
+            >
+              <img
+                src={
+                  arr2[index-1].image
+                    ? image_formatter(arr2[index-1].image.secure_url, 300)
+                    : null
+                }
+                />
+              <div className="title">{arr2[index-1].title}</div>
+
+            </div>
+          
+        </span>
+          <span key={index}>
+        <div
+          className="popular"
+          onClick={() =>
+            this.props.history.push(
+              `/event-details/${arr2[index]._id}`
+            )
+          }
+        >
+          <img
+            src={
+              arr2[index].image
+                ? image_formatter(arr2[index].image.secure_url, 300)
+                : null
+            }
+            />
+          <div className="title">{arr2[index].title}</div>
+
+        </div>
+      
+    </span>
+          {arr1.pop()  }
+       </div>
+        }
+        </Carousel.Item>
+        arr1.push(carsoCard)     
+    })}
+      {arr1}
+   </Carousel>: (
+    <div className="noData">At this time, there is no data</div>
+  )
+) : (
+  <div className="loader-div" style={{ margin: "40px auto" }}>
+    <Loader type="Oval" color="#555" height="30" />
+  </div>
+)}
+</div>
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+          <div className="block container popular-artist-desktop">
             {featuredEvents &&
             featuredEvents.data &&
             featuredEvents.data.trendingEvents &&
