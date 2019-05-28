@@ -66,14 +66,12 @@ class Index extends Component {
     this.setState({ stateName: state.name, stateId: state._id ,show:false});
   };
   listHover=()=>{
-    console.log('222222222222222')
     this.setState({
       show:true
     })
   }
 
   listHoverOut=()=>{
-    console.log('11111111111222222222222222')
     this.setState({
       show:false
     })
