@@ -210,7 +210,6 @@ class TopMenu extends Component {
                         </div>
                       </>
                     ) : null}
-z
                   </span>
                 </div>
               </div>

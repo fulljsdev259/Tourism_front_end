@@ -66,6 +66,8 @@ class Category extends Component {
             category => this.props.location.pathname === "/" + category.name
           )
         : "";
+        console.log(category,'3333333333333');
+        
     // const categories = [
     //   {
     //     name: "duty_free",
@@ -96,7 +98,8 @@ class Category extends Component {
     // const bgImage = categories.find(m => m.name == cat.name).bgImage;
 
     const bgcolor =category.bgcolor;
-    const catImage = category.bgImage;
+    const catImage = window.location.pathname.toLowerCase().search("duty_free") > -1?duty_free_img:
+                     window.location.pathname.toLowerCase().search("crafts") > -1?crafts_img:category.image;
     const bgImage = category.bg;
     return (
       <div className="event-page">

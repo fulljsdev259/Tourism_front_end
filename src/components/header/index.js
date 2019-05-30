@@ -115,6 +115,12 @@ class Header extends React.Component {
                     EVENTS
                   </a>
                 </li>
+                <li data-text="Events">
+                  <Link to="/about-style-jamica" onClick={this.ToggleBody}>
+                    STYLE JAMAICA
+                  </Link>              
+                </li>
+               
                 <li data-text="CONTACT">
                   <Link to="/contactus" onClick={this.ToggleBody}>
                     CONTACT US
@@ -479,6 +485,11 @@ class Header extends React.Component {
                   <Link to="/events">Events</Link>
                 </div>
                 <div className="item" onClick={() => {}}>
+                  <Link to="/about-style-jamica" onClick={() => {}}>
+                      STYLE JAMAICA
+                  </Link> 
+                </div>
+                <div className="item" onClick={() => {}}>
                   <Link to="/contactus">Contact us</Link>
                 </div>
                 <div
@@ -572,6 +583,22 @@ class Header extends React.Component {
                   <a href="https://www.topeventsinjamaica.com/shopping" target="_blank">
                     Events
                   </a>
+                </div>
+                <div className="normal"
+                  onClick={() => {
+                    this.props.modalStateHandler(
+                      false,
+                      false,
+                      true,
+                      false,
+                      false,
+                      false,
+                      true
+                    );
+                  }}>
+                  <Link to="/about-style-jamica" onClick={() => {}}>
+                      Style Jamaica
+                  </Link> 
                 </div>
                 <div
                   className="normal"

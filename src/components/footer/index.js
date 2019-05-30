@@ -40,12 +40,18 @@ export default class Footer extends React.Component {
                     <img src={mapMain} />
                   </div>
                   <span className="top">
-                    64 Knutford Boulevard Kingston 5 Jamaica, WI
+                  Tourism Enhancement Fund
+                  60 Knutford Boulevard
+                  Kingston 5
+                  Jamaica, West Indies
                   </span>
                 </div>
-                <div className="content">
+                <div className="content contact">
                   <img src={phone} />
-                  <span className="phone">+9876544321</span>
+                  <div className="numbers">
+                    <a href="tel:(876) 920-4926-30" className="phone">(876) 920-4926-30</a>
+                    <a href="tel:(876) 920-4944" className="phone"> (876) 920-4944</a> 
+                  </div>
                 </div>
               </div>
               <div className="col-md-8 col-12 ">
@@ -176,12 +182,18 @@ export default class Footer extends React.Component {
                     <img src={mapMain} />
                   </div>
                   <span className="top">
-                    64 Knutford Boulevard Kingston 5 Jamaica, WI
+                  Tourism Enhancement Fund
+                  60 Knutford Boulevard
+                  Kingston 5
+                  Jamaica, West Indies
                   </span>
                 </div>
-                <div className="content">
+                <div className="content contact">
                   <img src={phone} />
-                  <span className="phone">+9876544321</span>
+                  <div className="numbers">
+                    <a href="tel:(876) 920-4926-30" className="phone">(876) 920-4926-30</a>
+                    <a href="tel:(876) 920-4944" className="phone"> (876) 920-4944</a> 
+                  </div>
                 </div>
               </div>
             </div>

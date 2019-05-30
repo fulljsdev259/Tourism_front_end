@@ -57,12 +57,20 @@
   margin-top: 20px;
   font-size: 12px;
   .contact-section {
-    padding-right: 100px;
+    padding-right: 50px;
     @media all and(max-width:991px) {
       padding-right: 30px;
     }
     @media all and(max-width:767px) {
       padding-right: 70px;
+    }
+    .contact{
+      .phone{
+        display: block;
+        padding: 3px 0;
+        color: unset;
+        text-decoration: none;
+      }
     }
     .content {
       display: flex;

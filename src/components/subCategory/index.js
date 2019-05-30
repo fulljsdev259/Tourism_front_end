@@ -76,6 +76,8 @@ class SubCategory extends Component {
   render() {
     const { categories2, location,category } = this.props;
     const cat = this.props.category;
+    console.log(cat,'2222222222222');
+    
 //     const categories = [
 //       {
 //         name: "duty_free",
@@ -127,7 +129,8 @@ class SubCategory extends Component {
 
 
     const bgcolor =category.bgcolor;
-    const catImage = category.bgImage;
+    const catImage = window.location.pathname.toLowerCase().search("duty_free") > -1?duty_free_img:
+                     window.location.pathname.toLowerCase().search("crafts") > -1?crafts_img:category.image;
     const bgImage = category.bg;
     return (
       <div className="event-page">
@@ -160,7 +163,7 @@ class SubCategory extends Component {
             backgroundImage: `url(${bgImage})`,
             backgroundRepeat: "no-repeate",
             backgroundPosition: "center",
-            backgroundSize: "cover"
+            backgroundSize: "contain"
           }}
         >
           {this.props.filters.eventsByCategory.isLoading ? (
