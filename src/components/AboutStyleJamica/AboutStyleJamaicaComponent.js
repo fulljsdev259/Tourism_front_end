@@ -6,7 +6,6 @@ import "./aboutStyleJamica.scss";
 export default class AboutStyleJamaicaComponent extends Component {
     render() {
         const { image,description,name,websiteurl} = this.props.artists;
-        console.log(this.props.artists,"art");
         
         return (
                 <div className="events-list row">

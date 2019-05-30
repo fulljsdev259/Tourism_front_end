@@ -287,7 +287,6 @@ export function* getArtistsRequest(action){
       header
     );
     if (response.data.success) {
-      console.log(response,'11111111111');
       
       yield put(actions.getArtistsSuccess(response));
     } 

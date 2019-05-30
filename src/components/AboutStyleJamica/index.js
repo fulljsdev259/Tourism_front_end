@@ -14,7 +14,7 @@ class index extends Component {
         
         const stylejamaica = this.props.artists.data;
 
-        console.log(this.props,'websire-----------',stylejamaica);
+      
         return (
             <div className="about-style-zamica-container event-div">
             <img src={i9}/>
@@ -37,7 +37,7 @@ class index extends Component {
     }
 }
 const mapStateToProps = state => {
-    console.log(state,'state');
+   
     
     return{
         artists:state.event.Artists.data    ,

@@ -726,7 +726,7 @@ const handleEventByIdUnmount = (state, action) =>
     }
   });
 const getInterestSuccess = (state, action) =>{
-  console.log(action,'33333333333333');
+  
   
   return update(state, {
     wishLists: {
@@ -758,7 +758,7 @@ const getInterestError = (state, action) =>
     }
   });
 const getArtistsSuccess = (state, action) =>{
-  console.log(action.payload,'22222222222');
+
   
   return update(state, {
     

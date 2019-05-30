@@ -66,7 +66,7 @@ class Category extends Component {
             category => this.props.location.pathname === "/" + category.name
           )
         : "";
-        console.log(category,'3333333333333');
+        
         
     // const categories = [
     //   {

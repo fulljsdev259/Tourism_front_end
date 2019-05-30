@@ -76,7 +76,7 @@ class SubCategory extends Component {
   render() {
     const { categories2, location,category } = this.props;
     const cat = this.props.category;
-    console.log(cat,'2222222222222');
+
     
 //     const categories = [
 //       {
