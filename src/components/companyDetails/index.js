@@ -26,7 +26,10 @@ class CompanyDetails extends Component {
     const { open } = this.state;
     const { categories } = this.props;
     const companyData =
-      data && data.find(m => m._id == this.props.match.params.id);      
+      data && data.find(m => m._id == this.props.match.params.id);    
+      
+    console.log(data,'2222222222');
+      
     return (
       <div className="">
         <div className="row profile-row">
@@ -36,6 +39,8 @@ class CompanyDetails extends Component {
             </div>
             {data && companyData && (
               <>
+              {console.log(companyData,'333333333333')}
+              
                 <Formik
                   initialValues={{
                     title: companyData.title,
@@ -45,6 +50,8 @@ class CompanyDetails extends Component {
                       companyData.subcategories &&
                       companyData.subcategories._id,
                     description: companyData.description,
+                    companyImage: companyData.companyImage,
+                    companyImg:null,
                     address: companyData.address,
                     phone_number: companyData.phone_number,
                     facebook_url: companyData.facebook_url,
@@ -193,9 +200,16 @@ class CompanyDetails extends Component {
                     return errors;
                   }}
                   onSubmit={(values, actions) => {
+                    console.log('values', values);
+                    let form_Data = new FormData();
+                    for ( let key in values ) {
+                      form_Data.append(key, values[key]);
+                    }
+                
+                    
                     this.props.updateEvent({
                       id: companyData._id,
-                      data: values,
+                      data: form_Data,
                       user_id: this.props.userdata.data._id
                     });
                   }}
@@ -208,6 +222,7 @@ class CompanyDetails extends Component {
                     handleChange,
                     handleSubmit,
                     isSubmitting,
+                    setFieldValue,
                     ...props
                   }) => {
                     if (this.props.updateEvent.isSuccess) {
@@ -215,7 +230,7 @@ class CompanyDetails extends Component {
                       this.props.submitEventReset();
                     }
                     return (
-                      <Form>
+                      <Form encType="multipart/form-data">
                         <div className="input-fields-section">
                           <label className="label">Company Name</label>
                           <input
@@ -246,6 +261,32 @@ class CompanyDetails extends Component {
                             </label>
                           )}
                         </div>
+
+                        <div className="input-fields-section">
+                          <label className="label">Image</label>
+                          <div className="companyImageDiv">
+                            <img src={companyData.image.secure_url}/>
+                          </div>
+                          <label className="label">Change Image</label>
+                          <input
+                            // value={values.companyImage}
+                            // className="input-field"
+                            onChange={(event) => {
+                              setFieldValue("companyImg", event.currentTarget.files[0]);
+                              }
+                            }
+                            name="companyImg"
+                            placeholder=""
+                            // onChange={handleChange}
+                            type="File"
+                          />
+                          {errors.companyImage && touched.companyImage && (
+                            <label className="error">
+                              {errors.companyImage}
+                            </label>
+                          )}
+                        </div>
+
                         <div className="input-fields-section">
                           {/* <label className="label">Category</label> */}
                           {/* <input

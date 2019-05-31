@@ -12,6 +12,13 @@
     }
   }
 }
+.companyImageDiv{
+  img{
+    max-width: 50%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+}
 .weekdayOpen {
   margin-bottom: 20px;
   label {
@@ -58,4 +65,5 @@
   @media all and (min-width: 768px) {
     width: 50%;
   }
+
 }
