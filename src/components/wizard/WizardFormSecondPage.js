@@ -312,7 +312,8 @@ const WizardFormSecondPage = props => {
             {/* <Field name="tags" type="text" component={renderTag} label="Tags" /> */}
             {/* <FieldArray name="photo" component={renderMembers} /> */}
             <div className="input-fields">
-              <label>Upload Event Image</label>
+              <br/>
+              <label>Upload Company Image</label>
               <div className="addImage">      
               {/* <Field 
                 name="image"

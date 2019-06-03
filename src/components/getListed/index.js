@@ -77,6 +77,7 @@ class GetListed extends React.Component {
             <Wizard
               onSuccessCompanyListed={this.onSuccessCompanyListed}
               onSubmit={data => {
+
                 if (data.fullName) {
                   const [first, ...last] =
                     data.fullName && data.fullName.split(" ");
@@ -88,13 +89,36 @@ class GetListed extends React.Component {
                     email: data.email,
                     password: data.password
                   };
+                  
+                  
                   delete data.password;
                   delete data.fullName;
                   delete data.email;
                 } else {
                   data.user_id = userdata.data && userdata.data._id;
                 }
-                
+                if(!data.mondayOpen){
+                  delete data.monStartTime;
+                }
+                if(!data.tuesdayOpen){
+                  delete data.tueStartTime;
+                }
+                if(!data.wednesdayOpen){
+                  delete data.wedStartTime;
+                }
+                if(!data.thursdayOpen){
+                  delete data.thrStartTime;
+                }
+                if(!data.fridayOpen){
+                  delete data.friStartTime;
+                }
+                if(!data.saturdayOpen){
+                  delete data.satStartTime;
+                }
+                if(!data.sundayOpen){
+                  delete data.sunStartTime;
+                }
+
                 // let initialFormData = {};
                 // let formData = jsonToFormData (data, initialFormData);
                 // let userData = JSON.stringify(data.userDetails);

@@ -78,6 +78,16 @@ const WizardFormFirstPage = props => {
 export default reduxForm({
   form: "wizard", // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
+  initialValues: {
+    title: "",
+    monStartTime:"12:00 AM",
+    tueStartTime:"12:00 AM",
+    wedStartTime:"12:00 AM",
+    thrStartTime:"12:00 AM",
+    friStartTime:"12:00 AM",
+    satStartTime:"12:00 AM",
+    sunStartTime:"12:00 AM",
+  },
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate
 })(WizardFormFirstPage);

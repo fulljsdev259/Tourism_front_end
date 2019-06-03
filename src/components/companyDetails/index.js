@@ -28,7 +28,6 @@ class CompanyDetails extends Component {
     const companyData =
       data && data.find(m => m._id == this.props.match.params.id);    
       
-    console.log(data,'2222222222');
       
     return (
       <div className="">
@@ -39,7 +38,6 @@ class CompanyDetails extends Component {
             </div>
             {data && companyData && (
               <>
-              {console.log(companyData,'333333333333')}
               
                 <Formik
                   initialValues={{
@@ -51,7 +49,7 @@ class CompanyDetails extends Component {
                       companyData.subcategories._id,
                     description: companyData.description,
                     companyImage: companyData.companyImage,
-                    companyImg:null,
+                    image:null,
                     address: companyData.address,
                     phone_number: companyData.phone_number,
                     facebook_url: companyData.facebook_url,
@@ -200,7 +198,7 @@ class CompanyDetails extends Component {
                     return errors;
                   }}
                   onSubmit={(values, actions) => {
-                    console.log('values', values);
+
                     let form_Data = new FormData();
                     for ( let key in values ) {
                       form_Data.append(key, values[key]);
@@ -265,17 +263,17 @@ class CompanyDetails extends Component {
                         <div className="input-fields-section">
                           <label className="label">Image</label>
                           <div className="companyImageDiv">
-                            <img src={companyData.image.secure_url}/>
+                            <img src={companyData.image && companyData.image.secure_url}/>
                           </div>
                           <label className="label">Change Image</label>
                           <input
                             // value={values.companyImage}
                             // className="input-field"
                             onChange={(event) => {
-                              setFieldValue("companyImg", event.currentTarget.files[0]);
+                              setFieldValue("image", event.currentTarget.files[0]);
                               }
                             }
-                            name="companyImg"
+                            name="image"
                             placeholder=""
                             // onChange={handleChange}
                             type="File"
@@ -518,6 +516,7 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openMonday"
                                   >
+                                    <option value="">select option</option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
@@ -586,6 +585,7 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openTuesday"
                                   >
+                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
@@ -654,6 +654,7 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openWednesday"
                                   >
+                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
@@ -722,6 +723,7 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openThursday"
                                   >
+                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
@@ -790,6 +792,7 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openFriday"
                                   >
+                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
@@ -858,6 +861,7 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openSaturday"
                                   >
+                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
@@ -926,6 +930,7 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openSunday"
                                   >
+                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
