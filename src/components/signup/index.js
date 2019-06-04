@@ -153,7 +153,7 @@ class SignUp extends Component {
                   onChange={handleChange}
                 />
                 <label htmlFor="receiveEmails" className="remember-text">
-                  Yes, I want to receive Top Events Jamaica emails
+                  Yes, I want to receive Shopping in Jamaica emails
                 </label>
               </div>
               <div className="register-btn">

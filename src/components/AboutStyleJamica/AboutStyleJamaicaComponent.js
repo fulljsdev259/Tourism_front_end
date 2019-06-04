@@ -5,7 +5,8 @@ import "./aboutStyleJamica.scss";
 
 export default class AboutStyleJamaicaComponent extends Component {
     render() {
-        const { image,description,name,websiteurl} = this.props.artists;
+        // const {this.props.artists} = this.props.artists;
+        console.log(this.props.artists,'9999999999999');
         
         return (
                 <div className="events-list row">
@@ -13,7 +14,7 @@ export default class AboutStyleJamaicaComponent extends Component {
                 <div
                     className="img"
                     style={{
-                    backgroundImage: `url(${image ? image.secure_url:placeholder_img})`,
+                    backgroundImage: `url(${this.props.artists && this.props.artists.image ? this.props.artists.image.secure_url:placeholder_img})`,
                     backgroundSize: "cover"
                     }}
                 />
@@ -22,15 +23,15 @@ export default class AboutStyleJamaicaComponent extends Component {
                     <div>
                         <div className="artistName">
                             <span>Name:</span>
-                            <p>{name}</p>
+                            <p>{this.props.artists &&  ( this.props.artists.title || this.props.artists.name )}</p>
                         </div>
                        <div className="description">
                              <span>description:</span>
-                            <p>{description}</p>
+                            <p>{this.props.artists && ( this.props.artists.description || (this.props.artists.content && this.props.artists.content.brief))}</p>
                        </div>
                         <div className="shopLink">
                             <span>Shop:</span>
-                            <a href={websiteurl} target="_blank">{websiteurl}</a>
+                            <a href={this.props.artists && (this.props.artists.websiteurl || this.props.artists.website)} target="_blank">{this.props.artists && (this.props.artists.websiteurl || this.props.artists.website)}</a>
                         </div>
 
                     </div>
