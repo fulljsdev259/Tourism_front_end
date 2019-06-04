@@ -11,6 +11,7 @@
   margin-top: 3px;
   border-radius: 4px !important;
   cursor: pointer;
+  background: rgb(59, 89, 152);
   >div{
     margin-left: 5px;
   }
@@ -228,6 +229,7 @@
             margin-right: 8px;
           }
         }
+
         .social {
           @media all and (max-width: 767px) {
             margin-top: 10px;
@@ -323,13 +325,13 @@
   display: none !important;
 }
 
-.SocialMediaShareButton {
+.tweet{
   background-color: #029fe1;
   border-color: #029fe1;
   padding: 0 5px;
 }
 
-.SocialMediaShareButton:hover {
+.tweet:hover {
   background-color: #029fe1;
   border-color: #029fe1;
   padding: 0 5px;

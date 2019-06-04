@@ -208,7 +208,7 @@ class Header extends React.Component {
                               false
                             );
                             localStorage.removeItem("token");
-                            this.props.history.push("/");
+                            this.props.history.push("/auth/");
                             this.props.logout();
                           }}
                         >
@@ -674,7 +674,7 @@ class Header extends React.Component {
                         );
                         localStorage.removeItem("token");
                         this.props.logout();
-                        this.props.history.push("/");
+                        this.props.history.push("/auth/");
                       }}
                     >
                       <a> Log Out</a>

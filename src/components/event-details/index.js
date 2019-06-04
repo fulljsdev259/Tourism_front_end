@@ -280,7 +280,7 @@ class Index extends Component {
                     {/* </button> */}
                     <FacebookShareButton
                       // className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"
-                      url={`http://ec2-18-222-212-140.us-east-2.compute.amazonaws.com/#/event-detail/${
+                      url={`http://ec2-18-222-212-140.us-east-2.compute.amazonaws.com/event-detail/${
                         data._id
                       }`}
                       className="fb-share-btn"
@@ -289,7 +289,7 @@ class Index extends Component {
                     </FacebookShareButton>
                     <TwitterShareButton
                       className="btn btn-primary ml-1 px-1 py-0 d-flex tweet"
-                      url={`${window.location.origin}/#/event-detail/${
+                      url={`${window.location.origin}/event-detail/${
                         data._id
                       }`}
                       title=""

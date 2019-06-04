@@ -431,7 +431,7 @@ class CompanyDetails extends Component {
                         <div className="input-fields-section">
                           <label className="label">Website</label>
                           <input
-                            value={values.website}
+                            value={values.website || ""}
                             className="input-field"
                             name="website"
                             placeholder=""
