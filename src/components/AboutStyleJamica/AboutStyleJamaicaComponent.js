@@ -5,8 +5,6 @@ import "./aboutStyleJamica.scss";
 
 export default class AboutStyleJamaicaComponent extends Component {
     render() {
-        // const {this.props.artists} = this.props.artists;
-        console.log(this.props.artists,'9999999999999');
         
         return (
                 <div className="events-list row">
@@ -30,8 +28,18 @@ export default class AboutStyleJamaicaComponent extends Component {
                             <p>{this.props.artists && ( this.props.artists.description || (this.props.artists.content && this.props.artists.content.brief))}</p>
                        </div>
                         <div className="shopLink">
+                        {this.props.artists && (this.props.artists.websiteurl || this.props.artists.website)
+                        ?
+                            <>
+                                <span>Shop:</span>
+                                <a href={this.props.artists && (this.props.artists.websiteurl || this.props.artists.website)} target="_blank">{this.props.artists && (this.props.artists.websiteurl || this.props.artists.website)}</a>
+                            </>
+                        :
+                        <>
                             <span>Shop:</span>
-                            <a href={this.props.artists && (this.props.artists.websiteurl || this.props.artists.website)} target="_blank">{this.props.artists && (this.props.artists.websiteurl || this.props.artists.website)}</a>
+                            <span>NA</span>                        
+                        </>
+                        }
                         </div>
 
                     </div>

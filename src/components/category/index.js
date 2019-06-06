@@ -56,10 +56,6 @@ class Category extends Component {
   }
   render() {
     const { categories2, location ,category} = this.props;
-    // const cat = {
-    //   name: "test",
-    //   description: "description"
-    // };
     const cat =
       this.props.categories && this.props.categories.data
         ? this.props.categories.data.find(
@@ -67,35 +63,7 @@ class Category extends Component {
           )
         : "";
         
-        
-    // const categories = [
-    //   {
-    //     name: "duty_free",
-    //     color: "#fbebec",
-    //     image: duty_free_img,
-    //     bgImage: bg_dutyFree
-    //   },
-    //   {
-    //     name: "artisan",
-    //     color: "#a9fff1",
-    //     image: artisan_img,
-    //     bgImage: bg_artisan
-    //   },
-    //   {
-    //     name: "crafts",
-    //     color: "#cfbeb6",
-    //     image: crafts_img,
-    //     bgImage: bg_crafts
-    //   },
-    //   {
-    //     name: "retails",
-    //     color: "#fff6fb",
-    //     image: retails_img
-    //   }
-    // ];
-    // const bgcolor = categories.find(m => m.name == cat.name).color;
-    // const catImage = categories.find(m => m.name == cat.name).image;
-    // const bgImage = categories.find(m => m.name == cat.name).bgImage;
+      
 
     const bgcolor =category.bgcolor;
     const catImage = window.location.pathname.toLowerCase().search("duty_free") > -1?duty_free_img:
@@ -153,20 +121,18 @@ class Category extends Component {
 
 const mapStateToProps = state => ({
   categories: state.event.categories.data,
-  //   page_details: state.event.eventsByCategory.data,
+
   events: state.event.eventsByCategory.events,
   page_number: state.event.eventsByCategory.page_number,
   successFlag: state.event.eventsByCategory.isSuccess,
-  //   searchedEvents: state.event.searchedEvents.data,
-  //   searchFocused: state.event.searchedEvents.isFieldFocused,
+
   filters: state.event
 });
 
 const mapDispatchToProps = dispatch => ({
   getEventsByCategoryRequest: data =>
     dispatch(actions.getEventsByCategoryRequest(data))
-  // searchBlured: () => dispatch(actions.searchBlur()),
-  // clearList: () => dispatch(actions.clearListOnUnmount())
+
 });
 
 export default withRouter(

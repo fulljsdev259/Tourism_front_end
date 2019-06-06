@@ -119,11 +119,7 @@ class GetListed extends React.Component {
                   delete data.sunStartTime;
                 }
 
-                // let initialFormData = {};
-                // let formData = jsonToFormData (data, initialFormData);
-                // let userData = JSON.stringify(data.userDetails);
                 var newformData = Object.assign(data,{userInfo:JSON.stringify(data.userDetails || null)});                                
-                // console.log(data.apppend('userDetails',JSON.stringify(data.userDetails)));
                 let form_Data = new FormData();
                 for ( let key in newformData ) {
                   form_Data.append(key, newformData[key]);

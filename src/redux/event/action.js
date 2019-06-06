@@ -265,7 +265,6 @@ export function* getInterestRequest(action) {
       header
     );
     if (response.data.success) {
-      // console.log(response.data);
       
       yield put(actions.getInterestSuccess(response.data));
     } 

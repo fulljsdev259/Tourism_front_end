@@ -24,6 +24,7 @@ import artisan_img from "../../images/crafts_img.png";
 import bg_dutyFree from "../../images/bg_dutyFree.png";
 import bg_crafts from "../../images/bg_crafts.png";
 import bg_artisan from "../../images/bg_artisan.png";
+import bg_retails from "../../images/bg_retails.png";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Modal from "react-modal";
 import ForgotPass from "../forgot-pass";
@@ -119,7 +120,7 @@ class Home extends Component {
     const bgImageArr = [duty_free_img, artisan_img, crafts_img, retails_img];
     const pathArr = ["/duty_free", "/artisan", "/crafts", "/retails"];
     const bgColorArr = ["#fbebec", "#a9fff1", "#cfbeb6", "#fff6fb"];
-    const bgArr = [bg_dutyFree, bg_artisan, bg_crafts, bg_crafts];
+    const bgArr = [bg_dutyFree, bg_artisan, bg_crafts, bg_retails];
     const categories = this.state.categoryData.data
       ? this.state.categoryData.data.map((m, i) => {
           return {

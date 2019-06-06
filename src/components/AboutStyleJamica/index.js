@@ -13,8 +13,6 @@ class index extends Component {
     render() {
         
         const stylejamaica = this.props.artists.data;
-        console.log('0000000000',stylejamaica);
-        
       
         return (
             <div className="about-style-zamica-container event-div">

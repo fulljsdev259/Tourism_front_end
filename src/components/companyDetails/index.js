@@ -36,7 +36,9 @@ class CompanyDetails extends Component {
             <div className="profile-title">
               <h3>Company information</h3>
             </div>
-            {data && companyData && (
+            {data && companyData
+              ?
+              (
               <>
               
                 <Formik
@@ -48,35 +50,34 @@ class CompanyDetails extends Component {
                       companyData.subcategories &&
                       companyData.subcategories._id,
                     description: companyData.description,
-                    companyImage: companyData.companyImage,
-                    image:null,
+                                  
                     address: companyData.address,
                     phone_number: companyData.phone_number,
                     facebook_url: companyData.facebook_url,
                     insta_url: companyData.insta_url,
                     fax: companyData.fax,
                     website: companyData.website,
-                    monStartTime: companyData.monStartTime,
-                    monEndTime: companyData.monEndTime,
-                    tueStartTime: companyData.tueStartTime,
-                    tueEndTime: companyData.tueEndTime,
-                    wedStartTime: companyData.wedStartTime,
-                    wedEndTime: companyData.wedEndTime,
-                    thrStartTime: companyData.thrStartTime,
-                    thrEndTime: companyData.thrEndTime,
-                    friStartTime: companyData.friStartTime,
-                    friEndTime: companyData.friEndTime,
-                    satStartTime: companyData.satStartTime,
-                    satEndTime: companyData.satEndTime,
-                    sunStartTime: companyData.sunStartTime,
-                    sunEndTime: companyData.sunEndTime,
-                    openMonday: companyData.monStartTime ? "true" : "false",
-                    openTuesday: companyData.tueStartTime ? "true" : "false",
-                    openWednesday: companyData.wedStartTime ? "true" : "false",
-                    openThursday: companyData.thrStartTime ? "true" : "false",
-                    openFriday: companyData.friStartTime ? "true" : "false",
-                    openSaturday: companyData.satStartTime ? "true" : "false",
-                    openSunday: companyData.sunStartTime ? "true" : "false"
+                    monStartTime: companyData.monStartTime ? companyData.monStartTime : `12:00 AM`,
+                    monEndTime: companyData.monEndTime ? companyData.monEndTime : ``,
+                    tueStartTime: companyData.tueStartTime ? companyData.tueStartTime : `12:00 AM`,
+                    tueEndTime: companyData.tueEndTime ? companyData.tueEndTime : ``,
+                    wedStartTime: companyData.wedStartTime ? companyData.wedStartTime : `12:00 AM`,
+                    wedEndTime: companyData.wedEndTime ? companyData.wedEndTime : ``,
+                    thrStartTime: companyData.thrStartTime ? companyData.thrStartTime : `12:00 AM`,
+                    thrEndTime: companyData.thrEndTime ? companyData.thrEndTime : ``,
+                    friStartTime: companyData.friStartTime ? companyData.friStartTime : `12:00 AM`,
+                    friEndTime: companyData.friEndTime ? companyData.friEndTime : ``,
+                    satStartTime: companyData.satStartTime ? companyData.satStartTime : `12:00 AM`,
+                    satEndTime: companyData.satEndTime ? companyData.satEndTime : ``,
+                    sunStartTime: companyData.sunStartTime ? companyData.sunStartTime : `12:00 AM`,
+                    sunEndTime: companyData.sunEndTime ? companyData.sunEndTime : ``,
+                    openMonday: (companyData.monStartTime && companyData.monEndTime ) ? "true" : "false",
+                    openTuesday: (companyData.tueStartTime && companyData.tueEndTime ) ? "true" : "false",
+                    openWednesday: (companyData.wedStartTime && companyData.wedEndTime ) ? "true" : "false",
+                    openThursday: (companyData.thrStartTime && companyData.thrEndTime ) ? "true" : "false",
+                    openFriday: (companyData.friStartTime && companyData.friEndTime ) ? "true" : "false",
+                    openSaturday: (companyData.satStartTime && companyData.satEndTime ) ? "true" : "false",
+                    openSunday: (companyData.sunStartTime && companyData.sunEndTime ) ? "true" : "false"
                   }}
                   // enableReinitialize
                   validate={values => {
@@ -112,84 +113,84 @@ class CompanyDetails extends Component {
                       errors.website = "Required";
                     }
                     if (values.monStartTime) {
-                      if (!values.monEndTime) {
+                      if (!values.monEndTime && values.openMonday == "true") {
                         errors.monEndTime = "Enter Closed Time";
                       } else if (
                         moment(values.monStartTime, "hh:mm a").format(
                           "HH:mm"
-                        ) >=
+                        ) >
                         moment(values.monEndTime, "hh:mm a").format("HH:mm")
                       ) {
                         errors.monEndTime = "invalid Time";
                       }
                     }
                     if (values.tueStartTime) {
-                      if (!values.tueEndTime) {
+                      if (!values.tueEndTime && values.openTuesday == "true") {
                         errors.tueEndTime = "Enter Closed Time";
                       } else if (
                         moment(values.tueStartTime, "hh:mm a").format(
                           "HH:mm"
-                        ) >=
+                        ) >
                         moment(values.tueEndTime, "hh:mm a").format("HH:mm")
                       ) {
                         errors.tueEndTime = "invalid Time";
                       }
                     }
                     if (values.wedStartTime) {
-                      if (!values.wedEndTime) {
+                      if (!values.wedEndTime && values.openWednesday == "true") {
                         errors.wedEndTime = "Enter Closed Time";
                       } else if (
                         moment(values.wedStartTime, "hh:mm a").format(
                           "HH:mm"
-                        ) >=
+                        ) >
                         moment(values.wedEndTime, "hh:mm a").format("HH:mm")
                       ) {
                         errors.wedEndTime = "invalid Time";
                       }
                     }
                     if (values.thrStartTime) {
-                      if (!values.thrEndTime) {
+                      if (!values.thrEndTime && values.openThursday == "true") {
                         errors.thrEndTime = "Enter Closed Time";
                       } else if (
                         moment(values.thrStartTime, "hh:mm a").format(
                           "HH:mm"
-                        ) >=
+                        ) >
                         moment(values.thrEndTime, "hh:mm a").format("HH:mm")
                       ) {
                         errors.thrEndTime = "invalid Time";
                       }
                     }
                     if (values.friStartTime) {
-                      if (!values.friEndTime) {
+                      if (!values.friEndTime && values.openFriday == "true") {
                         errors.friEndTime = "Enter Closed Time";
                       } else if (
                         moment(values.friStartTime, "hh:mm a").format(
                           "HH:mm"
-                        ) >=
+                        ) >
                         moment(values.friEndTime, "hh:mm a").format("HH:mm")
                       ) {
                         errors.friEndTime = "invalid Time";
                       }
                     }
                     if (values.satStartTime) {
-                      if (!values.satEndTime) {
+                      if (!values.satEndTime && values.openSaturday == "true") {
                         errors.satEndTime = "Enter Closed Time";
                       } else if (
                         moment(values.satStartTime, "hh:mm a").format(
                           "HH:mm"
-                        ) >=
+                        ) >
                         moment(values.satEndTime, "hh:mm a").format("HH:mm")
                       ) {
                         errors.satEndTime = "invalid Time";
                       }
                     }
                     if (values.sunStartTime) {
-                      if (!values.sunEndTime) {
+                      if (!values.sunEndTime && values.openSunday == "true") {
                         errors.sunEndTime = "Enter Closed Time";
                       } else if (
                         moment(values.sunStartTime, "hh:mm a").format(
                           "HH:mm"
-                        ) >=
+                        ) >
                         moment(values.sunEndTime, "hh:mm a").format("HH:mm")
                       ) {
                         errors.sunEndTime = "invalid Time";
@@ -516,13 +517,12 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openMonday"
                                   >
-                                    <option value="">select option</option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
                                 </div>
                               </div>
-                              {values.openMonday == "true" && (
+                              {JSON.parse(values.openMonday) && (
                                 <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
@@ -585,13 +585,12 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openTuesday"
                                   >
-                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
                                 </div>
                               </div>
-                              {values.openTuesday == "true" && (
+                              {JSON.parse(values.openTuesday) && (
                                 <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
@@ -654,13 +653,12 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openWednesday"
                                   >
-                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
                                 </div>
                               </div>
-                              {values.openWednesday == "true" && (
+                              {JSON.parse(values.openWednesday) && (
                                 <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
@@ -723,13 +721,12 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openThursday"
                                   >
-                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
                                 </div>
                               </div>
-                              {values.openThursday == "true" && (
+                              {JSON.parse(values.openThursday) && (
                                 <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
@@ -792,13 +789,12 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openFriday"
                                   >
-                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
                                 </div>
                               </div>
-                              {values.openFriday == "true" && (
+                              {JSON.parse(values.openFriday) && (
                                 <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
@@ -861,13 +857,12 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openSaturday"
                                   >
-                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
                                 </div>
                               </div>
-                              {values.openSaturday == "true" && (
+                              {JSON.parse(values.openSaturday)&& (
                                 <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
@@ -930,13 +925,12 @@ class CompanyDetails extends Component {
                                     onChange={handleChange}
                                     id="openSunday"
                                   >
-                                    <option></option>
                                     <option value={true}>Opened</option>
                                     <option value={false}>Closed</option>
                                   </select>
                                 </div>
                               </div>
-                              {values.openSunday == "true" && (
+                              {JSON.parse(values.openSunday) && (
                                 <div className="weekdayOpenDiv">
                                   <div className="input-fields">
                                     <label>Open Time</label>
@@ -1000,7 +994,12 @@ class CompanyDetails extends Component {
                   }}
                 />
               </>
-            )}
+            )
+            :
+            <div className="company-loader-div text-center" >
+                <Loader type="Oval" color="#2955ae" height="40" width="40" />
+            </div>
+          }
           </div>
         </div>
       </div>
