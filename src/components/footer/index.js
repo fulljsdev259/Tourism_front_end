@@ -40,9 +40,12 @@ export default class Footer extends React.Component {
                     <img src={mapMain} />
                   </div>
                   <span className="top">
-                  Tourism Enhancement Fund
-                  60 Knutford Boulevard
+                  Tourism Enhancement Fund 
+                  <br/>
+                  60  Knutford Boulevard 
+                  <br/>
                   Kingston 5
+                  <br/>
                   Jamaica, West Indies
                   </span>
                 </div>
@@ -182,9 +185,12 @@ export default class Footer extends React.Component {
                     <img src={mapMain} />
                   </div>
                   <span className="top">
-                  Tourism Enhancement Fund <br/>
-                  60  Knutford Boulevard<br/>
-                  Kingston 5<br/>
+                  Tourism Enhancement Fund 
+                  <br/>
+                  60  Knutford Boulevard 
+                  <br/>
+                  Kingston 5
+                  <br/>
                   Jamaica, West Indies
                   </span>
                 </div>
