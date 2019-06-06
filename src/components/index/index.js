@@ -338,6 +338,7 @@ featuredEvents.data.trendingEvents.results.length ? (
                             )
                           }
                         >
+                          <div className= "imgDiv">
                           <img
                             src={
                             item.image
@@ -345,6 +346,7 @@ featuredEvents.data.trendingEvents.results.length ? (
                                 : null
                             }
                           />
+                          </div>
                           <div className="title">{item.title}</div>
                         </div>
                       )}
