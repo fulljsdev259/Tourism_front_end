@@ -11,7 +11,7 @@ import f5 from "../../images/footer/f55.png";
 import f6 from "../../images/footer/f66.png";
 import f7 from "../../images/footer/f77.png";
 import f8 from "../../images/footer/f88.png";
-import f9 from "../../images/footer/f99.png";
+import f9 from "../../images/footer/f99.jpg";
 import fb from "../../images/icon/fb.svg";
 import twitter from "../../images/icon/twitter/blue_b.svg";
 import insta from "../../images/icon/insta.svg";
@@ -102,63 +102,28 @@ export default class Footer extends React.Component {
                
               </div>
             </div>
-            <div className="row">
-                  <div className="mobile-copyright col-md-12 col-12">
-                    <div className="copyright-text text-center">
-                      Copyright © {currentYear}. Developed by Ministry of
-                      Tourism and Powered by Tourism Enhancement Fund
-                    </div>
-                    <ul
-                      className="logos col-12"
-                      // style={{  alignItems: "center" }}
-                    >
-                      <li>
-                        <a href="https://www.mot.gov.jm/" target="_BLANK">
-                          <img src={f1} />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="http://www.jtbonline.org/" target="_BLANK">
-                          <img src={f2} />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.instagram.com/thejmea_/"
-                          target="_BLANK"
-                        >
-                          <img src={f3} />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.jbdc.net/" target="_BLANK">
-                          <img src={f4} />
-                        </a>
-                      </li>
-                      <li>
-                        <a
+            <div className="row footerLogos">
+            <div className="footerlinks">
+                <div className = "row1">
+                    <a href="https://www.mot.gov.jm/" target="_BLANK">
+                        <img src={f1} />
+                    </a>
+                    <a
                           href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
                           target="_BLANK"
-                        >
-                          <img src={f5} />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="http://www.jamaicatradeandinvest.org/" target="_BLANK"target="_BLANK">
+                    >
+                        <img src={f5} />
+                    </a>
+                    <a href="http://www.jamaicatradeandinvest.org/" target="_BLANK"target="_BLANK">
                           <img src={f6} />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="http://www.jhta.org/" target="_BLANK">
-                          <img src={f7} />
-                        </a>
-                      </li>
-                      <li>
-                        <a target="_BLANK">
+                    </a>
+                    <a target="_BLANK">
                           <img src={f8} />
                         </a>
-                      </li>
-                      <li>
+                      
+                        </div>
+
+                        <div className="row2">
                         <a
                           href="http://www.jamaicatradeandinvest.org/"
                           target="_BLANK"
@@ -166,11 +131,31 @@ export default class Footer extends React.Component {
                           <img
                             className="f9image"
                             src={f9}
-                            style={{ filter: "saturate(8) " }}
+                            // style={{ filter: "saturate(8) " }}
                           />
                         </a>
-                      </li>
-                    </ul>
+                        <a
+                          href="https://www.instagram.com/thejmea_/"
+                          target="_BLANK"
+                        >
+                          <img src={f3} />
+                        </a>
+                        <a href="https://www.jbdc.net/" target="_BLANK">
+                          <img src={f4} />
+                        </a>
+                        <a href="http://www.jhta.org/" target="_BLANK">
+                          <img src={f7} />
+                        </a>
+
+                            
+                        </div>                                            
+                      </div>
+
+                  <div className="mobile-copyright col-md-12 col-12">                                                          
+                    <div className="copyright-text text-center">
+                      Copyright © {currentYear}. Developed by the Tourism Linkages Network, 
+                      a division of the Tourism Enhancement Fund
+                    </div>
                   </div>
                 </div>
           </div>
@@ -227,108 +212,74 @@ export default class Footer extends React.Component {
             </div>
             </div>
 
-            <div className="row">
-              <div className="col-12 mt-5">
-                    <ul
-                          className="social-logos col-12"
-                          // style={{  alignItems: "center" }}
+          <div className="mob-footerlinks">
+                <div className = "row1">
+                    <a href="https://www.mot.gov.jm/" target="_BLANK">
+                        <img src={f1} />
+                    </a>
+                    <a
+                          href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
+                          target="_BLANK"
+                    >
+                        <img src={f5} />
+                    </a>
+                    <a href="http://www.jamaicatradeandinvest.org/" target="_BLANK"target="_BLANK">
+                          <img src={f6} />
+                    </a>
+                    <a target="_BLANK">
+                          <img src={f8} />
+                        </a>
+                      
+                </div>
+
+                <div className="row2">
+                        <a
+                          href="http://www.jamaicatradeandinvest.org/"
+                          target="_BLANK"
                         >
-                          <li>
-                            <a href="https://www.mot.gov.jm/" target="_BLANK">
-                              <img src={f1} />
-                            </a>
-                          </li>
-                          <li>
-                            <a href="http://www.jtbonline.org/" target="_BLANK">
-                              <img src={f2} />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://www.instagram.com/thejmea_/"
-                              target="_BLANK"
-                            >
-                              <img src={f3} />
-                            </a>
-                          </li>
-                          <li>
-                            <a href="https://www.jbdc.net/" target="_BLANK">
-                              <img src={f4} />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
-                              target="_BLANK"
-                            >
-                              <img src={f5} />
-                            </a>
-                          </li>
-                          <li>
-                            <a target="_BLANK">
-                              <img src={f6} />
-                            </a>
-                          </li>
-                          <li>
-                            <a href="http://www.jhta.org/" target="_BLANK">
-                              <img src={f7} />
-                            </a>
-                          </li>                         
-                        </ul>                             
-                  </div>
-            </div>  
+                          <img
+                            className="f9image"
+                            src={f9}
+                            // style={{ filter: "saturate(8) " }}
+                          />
+                        </a>
+                        <a
+                          href="https://www.instagram.com/thejmea_/"
+                          target="_BLANK"
+                        >
+                          <img src={f3} />
+                        </a>
+                        <a href="https://www.jbdc.net/" target="_BLANK">
+                          <img src={f4} />
+                        </a>
+                        <a href="http://www.jhta.org/" target="_BLANK">
+                          <img src={f7} />
+                        </a>                                                    
+                </div> 
+                <div className="row3">
+                        <a href="https://www.facebook.com/tefjamaica/"
+                         target="_BLANK"
+                        >
+                            <img src={fb} />
+                        </a>
+                        <a href="https://www.instagram.com/tourismenhancementfundja/"
+                           target="_BLANK"
+                        >
+                            <img src={insta} />
+                        </a>
+                        <a href="https://www.mot.gov.jm/" target="_BLANK">
+                            <img src={twitter} />
+                        </a>
+                </div>                                           
+            </div>
+
                
             <div className="row">
               <div className="row-2 col-12">
-                              <ul className="social-logos col1">
-                                    <li>
-                                        <a
-                                          href="https://www.facebook.com/tefjamaica/"
-                                          target="_BLANK"
-                                        >
-                                          <img src={fb} />
-                                        </a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a
-                                          href="https://www.instagram.com/tourismenhancementfundja/"
-                                          target="_BLANK"
-                                        >
-                                          <img src={insta} />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.mot.gov.jm/" target="_BLANK">
-                                          <img src={twitter} />
-                                        </a>
-                                    </li>
-                                  </ul>
-
-                                  <ul className="social-logos col2">                                  
-                                      
-                                      <li>
-                                        <a
-                                          href="http://www.jamaicatradeandinvest.org/"
-                                          target="_BLANK"
-                                        >
-                                          <img
-                                            className="f9image"
-                                            src={f9}
-                                            style={{ filter: "saturate(8) " }}
-                                          />
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a target="_BLANK">
-                                          <img src={f8} />
-                                        </a>
-                                      </li>
-                                  </ul>         
                         </div>
                         <div className="mobile-copyright col-12">                    
-                            Copyright © {currentYear}. Developed by Ministry of
-                            Tourism and Powered by Tourism Enhancement Fund                                                                   
+                            Copyright © {currentYear}. Developed by the Tourism Linkages Network, 
+                            a division of the Tourism Enhancement Fund                                                                   
                         </div>                        
             </div> 
           </div>
