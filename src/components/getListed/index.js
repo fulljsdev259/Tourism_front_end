@@ -88,12 +88,11 @@ class GetListed extends React.Component {
                     },
                     email: data.email,
                     password: data.password
-                  };
-                  
-                  
+                  };                                                     
                   delete data.password;
                   delete data.fullName;
-                  delete data.email;
+                  delete data.email;  
+
                 } else {
                   data.user_id = userdata.data && userdata.data._id;
                 }
@@ -118,8 +117,14 @@ class GetListed extends React.Component {
                 if(!data.sundayOpen){
                   delete data.sunStartTime;
                 }
-
+                if(localStorage.getItem('token')){
+                  delete data.userDetails;
+                }
+                
+                
                 var newformData = Object.assign(data,{userInfo:JSON.stringify(data.userDetails || null)});                                
+                
+                
                 let form_Data = new FormData();
                 for ( let key in newformData ) {
                   form_Data.append(key, newformData[key]);

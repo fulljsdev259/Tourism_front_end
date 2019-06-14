@@ -56,6 +56,15 @@ class WizardFormThirdPage extends React.Component {
     }
   };
 
+  componentDidUpdate(prevProps) {
+    if (
+      !this.props.isLoading &&
+      this.props.isLoading !== prevProps.isLoading
+    ) {
+      this.props.reset();
+    }
+  }
+
   render() {
     const {
       handleSubmit,
@@ -63,9 +72,10 @@ class WizardFormThirdPage extends React.Component {
       previousPage,
       submitting,
       mutate,
-      onSubmit
-    } = this.props;
-
+      onSubmit,
+      isLoading
+    } = this.props;    
+    
     return (
       <div>
         {this.state.apiCall ? <Loader /> : ""}
