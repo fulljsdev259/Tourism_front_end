@@ -4,8 +4,8 @@ import fireApi from "../../services/fireApi";
 import { localStore } from "../../services/storage";
 import { toast } from "react-toastify";
 
-export function* getCategoriesRequest(action) {
-  try {
+  export function* getCategoriesRequest(action) {
+    try {
     const response = yield call(fireApi, "GET", "getCategory");
     if (response) {
       yield put(actions.getCategoriesSuccess(response.data));
