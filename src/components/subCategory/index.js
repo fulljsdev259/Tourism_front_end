@@ -28,8 +28,9 @@ class SubCategory extends Component {
       ageFlag: false,
       id: "",
       status: true,
-      location_status: ""
-      // setSubcat: true
+      location_status: "",
+      // setSubcat: true,
+      numberOfItemToShow:20,
     };
   }
   componentDidMount() {
@@ -73,7 +74,11 @@ class SubCategory extends Component {
       //   }
     }
   }
+  numberOfItemToShow=()=>{
+    this.setState({numberOfItemToShow:this.state.numberOfItemToShow+20});
+  }
   render() {
+    const {numberOfItemToShow} =this.state;
     const { categories2, location,category } = this.props;
     const cat = this.props.category;
 
@@ -172,12 +177,24 @@ class SubCategory extends Component {
             </div>
           ) : this.props.events.length ? (
             this.props.events.map((event, i) => {
-              return <CategoryItem key={i} event={event} />;
+              return (
+                <React.Fragment>
+                  {i  < numberOfItemToShow && 
+                    <CategoryItem key={i} event={event} />
+                  }
+                </React.Fragment>
+              )
             })
           ) : (
             <div className="no-events">{`At this time, there is no Data `}</div>
           )}
+          {this.props.events && this.props.events.length >0 && this.props.events.length > 20  && this.props.events.length > numberOfItemToShow && 
+          <div onClick={this.numberOfItemToShow} style={{display:"flex",justifyContent:"center",flexDirection:"row",cursor:"pointer"}}>
+                <div style={{border:"1px solid #f1415c",borderRadius:"26px",padding:"4px 36px",color:"#f1415c",margin:"27px 0px 34px 0px"}}>Load more</div>
+              </div>
+          }
         </div>
+        {/* sknclaksnclaksbncl */}
       </div>
     );
   }
