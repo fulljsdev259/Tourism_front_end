@@ -189,8 +189,8 @@ class SubCategory extends Component {
             <div className="no-events">{`At this time, there is no Data `}</div>
           )}
           {this.props.events && this.props.events.length >0 && this.props.events.length > 20  && this.props.events.length > numberOfItemToShow && 
-          <div onClick={this.numberOfItemToShow} style={{display:"flex",justifyContent:"center",flexDirection:"row",cursor:"pointer"}}>
-                <div style={{border:"1px solid #f1415c",borderRadius:"26px",padding:"4px 36px",color:"#f1415c",margin:"27px 0px 34px 0px"}}>Load more</div>
+          <div onClick={this.numberOfItemToShow} className="load-more-button-container">
+                <div className="load-more-button">Load more</div>
               </div>
           }
         </div>
