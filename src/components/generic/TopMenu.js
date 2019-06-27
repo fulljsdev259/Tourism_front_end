@@ -177,6 +177,8 @@ class TopMenu extends Component {
     })
   }
   render() {
+    console.log(this.props);
+    
     let states = [];
     states = [
       <li key={-1} onClick={() => {this.props.stateChange("");this.setState({isChangedState:true})}}>

@@ -27,6 +27,9 @@ import { image_formatter } from "../../services/helper";
 import mapMarker from "../../images/icon/location_w.svg";
 import MenuImage from "../../images/menuImage.svg";
 import Loader from "react-loader-spinner";
+import { geolocated } from "react-geolocated";
+import Geocode from "react-geocode";
+Geocode.setApiKey("AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI");
 
 let bannerUrlIndex = "";
 
@@ -37,7 +40,9 @@ class Index extends Component {
       status: false,
       stateName: "",
       stateId: "",
-      show:false
+      show:false,
+      isGeolocation:false,
+      foundGeoLocation:true,
     };
     if (props.categories) {
       const one_category = this.props.categories.find(
@@ -50,6 +55,9 @@ class Index extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
+    // let storableLocation = {};
+        // const {latitude,longitude}=this.props.coords;
+      
   }
   componentDidUpdate(prevProps) {
     if (this.props.categories && !this.props.featuredEvents.data) {
@@ -59,7 +67,73 @@ class Index extends Component {
       if (one_category) {
         this.props.getFeaturedEvents(one_category.id);
       }
-    }
+    }const {isGeolocation} =this.state;
+
+    if(!isGeolocation && this.props.coords &&
+      this.props.coords.latitude && this.props.coords.longitude &&
+      this.props.isGeolocationAvailable && this.props.places.data && 
+      this.props.places.data.length >0 ){
+        let storableLocation = {};
+        const {latitude,longitude}=this.props.coords;
+    Geocode.fromLatLng(latitude, longitude).then(
+      response => {
+      const { results } = response;   
+      let locality,administrative_area_level_1 ,country;
+      if(response && response.results && response.results.length){
+        for(var ac = 0 ; ac < response.results.length; ac++){
+          if((!locality ||  locality.length > 0) || (!administrative_area_level_1 || administrative_area_level_1.length >0) || (!country || country.length >0)){
+            for(let a =0; a < response.results[ac].address_components.length ; a++){
+              if(!locality || !locality.length >0 ){
+                locality =response.results[ac].address_components[a].types.filter((a,i)=>a ==="locality");
+                if(locality && locality.length>0){
+                  storableLocation.city = response.results[ac].address_components[a].long_name;
+                }
+              }if(!administrative_area_level_1 || !administrative_area_level_1.length >0 ){
+                administrative_area_level_1 =response.results[ac].address_components[a].types.filter((a,i)=>a ==="administrative_area_level_1");
+                if(administrative_area_level_1 && administrative_area_level_1.length>0){
+                  storableLocation.state = response.results[ac].address_components[a].long_name;
+                }
+              }
+              if(!country || !country.length >0 ){
+               country =response.results[ac].address_components[a].types.filter((a,i)=>a ==="country");
+               if(country && country.length>0){
+                let registered_country_iso_code = response.results[ac].address_components[a].short_name;
+                storableLocation = Object.assign(storableLocation,{registered_country_iso_code})
+               }
+              }
+            }
+          }else{
+            break;
+          }
+        }
+      }
+      let state=[]
+        for(let i =0;  i < this.props.places.data.length ; i++ ){
+          if(storableLocation.state){
+            if(storableLocation.state.includes("Saint") && storableLocation.state.includes("Parish") && storableLocation.state.trim().split(" ").slice(1,-1).join("").toLowerCase() === this.props.places.data[i].name.trim().split(" ").slice(1).join(" ").toLowerCase()){
+              state.push(this.props.places.data[i])
+            }else if(storableLocation.state.includes("Parish") && this.props.places.data[i].name.includes("Parish") && storableLocation.state.trim().toLowerCase() === this.props.places.data[i].name.trim().toLowerCase()){
+                state.push(this.props.places.data[i])
+                break;
+            }
+            else if(storableLocation.state.includes("Parish") && !this.props.places.data[i].name.includes("Parish") && storableLocation.state.trim().split(" ").slice(0,-1).join(" ").toLowerCase() === this.props.places.data[i].name.trim().toLowerCase()){
+                state.push(this.props.places.data[i])
+                break;
+            }
+            else if(!storableLocation.state.includes("Parish") && this.props.places.data[i].name.includes("Parish") && storableLocation.state.trim().toLowerCase() === this.props.places.data[i].name.trim().split(" ").slice(0,-1).join(" ").toLowerCase()){
+                state.push(this.props.places.data[i])
+                break;
+            }
+          }
+        }
+        if (state && state.length > 0) {
+          this.setState({stateId:state[0]._id,stateName:state[0].name})
+        }
+      console.log(storableLocation,state,'storableLocation');
+      
+    })
+    this.setState({isGeolocation:true})
+  }
   }
 
   handleInputChange = state => {
@@ -83,7 +157,7 @@ class Index extends Component {
     const { categories, featuredEvents, places } = this.props;
     if (this.state.stateId == "" && places.data) {
       this.setState({
-        stateId: places.data[0]._id,
+        stateId: places.data.sort((a,b)=>{return a.name > b.name ? 1 : -1})[0]._id,
         stateName: places.data[0].name
       });
     }
@@ -173,7 +247,7 @@ class Index extends Component {
                     <ul className="list-unstyled"
                         onMouseLeave={()=>{this.listHoverOut()}}
                     >
-                      {places.data.map((state, i) => (
+                      {places.data.sort((a,b)=>{return a.name > b.name ? 1 : -1} ).map((state, i) => (
                         <li key={i}
                         >
                           <a
@@ -557,7 +631,12 @@ const mapDispatchToProps = dispatch => ({
   getUserPostById: data => dispatch(actions.getUserPostByIdRequest(data))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Index);
+
+export default geolocated()(
+  // withRouter(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(Index)
+  // )
+);
