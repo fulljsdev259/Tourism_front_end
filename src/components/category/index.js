@@ -35,24 +35,24 @@ class Category extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     const { filters } = this.props;
-    if (filters.categories && filters.categories.data && !this.state.id) {
-      const oneCategory = filters.categories.data.data.find(category => {
-        return category.name === this.props.match.path.replace("/", "");
-      });
+    // if (filters.categories && filters.categories.data && !this.state.id) {
+    //   const oneCategory = filters.categories.data.data.find(category => {
+    //     return category.name === this.props.match.path.replace("/", "");
+    //   });
 
-      if (oneCategory) {
-        if (!this.state.id) {
-          this.setState({ id: oneCategory._id });
-        }
-        this.props.getEventsByCategoryRequest({
-          id: oneCategory._id,
-          page_number: 1,
-          ageFlag: filters.ageFlag,
-          eventState: filters.selectedState,
-          eventCity: filters.selectedCity
-        });
-      }
-    }
+    //   if (oneCategory) {
+    //     if (!this.state.id) {
+    //       this.setState({ id: oneCategory._id });
+    //     }
+    //     this.props.getEventsByCategoryRequest({
+    //       id: oneCategory._id,
+    //       page_number: 1,
+    //       ageFlag: filters.ageFlag,
+    //       eventState: filters.selectedState,
+    //       eventCity: filters.selectedCity
+    //     });
+    //   }
+    // }
   }
   render() {
     console.log(this.props.events,'0000000');

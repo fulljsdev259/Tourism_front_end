@@ -227,21 +227,28 @@ const handleLocationsRequest = (state, action) =>
       message: { $set: "" }
     }
   });
-const handleLocationsSuccess = (state, action) =>
-  update(state, {
-    selectedState: { $set: action.payload.data[0]._id },
-    // selectedCity: {
-    // $set: action.payload.data[0].cities.length
-    // ? action.payload.data[0].cities[0]._id
-    // : ""
-    // },
-    locations: {
-      isLoading: { $set: false },
-      isSuccess: { $set: true },
-      isError: { $set: false },
-      data: { $set: action.payload }
-    }
-  });
+const handleLocationsSuccess = (state, action) =>{
+  console.log(action,'handleLocationsSuccess');
+  
+  return(
+    update(state, {
+      // selectedState: { $set: action.payload.data[0]._id },
+      // selectedState: { $set: "" },
+      // selectedCity: {
+      // $set: action.payload.data[0].cities.length
+      // ? action.payload.data[0].cities[0]._id
+      // : ""
+      // },
+      locations: {
+        isLoading: { $set: false },
+        isSuccess: { $set: true },
+        isError: { $set: false },
+        data: { $set: action.payload }
+      }
+    })
+  )
+}
+  
 const handleLocationsError = (state, action) =>
   update(state, {
     locations: {
@@ -544,9 +551,12 @@ const handleAgeFlagChange = (state, action) =>
   });
 
 const handleStateChange = (state, action) => {
+  
   const stateData = state.locations.data.data.find(
     state => action.payload === state._id
   );
+  console.log(action,stateData,'stateChangestateChangestateChangestateChange');
+
   if (stateData && stateData.cities && stateData.cities.length) {
     return update(state, {
       selectedState: { $set: action.payload },

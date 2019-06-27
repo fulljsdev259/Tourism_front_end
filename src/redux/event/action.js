@@ -31,6 +31,8 @@ export function* getLocationsRequest(action) {
 }
 
 export function* getEventsByCategoryRequest(action) {
+  console.log(action,'actionactionactionactionactionaction');
+  
   try {
     const {
       page_number,

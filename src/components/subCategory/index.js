@@ -137,6 +137,8 @@ class SubCategory extends Component {
     const catImage = window.location.pathname.toLowerCase().search("duty_free") > -1?duty_free_img:
                      window.location.pathname.toLowerCase().search("crafts") > -1?crafts_img:category.image;
     const bgImage = category.bg;
+    console.log(location,'>>>>>??????????????');
+    
     return (
       <div className="event-page">
         <div className="row">

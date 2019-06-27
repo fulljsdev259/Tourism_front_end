@@ -7,11 +7,12 @@ import { Link, withRouter } from "react-router-dom";
 import "./TopMenu.scss";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
-// import { geolocated } from "react-geolocated";
-// import Geocode from "react-geocode";
+import { geolocated } from "react-geolocated";
+import Geocode from "react-geocode";
 import "./TopMenu.scss";
+import { element } from "prop-types";
 
-// Geocode.setApiKey("AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI");
+Geocode.setApiKey("AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI");
 
 class TopMenu extends Component {
   constructor(props) {
@@ -30,12 +31,15 @@ class TopMenu extends Component {
       displayCity: false,
       displayAge: false,
       displayCal: false,
-      show:false
+      show:false,
+      isGeolocation:false,
+      foundGeoLocation:true,
+      isChangedState:false
     };
   }
   componentDidUpdate(prevProps, prevState) {
     const { filters } = this.props;
-    if (this.props.places.data && this.props.categories.data) {
+    if (this.props.places.data && this.props.categories.data && this.state.isChangedState) {
       if (
         filters.selectedCity !== prevProps.filters.selectedCity ||
         filters.selectedState !== prevProps.filters.selectedState ||
@@ -45,10 +49,6 @@ class TopMenu extends Component {
         const oneCategory = this.props.categories.data.find(category => {
           return category.name === this.props.match.path.replace("/", "");
         });
-        // if (oneCategory) {
-        //   if (!this.state.id) {
-        //     this.setState({ id: oneCategory._id });
-        //   }
           this.props.getEventsByCategoryRequest({
             sub_id: this.props.match.params.id && this.props.match.params.id,
             id: oneCategory && oneCategory._id,
@@ -57,9 +57,111 @@ class TopMenu extends Component {
             eventState: filters.selectedState,
             eventCity: filters.selectedCity
           });
-        // }
       }
     }
+    const {isGeolocation} =this.state;
+    if(!isGeolocation && this.props.coords &&
+      this.props.coords.latitude && this.props.coords.longitude &&
+      this.props.isGeolocationAvailable &&
+      this.props.places.data && 
+      this.props.places.data.length >0 && 
+      this.props.isGeolocationEnabled){
+        let storableLocation = {};
+        const {latitude,longitude}=this.props.coords;
+      Geocode.fromLatLng(latitude, longitude).then(
+        response => {
+        const { results } = response;   
+        let locality,administrative_area_level_1 ,country;
+        if(response && response.results && response.results.length){
+          for(var ac = 0 ; ac < response.results.length; ac++){
+            if((!locality ||  locality.length > 0) || (!administrative_area_level_1 || administrative_area_level_1.length >0) || (!country || country.length >0)){
+              for(let a =0; a < response.results[ac].address_components.length ; a++){
+                if(!locality || !locality.length >0 ){
+                  locality =response.results[ac].address_components[a].types.filter((a,i)=>a ==="locality");
+                  if(locality && locality.length>0){
+                    storableLocation.city = response.results[ac].address_components[a].long_name;
+                  }
+                }if(!administrative_area_level_1 || !administrative_area_level_1.length >0 ){
+                  administrative_area_level_1 =response.results[ac].address_components[a].types.filter((a,i)=>a ==="administrative_area_level_1");
+                  if(administrative_area_level_1 && administrative_area_level_1.length>0){
+                    storableLocation.state = response.results[ac].address_components[a].long_name;
+                  }
+                }
+                if(!country || !country.length >0 ){
+                 country =response.results[ac].address_components[a].types.filter((a,i)=>a ==="country");
+                 if(country && country.length>0){
+                  let registered_country_iso_code = response.results[ac].address_components[a].short_name;
+                  storableLocation = Object.assign(storableLocation,{registered_country_iso_code})
+                 }
+                }
+              }
+            }else{
+              break;
+            }
+          }
+        }
+        let state=[]
+        for(let i =0;  i < this.props.places.data.length ; i++ ){
+          if(storableLocation.state){
+            if(storableLocation.state.includes("Saint") && storableLocation.state.includes("Parish") && storableLocation.state.trim().split(" ").slice(1,-1).join("").toLowerCase() === this.props.places.data[i].name.trim().split(" ").slice(1).join(" ").toLowerCase()){
+              state.push(this.props.places.data[i])
+            }else if(storableLocation.state.includes("Parish") && this.props.places.data[i].name.includes("Parish") && storableLocation.state.trim().toLowerCase() === this.props.places.data[i].name.trim().toLowerCase()){
+                state.push(this.props.places.data[i])
+                break;
+            }
+            else if(storableLocation.state.includes("Parish") && !this.props.places.data[i].name.includes("Parish") && storableLocation.state.trim().split(" ").slice(0,-1).join(" ").toLowerCase() === this.props.places.data[i].name.trim().toLowerCase()){
+                state.push(this.props.places.data[i])
+                break;
+            }
+            else if(!storableLocation.state.includes("Parish") && this.props.places.data[i].name.includes("Parish") && storableLocation.state.trim().toLowerCase() === this.props.places.data[i].name.trim().split(" ").slice(0,-1).join(" ").toLowerCase()){
+                state.push(this.props.places.data[i])
+                break;
+            }
+          }
+        }
+        if (state && state.length > 0) {
+          this.props.stateChange(state[0]._id);
+          let city;
+          if(storableLocation.city){
+            if( storableLocation.city ==="Kingston"){
+              city = state[0].cities.filter((city,i) => city.name =="New Kingston" || city.name =="Kingston" );
+            }else{
+              city = state[0].cities.filter((city,i) =>city.name === storableLocation.city);
+            }
+            if(city && city.length >0){
+            this.props.cityChange(city[0]._id);
+            }
+          }
+            const oneCategory = this.props.categories.data.find(category => {
+              return category.name === this.props.match.path.replace("/", "");
+            });
+            this.props.getEventsByCategoryRequest({
+              sub_id: this.props.match.params.id && this.props.match.params.id,
+              id: oneCategory && oneCategory._id,
+              page_number: 1,
+              ageFlag: filters.ageFlag,
+              eventState: state[0]._id,
+              eventCity: city && city.length >0 && city[0]._id ? city[0]._id :""
+            });
+          }else{
+              const oneCategory = filters.categories.data.data.find(category => {
+                return category.name === this.props.match.path.replace("/", "");
+              });
+              if (oneCategory) {
+                this.props.getEventsByCategoryRequest({
+                  sub_id: this.props.match.params.id && this.props.match.params.id,
+                  id: oneCategory._id,
+                  page_number: 1,
+                  ageFlag: filters.ageFlag,
+                  eventState: filters.selectedState,
+                  eventCity: filters.selectedCity
+                });
+              }
+             }
+        })
+         this.setState({isGeolocation:true})
+      }
+      
   }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -77,7 +179,7 @@ class TopMenu extends Component {
   render() {
     let states = [];
     states = [
-      <li key={-1} onClick={() => this.props.stateChange("")}>
+      <li key={-1} onClick={() => {this.props.stateChange("");this.setState({isChangedState:true})}}>
         All Locations
       </li>
     ];
@@ -91,14 +193,14 @@ class TopMenu extends Component {
       stateData = this.props.places.data.find(
         state => this.props.filters.selectedState === state._id
       );
-      this.props.places.data.map((state, i) => {
+      this.props.places.data.sort((a,b)=>{return a.name > b.name ? 1 : -1} ).map((state, i) => {
         if (
           state.name
             .toLowerCase()
             .includes(this.state.search_state.toLowerCase())
         ) {
           states.push(
-            <li key={i} onClick={() => this.props.stateChange(state._id)}>
+            <li key={i} onClick={() => {this.props.stateChange(state._id); this.setState({isChangedState:true})}}>
               {state.name}
             </li>
           );
@@ -370,9 +472,11 @@ const mapDispatchToProps = dispatch => ({
   //   setStorableLocation: value => dispatch(actions.storableLocation(value))
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TopMenu)
+export default geolocated()(
+  withRouter(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(TopMenu)
+  )
 );
