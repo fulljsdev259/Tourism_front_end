@@ -228,8 +228,6 @@ const handleLocationsRequest = (state, action) =>
     }
   });
 const handleLocationsSuccess = (state, action) =>{
-  console.log(action,'handleLocationsSuccess');
-  
   return(
     update(state, {
       // selectedState: { $set: action.payload.data[0]._id },
@@ -555,8 +553,6 @@ const handleStateChange = (state, action) => {
   const stateData = state.locations.data.data.find(
     state => action.payload === state._id
   );
-  console.log(action,stateData,'stateChangestateChangestateChangestateChange');
-
   if (stateData && stateData.cities && stateData.cities.length) {
     return update(state, {
       selectedState: { $set: action.payload },
