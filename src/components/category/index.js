@@ -83,12 +83,13 @@ class Category extends Component {
 
         <div className="row mt-4">
           <div className="col-lg-8 col-md-10 col-sm-12 col-xs-10 offset-md-1 offset-lg-2 p-0">
-            <TopMenu />
+            <TopMenu  />
             {cat && (
               <Description
                 name={cat.name}
                 desc={cat.description}
                 catImage={catImage}
+                subCategoryName={this.props.subCategoryName}
               />
             )}
           </div>

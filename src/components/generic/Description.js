@@ -1,14 +1,14 @@
 import React from "react";
 import artisan_img from "../../images/duty_free_img.png";
 
-export default function Description({ name, desc, catImage }) {
+export default function Description({ name, desc, catImage,subCategoryName }) {
   return (
     <div className="col-12 p-0 description-block">
       <div className='cat'>
         <div>
           {name && (
             <h2 style={{ textTransform: "capitalize" }}>
-              {name.replace("_", " ")}
+              {name.replace("_", " ")} {subCategoryName && `/${subCategoryName}`}
             </h2>
           )}
         </div>

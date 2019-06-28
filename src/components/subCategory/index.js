@@ -147,6 +147,7 @@ class SubCategory extends Component {
             {...this.props}
             categories={categories2}
             location={location}
+            subCategoryName={this.props.subCategoryName}
           />
         </div>
 
@@ -158,6 +159,7 @@ class SubCategory extends Component {
                 name={cat.name}
                 desc={cat.description}
                 catImage={catImage}
+                subCategoryName={this.props.subCategoryName}
               />
             )}
           </div>

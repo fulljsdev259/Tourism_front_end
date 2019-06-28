@@ -30,6 +30,8 @@ import Modal from "react-modal";
 import ForgotPass from "../forgot-pass";
 import AboutStyleJamica from "../AboutStyleJamica"
 import WishList from "../wishList"
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 const customStyles = {
   content: {
     top: "0%",
@@ -80,10 +82,24 @@ class Home extends Component {
       windowResized: false,
       loader: false,
       isMobileScreen: false,
-      categoryData: ""
+      categoryData: "",
+      subCategoryName:"",
+      iscategoryData:false
     };
   }
 
+ componentDidUpdate(){
+   const {iscategoryData,categoryData} =this.state
+   if(!iscategoryData && categoryData && categoryData.data && categoryData.data.length > 0 ){
+     let key = categoryData.data.find((a,i)=>a.key === this.props.location.pathname.split("/").slice(1,-1).join())
+      if(key && key.subCategory){
+          let subCategory = key.subCategory.find((a,i)=>a._id === this.props.location.pathname.split("/").slice(2).join())
+          if(subCategory && subCategory.name){
+            this.setState({subCategoryName:subCategory.name,iscategoryData:true})
+          }
+      }
+   }
+ }
   handleModalState = (
     // about,
     // contact,
@@ -112,10 +128,14 @@ class Home extends Component {
       categoryData: data
     });
   };
-  handleSubcat = sub_id => {
-    this.setState({ id: sub_id });
+  handleSubcat = (sub_id,subCategoryName) => {
+    this.setState({ id: sub_id,subCategoryName });
+    
   };
   render() {
+    const {subCategoryName} =this.state;
+    console.log(this.props,this.state.categoryData,'subCategoryName');
+    
     const imageArr = [category1, category3, category2, category4];
     const bgImageArr = [duty_free_img, artisan_img, crafts_img, retails_img];
     const pathArr = ["/duty_free", "/artisan", "/crafts", "/retails"];
@@ -161,6 +181,7 @@ class Home extends Component {
                         category={category}
                         categories2={categories}
                         handleSubcat={this.handleSubcat}
+                        subCategoryName={subCategoryName}
                       />
                     )}
                   />
@@ -178,6 +199,7 @@ class Home extends Component {
                         category={category}
                         categories2={categories}
                         handleSubcat={this.handleSubcat}
+                        subCategoryName={subCategoryName}
                       />
                     )}
                   />
@@ -240,4 +262,15 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+
+const mapStateToProps = state => ({
+});
+const mapDispatchToProps = dispatch => ({
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Home)
+);

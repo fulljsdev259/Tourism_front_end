@@ -35,7 +35,7 @@ export default function CategoryNav2({ categories, handleSubcat, location }) {
                         to={`${category.path}/${sub_category._id}`}
                         // to={{ pathname: `/event-detail/${event._id}`, state: event }}
                         style={{ textTransform: "capitalize" }}
-                        onClick={() => handleSubcat(sub_category._id)}
+                        onClick={() => handleSubcat(sub_category._id,sub_category.name)}
                       >
                         {sub_category.name.replace("_", " ")}
                       </Link>
