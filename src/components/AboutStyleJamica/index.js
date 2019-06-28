@@ -6,6 +6,7 @@ import * as actions from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import AboutStyleJamaica from "../generic/AboutStyleJamaicaComponent";
 import CategoryItem from "../generic/CategoryItem";
+import bg_crafts from "../../images/bg_crafts.png";
 
 class index extends Component {
     componentDidMount(){
@@ -27,7 +28,12 @@ class index extends Component {
                  <p className="descr">{stylejamaica.websiteDetails.description}</p> 
                
                 }
-                <div className="event-div row">
+                <div className="event-div row" style={{
+                    backgroundImage: `url(${bg_crafts})`,
+                    backgroundRepeat: "no-repeate",
+                    backgroundPosition: "center",
+                    backgroundSize: "contain"
+                }}>
                     {
                         stylejamaica && stylejamaica.data.map(
                             (artist, index)=>(
