@@ -134,8 +134,6 @@ class Home extends Component {
   };
   render() {
     const {subCategoryName} =this.state;
-    console.log(this.props,this.state.categoryData,'subCategoryName');
-    
     const imageArr = [category1, category3, category2, category4];
     const bgImageArr = [duty_free_img, artisan_img, crafts_img, retails_img];
     const pathArr = ["/duty_free", "/artisan", "/crafts", "/retails"];

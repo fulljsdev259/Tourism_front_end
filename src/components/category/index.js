@@ -55,8 +55,6 @@ class Category extends Component {
     // }
   }
   render() {
-    console.log(this.props.events,'0000000');
-    
     const { categories2, location ,category} = this.props;
     const cat =
       this.props.categories && this.props.categories.data
