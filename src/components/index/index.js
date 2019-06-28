@@ -129,8 +129,6 @@ class Index extends Component {
         if (state && state.length > 0) {
           this.setState({stateId:state[0]._id,stateName:state[0].name})
         }
-      console.log(storableLocation,state,'storableLocation');
-      
     })
     this.setState({isGeolocation:true})
   }
