@@ -31,6 +31,7 @@ import {
   deleteEventRequest,
   getInterestRequest,
   getArtistsRequest,
+  artistInterestRequest,
 } from "./event/action";
 
 function* watchActions() {
@@ -76,6 +77,7 @@ function* watchActions() {
   yield takeLatest(constants.DELETE_EVENT_REQUEST,deleteEventRequest);
   yield takeLatest(constants.GET_INTEREST_REQUEST,getInterestRequest);
   yield takeLatest(constants.GET_ARTISTS_REQUEST,getArtistsRequest);
+  yield takeLatest(constants.ARTIST_INTEREST_REQUEST,artistInterestRequest);
 
 
 }

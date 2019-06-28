@@ -77,6 +77,10 @@ export const addInterestRequest = createAction(constants.ADD_INTEREST_REQUEST);
 export const addInterestSuccess = createAction(constants.ADD_INTEREST_SUCCESS);
 export const addInterestError = createAction(constants.ADD_INTEREST_ERROR);
 
+export const artistInterestRequest = createAction(constants.ARTIST_INTEREST_REQUEST);
+export const artistInterestSuccess = createAction(constants.ARTIST_INTEREST_SUCCESS);
+export const artistInterestError = createAction(constants.ARTIST_INTEREST_ERROR);
+
 export const getUserDataRequest = createAction(constants.GET_USER_DATA_REQUEST);
 export const getUserDataSuccess = createAction(constants.GET_USER_DATA_SUCCESS);
 export const getUserDataError = createAction(constants.GET_USER_DATA_ERROR);

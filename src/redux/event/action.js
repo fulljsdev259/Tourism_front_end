@@ -131,6 +131,8 @@ export function* addInterestRequest(action) {
       header
     );
     if (response && response.data && response.data.success) {
+      console.log(response,'responseresponseresponse');
+      
       const userdata = yield select(state => state.auth.userdata.data);
       yield put(
         actions.addInterestSuccess({
@@ -153,6 +155,33 @@ export function* addInterestRequest(action) {
     }
   } catch (e) {
     yield put(actions.addInterestError());
+  }
+}
+export function* artistInterestRequest(action) {
+  const header = {
+    Authorization: localStore("token")
+  };
+  try {
+    const response = yield call(
+      fireApi,
+      "PUT",
+      `events/addInterest/${action.payload.id}`,
+      null,
+      header
+    );
+    if (response && response.data && response.data.success) {
+      const userdata = yield select(state => state.auth.userdata.data);
+      yield put(
+        actions.artistInterestSuccess({
+          ...response.data,
+          userdata,
+          id: action.payload.id,
+          pathname: action.payload.pathname
+        })
+      );
+    } 
+  } catch (e) {
+    yield put(actions.artistInterestError());
   }
 }
 

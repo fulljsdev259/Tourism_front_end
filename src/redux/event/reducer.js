@@ -115,7 +115,13 @@ Artists: {
   isError: false,
   message: false,
   data: []
-}
+},
+artistsInterest: {
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  data: []
+  }
 };
 
 const handleMonthlyEventsRequest = (state, action) =>
@@ -363,6 +369,7 @@ const handleInterestSuccess = (state, action) => {
           }
         });
       } else {
+
         return update(state, {
           interested: {
             isLoading: { $set: false },
@@ -764,7 +771,8 @@ const getInterestError = (state, action) =>
     }
   });
 const getArtistsSuccess = (state, action) =>{
-
+  console.log(action.payload,"actionactionactionaction");
+  
   
   return update(state, {
     
@@ -779,6 +787,35 @@ const getArtistsSuccess = (state, action) =>{
 const getArtistsError = (state, action) =>
   update(state, {
     Artists: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+  const artistsInterestRequest = (state, action) =>
+  update(state, {
+    artistsInterest: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false },
+      message: { $set: "" }
+    }
+  });
+const artistsInterestSuccess = (state, action) =>{
+  console.log(action.payload,"actionactionactionaction");
+  return update(state, {
+    artistsInterest: {
+      data:{ $set:action.payload},
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false }
+    }
+  })
+}
+const artistsInterestError = (state, action) =>
+  update(state, {
+    artistsInterest: {
       isLoading: { $set: false },
       isSuccess: { $set: false },
       isError: { $set: true },
@@ -858,6 +895,10 @@ export default handleActions(
     [constants.GET_ARTISTS_REQUEST]: getArtistsRequest,
     [constants.GET_ARTISTS_SUCCESS]: getArtistsSuccess,
     [constants.GET_ARTISTS_ERROR]: getArtistsError,
+
+    [constants.ARTIST_INTEREST_REQUEST]: artistsInterestRequest,
+    [constants.ARTIST_INTEREST_SUCCESS]: artistsInterestSuccess,
+    [constants.ARTIST_INTEREST_ERROR]: artistsInterestError,
     
   },
   initialState

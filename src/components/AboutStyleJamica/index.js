@@ -4,29 +4,35 @@ import i9 from "../../images/image_3_.svg";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-import AboutStyleJamaica from "./AboutStyleJamaicaComponent";
+import AboutStyleJamaica from "../generic/AboutStyleJamaicaComponent";
+import CategoryItem from "../generic/CategoryItem";
 
 class index extends Component {
     componentDidMount(){
         this.props.getArtistsRequest();
     }
+    componentDidUpdate(preProps){
+        const {artistInterstData} =this.props;
+        if(artistInterstData.isSuccess !== preProps.artistInterstData.isSuccess){
+            this.props.getArtistsRequest();
+        }
+    }
     render() {
-        
         const stylejamaica = this.props.artists.data;
-      
         return (
-            <div className="about-style-zamica-container event-div">
+            <div className="about-style-zamica-container event-div event-page">
             <img src={i9}/>
                 <h1>About Style Jamica</h1>
                 {stylejamaica && stylejamaica.websiteDetails &&
                  <p className="descr">{stylejamaica.websiteDetails.description}</p> 
                
                 }
-                <div className="artists">
+                <div className="event-div row">
                     {
                         stylejamaica && stylejamaica.data.map(
                             (artist, index)=>(
-                                <AboutStyleJamaica  artists={artist}/>
+                                <AboutStyleJamaica  key={index} event={artist}/>
+                                // <CategoryItem key={index} event={artist} />
                             )
                         )  
                     }
@@ -36,11 +42,10 @@ class index extends Component {
     }
 }
 const mapStateToProps = state => {
-   
-    
     return{
-        artists:state.event.Artists.data    ,
+        artists:state.event.Artists.data,
         userdata: state.auth.userdata.data,
+        artistInterstData: state.event.artistsInterest
 
     }
     
@@ -48,7 +53,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getArtistsRequest: () => dispatch(actions.getArtistsRequest()),
-  addInterest: id => dispatch(actions.addInterestRequest(id))
+//   addInterest: id => dispatch(actions.addInterestRequest(id))
 
 });
 
