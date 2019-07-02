@@ -25,6 +25,7 @@ class Login extends Component {
     }
   }
   render() {
+    const { googleLogin } =this.props;
     return (
       <>
         <div className="fb-btn">
@@ -36,15 +37,22 @@ class Login extends Component {
             icon="fa-facebook"
             textButton="Log in with Facebook"
           />
-          <GoogleLogin
-            clientId={"199745249307-m8guk3l13tmf2b7isefhn2usvl712u6k.apps.googleusercontent.com"}
-            buttonText="Login With Google"
-            style={{display:"flex",justifyContent:"center",borderRadius:"9px"}}
-            className="google-button-for-customization"
-            onSuccess={this.responseGoogle}
-            onFailure={this.responseGoogle}
-            // cookiePolicy={'single_host_origin'}
-          />
+           <div className="google-login-button-container">
+          {googleLogin.isLoading &&
+            <div style={{background:"rgba(0,0,0,.32)"}} className="google-button-overlay">
+                <div className="loader-container">
+                    <Loader type="Oval" color="#000000" height="20" width="20" />
+                </div>
+            </div>}
+            <GoogleLogin
+              clientId={"199745249307-m8guk3l13tmf2b7isefhn2usvl712u6k.apps.googleusercontent.com"}
+              buttonText="Login With Google"
+              className="google-button-for-customization"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              // cookiePolicy={'single_host_origin'}
+            />
+            </div>
         </div>
         <div className="row or-section">
           <div className="col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 hr-line-section">
