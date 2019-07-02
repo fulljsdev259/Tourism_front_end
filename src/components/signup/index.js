@@ -51,7 +51,7 @@ class SignUp extends Component {
             </div>}
             <GoogleLogin
               clientId={"199745249307-m8guk3l13tmf2b7isefhn2usvl712u6k.apps.googleusercontent.com"}
-              buttonText="Login With Google"
+              buttonText="Register With Google"
               className="google-button-for-customization"
               onSuccess={this.responseGoogle}
               onFailure={this.responseGoogle}
