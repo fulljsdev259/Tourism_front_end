@@ -5,8 +5,25 @@ import { Formik, Form } from "formik";
 import FacebookLogin from "react-facebook-login";
 import Loader from "react-loader-spinner";
 import { withRouter, Route, Link } from "react-router-dom";
+import {GoogleLogin} from 'react-google-login';
 
 class Login extends Component {
+  responseGoogle = (response) => {
+    if(response && response.profileObj){
+      const payload ={
+        "email": response.profileObj.email,
+        "name": {first: response.profileObj.name, last: ""},
+        "receiveEmails": true
+      }
+      this.props.googleLoginRequest(payload)
+    }
+  }
+  componentDidUpdate(previosProps){
+    const { googleLogin } =this.props;
+    if(googleLogin.isSuccess !== previosProps.googleLogin.isSuccess){
+      this.props.history.push("/");
+    }
+  }
   render() {
     return (
       <>
@@ -18,6 +35,15 @@ class Login extends Component {
             callback={this.props.responseFacebook}
             icon="fa-facebook"
             textButton="Log in with Facebook"
+          />
+          <GoogleLogin
+            clientId={"199745249307-m8guk3l13tmf2b7isefhn2usvl712u6k.apps.googleusercontent.com"}
+            buttonText="Login With Google"
+            style={{display:"flex",justifyContent:"center",borderRadius:"9px"}}
+            className="google-button-for-customization"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+            // cookiePolicy={'single_host_origin'}
           />
         </div>
         <div className="row or-section">
@@ -136,11 +162,13 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  login: state.auth.login
+  login: state.auth.login,
+  googleLogin:state.auth.googleLogin
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginRequest: data => dispatch(actions.loginRequest(data))
+  loginRequest: data => dispatch(actions.loginRequest(data)),
+  googleLoginRequest: data => dispatch(actions.googleLoginRequest(data)),
 });
 
 export default withRouter(

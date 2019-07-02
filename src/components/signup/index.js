@@ -11,8 +11,24 @@ import { withRouter, Link } from "react-router-dom";
 import l_img from "../../images/l_img.png";
 import login_r_img from "../../images/login_r_img.png";
 import Block1 from "../generic/Block1";
-
+import {GoogleLogin} from 'react-google-login';
 class SignUp extends Component {
+  responseGoogle = (response) => {
+    if(response && response.profileObj){
+      const payload ={
+        "email": response.profileObj.email,
+        "name": {first: response.profileObj.name, last: ""},
+        "receiveEmails": true
+      }
+      this.props.googleLoginRequest(payload)
+    }
+  }
+  componentDidUpdate(previosProps){
+    const { googleLogin } =this.props;
+    if(googleLogin.isSuccess !== previosProps.googleLogin.isSuccess){
+      this.props.history.push("/");
+    }
+  }
   render() {
     return (
       <>
@@ -24,6 +40,15 @@ class SignUp extends Component {
             callback={this.props.responseFacebook}
             textButton="Register with Facebook"
             icon="fa-facebook"
+          />
+          <GoogleLogin
+            clientId={"199745249307-m8guk3l13tmf2b7isefhn2usvl712u6k.apps.googleusercontent.com"}
+            buttonText="Login With Google"
+            style={{display:"flex",justifyContent:"center",borderRadius:"9px"}}
+            className="google-button-for-customization"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+            // cookiePolicy={'single_host_origin'}
           />
         </div>
         <div className="row or-section">
@@ -183,11 +208,13 @@ class SignUp extends Component {
 }
 
 const mapStateToProps = state => ({
-  signup: state.auth.signup
+  signup: state.auth.signup,
+  googleLogin:state.auth.googleLogin
 });
 
 const mapDispatchToProps = dispatch => ({
-  signupRequest: data => dispatch(actions.signupRequest(data))
+  signupRequest: data => dispatch(actions.signupRequest(data)),
+  googleLoginRequest: data => dispatch(actions.googleLoginRequest(data)),
 });
 
 export default withRouter(

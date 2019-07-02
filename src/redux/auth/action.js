@@ -31,6 +31,29 @@ export function* loginRequest(action) {
     yield put(actions.loginError());
   }
 }
+export function*  googleLoginRequest(action) {
+  const { name, email, receiveEmails } = action.payload;
+  try {
+    const response = yield call(fireApi, "POST", "social/login", {
+      name,
+      email,
+      receiveEmails
+    });
+    if (response) {
+      if (response.data && response.data.token) {
+        localStore("token", response.data.token);
+        yield put(actions.googleLoginSuccess());
+        // yield put(actions.getInterestedEventsRequest());
+        yield put(actions.getUserDataRequest(response.data.token));
+      } else {
+        toast.error(response.data.message);
+        yield put(actions.googleLoginError());
+      }
+    }
+  } catch (e) {
+    yield put(actions.googleLoginError());
+  }
+}
 
 export function* signupRequest(action) {
   try {

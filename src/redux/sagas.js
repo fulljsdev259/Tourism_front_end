@@ -11,6 +11,7 @@ import {
   socialLoginRequest,
   contactUsRequest,
   forgotRequest,
+  googleLoginRequest,
 } from "./auth/action";
 import {
   //   getMonthlyEventsRequest,
@@ -78,6 +79,7 @@ function* watchActions() {
   yield takeLatest(constants.GET_INTEREST_REQUEST,getInterestRequest);
   yield takeLatest(constants.GET_ARTISTS_REQUEST,getArtistsRequest);
   yield takeLatest(constants.ARTIST_INTEREST_REQUEST,artistInterestRequest);
+  yield takeLatest(constants.GOOGLE_LOGIN_REQUEST,googleLoginRequest);
 
 
 }

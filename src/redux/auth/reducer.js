@@ -17,6 +17,13 @@ const initialState = {
     message: "",
     data: {}
   },
+  googleLogin: {
+    isLoading: false,
+    isSuccess: false,
+    isError: false,
+    message: "",
+    data: {}
+  },
   signup: {
     isLoading: false,
     isSuccess: false,
@@ -467,6 +474,31 @@ const handleContactUsError = (state, action) =>
     }
   });
 
+  const handleGoogleLoginRequest = (state, action) =>
+  update(state, {
+    googleLogin: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false }
+    }
+  });
+const handleGoogleLoginSuccess = (state, action) =>
+  update(state, {
+    googleLogin: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false }
+    }
+  });
+const handleGoogleLoginError = (state, action) =>
+  update(state, {
+    googleLogin: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true }
+    }
+  });
+
 export default handleActions(
   {
     [constants.LOGIN_REQUEST]: handleLoginRequest,
@@ -507,7 +539,11 @@ export default handleActions(
 
     [constants.ADD_INTEREST_REQUEST]: handleAddInterestRequest,
     [constants.ADD_INTEREST_SUCCESS]: handleAddInterestSuccess,
-    [constants.ADD_INTEREST_ERROR]: handleAddInterestError
+    [constants.ADD_INTEREST_ERROR]: handleAddInterestError,
+
+    [constants.GOOGLE_LOGIN_REQUEST]: handleGoogleLoginRequest,
+    [constants.GOOGLE_LOGIN_SUCCESS]: handleGoogleLoginSuccess,
+    [constants.GOOGLE_LOGIN_ERROR]: handleGoogleLoginError
   },
   initialState
 );

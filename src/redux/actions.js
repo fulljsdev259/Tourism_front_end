@@ -14,6 +14,10 @@ export const socialLoginRequest = createAction(constants.SOCIAL_LOGIN_REQUEST);
 export const socialLoginSuccess = createAction(constants.SOCIAL_LOGIN_SUCCESS);
 export const socialLoginError = createAction(constants.SOCIAL_LOGIN_ERROR);
 
+export const googleLoginRequest = createAction(constants.GOOGLE_LOGIN_REQUEST);
+export const googleLoginSuccess = createAction(constants.GOOGLE_LOGIN_SUCCESS);
+export const googleLoginError = createAction(constants.GOOGLE_LOGIN_ERROR);
+
 export const getCategoriesRequest = createAction(
   constants.GET_CATEGORIES_REQUEST
 );

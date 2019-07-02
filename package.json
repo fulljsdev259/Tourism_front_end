@@ -18,6 +18,7 @@
     "react-fb-like": "^0.5.1",
     "react-geocode": "^0.1.2",
     "react-geolocated": "^2.5.0",
+    "react-google-login": "^5.0.4",
     "react-loader-spinner": "^2.3.0",
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.1",
