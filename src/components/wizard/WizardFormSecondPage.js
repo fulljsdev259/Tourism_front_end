@@ -350,6 +350,9 @@ const WizardFormSecondPage = props => {
             </div>
 
             <div>
+            <button onClick={previousPage} type="button" className="nextsignup backbutton">
+                BACK
+              </button>
               <button type="submit" className="nextsignup">
                 CONTINUE
               </button>

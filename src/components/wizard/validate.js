@@ -128,7 +128,7 @@ const validate = values => {
     errors.address = "Address is required";
   }
   if (!values.phone_number) {
-    errors.phoneNumber = "Phone Number is required";
+    errors.phone_number = "Phone Number is required";
   } else if (!/^[0-9]*$/.test(values.phone_number)) {
     errors.phone_number = "Invalid";
   }
