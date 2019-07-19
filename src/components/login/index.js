@@ -29,14 +29,14 @@ class Login extends Component {
     return (
       <>
         <div className="fb-btn">
-          <FacebookLogin
+          {/* <FacebookLogin
             appId="596567484169310"
             autoLoad={true}
             fields="name,email,picture"
             callback={this.props.responseFacebook}
             icon="fa-facebook"
             textButton="Log in with Facebook"
-          />
+          /> */}
            <div className="google-login-button-container">
           {googleLogin.isLoading &&
             <div style={{background:"rgba(0,0,0,.32)"}} className="google-button-overlay">
