@@ -557,17 +557,17 @@ class Index extends Component {
           )
         )}
       </div>
-      <div className="map-container"> 
-      <MapContainer
-      info={{ lat: -28.5638968, lng: 77.1176126 }}
-      googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI"
-      loadingElement={<div style={{ height: `400px` }} />}
-      containerElement={
-        <div className="containerElement" />
-      }
-      mapElement={<div className="mapElement" />}
-    />
-    </div>
+          <div className="map-container"> 
+            <MapContainer
+            info={{ lat: -28.5638968, lng: 77.1176126 }}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI"
+            loadingElement={<div style={{ height: `400px` }} />}
+            containerElement={
+              <div className="containerElement" />
+            }
+            mapElement={<div className="mapElement" />}
+          />
+        </div>
       </>
     );
   }
