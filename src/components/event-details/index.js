@@ -557,17 +557,33 @@ class Index extends Component {
           )
         )}
       </div>
-          <div className="map-container"> 
-            <MapContainer
-            info={{ lat: -28.5638968, lng: 77.1176126 }}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI"
-            loadingElement={<div style={{ height: `400px` }} />}
-            containerElement={
-              <div className="containerElement" />
-            }
-            mapElement={<div className="mapElement" />}
-          />
-        </div>
+          {(data && data.EventLocation && data.EventLocation.length ) &&
+          <div className="row">
+             <div className="map-container"> 
+              <MapContainer
+                info={data.EventLocation}
+                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI"
+                loadingElement={<div style={{ height: `400px` }} />}
+                containerElement={
+                  <div className="containerElement" />
+                }
+                mapElement={<div className="mapElement" />}
+              />
+              <div className="get-direction-btn">
+                <span onClick={() =>
+                    window.open(
+                      `http://maps.google.com/maps?q=${
+                        data.EventLocation[1]
+                      },${data.EventLocation[0]}&ll=${
+                        data.EventLocation[1]
+                      },${data.EventLocation[0]}&z=10`
+                    )
+                  }>
+                  Get Directions
+                </span>
+              </div>
+           </div>
+        </div>}
       </>
     );
   }

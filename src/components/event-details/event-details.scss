@@ -363,6 +363,7 @@
   position: relative;
   overflow: hidden;
   margin-top: 40px;
+  width:100%;
   .containerElement{
     position: relative;
     height: 400px;
@@ -370,6 +371,21 @@
       overflow: hidden;
       height: 400px;
     }
+  }
+}
+
+.get-direction-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 14px 14px 14px 0px;
+  span{
+    background: #28b5fb;
+    padding: 10px 22px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
   }
 }
 
