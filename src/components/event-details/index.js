@@ -23,6 +23,7 @@ import { FacebookProvider, Like } from "react-facebook";
 import { Link } from "react-router-dom";
 import arrowBack from "../../images/arrow-left.svg";
 import Loader from "react-loader-spinner";
+import MapContainer from '../map/GoogleMap';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -110,7 +111,9 @@ class Index extends Component {
         return oneInterested._id == userdata.data._id;
       });
     }
+    console.log(this.props)
     return (
+      <>
       <div className="event-details row">
            <CategoryNav2
             {...this.props}
@@ -554,6 +557,18 @@ class Index extends Component {
           )
         )}
       </div>
+      <div className="map-container"> 
+      <MapContainer
+      info={{ lat: -28.5638968, lng: 77.1176126 }}
+      googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI"
+      loadingElement={<div style={{ height: `400px` }} />}
+      containerElement={
+        <div className="containerElement" />
+      }
+      mapElement={<div className="mapElement" />}
+    />
+    </div>
+      </>
     );
   }
 }

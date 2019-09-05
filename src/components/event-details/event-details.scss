@@ -359,6 +359,20 @@
   }
 }
 
+.map-container{
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+  .containerElement{
+    position: relative;
+    height: 400px;
+    .mapElement{
+      overflow: hidden;
+      height: 400px;
+    }
+  }
+}
+
 // #facebook{
 //   display: none
 // }
