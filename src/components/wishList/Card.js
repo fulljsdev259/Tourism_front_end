@@ -64,7 +64,7 @@ export default class Card extends Component {
         <div className="col-lg-5 col-md-6 col-sm-6 col-sm-12 col-xs-12  event-detail">
           <div className="head">
             <div>
-              <Link to={{ pathname: `/event-details/${id}` }}>
+              <Link to={{ pathname: `/business-details/${id}` }}>
                 <div className="title">{title}</div>
               </Link>
               <div className="mobile-social">

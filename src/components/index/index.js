@@ -294,7 +294,7 @@ featuredEvents.data.trendingEvents.results.length ? (
               className="popular"
               onClick={() =>
                 this.props.history.push(
-                  `/event-details/${item._id}`
+                  `/business-details/${item._id}`
                 )
               }
             >
@@ -319,7 +319,7 @@ featuredEvents.data.trendingEvents.results.length ? (
               className="popular"
               onClick={() =>
                 this.props.history.push(
-                  `/event-details/${arr2[index-1]._id}`
+                  `/business-details/${arr2[index-1]._id}`
                 )
               }
             >
@@ -340,7 +340,7 @@ featuredEvents.data.trendingEvents.results.length ? (
           className="popular"
           onClick={() =>
             this.props.history.push(
-              `/event-details/${arr2[index]._id}`
+              `/business-details/${arr2[index]._id}`
             )
           }
         >
@@ -406,7 +406,7 @@ featuredEvents.data.trendingEvents.results.length ? (
                           className="popular"
                           onClick={() =>
                             this.props.history.push(
-                              `/event-details/${item._id}`
+                              `/business-details/${item._id}`
                             )
                           }
                         >
@@ -507,7 +507,7 @@ featuredEvents.data.trendingEvents.results.length ? (
                           className="type"
                           onClick={() =>
                             this.props.history.push(
-                              `/event-details/${item._id}`
+                              `/business-details/${item._id}`
                             )
                           }
                         >
@@ -524,7 +524,7 @@ featuredEvents.data.trendingEvents.results.length ? (
                           className="type2"
                           onClick={() =>
                             this.props.history.push(
-                              `/event-details/${item._id}`
+                              `/business-details/${item._id}`
                             )
                           }
                         >

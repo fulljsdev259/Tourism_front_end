@@ -409,7 +409,7 @@ class Header extends React.Component {
                 </div>
             
                 <div className="item" onClick={() => {}}>
-                  <Link to="/events">Events</Link>
+                  <Link to="/business">Events</Link>
                 </div>
                 <div className="item" onClick={() => {}}>
                   <Link to="/about-style-jamica" onClick={() => {}}>

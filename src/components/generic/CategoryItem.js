@@ -93,7 +93,7 @@ class CategoryItem extends Component {
         <div className="col-lg-5 col-md-6 col-sm-6 col-sm-12 col-xs-12  event-detail">
           <div className="head">
             <div>
-              <Link to={{ pathname: `/event-details/${event._id}` }}>
+              <Link to={{ pathname: `/business-details/${event._id}` }}>
                 <div className="title">{event.title}</div>
               </Link>
               <div className="mobile-social">

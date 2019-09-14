@@ -203,10 +203,10 @@ class Home extends Component {
                   />
                 );
               })}
-            <Route path="/events" component={Events} />
+            <Route path="/business" component={Events} />
             <Route path="/company" component={Company} />
             <Route
-              path="/event-details/:id"
+              path="/business-details/:id"
               render={props => (
                 <EventDetails {...props} categories={categories} />
               )}
@@ -217,7 +217,7 @@ class Home extends Component {
                 <CompanyDetails {...props} categories={categories} />
               )}
             />
-            <Redirect from="/event-details" to="/events" />
+            <Redirect from="/business-details" to="/business" />
             <Redirect from="/companyDetails" to="/company" />
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/auth/forgotPassword" component={ForgotPass} />

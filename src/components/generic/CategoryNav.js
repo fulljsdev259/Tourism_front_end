@@ -12,7 +12,7 @@ export default function CategoryNav({ categories, handleSubcat }) {
         ||(window.location.pathname.search("artisan")>-1)
         ||(window.location.pathname.search("crafts")>-1)
         ||(window.location.pathname.search("retails")>-1)
-        ||(window.location.pathname.search("event-details")>-1)
+        ||(window.location.pathname.search("business-details")>-1)
         ) 
         ?(<div></div>)
         :
