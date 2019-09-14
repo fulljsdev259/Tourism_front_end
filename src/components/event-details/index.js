@@ -321,6 +321,35 @@ class Index extends Component {
                 />
               </div>
             </div>
+            {/* <div>ssdvbldbvldbvldbv</div> */}
+            {(data && data.EventLocation && data.EventLocation.length ) &&
+          // <div className="row">
+             <div className="map-container"> 
+              <MapContainer
+                info={data.EventLocation}
+                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI"
+                loadingElement={<div style={{ height: `400px` }} />}
+                containerElement={
+                  <div className="containerElement" />
+                }
+                mapElement={<div className="mapElement" />}
+              />
+              <div className="get-direction-btn">
+                <span onClick={() =>
+                    window.open(
+                      `http://maps.google.com/maps?q=${
+                        data.EventLocation[1]
+                      },${data.EventLocation[0]}&ll=${
+                        data.EventLocation[1]
+                      },${data.EventLocation[0]}&z=10`
+                    )
+                  }>
+                  Get Directions
+                </span>
+              </div>
+           </div>
+        // </div>
+        }
             <div className="col-md-6 col-12 p-0 left">
               <div
                 style={{
@@ -333,10 +362,6 @@ class Index extends Component {
                   minHeight: "350px"
                 }}
               >
-                {/* <img
-                  style={{ transform: "scale(1.24)" }}
-                  src={event_details_lb}
-                /> */}
                 <div className="timings">
                   <div className="small-title openhours">Open Hours</div>
                   <div className="timing">
@@ -557,33 +582,6 @@ class Index extends Component {
           )
         )}
       </div>
-          {(data && data.EventLocation && data.EventLocation.length ) &&
-          <div className="row">
-             <div className="map-container"> 
-              <MapContainer
-                info={data.EventLocation}
-                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBB7Tc7njRoyjegBDmqAVj09AKWbdRrTCI"
-                loadingElement={<div style={{ height: `400px` }} />}
-                containerElement={
-                  <div className="containerElement" />
-                }
-                mapElement={<div className="mapElement" />}
-              />
-              <div className="get-direction-btn">
-                <span onClick={() =>
-                    window.open(
-                      `http://maps.google.com/maps?q=${
-                        data.EventLocation[1]
-                      },${data.EventLocation[0]}&ll=${
-                        data.EventLocation[1]
-                      },${data.EventLocation[0]}&z=10`
-                    )
-                  }>
-                  Get Directions
-                </span>
-              </div>
-           </div>
-        </div>}
       </>
     );
   }

@@ -87,7 +87,7 @@ export default class Footer extends React.Component {
                           <img src={fb} />
                         </a>
                         <a
-                          href="https://www.instagram.com/tourismenhancementfundja/"
+                          href="https://www.instagram.com/tefjamaica/"
                           target="_BLANK"
                         >
                           <img src={insta} />
@@ -114,7 +114,7 @@ export default class Footer extends React.Component {
                     >
                         <img src={f5} />
                     </a>
-                    <a href="http://www.jamaicatradeandinvest.org/" target="_BLANK"target="_BLANK">
+                    <a href="https://www.tpdco.org/" target="_BLANK"target="_BLANK">
                           <img src={f6} />
                     </a>
                     <a target="_BLANK">
@@ -125,7 +125,7 @@ export default class Footer extends React.Component {
 
                         <div className="row2">
                         <a
-                          href="http://www.jamaicatradeandinvest.org/"
+                          href="hhttps://www.tpdco.org/"
                           target="_BLANK"
                         >
                           <img
@@ -135,7 +135,7 @@ export default class Footer extends React.Component {
                           />
                         </a>
                         <a
-                          href="https://www.instagram.com/thejmea_/"
+                          href="https://www.jmea.org/"
                           target="_BLANK"
                         >
                           <img src={f3} />
@@ -223,7 +223,7 @@ export default class Footer extends React.Component {
                     >
                         <img src={f5} />
                     </a>
-                    <a href="http://www.jamaicatradeandinvest.org/" target="_BLANK"target="_BLANK">
+                    <a href="https://www.tpdco.org/" target="_BLANK"target="_BLANK">
                           <img src={f6} />
                     </a>
                     <a target="_BLANK">
@@ -234,7 +234,7 @@ export default class Footer extends React.Component {
 
                 <div className="row2">
                         <a
-                          href="http://www.jamaicatradeandinvest.org/"
+                          href="https://www.tpdco.org/"
                           target="_BLANK"
                         >
                           <img
@@ -244,7 +244,7 @@ export default class Footer extends React.Component {
                           />
                         </a>
                         <a
-                          href="https://www.instagram.com/thejmea_/"
+                          href="https://www.jmea.org/"
                           target="_BLANK"
                         >
                           <img src={f3} />
@@ -262,7 +262,7 @@ export default class Footer extends React.Component {
                         >
                             <img src={fb} />
                         </a>
-                        <a href="https://www.instagram.com/tourismenhancementfundja/"
+                        <a href="https://www.instagram.com/tefjamaica/"
                            target="_BLANK"
                         >
                             <img src={insta} />
