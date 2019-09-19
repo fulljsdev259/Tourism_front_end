@@ -23,6 +23,9 @@ class ContactUs extends Component {
                       to share your thoughts with us or have a question, please
                       complete the form below and we will respond as soon as we
                       can.
+                        <div className="contact-address mtn-contact mtn"><strong className="mtn-contact">Adsress:</strong><span className="contact-address">60 Knutford Boulevard, Kingston 5 Jamaica, West Indies</span></div>
+                        <div><strong className="mtn-contact">Tele:</strong> (876) 920-4926-30</div>
+                        <div><strong className="mtn-contact">Fax:</strong> (876) 920-4944</div>
                     </div>
                     <Formik
                       initialValues={{
