@@ -264,7 +264,7 @@ class Index extends Component {
                       <div className="text">
                         {data && data.phone_number
                           ? data.phone_number
-                          : "Contact number not disclosed"}
+                          : "Not available"}
                       </div>
                     </div>
                     <div className="email-detail sub-detail">
@@ -272,7 +272,7 @@ class Index extends Component {
                       <div className="text">
                         {data && data.email
                           ? data.email
-                          : "email not disclosed"}
+                          : "Not available"}
                       </div>
                     </div>
                     <div className="webiste-detail sub-detail">
@@ -280,7 +280,7 @@ class Index extends Component {
                       <div className="text">
                         {data && data.website
                           ? data.website
-                          : "website not disclosed"}
+                          : "Not available"}
                       </div>
                     </div>
                   </div>
