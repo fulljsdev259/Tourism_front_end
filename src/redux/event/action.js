@@ -131,8 +131,6 @@ export function* addInterestRequest(action) {
       header
     );
     if (response && response.data && response.data.success) {
-      console.log(response,'responseresponseresponse');
-      
       const userdata = yield select(state => state.auth.userdata.data);
       yield put(
         actions.addInterestSuccess({

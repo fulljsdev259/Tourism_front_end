@@ -771,9 +771,6 @@ const getInterestError = (state, action) =>
     }
   });
 const getArtistsSuccess = (state, action) =>{
-  console.log(action.payload,"actionactionactionaction");
-  
-  
   return update(state, {
     
     Artists: {
@@ -803,7 +800,6 @@ const getArtistsError = (state, action) =>
     }
   });
 const artistsInterestSuccess = (state, action) =>{
-  console.log(action.payload,"actionactionactionaction");
   return update(state, {
     artistsInterest: {
       data:{ $set:action.payload},

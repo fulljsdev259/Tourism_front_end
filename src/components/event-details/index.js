@@ -111,7 +111,6 @@ class Index extends Component {
         return oneInterested._id == userdata.data._id;
       });
     }
-    console.log(this.props)
     return (
       <>
       <div className="event-details row">
