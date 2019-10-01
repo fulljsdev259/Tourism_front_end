@@ -13,6 +13,7 @@ import f7 from "../../images/footer/f77.png";
 import f8 from "../../images/footer/f88.png";
 import f9 from "../../images/footer/f99.jpg";
 import fb from "../../images/icon/fb.svg";
+import f12 from "../../images/f12.jpg";
 import twitter from "../../images/icon/twitter/blue_b.svg";
 import insta from "../../images/icon/insta.svg";
 import { Link } from "react-router-dom";
@@ -105,11 +106,11 @@ export default class Footer extends React.Component {
             <div className="row footerLogos">
             <div className="footerlinks">
                 <div className = "row1">
-                    <a href="https://www.mot.gov.jm/" target="_BLANK">
+                    <a href="https://www.visitjamaica.com" target="_BLANK">
                         <img src={f1} />
                     </a>
                     <a
-                          href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
+                          href="https://www.visitjamaica.com/agency/tourism-enhancement-fund"
                           target="_BLANK"
                     >
                         <img src={f5} />
@@ -117,7 +118,7 @@ export default class Footer extends React.Component {
                     <a href="https://www.tpdco.org/" target="_BLANKddd"target="_BLANK">
                           <img src={f6} />
                     </a>
-                    <a target="_BLANK">
+                    <a href="http://www.jtbonline.org/" target="_BLANK">
                           <img src={f8} />
                         </a>
                       
@@ -146,6 +147,9 @@ export default class Footer extends React.Component {
                         <a href="http://www.jhta.org/" target="_BLANK">
                           <img src={f7} />
                         </a>
+                        <a href="https://rada.gov.jm/" target="_BLANK">
+                          <img src={f12}/>
+                        </a> 
 
                             
                         </div>                                            
@@ -214,11 +218,11 @@ export default class Footer extends React.Component {
 
           <div className="mob-footerlinks">
                 <div className = "row1">
-                    <a href="https://www.mot.gov.jm/" target="_BLANK">
+                    <a href="https://www.visitjamaica.com" target="_BLANK">
                         <img src={f1} />
                     </a>
                     <a
-                          href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
+                          href="https://www.visitjamaica.com/agency/tourism-enhancement-fund"
                           target="_BLANK"
                     >
                         <img src={f5} />
@@ -226,10 +230,12 @@ export default class Footer extends React.Component {
                     <a href="https://www.tpdco.org/" target="_BLANKrrr"target="_BLANK">
                           <img src={f6} />
                     </a>
-                    <a target="_BLANK">
+                    <a href="http://www.jhta.org/" target="_BLANK">
                           <img src={f8} />
                         </a>
-                      
+                    <a href="https://rada.gov.jm/" target="_BLANK">
+                      <img src={f12}/>
+                    </a> 
                 </div>
 
                 <div className="row2">

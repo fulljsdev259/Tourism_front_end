@@ -299,7 +299,7 @@ class Index extends Component {
                 className="open-hours"
               >
                 <div className="timings">
-                  <div className="small-title openhours">Open Hours</div>
+                  <div className="small-title openhours">Opening Hours</div>
                   <div className="timing">
                     <div className="small-title2">Open Hours</div>
                     {[
