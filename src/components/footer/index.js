@@ -13,6 +13,7 @@ import f7 from "../../images/footer/f77.png";
 import f8 from "../../images/footer/f88.png";
 import f9 from "../../images/footer/f99.jpg";
 import fb from "../../images/icon/fb.svg";
+import f11 from "../../images/f11.png";
 import f12 from "../../images/f12.jpg";
 import twitter from "../../images/icon/twitter/blue_b.svg";
 import insta from "../../images/icon/insta.svg";
@@ -110,7 +111,7 @@ export default class Footer extends React.Component {
                         <img src={f1} />
                     </a>
                     <a
-                          href="https://www.visitjamaica.com/agency/tourism-enhancement-fund"
+                          href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
                           target="_BLANK"
                     >
                         <img src={f5} />
@@ -119,7 +120,7 @@ export default class Footer extends React.Component {
                           <img src={f6} />
                     </a>
                     <a href="http://www.jtbonline.org/" target="_BLANK">
-                          <img src={f8} />
+                          <img src={f11} />
                         </a>
                       
                         </div>
@@ -222,7 +223,7 @@ export default class Footer extends React.Component {
                         <img src={f1} />
                     </a>
                     <a
-                          href="https://www.visitjamaica.com/agency/tourism-enhancement-fund"
+                          href="https://www.mot.gov.jm/agency/tourism-enhancement-fund"
                           target="_BLANK"
                     >
                         <img src={f5} />
