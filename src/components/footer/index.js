@@ -231,8 +231,8 @@ export default class Footer extends React.Component {
                     <a href="https://www.tpdco.org/" target="_BLANKrrr"target="_BLANK">
                           <img src={f6} />
                     </a>
-                    <a href="http://www.jhta.org/" target="_BLANK">
-                          <img src={f8} />
+                    <a href="http://www.jtbonline.org/" target="_BLANK">
+                          <img src={f11} />
                         </a>
                     <a href="https://rada.gov.jm/" target="_BLANK">
                       <img src={f12}/>
