@@ -12,7 +12,7 @@ function Catalog({micrositeRef,handleMicroSitePopup}){
                 </div>
                 <div className="content-wrapper">
                     <div className="catalog-heading">
-                        <a target="_blank" href="http://online.fliphtml5.com/idqgz/zrku/#p=1" className="catalog-text">
+                        <a target="_blank" href="https://issuu.com/tourismlinkagesnetwork/docs/style_jamaica_show_island_village" className="catalog-text">
                             VIEW CATALOG TODAY!
                         </a>
                     </div>
