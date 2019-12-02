@@ -32,6 +32,7 @@ import AboutStyleJamica from "../AboutStyleJamica"
 import WishList from "../wishList"
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import Catalog from "../catalog/Catalog";
 const customStyles = {
   content: {
     top: "0%",
@@ -84,8 +85,10 @@ class Home extends Component {
       isMobileScreen: false,
       categoryData: "",
       subCategoryName:"",
-      iscategoryData:false
+      iscategoryData:false,
+      isMicrositeEvent:true,
     };
+    this.micrositeRef = React.createRef()
   }
 
  componentDidUpdate(){
@@ -100,6 +103,24 @@ class Home extends Component {
       }
    }
  }
+
+ componentDidMount() {    
+  window.addEventListener("mousedown", this.handleClickOuteside);
+}
+
+componentWillUnmount(){
+  window.removeEventListener("mousedown",this.handleClickOuteside);
+}
+
+ handleClickOuteside=(event)=>{
+  if (this.micrositeRef && this.micrositeRef.current !== null && !this.micrositeRef.current.contains(event.target)) {
+    this.setState({isMicrositeEvent:false})
+  }
+}
+
+handleMicroSitePopup=()=>{
+  this.setState({isMicrositeEvent:false})
+}
   handleModalState = (
     // about,
     // contact,
@@ -156,6 +177,13 @@ class Home extends Component {
       : null;
     return (
       <div className="App">
+      {this.state.isMicrositeEvent && 
+        <Catalog
+          micrositeRef={this.micrositeRef}
+          isMicrositeEvent={this.state.isMicrositeEvent}
+          handleMicroSitePopup={this.handleMicroSitePopup}
+        />
+      }
         <Header
           modalStateHandler={this.handleModalState}
           getCategory={this.handleGetCategory}

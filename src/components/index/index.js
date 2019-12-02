@@ -173,7 +173,6 @@ class Index extends Component {
     let arr1=[],arr2=[],carsoCard  
     return (
       <>
-      
         { (featuredEvents.data && featuredEvents.data.homepageDetails)?
         (<div
           className="first-block row "
