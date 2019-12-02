@@ -177,7 +177,7 @@ handleMicroSitePopup=()=>{
       : null;
     return (
       <div className="App">
-      {this.state.isMicrositeEvent && 
+      {(this.state.isMicrositeEvent && this.props.location.pathname ==='/') &&
         <Catalog
           micrositeRef={this.micrositeRef}
           isMicrositeEvent={this.state.isMicrositeEvent}
